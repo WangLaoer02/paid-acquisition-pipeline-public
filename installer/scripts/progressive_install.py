@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Install the current short-drama tools progressively; never generate or log in."""
 import argparse
+import contextlib
+import io
+import official_dependencies
 import hashlib
 import json
 import os
@@ -79,7 +82,7 @@ def names_for(args, manifest):
 
 def state_for(name, destination, manifest):
     if manifest["packages"].get(name, {}).get("external"):
-        return "external_present_unverified" if (destination/"SKILL.md").is_file() else "external_missing"
+        return official_dependencies.state(name, destination)
     if not destination.exists() and not destination.is_symlink():
         return "missing"
     if destination.is_symlink() or not destination.is_dir():
@@ -165,12 +168,19 @@ def install(args, manifest):
     entry = {"phase": args.phase, "backend": args.backend, "files_installed": installed,
              "identical_skipped": [n for n, s in states.items() if s == "identical"],
              "external_dependencies": {n: states[n] for n in names if manifest["packages"].get(n, {}).get("external")},
+             "files_ready": all(state_for(n, args.skills_dir / n, manifest) in ("identical", "external_verified") for n in names),
+             "installation_complete": False, "runtime_ready": False,
              "business_phase_passed": False, "accounts_authorized": False}
     record(args, entry)
     emit(entry)
+    return 0 if entry["files_ready"] else 2
 
 
 def tool_binary(args, name):
+    direct = args.tool_root / "bin" / (name + (".exe" if os.name == "nt" else ""))
+    guard_path(args.tool_root, direct)
+    if direct.is_file():
+        return str(direct)
     local = args.tool_root / "npm/node_modules/.bin" / (name + (".cmd" if os.name == "nt" else ""))
     guard_path(args.tool_root, local.parent)
     return str(local) if local.is_file() else shutil.which(name)
@@ -183,9 +193,9 @@ def doctor(args, manifest):
               "platform": platform.system(), "skills": installed}
     needed = {"0": ["lark-cli"], "1": ["ffmpeg", "ffprobe"],
               "4": ["node"] if args.backend == "rongyao" else ["dreamina-canvas"],
-              "5": ["ffmpeg", "ffprobe"], "6": ["ffmpeg", "ffprobe"],
+              "5": ["ffmpeg", "ffprobe"] + (["dreamina-canvas"] if args.backend == "dreamina" else []), "6": ["ffmpeg", "ffprobe"],
               "7": ["ffmpeg", "ffprobe"]}.get(args.phase, [])
-    checks["binaries"] = {n: bool(tool_binary(args, n)) for n in needed}
+    checks["binaries"] = {n: probe_binary(args, n) for n in needed}
     if args.phase == "4" and args.backend == "rongyao" and shutil.which("node"):
         result = subprocess.run([shutil.which("node"), "-e", "process.exit(typeof WebSocket === 'function' ? 0 : 1)"], capture_output=True)
         checks["cdp_websocket_if_using_cdp"] = result.returncode == 0
@@ -202,15 +212,102 @@ def doctor(args, manifest):
             result = subprocess.run([str(interpreter), "-c", probe], capture_output=True)
             ok = result.returncode == 0
         checks["environment"] = {"profile": required_profile, "imports_verified": ok}
-    checks["files_ready"] = all(s in ("identical", "external_present_unverified") for s in installed.values())
+    checks["files_ready"] = all(s in ("identical", "external_verified") for s in installed.values())
     checks["external_compatibility_verified"] = False
-    checks["software_probe_passed"] = checks["python_3_10_plus"] and all(checks["binaries"].values())
+    checks["dreamina_region"] = getattr(args, "dreamina_region", "cn")
+    checks["region_compatible"] = not ("dreamina-canvas-cli" in installed and checks["dreamina_region"] != official_dependencies.lock()["providers"]["dreamina"].get("region_code"))
+    checks["software_probe_passed"] = checks["python_3_10_plus"] and checks["region_compatible"] and all(checks["binaries"].values())
     if required_profile:
         checks["software_probe_passed"] = checks["software_probe_passed"] and checks["environment"]["imports_verified"]
+    checks["installation_complete"] = checks["files_ready"] and checks["software_probe_passed"]
+    checks["runtime_ready"] = False
+    checks["business_ready"] = False
+    checks["platform_acceptance"] = "unverified"
     checks["production_authorized"] = False
     checks["native_premiere_reopen_verified"] = False
     emit(checks)
     return 0 if checks["files_ready"] and checks["software_probe_passed"] else 2
+
+
+def probe_binary(args, name):
+    binary = tool_binary(args, name)
+    if not binary:
+        return False
+    command = [binary, '-version' if name in ('ffmpeg', 'ffprobe') else '--version']
+    try:
+        return subprocess.run(command, capture_output=True, timeout=15).returncode == 0
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+
+
+def capture(function, *arguments):
+    stream = io.StringIO()
+    with contextlib.redirect_stdout(stream):
+        rc = function(*arguments)
+    return rc or 0, json.loads(stream.getvalue())
+
+
+def setup(args, manifest):
+    phases = list(manifest['phases']) if args.phases == 'all' else list(dict.fromkeys(args.phases.split(',')))
+    if not phases or any(p not in manifest['phases'] for p in phases):
+        raise ValueError('Unknown installation phase')
+    steps = []
+    external = set()
+    for phase in phases:
+        args.phase = phase
+        external.update(n for n in names_for(args, manifest) if manifest['packages'].get(n, {}).get('external'))
+    if args.with_official_skills:
+        for provider, source in official_dependencies.lock()['providers'].items():
+            if not external.intersection(source['skills']):
+                continue
+            args.provider = provider
+            args.with_cli = False
+            try:
+                result = official_dependencies.install(args)
+                record(args, result)
+                steps.append({'action': 'official-install', 'provider': provider, 'exit_code': 0, 'result': result})
+            except (ValueError, OSError) as exc:
+                steps.append({'action': 'official-install', 'provider': provider, 'exit_code': 2, 'error': str(exc)})
+    for phase in phases:
+        args.phase = phase
+        for action, function in [('install', install), ('doctor', doctor)]:
+            try:
+                rc, result = capture(function, args, manifest)
+                steps.append({'phase': phase, 'action': action, 'exit_code': rc, 'result': result})
+            except (ValueError, OSError) as exc:
+                steps.append({'phase': phase, 'action': action, 'exit_code': 2, 'error': str(exc)})
+    doctors = [s for s in steps if s['action'] == 'doctor']
+    files_ready = all(s.get('result', {}).get('files_ready', False) for s in doctors)
+    software_ready = all(s.get('result', {}).get('software_probe_passed', False) for s in doctors)
+    complete = files_ready and software_ready and all(s['exit_code'] == 0 for s in steps)
+    missing = []
+    for step in doctors:
+        check = step.get('result', {})
+        for name, state in check.get('skills', {}).items():
+            if state not in ('identical', 'external_verified'):
+                missing.append({'phase': step['phase'], 'dependency': name, 'state': state,
+                                'next': 'official-install or compare existing files in a new skills-dir; preserve edits'})
+        for name, ok in check.get('binaries', {}).items():
+            if not ok:
+                missing.append({'phase': step['phase'], 'dependency': name, 'state': 'missing_or_not_executable',
+                                'next': 'Install from docs/dependencies.md; rerun setup with the same paths'})
+        if not check.get('region_compatible', True):
+            missing.append({'phase': step['phase'], 'dependency': 'dreamina-cn', 'state': 'official_cn_source_and_compatibility_unverified',
+                            'next': 'Obtain the official CN package and verify it; international CLI is not a replacement'})
+        env = check.get('environment', {})
+        if env and not env['imports_verified']:
+            missing.append({'phase': step['phase'], 'dependency': env['profile'], 'state': 'environment_unverified',
+                            'next': 'env-install --profile ' + env['profile']})
+    result = {'status': 'installation_complete_runtime_unverified' if complete else 'installation_incomplete',
+              'installation_complete': complete, 'files_ready': files_ready, 'software_probe_passed': software_ready,
+              'runtime_ready': False, 'business_ready': False, 'production_authorized': False,
+              'selected_phases': phases, 'backend': args.backend, 'steps': steps, 'missing': missing,
+              'remaining_verification': ['CLI shortcut/schema compatibility', 'recipient account and permissions',
+                                         'native Premiere reopen/export and UXP bridge', 'current rules publication and project binding',
+                                         'model availability, quote and budget approval', 'OS/platform acceptance'],
+              'next': 'Resolve listed dependencies and rerun the same setup; exit 0 is local installation only, never production acceptance'}
+    emit(result)
+    return 0 if complete else 2
 
 
 def env_python(path):
@@ -259,25 +356,46 @@ def install_feishu(args):
     guard_path(args.tool_root, pkg)
     guard_path(args.tool_root, destination / "node_modules/.bin")
     guard_state(args)
-    if pkg.exists() and read_json(pkg).get("version") != "1.0.93":
-        raise ValueError("保留已有CLI版本，未升级或覆盖")
+    if destination.exists():
+        # An existing installation, even a different/edited version, is never npm-installed over.
+        if not pkg.is_file():
+            raise ValueError("EXISTING_NPM_DIRECTORY_PRESERVED: use a new tool-root after review")
+        binary = tool_binary(args, "lark-cli")
+        emit({"existing_cli_preserved": True, "cli_version": read_json(pkg).get("version"),
+              "binary": binary, "version_probe_passed": probe_binary(args, "lark-cli"),
+              "compatibility_verified": False, "next": "Review shortcut/schema compatibility; no upgrade performed"})
+        return 0 if probe_binary(args, "lark-cli") else 2
     existing = shutil.which("lark-cli")
-    if existing and not pkg.exists():
-        emit({"existing_cli_preserved": True, "next": "核对现有lark-cli --version及所需shortcut，兼容则直接复用"})
-        return
+    if existing:
+        emit({"existing_cli_preserved": True, "binary": existing,
+              "version_probe_passed": probe_binary(args, "lark-cli"), "compatibility_verified": False,
+              "next": "Review the existing lark-cli version and required shortcuts; no installation performed"})
+        return 0 if probe_binary(args, "lark-cli") else 2
     npm = shutil.which("npm")
     if not npm:
         raise ValueError("缺npm：先通过Node官方安装来源准备Node与npm")
-    destination.mkdir(parents=True, exist_ok=True)
-    result = subprocess.run([npm, "install", "--prefix", str(destination), "@larksuite/cli@1.0.93"])
-    if result.returncode or not pkg.exists():
-        raise ValueError("CLI安装未完成")
-    binary = tool_binary(args, "lark-cli")
-    check = subprocess.run([binary, "--version"], capture_output=True, text=True)
-    if check.returncode:
-        raise ValueError("CLI版本探测未通过")
-    emit({"cli_version": "1.0.93", "binary": binary, "login_performed": False,
-          "next": "读取lark-shared，在接收者自己的身份下配置与登录"})
+    args.tool_root.mkdir(parents=True, exist_ok=True)
+    guard_path(args.tool_root, args.tool_root / "npm-cache")
+    with tempfile.TemporaryDirectory(prefix=".lark-install-", dir=args.tool_root) as tmp:
+        staged = Path(tmp) / "npm"
+        result = subprocess.run([npm, "install", "--prefix", str(staged), "--cache", str(args.tool_root / "npm-cache"),
+                                 "--registry", "https://registry.npmjs.org", "@larksuite/cli@1.0.98"],
+                                capture_output=True, timeout=240)
+        if result.returncode:
+            raise ValueError("OFFICIAL_NPM_INSTALL_FAILED: exit " + str(result.returncode) + "; retry after network recovery; target unchanged")
+        package = staged / "node_modules/@larksuite/cli/package.json"
+        if not package.is_file() or read_json(package).get("version") != "1.0.98":
+            raise ValueError("OFFICIAL_NPM_VERSION_MISMATCH")
+        binary = staged / "node_modules/.bin" / ("lark-cli.cmd" if os.name == "nt" else "lark-cli")
+        check = subprocess.run([str(binary), "--version"], capture_output=True, timeout=15)
+        if check.returncode:
+            raise ValueError("CLI版本探测未通过")
+        if destination.exists() or destination.is_symlink():
+            raise ValueError("NPM_TARGET_APPEARED: preserved")
+        staged.rename(destination)
+    emit({"cli_version": "1.0.98", "binary": tool_binary(args, "lark-cli"), "login_performed": False,
+          "source": "https://registry.npmjs.org/@larksuite/cli", "lockfile": str(destination / "package-lock.json"),
+          "compatibility_verified": False, "next": "Review required shortcuts before using recipient accounts"})
 
 
 def main():
@@ -290,6 +408,18 @@ def main():
         p = subs.add_parser(command)
         p.add_argument("--phase", choices=["bootstrap", "cleanup", "upload", "seedance-specialists", "asset-turnaround", "asset-catalog", "asset-archive", "asset-image", "naruto-b-library"] + [str(i) for i in range(8)], required=True)
         p.add_argument("--backend", choices=["rongyao", "dreamina"], default="rongyao")
+        p.add_argument("--dreamina-region", choices=["cn", "international"], default="cn")
+    p = subs.add_parser("setup")
+    p.add_argument("--phases", default="0,1,2,4,5,6,7", help="Comma-separated phases or all; current phase only is recommended")
+    p.add_argument("--backend", choices=["rongyao", "dreamina"], default="dreamina")
+    p.add_argument("--dreamina-region", choices=["cn", "international"], default="cn")
+    p.add_argument("--with-official-skills", action="store_true", help="Download pinned official Skills; never overwrite existing variants")
+    p.add_argument("--ca-bundle", type=Path)
+    p = subs.add_parser("official-install")
+    p.add_argument("--provider", choices=["lark", "dreamina"], required=True)
+    p.add_argument("--dreamina-region", choices=["cn", "international"], default="cn")
+    p.add_argument("--with-cli", action="store_true", help="Pinned Dreamina macOS arm64 binary only; preserves existing CLI")
+    p.add_argument("--ca-bundle", type=Path)
     p = subs.add_parser("env-install")
     p.add_argument("--profile", choices=["media", "vision", "speech", "align", "premiere", "upload"], required=True)
     p.add_argument("--ca-bundle", type=Path, help="Explicit trusted CA bundle; certificate checks remain enabled")
@@ -315,10 +445,15 @@ def main():
             actions["skills"] = names
             emit({"phase": args.phase, "skills": {n: state_for(n, args.skills_dir / n, manifest) for n in names},
                   "actions": actions, "writes_performed": False})
-        elif args.command == "install": install(args, manifest)
+        elif args.command == "install": return install(args, manifest)
         elif args.command == "doctor": return doctor(args, manifest)
+        elif args.command == "setup": return setup(args, manifest)
+        elif args.command == "official-install":
+            result = official_dependencies.install(args)
+            record(args, result)
+            emit(result)
         elif args.command == "env-install": env_install(args)
-        elif args.command == "tool-install-feishu": install_feishu(args)
+        elif args.command == "tool-install-feishu": return install_feishu(args)
         elif args.command == "path":
             if args.skill not in manifest["packages"] and args.skill != "paid-skit-progressive-setup":
                 raise ValueError("未收录的Skill")
@@ -330,7 +465,7 @@ def main():
                 raise ValueError("尚未安装或引用越界")
             emit({"path": str(target)})
         return 0
-    except (ValueError, OSError, KeyError, zipfile.BadZipFile) as exc:
+    except (ValueError, OSError, KeyError, zipfile.BadZipFile, subprocess.SubprocessError) as exc:
         emit({"ok": False, "reason": str(exc), "no_overwrite": True})
         return 2
 

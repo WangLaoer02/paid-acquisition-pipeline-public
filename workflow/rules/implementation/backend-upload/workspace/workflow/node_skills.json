@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "release_id": "PUBLIC20261104.1",
+  "release_id": "PUBLIC20261104.2",
   "node_source": "workflow/stages.json",
   "node_source_sha256": "426eae97964c16c72f37d8e7c7a2927f7dbca4f7b86898436b623be398187052",
   "nodes": {

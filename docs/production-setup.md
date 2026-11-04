@@ -2,6 +2,8 @@
 
 ## 1. 配置与软件
 
+先按 README 的 `setup` 和 docs/dependencies.md 补齐所选阶段依赖；退出 2 或任一缺项未解决时不能称安装完成。国内即梦默认缺项不得用国际版替代；来源完整性、CLI 适配兼容、既有身份和业务权限分别核验。
+
 初始化后编辑 `receiver.local.json`：`writer_host` 填运行时 `socket.gethostname()` 的真实结果；`rules_center` 填接收人自有飞书 Docx ID；`feishu_origin` 为自己的 `https://…feishu.cn` 或 `https://…larksuite.com` 租户域；`account_label` 为本人账号说明。不要填访问凭据。`backend` 按当前任务指定为 dreamina 或 rongyao，CLI 通过本人既有登录管理权限。
 
 运行 `python3 tools/public_release.py config-check --production`。此检查只验证配置形状，不会将账号标为登录成功。

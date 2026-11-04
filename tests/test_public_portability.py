@@ -57,7 +57,7 @@ class PublicPortability(unittest.TestCase):
  def test_skill_install_preserves_manual_change_and_external_gap(self):
   with tempfile.TemporaryDirectory() as tmp:
    dest=Path(tmp)/'skills';tool=Path(tmp)/'tools';cli=ROOT/'installer/scripts/progressive_install.py';args=(cli,'--skills-dir',dest,'--tool-root',tool,'install','--phase','0')
-   p,d=self.run_cli(*args);self.assertEqual(p.returncode,0,d);self.assertEqual(d['external_dependencies']['lark-doc'],'external_missing')
+   p,d=self.run_cli(*args);self.assertEqual(p.returncode,2,d);self.assertFalse(d['files_ready']);self.assertEqual(d['external_dependencies']['lark-doc'],'external_missing')
    changed=dest/'universal-skit-orchestrator/SKILL.md';changed.write_text('manual edit')
    p,d=self.run_cli(*args);self.assertNotEqual(p.returncode,0);self.assertEqual(changed.read_text(),'manual edit')
 if __name__=='__main__':unittest.main()

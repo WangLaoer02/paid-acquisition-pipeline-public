@@ -13,7 +13,7 @@ def save(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps
 def files(p):return {str(x.relative_to(p)):sha(x) for x in sorted(p.rglob('*')) if x.is_file() and '__pycache__' not in x.parts}
 # Assign the recipient's explicit version to active JSON contracts.
 for cfg in R.rglob('*.json'):
- if cfg.name in ('PUBLIC-MANIFEST.json','SKILLS-MANIFEST.json','receiver.local.json') or any(x in cfg.parts for x in ('projects','evidence','library','.git')):continue
+ if cfg.name in ('PUBLIC-MANIFEST.json','SKILLS-MANIFEST.json','receiver.local.json') or any(x in cfg.relative_to(R).parts for x in ('projects','evidence','library','.git')):continue
  try:value=load(cfg)
  except ValueError:continue
  def version(v):
@@ -23,7 +23,9 @@ for cfg in R.rglob('*.json'):
     else:version(v[k])
   elif isinstance(v,list):
    for x in v:version(x)
- version(value);save(cfg,value)
+ original=json.dumps(value,sort_keys=True)
+ version(value)
+ if json.dumps(value,sort_keys=True)!=original:save(cfg,value)
 # Synchronize the actual packaged execution mirrors from the reviewed owner scripts.
 backend=R/'workflow/rules/implementation/backend-upload/workspace'
 for source in (R/'scripts').glob('*.py'):

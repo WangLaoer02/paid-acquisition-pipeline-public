@@ -3,15 +3,17 @@ name: paid-skit-progressive-setup
 description: 为买量短剧工作流或首条写轮眼案例配置Codex所需Skill和本机工具，按制作阶段安装、检查及续接；用于部署和迁移，不承担剧本、生成或工程制作。
 ---
 
-# 买量短剧渐进安装（本地未发布候选）
+# 买量短剧渐进安装（公开版安装器）
 
 这是安装入口，不是第二个生产主控。业务规则仍读取[中心当前独立规则](https://example.invalid/receiver-feishu-document)，现场要求与项目表决定生产阶段；本包记录安装阶段，不能标业务完成。
+
+公开版先按[公开安装汇总](references/public-install.md)运行 `setup`，逐项汇报文件、软件基础探测、实际运行和业务验收。国内即梦缺项不能以国际依赖替代。
 
 首次只读[渐进安装与验收](references/progressive-setup.md)中的开始章节，运行`scripts/progressive_install.py verify`和当前阶段`plan`。只有安装被本次任务授权时才运行`install`；依赖安装用单独的`env-install`或`tool-install-feishu`。`doctor`只读，不登录、不下载模型、不打开浏览器、不触发生成。
 
 进入阶段后才读相应业务Skill：安装器按manifest映射复制该阶段文件；源文件归档在ZIP内，尚未安装的下游不作为当前上下文展开。已有同名源文件不一致时整阶段拒绝覆盖，先逐文件核对，不为安装重置手改。
 
-每一阶段使用`plan → install → doctor → 人工门复核`。安装可用与账号、模型、原生PR打开、生成费用授权分开记录。没有回复、只有存在的二进制或只有静态模型表，不能标实际接口可用。
+每一阶段使用 `setup --phases N` 汇总 `install → doctor`。退出 2 是未完成；退出 0 仍需独立核对实际运行与业务门。安装可用与账号、模型、原生PR打开、生成费用授权分开记录。没有回复、只有存在的二进制或只有静态模型表，不能标实际接口可用。
 
 历史命令写死`~/.agents/skills`、`.system/imagegen`或旧机器目录时，先用安装器`path`定位实际安装文件。不要创建别人的旧绝对路径或复制账号配置。[来源与条件依赖](references/source-and-conditions.md)列明真实文件、原生工具、可选分支和不可用项；按触发条件查阅，不自动启用全部分支。
 

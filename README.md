@@ -1,10 +1,10 @@
-# 买量管线（公开源码候选）
+# 买量管线（公开源码）
 
 从参考拆解、创意预演、角色物料、完整剧本与提示词，到生成、Premiere 剪辑、接 B、验收与上传的 24 节点工作流。保留运行脚本、节点合同、规则、渐进安装器、空模板和六卡说明网页。它需要 Agent 阅读和执行合同，不是一键自动成片程序。
 
 **本版不代表作者的正式生产发布。** 不含作者项目、私有 Git 历史、媒体、账号、项目表或消费授权。离线准备可以直接运行；正式制作需要接收人的飞书规则源、项目 Sheet、服务账号和本机软件。项目自有代码采用 MIT，第三方许可分别保留，见 [LICENSE.md](LICENSE.md) 与 [第三方声明](THIRD_PARTY_NOTICES.md)。
 
-拟发布仓库：`WangLaoer02/paid-acquisition-pipeline-public`（本候选尚未上传）。发布完成后从该仓库克隆：
+公开仓库已上线：[WangLaoer02/paid-acquisition-pipeline-public](https://github.com/WangLaoer02/paid-acquisition-pipeline-public)。本源码版本：`PUBLIC20261104.2`。克隆公开源码：
 
 ```sh
 git clone https://github.com/WangLaoer02/paid-acquisition-pipeline-public.git
@@ -29,19 +29,33 @@ python3 scripts/workflow_node.py context --node A03 --offline-preparation
 
 打开 `00_开始使用.html` 查看六卡、浮窗与二级节点导航；也可运行 `python3 -m http.server 8765` 后在本机浏览器打开该文件。本仓库未配置 GitHub Pages，不提供已上线网页承诺。
 
-## 按需安装
+## 安装与依赖汇总
 
-源码树 `skills/` 已包含规则阅读所需内容。要让 Agent 宿主发现 Skill，可安装到自己选择的目录，保留已有同名手改：
+Python 3.10+ 和 Git 由目标机器提供。先确认 Agent 的 Skill 搜索目录；以下相邻目录用于隔离安装，避免覆盖现有版本。只需要当前阶段时把 `--phases` 改为对应阶段（例如 `0`）；完整范围用 `all`。
 
 ```sh
-python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools install --phase 0
-python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools install --phase 1
-python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools install --phase 2
-python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools install --phase 4 --backend dreamina
-python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools doctor --phase 4 --backend dreamina
+python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools setup --phases 0,1,2,4,5,6,7 --backend dreamina --with-official-skills
 ```
 
-阶段 0 为基础、1 为取片、2 为创作、4/5 为生成准备/执行、6/7 为后期。`install` 只装随包文件；外部依赖会明确列出，`doctor` 不把文件存在当作账号、原生软件或业务验收。媒体 Python 依赖可按需 `env-install --profile media`；商业软件与官方 CLI 见 [依赖来源](docs/dependencies.md)。
+`setup` 汇总每阶段 install、doctor 和外装获取结果。退出 **2** 代表未完成：逐项读取 `missing`、`steps` 中的失败原因，处理后使用同一命令和目录重试。退出 **0** 只表示所选阶段的文件校验与本机软件基础探测通过；`runtime_ready`、`business_ready` 始终单独保持未验收。不能把“37个随包 Skill 已复制”、外装缺失或 doctor 2 写成全部安装完成。
+
+该命令仅按需从官方固定来源取得飞书四 Skill，保留 MIT 许可。**默认国内即梦没有本轮核实的公开自动获取来源，仍明确列缺项**。现有其他版本、空 SKILL.md 或手改均不冒充完整官方安装；保留原件，在新的隔离目录比较，再由维护者核对兼容性。国际 Dreamina 是显式可选路线，见 [依赖来源与补齐命令](docs/dependencies.md)。
+
+常见缺项可逐项补齐后重跑 setup：
+
+```sh
+python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools tool-install-feishu
+python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools env-install --profile media
+python3 installer/scripts/progressive_install.py --skills-dir ../my-agent-skills --tool-root ../my-tools env-install --profile premiere
+```
+
+官方 CLI、FFmpeg、Premiere、宿主图像工具、模型和账号分别检查；安装器不登录、不下载模型、不生成、不写项目表、不上传。单独运行 `install --phase N` 只复制文件，外装未验证时也退出 2；`doctor --phase N` 只读。安装器不修改系统 PATH，调用工具时使用输出路径或在当前终端临时加入 `my-tools/bin`、`my-tools/npm/node_modules/.bin`。
+
+给 Codex 的接入指令：
+
+```text
+读取公开仓库 README，核对当前版本和目录。用 setup 安装我需要的阶段及合法官方依赖；保留已有文件和登录配置。完整报告 installation_complete、files_ready、software_probe_passed、runtime_ready、business_ready，以及每项缺失/冲突/恢复步骤；任一外装失败或 doctor 2 都不能汇报安装完成。国内即梦不自动切国际版。只做本机安装和只读检查，不登录新账号、生成、付费、写项目表或上传。
+```
 
 ## 配置自己的正式工作区
 

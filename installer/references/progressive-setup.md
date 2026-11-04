@@ -1,39 +1,12 @@
 # 给接收方Codex：渐进安装与实现验收
 
-## 开始：两份下载，安装与案例分开
+## 开始：公开版源码与依赖汇总
 
-飞书手册： https://example.invalid/receiver-feishu-document
+当前公开源码仓库：https://github.com/WangLaoer02/paid-acquisition-pipeline-public 。公开包不含私有案例媒体、作者账号或正式项目，不能从占位飞书地址下载历史案例。
 
-1. 下载手册当前同版安装包，按文档公布的SHA256核对整包后解压。
-2. 仅复现首例时另下载V002案例包（362,920,772字节，SHA256 `3793a71dea43d20fc51315af87a48391b30253277691281601a7625e547df51e`）： https://example.invalid/receiver-feishu-document
-3. 不要把这两份包解压覆盖到原项目、现工程或现Skill目录。安装器接收一个解压后的安装Skill目录。
+先读[公开安装汇总](public-install.md)，以 `setup --phases 当前阶段` 统一检查；源码根目录入口为 `installer/scripts/progressive_install.py`，独立安装器目录入口为 `scripts/progressive_install.py`。Python 3.10+，目录参数放子命令前。只安装本次需要的阶段；全部依赖范围可显式传 `--phases all`。
 
-安装包要求Python 3.10+。它包含真实Skill源码ZIP、完整当前规则和实施脚本；模型、许可软件、登录态及Codex连接器是接收机器的独立依赖。复制Skill不能制造MCP工具。
-
-把以下任务交给另一个Codex，补上解压位置：
-
-```text
-按这份飞书手册配置买量短剧工作流。安装包已解压到「实际路径」。
-先读取paid-skit-progressive-setup/SKILL.md和references/progressive-setup.md的开始章节。
-只处理bootstrap与当前制作阶段：verify → plan → 安装获准的本机文件/隔离依赖 → doctor。
-源目录冲突保留我的原文件；不要一次展开或安装全部下游。
-需要登录、连接器、审美或生成费用时，先查当前项目与可用授权，再仅补对应缺项。
-安装不包含付费生成或发布授权，不借用示例账号、项目、预算或会话。
-我先复现SK002已有成片时，只准备阶段6/7，校验/重连案例包，再实际PR原生打开和导出。
-```
-
-进入安装包目录后，以下命令中`python3`应替换为目标机已核对的Python解释器；Windows可使用实际`python`路径。
-
-```bash
-python3 scripts/progressive_install.py verify
-python3 scripts/progressive_install.py plan --phase bootstrap
-python3 scripts/progressive_install.py install --phase bootstrap
-python3 scripts/progressive_install.py doctor --phase bootstrap
-```
-
-默认Skill目录：`$CODEX_HOME/skills`，未设置时`~/.codex/skills`；工具目录：`~/.local/share/codex-tools/paid-skit`。用全局参数`--skills-dir "目标目录" --tool-root "目标工具目录"`放在子命令前可改位置。不改HOME/CODEX_HOME，不改其他机器配置。新Skill可在Codex下一轮发现；必要时显式给出已安装SKILL.md路径。
-
-安装器只给当前phase写文件，安装记录是`tool-root/installation-state.json`，不代替项目表、制作检查点或授权账本。`plan/doctor/verify/path`不写环境或业务；`install`只复制Skill；`env-install`联网装隔离Python依赖；`tool-install-feishu`联网装隔离npm工具。
+`setup` 退出 2 时必须列未完成项，不把阶段 install 的文件复制当总安装完成。`--with-official-skills` 按当前阶段从官方取得固定 Skill；默认国内即梦继续列缺项，国际路线要显式选择。已有版本与手改不覆盖。账号/原生软件/业务授权分开核验；安装不授权生成、付费或项目表写入。
 
 ## 每个阶段的实际步骤
 
@@ -50,7 +23,7 @@ python3 scripts/progressive_install.py tool-install-feishu
 python3 scripts/progressive_install.py doctor --phase 0
 ```
 
-已有lark-cli时安装器保留它，需实测`--version`与文档所用shortcut。没有时从官方npm包固定安装1.0.93到tool-root/npm，不全局覆盖；输出实际二进制路径。后续所有`lark-cli`命令用该路径运行，或仅为当前终端配置该目录PATH。
+已有lark-cli时安装器保留它，需实测`--version`与文档所用shortcut。没有时从官方npm包固定安装1.0.98到tool-root/npm，不全局覆盖；输出实际二进制路径。后续所有`lark-cli`命令用该路径运行，或仅为当前终端配置该目录PATH。
 
 读取已安装lark-shared。无配置时按其config-init参考启动交互配置；无登录时按身份参考执行`auth login --recommend`。授权URL原样展示并生成二维码。已有登录用接收者自己身份核对，不能复制原作者Cookie、Token或账号文件。遇授权缺项先查目标机器已有连接/metadata-only访问目录，凭据目录不是授权。
 
@@ -101,7 +74,7 @@ python3 scripts/progressive_install.py doctor --phase 4 --backend rongyao
 
 Python3.10+可做本地models/plan/help；默认auto发现原专用会话的当前port/target，由固定钥匙包恢复并核验AI保护接口，Node22+提供WebSocket。browser仅为显式脚本准备兼容模式，prepared不等于发送。付费提交走同版工作区scripts/ryai.py，绑定paid_generation票据和完整计划SHA；未知计价须当次例外，未知受理只查原任务。help不认证，pending不重复登录，安全拒绝保留现场。
 
-需要即梦路线才指定`--backend dreamina`安装真实dreamina-canvas-cli。二进制由owner当前发行来源提供，本包不包含那份Mac编译程序；目标机先验实际版本/schema、账号，再引用上传/报价。两条路线不混用资源ID或费用单位。
+需要即梦路线指定 `--backend dreamina`；此 install 不包含外装 Skill，国内默认缺项与国际可选获取均见 public-install.md。二进制由owner当前发行来源提供，本包不包含那份Mac编译程序；目标机先验实际版本/schema、账号，再引用上传/报价。两条路线不混用资源ID或费用单位。
 
 在用户费用授权内执行实际 `上传回读 → plan → 正文/绑定/参数/报价预检 → submit --execute一次 → task/session查原任务 → download → verify-download`。安装过程中不运行其中的上传、submit或其他业务写入。阶段5同样指定本项目backend，未知任务不重复提交。
 

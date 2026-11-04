@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release_id": "PUBLIC20261104.1",
+  "release_id": "PUBLIC20261104.2",
   "writer_hosts": [],
   "single_writer_policy": "Declared writer_hosts may mutate all supported actions. action_writer_hosts adds only the named action on the named host; other actions remain read-only. Host changes require a reviewed release.",
   "local_lock_timeout_seconds": 0,

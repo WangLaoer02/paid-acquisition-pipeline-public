@@ -1,5 +1,5 @@
 {
-  "version": "PUBLIC20261104.1",
+  "version": "PUBLIC20261104.2",
   "date": "2026-11-04",
   "canonical": null,
   "packages": {
@@ -94,12 +94,12 @@
     "paid-skit-copywriting": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/paid-skit-copywriting.zip",
-      "sha256": "9c0ae8b393748244a2720ec0f53931b9b237eea20370269ad7d4a0b2f40acae5",
+      "sha256": "10bdf7511ca694ff5cdecd3dfff34e9ec33c6cc95494a8f5abf408bf07f8c49f",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "79f5bfde25143855826264b60d1fda0d95b349d397c242cea1d590d54590001a",
         "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
-        "source.json": "b7d53faf4c0b48762fd4c818731dc7a892c96862a26ea0151dc23d82278c9df5"
+        "source.json": "5740027f47fa862a340e29893a6d1cf327013b9603753d584b8fa8a8c3459f80"
       },
       "file_count": 4,
       "bytes": 1882
@@ -107,25 +107,25 @@
     "paid-skit-storyboard": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/paid-skit-storyboard.zip",
-      "sha256": "9a82cb6df99e4f66fa72a054b212ac50fd5abe685e8501d01060c6ce864d4446",
+      "sha256": "2e9e87cf15dfc8a96ce9b5f976485ae79f4e88183d414c7e78e48352b782969e",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "d39c35b57d745637663f6f7673614f575e0ee90c091b31d2fd07479b77a823fd",
         "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
-        "source.json": "2b2e1c4de07440370d08b5ee10cfb329c472fe6b8aab6e102a7100d00080fad2"
+        "source.json": "9317f23c3e99d7ac214fc82c129f17d3d91c513cfdc4fe6bdbe00f19edc20f70"
       },
       "file_count": 4,
-      "bytes": 2237
+      "bytes": 2238
     },
     "paid-skit-character-sheet": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/paid-skit-character-sheet.zip",
-      "sha256": "dd22e884eab019c9a3a052f8cdd77d4a85a2faec1bee14a44b9542884641a3fe",
+      "sha256": "9ceecaba76e348e6008b65273164a06d8736f3ed6dfcdaf0a35c028b803bd740",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "63da991cd4204134a08b5c9829585ea7c9f6c2a8a95746d3c172972d8fdd03ae",
         "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
-        "source.json": "dd539e25155a6f3fb5ad0adba14eeb5623b10d78be6ba76f10a0af9f87854505"
+        "source.json": "83512187eb99f39ca0ecc688f4c9e973700ed765b7f0f0994648fdcf3fb6b492"
       },
       "file_count": 4,
       "bytes": 2117
@@ -133,12 +133,12 @@
     "paid-skit-video-prompts": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/paid-skit-video-prompts.zip",
-      "sha256": "31b0391ac0d01f1b24a7f258420e7cf98a85d6cc05c26b62181af28d70e523e6",
+      "sha256": "92f18d535596e15f7daaae2a992a886888021f6633d0e6e70e6a1595bf598e74",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "94ed9bb5cdaa4209b88147cd3152f62260e9c4a7e74ba7b3781330e1c5de9b46",
         "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
-        "source.json": "8b6f3e0d9c990376113b5886f7cda535270969a14bc28c9ea842e63f9b5372fc"
+        "source.json": "31000e2c8f03f98f54e9951a2820bfed1ab9215fdac9f1afcf39f64d5a920e23"
       },
       "file_count": 4,
       "bytes": 2227
@@ -146,12 +146,12 @@
     "paid-skit-asset-bridge": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/paid-skit-asset-bridge.zip",
-      "sha256": "d65c22df0c55ec35954e500145a2550f9928ee9b1a62432a9213b8d80a51ec38",
+      "sha256": "6f822df78df69ff6f28bcf5da031c11129c4208bf42b24db1f536183fb90a9e0",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "499dbc36043c55950c2891274bba3b6fc1da38446fab2fc142c239a2adeb369e",
         "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
-        "source.json": "9b9f722a1a45eeb8f64c926a63fb5a1687f91515d3f6439092f955f0ecc70c15"
+        "source.json": "f4312304d637e421a8c6288370581cbaed46710cdaaa6efff9dcc4d75f68acff"
       },
       "file_count": 4,
       "bytes": 2060
@@ -159,7 +159,7 @@
     "paid-skit-character-format": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/paid-skit-character-format.zip",
-      "sha256": "580ef5e657221b9f5ca03ef828362c2bb806cefc4bf89834d8553ee8edacb20b",
+      "sha256": "8d11686861ec6f7c2f5b8802d709e72c735b59892ce56e2e0b2e67d2fba8e517",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "57bb84da5c2380ccbdb052fbe26a7ab4947ee0c490e65354b68b0b1703e1b178",
@@ -168,7 +168,7 @@
         "scripts/character_consistency_gate.py": "6abad5e5b140b1995505aa32367536c624580c733f8fe4b452e525a2e2c5c3b6",
         "scripts/extension_queue_status.py": "e6452f7aeef3d26ea8dad82be156718b2f6476c33d62e7820015b81c0e2ad6ed",
         "scripts/face_reference_gate.py": "2d315432d6994fcc8e7d08ad85853ebd1c50889065317c167497b4faf43ab499",
-        "source.json": "f35d3fc0fc9a14321e9ca2237c4c4a6c00fd1277e2aac194940138ea67981808"
+        "source.json": "6c38c1fb8a1eff1d3d2c13bb665f458a9b8b6e635b1b0b36576fb9af8f40b776"
       },
       "file_count": 8,
       "bytes": 11562
@@ -176,12 +176,12 @@
     "paid-skit-cleanup": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/paid-skit-cleanup.zip",
-      "sha256": "f17e8957ff3d21a7ec991630402e89913fb41b6a71ac19b9822f2cc6d420aab8",
+      "sha256": "79c0e7340c323a6209341710831c45ed734b794ad95c7f06dad098649eaaad09",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "419f0dc80db09d0c95c886adea3d7d9e6228b004e15bf18ba55a5b4e4934430c",
         "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
-        "source.json": "67ed23bb35e63a2e40582f64391c47f16cb58d9e884a4ca297492e659376880d"
+        "source.json": "85752fe7f5f31304f7b0e1b5a2e4ae3de7921847eaf9169bd90bf5472277fcc7"
       },
       "file_count": 4,
       "bytes": 2044
@@ -212,12 +212,12 @@
     "rongyao-material-upload": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/rongyao-material-upload.zip",
-      "sha256": "c7fb3850002e8005ee8cb2f4762803ef50d2a64b448b396055ee70e5874b847b",
+      "sha256": "bbd65e35c1b8f64180a6bf92bc07c87e0984d24a9c1b567e5afac105a9befeae",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "1550c42d0b7492f50ea9466696c40a56b2a0d2a74067568e7273649ec4850aae",
         "agents/openai.yaml": "aeea92acbdefb9ecf3624e53d53c933bfc026496f9482eb10488cc6f4bbf0529",
-        "references/contract.json": "5fd4893e418a94a22be2ac92c884f9c047eac03f6af4aad064b07ef9cb83856c",
+        "references/contract.json": "8a3ee4fdb020439803d73a98b671fd5ecd97ee417b9403240d97d907efd870ae",
         "references/mapping.md": "5e2711cf49b5c071cfec2c3e88862d91e621c2b1c0e9a7ae65c2bcbc3b9b9309",
         "references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
         "scripts/entry.py": "2478df00037725e76360bbb41b091e55783b358bf489fc247d4550403c53fe7e"
@@ -484,7 +484,7 @@
     "seedance-paid-skit-production-pipeline": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/seedance-paid-skit-production-pipeline.zip",
-      "sha256": "aa408f3a2ec095f78e17b3a5547e8e57bf310fab0ba3f2cf28644916ab0a6453",
+      "sha256": "8d41c2a82c3988812c630e167b8e141f79a1620ae60987ee24203af24bd03af8",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "f3a661856e21aeaf9edcf9ac65fdf583b9b5cb8cdd06199da5e1b2b7600aba8d",
@@ -693,7 +693,7 @@
         "references/rules/fragments/video-prompts-13.md": "fb5777589442e194440acd8acef3c9ee52037929a425cab576c5c5b1e5e6c852",
         "references/rules/implementation/backend-upload/skill/SKILL.md": "90ae648bdf7517f8ced25c276d3e7a6e1c8b86f638be1ca56866060470fe5233",
         "references/rules/implementation/backend-upload/skill/agents/openai.yaml": "aeea92acbdefb9ecf3624e53d53c933bfc026496f9482eb10488cc6f4bbf0529",
-        "references/rules/implementation/backend-upload/skill/references/contract.json": "5aabfe7ef6106195c98949bf45754491489e1c892100a3c25b5bce02597c70d4",
+        "references/rules/implementation/backend-upload/skill/references/contract.json": "17606757e0cf02d32863cfc4b847833cebce3a36b5d802e2100b9489dd8167d7",
         "references/rules/implementation/backend-upload/skill/references/mapping.md": "5e2711cf49b5c071cfec2c3e88862d91e621c2b1c0e9a7ae65c2bcbc3b9b9309",
         "references/rules/implementation/backend-upload/skill/references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
         "references/rules/implementation/backend-upload/skill/scripts/entry.py": "2478df00037725e76360bbb41b091e55783b358bf489fc247d4550403c53fe7e",
@@ -740,11 +740,11 @@
         "references/rules/implementation/backend-upload/workspace/workflow/console-compact-template.json": "93028196f3423af170bd049a095f65165bb8dffba06e5c2788fb3d86b7e780c1",
         "references/rules/implementation/backend-upload/workspace/workflow/console-template.json": "f133b5f35b06823e5849475fc3be928ecd9b4f9914f9ed698eb5d59fc5a7fe38",
         "references/rules/implementation/backend-upload/workspace/workflow/director-storyboard-template.json": "cd83841673f871e9d107c7918f37889bb1d7e0d9d1406b3b7edc193a3f9b92c1",
-        "references/rules/implementation/backend-upload/workspace/workflow/maintenance/upload-acceptance/config/requester-ai-rules.json": "1254d8f5579ca812e2909ae469a715dd169cf0782700726a5bb176b9f34d9cf2",
+        "references/rules/implementation/backend-upload/workspace/workflow/maintenance/upload-acceptance/config/requester-ai-rules.json": "71c049dd17781881b73005b04f10addebb5ace1df28d1f113eeb54231b3200bc",
         "references/rules/implementation/backend-upload/workspace/workflow/maintenance/upload-acceptance/config/rongyao-observed-protocol.json": "fed4888ae752cff5bdcb92e830f4f45b7385eaf35d650fa73678449221dfc79e",
-        "references/rules/implementation/backend-upload/workspace/workflow/node_skills.json": "759595c0993e0f3cabf4cd601cc9dbea360152c7b7cadd82fc9a81669e9f9ec0",
+        "references/rules/implementation/backend-upload/workspace/workflow/node_skills.json": "ff9ac14f4b53e2324f8258ece322b131f57285c6aae3eb6055c4c1cc93b79bcc",
         "references/rules/implementation/backend-upload/workspace/workflow/risk-hardening.json": "d16da9f594701681a7e5e00e42d27057f4c1e0a612de426a2ebb64c27af52f90",
-        "references/rules/implementation/backend-upload/workspace/workflow/runtime-policy.json": "14ba45afd8e64f428c82f227cd64db1408ad7ddc8c0d347039c36bbfe7eab88d",
+        "references/rules/implementation/backend-upload/workspace/workflow/runtime-policy.json": "f20c44dfa5a233bce44464d1b2be822f6818d7f3fdbc309b455b41c3b14e359b",
         "references/rules/implementation/backend-upload/workspace/workflow/stages.json": "877c1601c35f87075c4587dea8c938da7031b953dab9edc06f65b542be69d332",
         "references/rules/implementation/backend-upload/workspace/workflow/tools/native-upload/native-ui.swift": "c83c9b58e0556b692f0937eb61a26351aea7520d3949aafc4fb23f7d447766ef",
         "references/rules/implementation/console/console-template.json": "f133b5f35b06823e5849475fc3be928ecd9b4f9914f9ed698eb5d59fc5a7fe38",
@@ -867,39 +867,39 @@
         "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/scripts/prepare_upload.py": "a18a705d4c4f6e8a610b4e81034a48e83d62945ce59af474a59f3423270a0735",
         "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/scripts/test_handoff.py": "6dc5468beb12d5a7063d808ab4962f1bf79311346ca668ccc5accd0c882db12c",
         "references/rules/main.md": "aded8207ef2f24efe83f884b32ce0cd15d43e039cf4aaba6eae86221ef52cbf4",
-        "references/rules/manifest.json": "a5904814f58e8d1db90fe64aa21bc49c9dc3de9dfdd0cab8b9b78c3436af5472",
+        "references/rules/manifest.json": "abe1dfe8a50066be3e03a77fb43af1bb92d08530d4d76cdac6456d903dc96138",
         "references/rules/material-preparation.md": "7fb2db76aa652a4c5239afea9c4673df2c9faf616e5785e145b5c7fb696e5e45",
         "references/rules/operations.md": "e758c222456581b337b7ff3c61a8595791a90598d86fda4c668ecb3b465f0dc5",
-        "references/rules/policy-index.json": "8beecf209b4767be6181eb1dd5bf492da6ad2413afa46af2a6c8218fb58f2b7a",
+        "references/rules/policy-index.json": "f823bcc857cff006328cf8ea9340d7137b0bbae94b9ffdcaeeb72843675e5214",
         "references/rules/portrait-layout.md": "0c97dea80bbaf1bb3d758a5d9baaeb90b02c8af4d870ef0eb5804e607408a6a6",
         "references/rules/premiere-automation.md": "b7bdf9383e96c9f113e99abda11ea047c736f8abe6afa9503f1b819485c804ee",
         "references/rules/reference-scope.md": "f895bb4ceff2dbca8b15eb7f4c90ebca55dbf5361413bfe810c02eb8d634f21f",
         "references/rules/shared/guards.md": "92a155f2e08b027c4018f7e4701af47278cc0bf5c82cadbb5d4f709c91f1a28e",
         "references/rules/skill-dependencies.json": "67e52fb6483e0c83603e1abfa1d35fdeeb230eb926e88d0b78d11be4ec72f71a",
-        "references/rules/stages/A01.json": "7df2b3fbd95f653361134b8a996ecea463dd51ca31c262c1c809c289bbec54da",
-        "references/rules/stages/A02.json": "a38a6fa765118b32818e0b2f4e28ad6398c768e7b102a627ececfa08f728bbad",
-        "references/rules/stages/A03.json": "bdc54830e6be59eae4b7f1986b40bc51700c2dc9775200b88665449308960503",
-        "references/rules/stages/A04.json": "9d1df17416582c4d1a9acc0200b80bce4e7b329b3250e604d76b06bd7b0737cc",
-        "references/rules/stages/A05.json": "1e34a1927da4931793ea7560df6c26ff2050845069b2c970c351c0d496a0d0f1",
-        "references/rules/stages/A06.json": "915867a7f5322673d9ed021201da3e11706a41ee73c39429437513cb4d44fd22",
-        "references/rules/stages/A07.json": "2d1e4bf342d60a4350a447113881402692e6369fc3188263023e8c69fe68e031",
-        "references/rules/stages/A08.json": "e887637ee04444bd1190fb3456e956cfb81d788a012470fecf4932691e47d88e",
-        "references/rules/stages/A09.json": "6ad4b62bade5ba0db8dbdbf66eec666c02d3cc96ea2bb79aefa7cf0e18243a17",
-        "references/rules/stages/A10.json": "f124d376b8135b9ac52fea5e987ef2bd3757ea5ea839119c322dee8febd2784e",
-        "references/rules/stages/A11.json": "d949b8ecd15f6bc7b51d6f380b6da712b2e97521228c4ded32fe922913f63304",
-        "references/rules/stages/A12.json": "9967a9f98e1b6c294232643648d622b63d96dbbd5a6417fddbaf8479ea990837",
-        "references/rules/stages/A13.json": "160aff066a9f362e04197c5b617199b2048ce5a4dc20906350c28c1d8771d14a",
-        "references/rules/stages/A14.json": "38d3c9f003936494a465184d0c8ef86538f1e909c22ab488ddd3761bb5549409",
-        "references/rules/stages/A15.json": "30464139093a6b37608b1a73ebde185810387a8aa3f8d435cd7f07a938e11694",
-        "references/rules/stages/B01.json": "854086e685a42bb564bbd06711c01caab0c01987b7b1ac3707f74f16aadba1b9",
-        "references/rules/stages/B02.json": "ab104bead6e14fd72837d223315cce1b686eba6a953a0d08b1bf1681007ca953",
-        "references/rules/stages/B03.json": "eca0a6e3ef75aa0ed5014b4cec7625a5968be4bb73c9259a939304631a8f359d",
-        "references/rules/stages/B04.json": "6a4c632a5ae96f9033ab657f213170d02c25c639cfc327d4117c4dd2ef208f30",
-        "references/rules/stages/B05.json": "f128e82a4ca0267006122e5620255d887c65e5581e4503c13ab7a445dbfa567d",
-        "references/rules/stages/LIBRARY01.json": "a12d136ed80e546167f20c25893ed1961c0d5f3483182836204f671f2dee1fcb",
-        "references/rules/stages/LIBRARY02.json": "150984015e3ecdd0aa52dc98ecd6dd77cae01a9b9d61cd8cf2cc4fdfcc17caba",
-        "references/rules/stages/LIBRARY03.json": "4f99fc62cbe7bf9e30b3203f1b15a3f627c6c374efbe025826fbe70f7175240c",
-        "references/rules/stages/LIBRARY04.json": "9d5f5c7f799ec8df3f6c95b5f2a6660acdee7e99b7b5c802b48bc9b5d9dd87db",
+        "references/rules/stages/A01.json": "5b90f1ad7243e87c4a083e7d9bf456ff2e15c687fd2fa6e3da13c4da408863a5",
+        "references/rules/stages/A02.json": "abb8ca62c1a5f8b99750584b9d1583002ac86942039262ddfcfb8d782edbfd73",
+        "references/rules/stages/A03.json": "6725f6e2d39324328f5afee419913930217a49e6c8d0523d84fb26d98af60ce8",
+        "references/rules/stages/A04.json": "99ae3fc6a50f925efafa17ddb427cc2a75ea41b9c228f249a0a2041844e2ab58",
+        "references/rules/stages/A05.json": "936c295aff4066ff5662e7ac1bc894aa21eb6d6a69dd93ba806d41edaa4b07b8",
+        "references/rules/stages/A06.json": "3344a9c00d5d6f3add9a9b5ef40a17bba6ee2f53339cf8f8b861832eb691ebc3",
+        "references/rules/stages/A07.json": "3b77e207275226a50305ada986a5b94d253c06dd9652a78790ed805b6d38716c",
+        "references/rules/stages/A08.json": "88d4ec9f8d65ad3a9beaaf77fa483eea86a4bdb2518e8190dd5e5a616c949bbc",
+        "references/rules/stages/A09.json": "b26c4e964acde5ac56dddacfbc8f8649689e6df8a565dc9814bc62a9f47f3891",
+        "references/rules/stages/A10.json": "b05377340bf994186372b2b4fcf54c621ed3bf255167d16123c959fa074d6490",
+        "references/rules/stages/A11.json": "a1e384afa42730b6718ccde8b69d28a73ec87d1ca248d84ade89d311fcb689e8",
+        "references/rules/stages/A12.json": "f0f9821dd637944a4eecd8b14c56ca9aa41f32e879188c961839bba1cc47854a",
+        "references/rules/stages/A13.json": "96f2a98f4a6b265e35c5a117ebf3a4f197b39157309c4c2a0953c8624591ac66",
+        "references/rules/stages/A14.json": "ac2851be30c4bb288752164ab0f25ca8e975f76a5ec7d3c6669028426ba4593f",
+        "references/rules/stages/A15.json": "629661383e36ebd67e205a7304572975d125ef1f452d4f91e3f7ffad9b12ff08",
+        "references/rules/stages/B01.json": "8f79848c864a42c133353a5f95dfdc459d5516d28ec411e3b610240f043c3600",
+        "references/rules/stages/B02.json": "1480d641e82732d4ccea187dd773b008f8fde80554eb5f60952986192ac9c079",
+        "references/rules/stages/B03.json": "0f2b1fbe8c6671edb4882d496b8943817f6b2d4b9a1e2ed5b76d234c15de09e2",
+        "references/rules/stages/B04.json": "a4da1dba1174aca4214b36bc7c98620cbcedde6ced39cc6536e63647695398ae",
+        "references/rules/stages/B05.json": "c795be572ff4f56a62ffbb33345a4852c9fb46a7cd89b05d4cc51c482c65c362",
+        "references/rules/stages/LIBRARY01.json": "183d66c11aab312969a4d354dc9346264b417b31da2558921f0d925e1b489e93",
+        "references/rules/stages/LIBRARY02.json": "5c2ca468b7cbc98134ffcbdbbc93d8021b6608d6f4b0b4ae5e880f3cf17fc373",
+        "references/rules/stages/LIBRARY03.json": "eb32ffa9f6b5bd0f53812df446b93f8c8d634b3a69f0232bb55f6da112461ac1",
+        "references/rules/stages/LIBRARY04.json": "b2d7604186c036662b1dd24376015279233cf779ea7841bf4d2c4383ed330695",
         "references/rules/storyboard.md": "30e54b28dd4c7b471a91cc2f25656db213f672a87dfd75099339e53b6c8dd824",
         "references/rules/video-prompts.md": "5df90cf5de9912d68dbd7e93716cbd1d3793ddebbb5e0a63928481084bcec928",
         "references/seedance-local.md": "f1ec195d79b1f0e422de120552523d3891df3c177eb4c2867ae8f760b8a73cac",
@@ -1032,6 +1032,7 @@
         "references/workspace-contract/tests/test_delivery_contract.py": "95df22bb5c116c18e22fefe6e2476919a3d57956fb2eac3f47ffe6cdda3a4c1c",
         "references/workspace-contract/tests/test_director_storyboard.py": "fb232ec1cd1d4f8e350e1b5e747f3423fffd5dd652c2ff2d7f8596cdbfd4bc9b",
         "references/workspace-contract/tests/test_hailuo_workflow.py": "34c0edd8314a833dd579dbdbef3587fd2b8c5a7aa305427f1b1061514fc033e3",
+        "references/workspace-contract/tests/test_install_completion.py": "300da420dbe2b75a1f077aae78d3b013ef7783d59ad0dcda37af6ced92bbd454",
         "references/workspace-contract/tests/test_material_preparation.py": "e98ffb61d55a94b049a0e84b96c30bb175ed9d65102672af9817f96e5416e239",
         "references/workspace-contract/tests/test_native_id_persistence.py": "7776991c77fe73a71b1d8685be6d1dc4f140dbd6e31656a80695923a6310bc7a",
         "references/workspace-contract/tests/test_native_upload_guard.py": "9f4c1edba94fcd572d073128fd6c5837d2136978c9d527abd895717c6df514f1",
@@ -1040,7 +1041,7 @@
         "references/workspace-contract/tests/test_production_order.py": "c579451d790437bf9c4146873ec1b8c0760d8dd680aca290490aef596b5158e1",
         "references/workspace-contract/tests/test_prompt_contract.py": "dac7f6cf9bd1a01aef0cf3cf7774a2c044dd8490f6f9191573a88cb60bbe38e5",
         "references/workspace-contract/tests/test_prompt_public_entry.py": "7d154f76f6575fb6c84af1a54c3261078d80fb09bd1e50d368c13e863c458246",
-        "references/workspace-contract/tests/test_public_portability.py": "5a14c7b14b609a13814cb0fa32f78de74c9853b761dadfa3795970cfa04b9674",
+        "references/workspace-contract/tests/test_public_portability.py": "fe57281b3a9a00194888b1eee445bbdcabf0aeb31848fc044135d73bae85dd2e",
         "references/workspace-contract/tests/test_receiver_compact_storyboard.py": "94c2709236083c3f67f334185eceaed60a9e008f44969c874c2890358c9c5b05",
         "references/workspace-contract/tests/test_reference_scope.py": "f444dcbcc0c66506de7a3f8df0056da2aba83fcdae1f003c1adc603d81035525",
         "references/workspace-contract/tests/test_result_recovery_speed.py": "9a5628e58f3fbe520a4e31476561e78114a0a624e4d7b10ffcbd0a38fe7ce1ca",
@@ -1057,11 +1058,11 @@
         "references/workspace-contract/workflow/console-compact-template.json": "93028196f3423af170bd049a095f65165bb8dffba06e5c2788fb3d86b7e780c1",
         "references/workspace-contract/workflow/console-template.json": "f133b5f35b06823e5849475fc3be928ecd9b4f9914f9ed698eb5d59fc5a7fe38",
         "references/workspace-contract/workflow/director-storyboard-template.json": "cd83841673f871e9d107c7918f37889bb1d7e0d9d1406b3b7edc193a3f9b92c1",
-        "references/workspace-contract/workflow/maintenance/upload-acceptance/config/requester-ai-rules.json": "1254d8f5579ca812e2909ae469a715dd169cf0782700726a5bb176b9f34d9cf2",
+        "references/workspace-contract/workflow/maintenance/upload-acceptance/config/requester-ai-rules.json": "71c049dd17781881b73005b04f10addebb5ace1df28d1f113eeb54231b3200bc",
         "references/workspace-contract/workflow/maintenance/upload-acceptance/config/rongyao-observed-protocol.json": "fed4888ae752cff5bdcb92e830f4f45b7385eaf35d650fa73678449221dfc79e",
-        "references/workspace-contract/workflow/node_skills.json": "759595c0993e0f3cabf4cd601cc9dbea360152c7b7cadd82fc9a81669e9f9ec0",
+        "references/workspace-contract/workflow/node_skills.json": "ff9ac14f4b53e2324f8258ece322b131f57285c6aae3eb6055c4c1cc93b79bcc",
         "references/workspace-contract/workflow/risk-hardening.json": "d16da9f594701681a7e5e00e42d27057f4c1e0a612de426a2ebb64c27af52f90",
-        "references/workspace-contract/workflow/runtime-policy.json": "14ba45afd8e64f428c82f227cd64db1408ad7ddc8c0d347039c36bbfe7eab88d",
+        "references/workspace-contract/workflow/runtime-policy.json": "f20c44dfa5a233bce44464d1b2be822f6818d7f3fdbc309b455b41c3b14e359b",
         "references/workspace-contract/workflow/stages.json": "877c1601c35f87075c4587dea8c938da7031b953dab9edc06f65b542be69d332",
         "references/workspace-contract/workflow/tools/native-upload/native-ui.swift": "c83c9b58e0556b692f0937eb61a26351aea7520d3949aafc4fb23f7d447766ef",
         "references/workspace-contract/workflow/tools/premiere-bridge/README.md": "c14e43f2d1cab72ea5cc783c82f4eb7b1ccce30f2728f74a24873ea382f0273b",
@@ -1151,8 +1152,8 @@
         "skills/rongyao-operations/scripts/test_operations.py": "da76c29f20ab5f12add5e4aa4e6f205c85f8d064d751cd22f4ea95576fbec470",
         "skills/rongyao-operations/scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d"
       },
-      "file_count": 664,
-      "bytes": 1746419
+      "file_count": 665,
+      "bytes": 1748661
     },
     "universal-skit-orchestrator": {
       "kind": "public_reviewed_source",
@@ -1643,7 +1644,7 @@
   "files": [
     {
       "path": "SKILL.md",
-      "sha256": "0b6bcb4921c094bfa2a6021bf410d0c9c26e02d7742ca1fdda954ffe09a1ab04"
+      "sha256": "f85a6525d2bd2bd526cb9a1d4ea99f4b70ea60f25e988a2131861179a9e3ea24"
     },
     {
       "path": "assets/payloads/douyin-video.zip",
@@ -1663,23 +1664,23 @@
     },
     {
       "path": "assets/payloads/paid-skit-asset-bridge.zip",
-      "sha256": "d65c22df0c55ec35954e500145a2550f9928ee9b1a62432a9213b8d80a51ec38"
+      "sha256": "6f822df78df69ff6f28bcf5da031c11129c4208bf42b24db1f536183fb90a9e0"
     },
     {
       "path": "assets/payloads/paid-skit-character-format.zip",
-      "sha256": "580ef5e657221b9f5ca03ef828362c2bb806cefc4bf89834d8553ee8edacb20b"
+      "sha256": "8d11686861ec6f7c2f5b8802d709e72c735b59892ce56e2e0b2e67d2fba8e517"
     },
     {
       "path": "assets/payloads/paid-skit-character-sheet.zip",
-      "sha256": "dd22e884eab019c9a3a052f8cdd77d4a85a2faec1bee14a44b9542884641a3fe"
+      "sha256": "9ceecaba76e348e6008b65273164a06d8736f3ed6dfcdaf0a35c028b803bd740"
     },
     {
       "path": "assets/payloads/paid-skit-cleanup.zip",
-      "sha256": "f17e8957ff3d21a7ec991630402e89913fb41b6a71ac19b9822f2cc6d420aab8"
+      "sha256": "79c0e7340c323a6209341710831c45ed734b794ad95c7f06dad098649eaaad09"
     },
     {
       "path": "assets/payloads/paid-skit-copywriting.zip",
-      "sha256": "9c0ae8b393748244a2720ec0f53931b9b237eea20370269ad7d4a0b2f40acae5"
+      "sha256": "10bdf7511ca694ff5cdecd3dfff34e9ec33c6cc95494a8f5abf408bf07f8c49f"
     },
     {
       "path": "assets/payloads/paid-skit-premiere.zip",
@@ -1691,11 +1692,11 @@
     },
     {
       "path": "assets/payloads/paid-skit-storyboard.zip",
-      "sha256": "9a82cb6df99e4f66fa72a054b212ac50fd5abe685e8501d01060c6ce864d4446"
+      "sha256": "2e9e87cf15dfc8a96ce9b5f976485ae79f4e88183d414c7e78e48352b782969e"
     },
     {
       "path": "assets/payloads/paid-skit-video-prompts.zip",
-      "sha256": "31b0391ac0d01f1b24a7f258420e7cf98a85d6cc05c26b62181af28d70e523e6"
+      "sha256": "92f18d535596e15f7daaae2a992a886888021f6633d0e6e70e6a1595bf598e74"
     },
     {
       "path": "assets/payloads/rongyao-ai-generator.zip",
@@ -1731,7 +1732,7 @@
     },
     {
       "path": "assets/payloads/rongyao-material-upload.zip",
-      "sha256": "c7fb3850002e8005ee8cb2f4762803ef50d2a64b448b396055ee70e5874b847b"
+      "sha256": "bbd65e35c1b8f64180a6bf92bc07c87e0984d24a9c1b567e5afac105a9befeae"
     },
     {
       "path": "assets/payloads/rongyao-operations.zip",
@@ -1771,7 +1772,7 @@
     },
     {
       "path": "assets/payloads/seedance-paid-skit-production-pipeline.zip",
-      "sha256": "aa408f3a2ec095f78e17b3a5547e8e57bf310fab0ba3f2cf28644916ab0a6453"
+      "sha256": "8d41c2a82c3988812c630e167b8e141f79a1620ae60987ee24203af24bd03af8"
     },
     {
       "path": "assets/payloads/seedance-prompts.zip",
@@ -1810,8 +1811,16 @@
       "sha256": "06deba99bc861ab86e5ec49a318147f354ec5cd3471a34b7bb336d1d382c4abd"
     },
     {
+      "path": "references/official-dependencies.json",
+      "sha256": "d7ec7dcfee9e7da89057b9651505121a60cd1f0a44cfdca9100ef33d420e38ac"
+    },
+    {
       "path": "references/progressive-setup.md",
-      "sha256": "6190e53efa4aa7887956a8d92aef01963c3cc49abc4501cda4343240cbd2a6a3"
+      "sha256": "543deeeda9ea2681834d5f1c13f4d2d69f510b812dea75ed650b60186dc73dc2"
+    },
+    {
+      "path": "references/public-install.md",
+      "sha256": "94c93c6180a028e16fb783b7608b155d274e4217fd30fca5feecc9452778c251"
     },
     {
       "path": "references/source-and-conditions.md",
@@ -1846,12 +1855,16 @@
       "sha256": "0117838a0af905ed6a9c0683fe5e3de9137e3a5cb1ec10336048a073781d9c49"
     },
     {
+      "path": "scripts/official_dependencies.py",
+      "sha256": "080bd6fbd5ce6893109eebafcd817bb58afefdd7fe5fc8df3be609bd65db56b6"
+    },
+    {
       "path": "scripts/pr_inspect.py",
       "sha256": "8b0adddb9df15bc67e5c2d881246a80f0ca5615002059172ad7ab21fa0f6a5c8"
     },
     {
       "path": "scripts/progressive_install.py",
-      "sha256": "7eaa41329a939d7f0bb75756b7c132508001e8e3deae45d3677a15cb8bc40903"
+      "sha256": "f69309b79b51de0f066b2d356d7e114087aae883bf80fee1b1184ff5cf313daa"
     },
     {
       "path": "scripts/test_upload_phase.py",

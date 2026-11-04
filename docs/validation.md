@@ -8,7 +8,9 @@
 | A01/A02/A03与全部24节点 | 实际运行离线 context 及节点/条件路由验证；不推进线上状态 |
 | 配置与生产守卫 | 未配置拒绝生产；本地配置与业务状态不参与源码漂移判断；安全配置另由线上marker固定 |
 | 受管源码和Skill篡改 | 调用真实完整性/生产检查代码；用模拟飞书marker证明修改受管代码、Skill或安全配置被拒绝；未向真实租户发布 |
-| 安装 | 独立目录实际安装 bootstrap、0、1、2、4（Dreamina）、6、7；官方外装依赖明确列为未安装；同名手改拒绝覆盖 |
+| 公开版 PUBLIC20261104.2 | 在空 Skill/tool 目录、限制 PATH 的 macOS arm64 环境实际安装全部阶段；取得官方飞书四 Skill 和显式选择的国际 Dreamina Skill；国内来源仍缺，不把文件齐全当安装/业务完成；这不是空白 OS 虚拟机 |
+| 重复/部分安装、手改与网络恢复 | 两项已有两项缺失、重复安装、手改拒绝覆盖、真实错误代理导致外装失败后同命令恢复通过；额外自动回归覆盖空 SKILL.md、目录链接、归档/摘要异常和未知平台 |
+| CLI 基础检查 | 飞书 npm 1.0.98 隔离安装，版本及 docs +fetch/+update、sheets +read、drive files list 的 help 通过；国际 Dreamina macOS arm64 官方二进制 version/schema 通过；均未登录或调用业务接口，国内兼容性不成立 |
 | 媒体依赖 | 独立虚拟环境实际安装锁定依赖并通过导入/FFmpeg检查；本机Python默认CA失败后显式使用系统 `/etc/ssl/cert.pem`，未关闭TLS验证 |
 | 页面 | 真实Chromium点击6卡、18个可见二级入口、25个深链（保留合并别名），上一/下一、关闭/Escape、焦点返回通过；已看截图；仅favicon请求404 |
 | 提示词/来源/分镜/顺序/上传守卫/PR桥 | 本地回归验证；PR桥使用测试宿主，不代替接收人真实Premiere打开、保存和导出 |
@@ -19,6 +21,7 @@
 ```sh
 python3 tools/public_release.py verify
 python3 -m unittest discover -s tests -p test_public_portability.py
+python3 -m unittest discover -s tests -p test_install_completion.py
 python3 scripts/workflow_node.py validate
 ```
 

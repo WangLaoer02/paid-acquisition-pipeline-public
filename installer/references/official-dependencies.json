@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-04",
+  "providers": {
+    "lark": {
+      "source": "https://github.com/larksuite/cli",
+      "version": "76f7e7eb92a511470b7a261ce8b82f9f4579d8c1",
+      "archive": {
+        "url": "https://codeload.github.com/larksuite/cli/tar.gz/76f7e7eb92a511470b7a261ce8b82f9f4579d8c1",
+        "sha256": "f73aa506c6f6b8979fe0328fd76f70e5dfaa016db04bcd3ad669775db1590a82"
+      },
+      "skills": {
+        "lark-doc": {
+          "prefix": "cli-76f7e7eb92a511470b7a261ce8b82f9f4579d8c1/skills/lark-doc/",
+          "tree_sha256": "caedf3b9e0bc988e82efaf0b54bb3996fa9e413795466fcff3e62c2a4041aece"
+        },
+        "lark-sheets": {
+          "prefix": "cli-76f7e7eb92a511470b7a261ce8b82f9f4579d8c1/skills/lark-sheets/",
+          "tree_sha256": "0208723fca48458dd3e5faad88fa002f64ffe701b453095fdbc3d585df3b82b2"
+        },
+        "lark-drive": {
+          "prefix": "cli-76f7e7eb92a511470b7a261ce8b82f9f4579d8c1/skills/lark-drive/",
+          "tree_sha256": "0336db294aa73c632be90eb0002e4ef867828544eaf41b0d0ef2c9ca7547e1d9"
+        },
+        "lark-shared": {
+          "prefix": "cli-76f7e7eb92a511470b7a261ce8b82f9f4579d8c1/skills/lark-shared/",
+          "tree_sha256": "a1d1af0dc66ea2d5b272afa72571af5035635daa0902089ac2f548bf8fb07eba"
+        }
+      },
+      "license_path": "cli-76f7e7eb92a511470b7a261ce8b82f9f4579d8c1/LICENSE",
+      "redistribution": "not_bundled; downloaded directly by recipient for local use"
+    },
+    "dreamina": {
+      "source": "https://dreamina.capcut.com/ai-tool/install?from_page=explore",
+      "version": "1.0.0.29",
+      "archive": {
+        "url": "https://dreamina.capcut.com/canvas-cli/install/1_0_0_29/skill.tar.gz",
+        "sha256": "4d307489e06c77a1836f9ab5a12a2e98b40f39d72a30cf31ab9dd21fae7fa8e0"
+      },
+      "skills": {
+        "dreamina-canvas-cli": {
+          "prefix": "dreamina-canvas-cli/",
+          "tree_sha256": "dcbbbb43318365439048e4423f8d82004f914a2bcb6f51a23cb49571c1ce7f88"
+        }
+      },
+      "license_path": null,
+      "redistribution": "not_bundled; downloaded directly by recipient for local use",
+      "region": "International Dreamina; not verified for CN Jimeng",
+      "installer_evidence": {
+        "url": "https://dreamina.capcut.com/canvas-cli/install.sh",
+        "sha256": "c77bbf04e091abb9b0801925bf1ed42489997310dcfbd55427b8e1dd4ba4f731"
+      },
+      "binaries": {
+        "Darwin-arm64": {
+          "url": "https://dreamina.capcut.com/canvas-cli/install/1_0_0_29/dreamina-canvas_darwin_arm64",
+          "sha256": "b47d2d82098317467fcf9cce3d1f18de0b353af3bb6318c103cf29761ab0384a"
+        }
+      },
+      "region_code": "international"
+    }
+  }
+}

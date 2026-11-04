@@ -11,15 +11,35 @@
   "story_version": null,
   "approval_ref": null,
   "approved": false,
-  "release_id": "PUBLIC20261104.1",
+  "release_id": "PUBLIC20261104.2",
   "manifest_sha256": null,
   "current_input_files": [],
-  "sheet": {"spreadsheet_token": null, "sheet_id": null, "range": null, "values_sha256": null},
-  "generation": {"mode": "t2v", "prompt": null, "model": null, "ratio": null, "resolution": null, "durationSeconds": null, "outputCount": 1, "references": []},
+  "sheet": {
+    "spreadsheet_token": null,
+    "sheet_id": null,
+    "range": null,
+    "values_sha256": null
+  },
+  "generation": {
+    "mode": "t2v",
+    "prompt": null,
+    "model": null,
+    "ratio": null,
+    "resolution": null,
+    "durationSeconds": null,
+    "outputCount": 1,
+    "references": []
+  },
   "max_credits": null,
   "draft_version": null,
   "budget_ledger": null,
   "budget_total_cap": null,
-  "input_manifest": {"path": null, "sha256": null},
-  "reference_scope": {"path": null, "sha256": null}
+  "input_manifest": {
+    "path": null,
+    "sha256": null
+  },
+  "reference_scope": {
+    "path": null,
+    "sha256": null
+  }
 }
