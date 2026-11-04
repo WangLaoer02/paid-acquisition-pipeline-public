@@ -1,0 +1,1 @@
+- **当前项目入口**：从本次任务或既有项目记录定位唯一Sheet，核对项目编号、来源和当前采用资产；原SK001入口保存在 `implementation/paid-skit-production-pipeline/references/project-cases.md`，只在该项目续接时使用。

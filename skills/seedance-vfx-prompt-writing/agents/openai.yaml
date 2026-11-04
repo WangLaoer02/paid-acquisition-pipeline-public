@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 特效写作"
+  short_description: "为Seedance补清特效形态、触发、传播、交互与消散，保持既定动作"
+  default_prompt: "使用 $seedance-vfx-prompt-writing 修订Seedance特效提示词，只补当前效果的形态、时序、交互和收尾。"

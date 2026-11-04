@@ -1,0 +1,57 @@
+{
+  "name": "rongyao-http-readonly",
+  "version": "1.3.3",
+  "default_auth": "sms",
+  "qr_fallback": false,
+  "files": {
+    "README.md": "4d473205c284427fdb855079af6fadc7ebad85dd955362cfc27694473da6f3d5",
+    "SKILL.md": "44675874dcfe650c11fee86460dbbfa12a52c6b6cf1683302121a0ec2decdada",
+    "references/fire-weekly-production.md": "c32067ee922162b2a9ef64062838735cd2b8066ae80ea87fd4b872fb29a01b5b",
+    "references/legacy-feishu-qr.md": "06ec86e924079a7808e746ac85a7f1e02d3a0452fd30ddfb84ffef094e31df08",
+    "references/protocol.md": "c2f1a611a0284f135c6e26342cce6a9b70d29a086ca678609145dd483d5dc03f",
+    "references/verification.json": "5877bf28d8befae113b4e4ae526889784395f5929086d2dc2975ceda13e262b3",
+    "scripts/http_core.py": "7e89dd23821c2621b9e3e38c1f2b3576a6afc75c2fd7907c2cc3373b6bbe4adf",
+    "scripts/http_transport.py": "688fa38ce1a28f0b01604293865f238bc4d1d89b5b659db9234b6517bf5f3a20",
+    "scripts/initialize_session.py": "2ab240a2ec1a11b0961b63b79b5fdb1d2e936d5c4f8f95053ad16e40c241805e",
+    "scripts/install.py": "c825814a028e2791cd1ee1e244f36ad9a96f42c0fce58ca308403e460c10bcae",
+    "scripts/market_export_cli.py": "eef4f9e8451dbcd1fe20fe701f32e7683bb7d566821610e0bb5521c999121bde",
+    "scripts/market_readonly.py": "0b6111490d0ea67625689780e43bb5dd4f13c9bd21e1928ef2fa316e32e058c5",
+    "scripts/rongyao_http.py": "e4ef3ecf90f4f79ae5aba48342fd5cf5797107e99c0a8a7af83ed9eb723c9bbe",
+    "scripts/session_store.py": "eece3118f2f35adcdee7f884bd03bba9ad04c1ce0223ff6a8025fbc5430f6b28",
+    "scripts/session_vault.swift": "b6733676fd6892badc84d12b6eb7a8018ce244edc78271a1a2600bb5e90c484d",
+    "scripts/sms_login.py": "dad015d3e82809bcc00ad760b5f61a14106b93d2c005089bdbea91a4d0d619c9",
+    "scripts/sms_receiver.py": "78dcb8881d6add896b7613f9f71c1f31c7e25e468dc6f10bee7126bc5d2e66eb",
+    "scripts/sms_worker.py": "9999f0b2a60e434d9e34ba04ea466df9fe27d5256a43d918e7019120f530aadb",
+    "scripts/test_http.py": "fd314972cafb6b9b9ac817047fd1577e781f7bcafb5eec85ab9f2fbc3fc97598",
+    "scripts/test_session_store.py": "deb927a1ba025f9720bd8c8efa6087635a89454e87b563dc555a245eaae3df10",
+    "scripts/test_sms.py": "133a2e9de14f62466f0f41140724ae0bb379050c7aab199eff945f880b754de5",
+    "scripts/weekly_page_parser.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+    "scripts/weekly_query.py": "f67e564d40fcc370513ee6233fad6ecf945532b56b40ed07813f83f0f911af9f"
+  },
+  "build_provenance": {
+    "cloud_version": "1.3.0",
+    "local_source_version": "1.3.0",
+    "release": "WF20261024.1",
+    "preserves": [
+      "per-host authentication",
+      "bounded query and market read",
+      "original-ID attribution",
+      "no replay on unknown acceptance"
+    ],
+    "local_access_routing_revision": "2026-10-29; documentation only; executor bytes unchanged",
+    "m1_review": {
+      "id": "reviewed-m1-master-ui-and-category-20261031",
+      "scope": "preserve native numeric category options; GET-only query remains unchanged",
+      "publication_status": "local_maintenance_not_cloud_published"
+    }
+  },
+  "preserved_local_changes": {
+    "release": "WF20261027.1",
+    "paths": [
+      "references/fire-weekly-production.md",
+      "scripts/market_export_cli.py",
+      "scripts/market_readonly.py"
+    ],
+    "reason": "retain pre-existing user manual-edit precedence and read-only report entry recovery while preserving current online session repairs"
+  }
+}

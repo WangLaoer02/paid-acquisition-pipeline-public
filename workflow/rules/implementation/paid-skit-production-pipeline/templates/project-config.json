@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "project_id": null,
+  "project_sheet_url": null,
+  "source": {
+    "share_url": null,
+    "source_path": null
+  },
+  "current_stage": null,
+  "world_setting": null,
+  "characters": [],
+  "approved_assets": [],
+  "duration_seconds": null,
+  "segments": [],
+  "aspect_ratio": null,
+  "resolution": null,
+  "delivery": {
+    "subtitle_style": null,
+    "music_source": null,
+    "current_pr_project": null,
+    "master_sequence": null
+  },
+  "asset_library_root": null,
+  "project_asset_directory": null,
+  "generation": {
+    "account_ref": null,
+    "model": null,
+    "authorization_ref": null,
+    "stop_at": null,
+    "budget": {
+      "currency": null,
+      "approved_total": null,
+      "settled_cost": null,
+      "reserved_upper_bound": null
+    }
+  },
+  "collaboration": {
+    "execution_thread_id": null,
+    "maintenance_thread_id": null,
+    "host_id": null,
+    "human_authorization_ref": null,
+    "allowed_project_ids": [],
+    "allowed_message_types": []
+  },
+  "checkpoint": {
+    "input_version": null,
+    "output_refs": [],
+    "actual_checks": [],
+    "pending_checks": [],
+    "next_step": null
+  }
+}

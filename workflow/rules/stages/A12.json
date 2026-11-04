@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A12",
+  "label": "12 正式生成",
+  "family": "a",
+  "goal": "取回并核实本版正式可用原片；已有合格结果直接复用，缺口按授权局部生成",
+  "depends_on": [
+    "A11"
+  ],
+  "environment": [
+    "所选生成工具与任务查询／下载"
+  ],
+  "references": [
+    "main.27",
+    "main.64",
+    "main.83",
+    "main.92",
+    "storyboard.10",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "prompt-authoring": {
+      "when": "实际编写或修改视频执行提示词",
+      "policy_ids": [
+        "video-prompts.01",
+        "video-prompts.02",
+        "video-prompts.03",
+        "video-prompts.04",
+        "video-prompts.05",
+        "video-prompts.06",
+        "video-prompts.07",
+        "video-prompts.08",
+        "video-prompts.09",
+        "video-prompts.10",
+        "video-prompts.11",
+        "video-prompts.12"
+      ]
+    },
+    "local-shot-repair": {
+      "when": "明确局部补镜／时间卡／旧对白污染修复",
+      "policy_ids": [
+        "main.67",
+        "video-prompts.06"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "仅非付费回查已有任务／原片与适用范围、核已有结果及缺口；无媒体或未知保留待验，不进入粗剪或新增生成",
+      "policy_ids": []
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "video-reference-transfer": {
+      "when": "用户要求保留原视频动态结构进行替换，或从用户成品反推；不为普通原创任务默认启用",
+      "policy_ids": [
+        "video-prompts.13"
+      ]
+    }
+  },
+  "read": [
+    "A11锁定范围、已有task／原片与局部缺口；需新提交时核对当前输入、账号、报价及剩余授权"
+  ],
+  "deliver": [
+    "本版原task／原片与适用源区间、复用或新增依据、费用实况及音画核验记录；尚未生成、受理未知、真实文件可用、音画待验和用户采用分别交接，未知不填零或记完成"
+  ],
+  "gate": [
+    {
+      "id": "A12.G01",
+      "criterion": "复用结果与A11锁定的当前输入及适用范围对应；确需新提交时，当前生成节点、上游Gate、绑定、报价和有效预算授权均满足",
+      "evidence_required": true
+    },
+    {
+      "id": "A12.G02",
+      "criterion": "未知受理只查询原任务，严禁重复扣费",
+      "evidence_required": true
+    },
+    {
+      "id": "A12.G03",
+      "criterion": "实际原片可完整解码，画面／声音已按适用区间核验并留真实证据；无媒体、受理未知或音画待验不能标完成，技术成功不推断用户采用",
+      "evidence_required": true
+    },
+    {
+      "id": "A12.G04",
+      "criterion": "当前稿、镜头编号、引用与采用范围对应最新修订；改稿影响已复核。已有视频只对实际可见部分检查，最终逐镜帧区间与全片对应在A14／B04验收，不提前声称完成。",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "A13",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "generate",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A12.I01",
+      "description": "A11锁定范围、已有task／原片与局部缺口；需新提交时核对当前输入、账号、报价及剩余授权",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "先查A11锁定范围对应的原task／原片及已核区间；首轮已满足当前要求则直接复用交后期，不为“正式生成”重交同一输入。沿A09已采用同版及A11锁定继续，不重复确认；保留原片VID归属，已有文件／原任务不重复入库。",
+    "只有真实缺口才按main.27及main.83核当前输入、实际报价、在途预留和有效总授权，局部补镜或修复；范围内有效授权延续，变化仅补缺失部分。保留用户手改和无关合格素材，改稿仅复验受影响镜头及邻接连续性。未知受理只查原task，不重发或换渠道绕过。",
+    "按main.64核实际文件、画面和声音，记录真实已验区间及费用实况；尚未生成、受理未知、文件可用、音画待验和用户采用分别交接，不建立推断通过。内部原片QA不能代替A14／B04最终全片逐镜帧验收及第三停点；未满足项只阻塞依赖动作。"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 抖音采集与反推"
+  short_description: "采集与转写抖音视频，简明拆解故事并给改编判断，按需反推Seedance提示词"
+  default_prompt: "使用 $seedance-douyin-video 按当前要求处理视频；原片拆解默认交一张时间与事件表及选段、保留点、迁移方向三条判断，待核就地标注。明确要求反推时再写Seedance提示词。"

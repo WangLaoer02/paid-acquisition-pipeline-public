@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "template_id": "DIRECTOR-STORYBOARD-1",
+  "authority": "https://example.invalid/receiver-feishu-document",
+  "columns": [
+    {
+      "key": "shot_id",
+      "label": "镜号",
+      "width": 70,
+      "background": "#FFFFFF"
+    },
+    {
+      "key": "source_screenshots",
+      "label": "对照参考",
+      "width": 220,
+      "background": "#FFF4D6"
+    },
+    {
+      "key": "storyboard_images",
+      "label": "分镜画面",
+      "width": 220,
+      "background": "#FFFFFF"
+    },
+    {
+      "key": "shot_scale",
+      "label": "景别",
+      "width": 70,
+      "background": "#FFFFFF"
+    },
+    {
+      "key": "camera",
+      "label": "运镜",
+      "width": 85,
+      "background": "#FFFFFF"
+    },
+    {
+      "key": "original_copy",
+      "label": "原文案",
+      "width": 210,
+      "background": "#EAF2FF"
+    },
+    {
+      "key": "script",
+      "label": "改编文案｜画面与动作",
+      "width": 260,
+      "background": "#E8F5EC"
+    },
+    {
+      "key": "dialogue",
+      "label": "改编文案｜对白",
+      "width": 180,
+      "background": "#E8F5EC"
+    },
+    {
+      "key": "sound",
+      "label": "声音",
+      "width": 140,
+      "background": "#FFFFFF"
+    },
+    {
+      "key": "duration",
+      "label": "时长",
+      "width": 90,
+      "background": "#FFFFFF"
+    }
+  ],
+  "current_node_validation": {
+    "enable_highlight": true,
+    "highlight_colors": [
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DCEAFF",
+      "#DFF3E4"
+    ],
+    "items": [
+      "01 来源分析",
+      "02 剧情结构",
+      "03 创意预演",
+      "04 物料判断与分发",
+      "05 查找与锁定现有资产",
+      "06 补充缺失资产",
+      "07 正式剧本",
+      "08 镜头设计",
+      "09 生成准备",
+      "10 样片验证",
+      "11 成片锁定",
+      "12 正式生成",
+      "13 剪辑后期",
+      "14 A段验收",
+      "15 已完成"
+    ],
+    "type": "list"
+  },
+  "max_shots": 100,
+  "state_binding": {
+    "cell": "J2",
+    "anchor_cell": "I2",
+    "anchor_value": "当前阶段",
+    "identity_cell": "A1"
+  }
+}

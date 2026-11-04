@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "naruto-favoritism-skit-generator",
+  "version": "3.3",
+  "interface_version": 1,
+  "entrypoint": "SKILL.md",
+  "rules": "references/rules.md",
+  "canonical_url": "https://example.invalid/optional-authoring-source",
+  "files": {
+    "SKILL.md": "53221c6e28feadd6235a98d35b9e02ea5b2cedefea0b65b123f9d289405c51a9",
+    "references/rules.md": "5eb00681e05fe3ae61cf8ba348d7a50b94554ea382bb4e743e421e048bb174d0"
+  }
+}

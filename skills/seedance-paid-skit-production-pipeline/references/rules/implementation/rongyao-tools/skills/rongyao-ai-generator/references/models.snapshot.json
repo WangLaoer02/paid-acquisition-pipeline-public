@@ -1,0 +1,1523 @@
+{
+  "Chat": {
+    "default_family": "xai",
+    "default_model": "xai_grok_4_6",
+    "families": [
+      {
+        "key": "xai",
+        "label": "xAI",
+        "models": [
+          "xai_grok_4_6"
+        ]
+      },
+      {
+        "key": "bytedance",
+        "label": "字节",
+        "models": [
+          "doubao_seed_2_0"
+        ]
+      }
+    ],
+    "models": {
+      "xai_grok_4_6": {
+        "key": "xai_grok_4_6",
+        "type": "Chat",
+        "family": "xai",
+        "version": "4.6",
+        "label": "Grok 4.6",
+        "selector_label": "Grok 4.6",
+        "capability": "chat",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 3,
+          "max_output_images": 1
+        }
+      },
+      "doubao_seed_2_0": {
+        "key": "doubao_seed_2_0",
+        "type": "Chat",
+        "family": "bytedance",
+        "version": "2.0",
+        "label": "豆包 Seed 2.0",
+        "selector_label": "豆包 Seed 2.0",
+        "capability": "chat",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 3,
+          "max_output_images": 1
+        }
+      }
+    }
+  },
+  "Image": {
+    "default_family": "gpt",
+    "default_model": "gpt_image_2_5_flare",
+    "families": [
+      {
+        "key": "gpt",
+        "label": "GPT",
+        "models": [
+          "gpt_image_2_5_flare",
+          "gpt_image_2_5_sunburst",
+          "gpt_image_2"
+        ]
+      },
+      {
+        "key": "xai",
+        "label": "xAI",
+        "models": [
+          "xai_grok_image"
+        ]
+      },
+      {
+        "key": "bytedance",
+        "label": "字节",
+        "models": [
+          "jimeng_5_0_official",
+          "jimeng_4_6_official",
+          "jimeng_4_5_official",
+          "jimeng_4_1_official",
+          "jimeng_4_0_official"
+        ]
+      },
+      {
+        "key": "local",
+        "label": "本地工具",
+        "models": [
+          "logo_remove_background",
+          "image_resize",
+          "image_compress",
+          "image_composite"
+        ]
+      }
+    ],
+    "models": {
+      "logo_remove_background": {
+        "key": "logo_remove_background",
+        "type": "Image",
+        "family": "local",
+        "version": "gd",
+        "label": "Logo 去背景",
+        "selector_label": "Logo 去背景",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 1,
+        "limits": {
+          "max_image_attachments": 1,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_output_formats": [
+            "png"
+          ],
+          "default_output_format": "png",
+          "max_image_attachment_bytes": 52428800,
+          "max_image_attachment_size_label": "50MB",
+          "max_image_pixels": 64000000,
+          "skip_prompt_optimize": true
+        }
+      },
+      "image_resize": {
+        "key": "image_resize",
+        "type": "Image",
+        "family": "local",
+        "version": "gd",
+        "label": "图片改尺寸",
+        "selector_label": "图片改尺寸",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 1,
+        "limits": {
+          "max_image_attachments": 1,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_output_formats": [
+            "png",
+            "jpg",
+            "webp"
+          ],
+          "default_output_format": "png",
+          "max_image_attachment_bytes": 52428800,
+          "max_image_attachment_size_label": "50MB",
+          "max_image_pixels": 64000000,
+          "skip_prompt_optimize": true
+        }
+      },
+      "image_compress": {
+        "key": "image_compress",
+        "type": "Image",
+        "family": "local",
+        "version": "gd",
+        "label": "图片压缩",
+        "selector_label": "图片压缩",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 1,
+        "limits": {
+          "max_image_attachments": 1,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_output_formats": [
+            "original",
+            "png",
+            "jpg",
+            "webp"
+          ],
+          "default_output_format": "original",
+          "max_image_attachment_bytes": 52428800,
+          "max_image_attachment_size_label": "50MB",
+          "max_image_pixels": 64000000,
+          "skip_prompt_optimize": true
+        }
+      },
+      "image_composite": {
+        "key": "image_composite",
+        "type": "Image",
+        "family": "local",
+        "version": "gd",
+        "label": "图片合成",
+        "selector_label": "图片合成",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 1,
+        "limits": {
+          "max_image_attachments": 9,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_output_formats": [
+            "png"
+          ],
+          "default_output_format": "png",
+          "max_image_attachment_bytes": 52428800,
+          "max_image_attachment_size_label": "50MB",
+          "max_image_pixels": 64000000,
+          "skip_prompt_optimize": true
+        }
+      },
+      "xai_grok_image": {
+        "key": "xai_grok_image",
+        "type": "Image",
+        "family": "xai",
+        "version": "grok-imagine-image-quality",
+        "label": "Grok Image",
+        "selector_label": "Grok Image",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 4,
+          "max_output_images": 4,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "image_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16",
+            "3:2",
+            "2:3",
+            "21:9"
+          ],
+          "default_ratio": "1:1",
+          "image_resolutions": [
+            "1k",
+            "2k"
+          ],
+          "default_resolution": "1k",
+          "image_qualities": [
+            "medium"
+          ],
+          "default_quality": "medium",
+          "image_output_formats": [
+            "png"
+          ],
+          "default_output_format": "png",
+          "image_backgrounds": [
+            "auto"
+          ],
+          "default_background": "auto",
+          "supports_reference_images": true,
+          "provider_native_prompt_optimize": false
+        }
+      },
+      "gpt_image_2_5_sunburst": {
+        "key": "gpt_image_2_5_sunburst",
+        "type": "Image",
+        "family": "gpt",
+        "version": "image-2.5-sunburst",
+        "label": "GPT Image 2.5 精确",
+        "selector_label": "GPT Image 2.5 精确",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 10,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "image_sizes": [
+            "1024x1024",
+            "1024x1536",
+            "1536x1024",
+            "2048x2048",
+            "2048x1152",
+            "3840x2160",
+            "2160x3840",
+            "auto"
+          ],
+          "default_size": "auto",
+          "image_qualities": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "auto"
+          ],
+          "default_quality": "auto",
+          "image_output_formats": [
+            "png",
+            "jpeg",
+            "webp"
+          ],
+          "default_output_format": "png",
+          "image_backgrounds": [
+            "auto",
+            "transparent",
+            "opaque"
+          ],
+          "default_background": "auto"
+        }
+      },
+      "gpt_image_2_5_flare": {
+        "key": "gpt_image_2_5_flare",
+        "type": "Image",
+        "family": "gpt",
+        "version": "image-2.5-flare",
+        "label": "GPT Image 2.5 Fast",
+        "selector_label": "GPT Image 2.5 Fast",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 10,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "image_sizes": [
+            "1024x1024",
+            "1024x1536",
+            "1536x1024",
+            "2048x2048",
+            "2048x1152",
+            "3840x2160",
+            "2160x3840",
+            "auto"
+          ],
+          "default_size": "auto",
+          "image_qualities": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "auto"
+          ],
+          "default_quality": "auto",
+          "image_output_formats": [
+            "png",
+            "jpeg",
+            "webp"
+          ],
+          "default_output_format": "png",
+          "image_backgrounds": [
+            "auto",
+            "transparent",
+            "opaque"
+          ],
+          "default_background": "auto"
+        }
+      },
+      "gpt_image_2": {
+        "key": "gpt_image_2",
+        "type": "Image",
+        "family": "gpt",
+        "version": "image-2",
+        "label": "GPT Image 2",
+        "selector_label": "GPT Image 2",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 10,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "image_sizes": [
+            "1024x1024",
+            "1024x1536",
+            "1536x1024",
+            "auto"
+          ],
+          "default_size": "1024x1024",
+          "image_qualities": [
+            "medium",
+            "high",
+            "low",
+            "auto"
+          ],
+          "default_quality": "medium",
+          "image_output_formats": [
+            "png",
+            "jpeg",
+            "webp"
+          ],
+          "default_output_format": "png",
+          "image_backgrounds": [
+            "auto",
+            "transparent",
+            "opaque"
+          ],
+          "default_background": "auto"
+        }
+      },
+      "jimeng_4_0_official": {
+        "key": "jimeng_4_0_official",
+        "type": "Image",
+        "family": "bytedance",
+        "version": "4.0-official",
+        "label": "即梦 4.0 [官方逆向]",
+        "selector_label": "即梦 4.0 [官方]",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16",
+            "3:2",
+            "2:3",
+            "21:9"
+          ],
+          "default_ratio": "1:1",
+          "image_resolutions": [
+            "1k",
+            "2k",
+            "4k"
+          ],
+          "default_resolution": "2k",
+          "provider_native_prompt_optimize": false,
+          "supports_negative_prompt": true,
+          "supports_sample_strength": true,
+          "supports_intelligent_ratio": true
+        }
+      },
+      "jimeng_4_1_official": {
+        "key": "jimeng_4_1_official",
+        "type": "Image",
+        "family": "bytedance",
+        "version": "4.1-official",
+        "label": "即梦 4.1 [官方逆向]",
+        "selector_label": "即梦 4.1 [官方]",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16",
+            "3:2",
+            "2:3",
+            "21:9"
+          ],
+          "default_ratio": "1:1",
+          "image_resolutions": [
+            "1k",
+            "2k",
+            "4k"
+          ],
+          "default_resolution": "2k",
+          "provider_native_prompt_optimize": false,
+          "supports_negative_prompt": true,
+          "supports_sample_strength": true,
+          "supports_intelligent_ratio": true
+        }
+      },
+      "jimeng_4_5_official": {
+        "key": "jimeng_4_5_official",
+        "type": "Image",
+        "family": "bytedance",
+        "version": "4.5-official",
+        "label": "即梦 4.5 [官方逆向]",
+        "selector_label": "即梦 4.5 [官方]",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16",
+            "3:2",
+            "2:3",
+            "21:9"
+          ],
+          "default_ratio": "1:1",
+          "image_resolutions": [
+            "1k",
+            "2k",
+            "4k"
+          ],
+          "default_resolution": "2k",
+          "provider_native_prompt_optimize": false,
+          "supports_negative_prompt": true,
+          "supports_sample_strength": true,
+          "supports_intelligent_ratio": true
+        }
+      },
+      "jimeng_4_6_official": {
+        "key": "jimeng_4_6_official",
+        "type": "Image",
+        "family": "bytedance",
+        "version": "4.6-official",
+        "label": "即梦 4.6 [官方逆向]",
+        "selector_label": "即梦 4.6 [官方]",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16",
+            "3:2",
+            "2:3",
+            "21:9"
+          ],
+          "default_ratio": "1:1",
+          "image_resolutions": [
+            "1k",
+            "2k",
+            "4k"
+          ],
+          "default_resolution": "2k",
+          "provider_native_prompt_optimize": false,
+          "supports_negative_prompt": true,
+          "supports_sample_strength": true,
+          "supports_intelligent_ratio": true
+        }
+      },
+      "jimeng_5_0_official": {
+        "key": "jimeng_5_0_official",
+        "type": "Image",
+        "family": "bytedance",
+        "version": "5.0-official",
+        "label": "即梦 5.0 [官方逆向]",
+        "selector_label": "即梦 5.0 [官方]",
+        "capability": "image",
+        "default_visible": 1,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 10,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_output_images": 1,
+          "image_counts": [
+            1
+          ],
+          "image_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16",
+            "3:2",
+            "2:3",
+            "21:9"
+          ],
+          "default_ratio": "1:1",
+          "image_resolutions": [
+            "1k",
+            "2k",
+            "4k"
+          ],
+          "default_resolution": "2k",
+          "provider_native_prompt_optimize": false,
+          "supports_negative_prompt": true,
+          "supports_sample_strength": true,
+          "supports_intelligent_ratio": true
+        }
+      }
+    }
+  },
+  "Video": {
+    "default_family": "xai",
+    "default_model": "xai_grok_video",
+    "families": [
+      {
+        "key": "xai",
+        "label": "xAI",
+        "models": [
+          "xai_grok_video"
+        ]
+      },
+      {
+        "key": "bytedance",
+        "label": "字节",
+        "models": [
+          "jimeng_video_3_0_pro",
+          "jimeng_video_3_0_pro_official",
+          "jimeng_video_3_0",
+          "bytedance_seedance_1_0_pro",
+          "bytedance_seedance_1_5_pro",
+          "bytedance_seedance_2_0_ark",
+          "bytedance_seedance_2_0_fast",
+          "bytedance_seedance_2_0",
+          "bytedance_seedance_2_0_pinkuang",
+          "bytedance_seedance_2_0_mini_pinkuang"
+        ]
+      },
+      {
+        "key": "local",
+        "label": "本地工具",
+        "models": [
+          "video_upscale"
+        ]
+      }
+    ],
+    "models": {
+      "video_upscale": {
+        "key": "video_upscale",
+        "type": "Video",
+        "family": "local",
+        "version": "ffmpeg",
+        "label": "视频超分",
+        "selector_label": "视频超分",
+        "capability": "video",
+        "default_visible": 1,
+        "hide_in_selector": 1,
+        "limits": {
+          "max_image_attachments": 0,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_resolution": "2k",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_resolutions": [
+            "2k",
+            "4k"
+          ],
+          "upscale_targets": [
+            "2k",
+            "4k"
+          ],
+          "default_upscale_target": "2k",
+          "max_video_attachments": 1,
+          "max_audio_attachments": 0,
+          "max_video_attachment_bytes": 524288000,
+          "max_video_attachment_size_label": "500MB",
+          "skip_prompt_optimize": true
+        }
+      },
+      "bytedance_seedance_1_0_pro": {
+        "key": "bytedance_seedance_1_0_pro",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "1.0-pro",
+        "label": "Seedance 1.0 Pro [自接Api]",
+        "selector_label": "Seedance 1.0 Pro [Api]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 2,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "16:9",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "21:9",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16",
+            "adaptive"
+          ],
+          "video_durations": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 12,
+          "video_resolutions": [
+            "480p",
+            "720p"
+          ],
+          "video_modes": [
+            "text",
+            "first_frame",
+            "first_last"
+          ],
+          "default_video_mode": "first_last",
+          "video_mode_labels": {
+            "text": "文生视频",
+            "first_frame": "首帧模式",
+            "first_last": "首尾帧模式"
+          },
+          "max_video_attachments": 0,
+          "max_audio_attachments": 0,
+          "supports_reference_images": false,
+          "supports_reference_videos": false,
+          "supports_reference_audios": false,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": false,
+          "generate_audio": false
+        }
+      },
+      "bytedance_seedance_1_5_pro": {
+        "key": "bytedance_seedance_1_5_pro",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "1.5-pro",
+        "label": "Seedance 1.5 Pro [自接Api]",
+        "selector_label": "Seedance 1.5 Pro [Api]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 2,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "adaptive",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "21:9",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16",
+            "adaptive"
+          ],
+          "video_durations": [
+            -1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 12,
+          "video_resolutions": [
+            "480p",
+            "720p"
+          ],
+          "video_modes": [
+            "text",
+            "first_frame",
+            "first_last"
+          ],
+          "default_video_mode": "first_last",
+          "video_mode_labels": {
+            "text": "文生视频",
+            "first_frame": "首帧模式",
+            "first_last": "首尾帧模式"
+          },
+          "max_video_attachments": 0,
+          "max_audio_attachments": 0,
+          "supports_reference_images": false,
+          "supports_reference_videos": false,
+          "supports_reference_audios": false,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": true,
+          "generate_audio": true
+        }
+      },
+      "bytedance_seedance_2_0": {
+        "key": "bytedance_seedance_2_0",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "2.0",
+        "label": "Seedance 2.0 国内第三方[七牛]",
+        "selector_label": "Seedance 2.0 [第三方：七牛]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 9,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "16:9",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "adaptive",
+            "21:9",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16"
+          ],
+          "video_durations": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 15,
+          "video_resolutions": [
+            "720p",
+            "1080p"
+          ],
+          "video_modes": [
+            "first_last",
+            "full"
+          ],
+          "default_video_mode": "full",
+          "video_mode_labels": {
+            "first_last": "首尾帧模式",
+            "full": "全能模式"
+          },
+          "max_video_attachments": 3,
+          "max_audio_attachments": 3,
+          "max_video_attachment_bytes": 52428800,
+          "max_video_attachment_size_label": "50MB",
+          "max_audio_attachment_bytes": 15728640,
+          "max_audio_attachment_size_label": "15MB",
+          "supports_reference_images": true,
+          "supports_reference_videos": true,
+          "supports_reference_audios": true,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": true,
+          "generate_audio": true,
+          "supports_return_last_frame": false,
+          "supports_callback_url": true
+        }
+      },
+      "bytedance_seedance_2_0_ark": {
+        "key": "bytedance_seedance_2_0_ark",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "2.0",
+        "label": "Seedance 2.0 [自接Api]",
+        "selector_label": "Seedance 2.0 [Api]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 9,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "adaptive",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "adaptive",
+            "21:9",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16"
+          ],
+          "video_durations": [
+            -1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 15,
+          "video_resolutions": [
+            "480p",
+            "720p"
+          ],
+          "video_modes": [
+            "first_last",
+            "full"
+          ],
+          "default_video_mode": "full",
+          "video_mode_labels": {
+            "first_last": "首尾帧模式",
+            "full": "全能模式"
+          },
+          "max_video_attachments": 3,
+          "max_audio_attachments": 3,
+          "max_video_attachment_bytes": 52428800,
+          "max_video_attachment_size_label": "50MB",
+          "max_audio_attachment_bytes": 15728640,
+          "max_audio_attachment_size_label": "15MB",
+          "supports_reference_images": true,
+          "supports_reference_videos": true,
+          "supports_reference_audios": true,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": true,
+          "generate_audio": true,
+          "supports_return_last_frame": true
+        }
+      },
+      "bytedance_seedance_2_0_fast": {
+        "key": "bytedance_seedance_2_0_fast",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "2.0-fast",
+        "label": "Seedance 2.0 Fast [自接Api]",
+        "selector_label": "Seedance 2.0 Fast [Api]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 9,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "adaptive",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "adaptive",
+            "21:9",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16"
+          ],
+          "video_durations": [
+            -1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 15,
+          "video_resolutions": [
+            "480p",
+            "720p"
+          ],
+          "video_modes": [
+            "first_last",
+            "full"
+          ],
+          "default_video_mode": "full",
+          "video_mode_labels": {
+            "first_last": "首尾帧模式",
+            "full": "全能模式"
+          },
+          "max_video_attachments": 3,
+          "max_audio_attachments": 3,
+          "max_video_attachment_bytes": 52428800,
+          "max_video_attachment_size_label": "50MB",
+          "max_audio_attachment_bytes": 15728640,
+          "max_audio_attachment_size_label": "15MB",
+          "supports_reference_images": true,
+          "supports_reference_videos": true,
+          "supports_reference_audios": true,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": true,
+          "generate_audio": true,
+          "supports_return_last_frame": true
+        }
+      },
+      "bytedance_seedance_2_0_mini_pinkuang": {
+        "key": "bytedance_seedance_2_0_mini_pinkuang",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "2.0-mini",
+        "label": "Seedance2.0 Mini [拼框]",
+        "selector_label": "Seedance2.0 Mini [拼框]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 9,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "adaptive",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "adaptive",
+            "21:9",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16"
+          ],
+          "video_durations": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 15,
+          "video_resolutions": [
+            "480p",
+            "720p"
+          ],
+          "video_modes": [
+            "first_last",
+            "full"
+          ],
+          "default_video_mode": "full",
+          "video_mode_labels": {
+            "first_last": "首尾帧模式",
+            "full": "全能模式"
+          },
+          "max_video_attachments": 3,
+          "max_audio_attachments": 3,
+          "max_video_attachment_bytes": 52428800,
+          "max_video_attachment_size_label": "50MB",
+          "max_audio_attachment_bytes": 15728640,
+          "max_audio_attachment_size_label": "15MB",
+          "supports_reference_images": true,
+          "supports_reference_videos": true,
+          "supports_reference_audios": true,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": true,
+          "generate_audio": true,
+          "supports_return_last_frame": false,
+          "supports_callback_url": true
+        }
+      },
+      "bytedance_seedance_2_0_pinkuang": {
+        "key": "bytedance_seedance_2_0_pinkuang",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "2.0",
+        "label": "Seedance2.0 [拼框]",
+        "selector_label": "Seedance2.0 [拼框]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 9,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "adaptive",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "adaptive",
+            "21:9",
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16"
+          ],
+          "video_durations": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 15,
+          "video_resolutions": [
+            "480p",
+            "720p",
+            "1080p"
+          ],
+          "video_modes": [
+            "first_last",
+            "full"
+          ],
+          "default_video_mode": "full",
+          "video_mode_labels": {
+            "first_last": "首尾帧模式",
+            "full": "全能模式"
+          },
+          "max_video_attachments": 3,
+          "max_audio_attachments": 3,
+          "max_video_attachment_bytes": 52428800,
+          "max_video_attachment_size_label": "50MB",
+          "max_audio_attachment_bytes": 15728640,
+          "max_audio_attachment_size_label": "15MB",
+          "supports_reference_images": true,
+          "supports_reference_videos": true,
+          "supports_reference_audios": true,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": true,
+          "generate_audio": true,
+          "supports_return_last_frame": false,
+          "supports_callback_url": true
+        }
+      },
+      "jimeng_video_3_0": {
+        "key": "jimeng_video_3_0",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "3.0",
+        "label": "即梦 3.0 [自接Api]",
+        "selector_label": "即梦 3.0 [Api]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 2,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "smart",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "smart"
+          ],
+          "video_durations": [
+            5,
+            10
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 10,
+          "video_resolutions": [
+            "720p"
+          ],
+          "video_modes": [
+            "text",
+            "first_frame",
+            "first_last"
+          ],
+          "default_video_mode": "first_last",
+          "video_mode_labels": {
+            "text": "文生视频",
+            "first_frame": "首帧模式",
+            "first_last": "首尾帧模式"
+          },
+          "max_video_attachments": 0,
+          "max_audio_attachments": 0,
+          "supports_reference_images": false,
+          "supports_reference_videos": false,
+          "supports_reference_audios": false,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": false,
+          "generate_audio": false
+        }
+      },
+      "jimeng_video_3_0_pro": {
+        "key": "jimeng_video_3_0_pro",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "3.0-pro",
+        "label": "即梦 3.0 Pro [自接Api]",
+        "selector_label": "即梦 3.0 Pro [Api]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 1,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "smart",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "smart"
+          ],
+          "video_durations": [
+            5,
+            10
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 10,
+          "video_resolutions": [
+            "720p"
+          ],
+          "video_modes": [
+            "text",
+            "first_frame"
+          ],
+          "default_video_mode": "first_frame",
+          "video_mode_labels": {
+            "text": "文生视频",
+            "first_frame": "首帧模式"
+          },
+          "max_video_attachments": 0,
+          "max_audio_attachments": 0,
+          "supports_reference_images": false,
+          "supports_reference_videos": false,
+          "supports_reference_audios": false,
+          "supports_first_frame": true,
+          "supports_last_frame": false,
+          "supports_generate_audio": false,
+          "generate_audio": false
+        }
+      },
+      "jimeng_video_3_0_pro_official": {
+        "key": "jimeng_video_3_0_pro_official",
+        "type": "Video",
+        "family": "bytedance",
+        "version": "3.0-pro-official",
+        "label": "即梦 3.0 Pro [官方逆向]",
+        "selector_label": "即梦 3.0 Pro [官方]",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 1,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "16:9",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "1:1",
+            "4:3",
+            "3:4",
+            "16:9",
+            "9:16",
+            "21:9"
+          ],
+          "video_durations": [
+            5,
+            10
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 10,
+          "video_modes": [
+            "text",
+            "first_frame"
+          ],
+          "default_video_mode": "first_frame",
+          "video_mode_labels": {
+            "text": "文生视频",
+            "first_frame": "首帧模式"
+          },
+          "max_video_attachments": 0,
+          "max_audio_attachments": 0,
+          "supports_reference_images": false,
+          "supports_reference_videos": false,
+          "supports_reference_audios": false,
+          "supports_first_frame": true,
+          "supports_last_frame": false,
+          "supports_generate_audio": false,
+          "generate_audio": false,
+          "provider_native_prompt_optimize": false
+        }
+      },
+      "xai_grok_video": {
+        "key": "xai_grok_video",
+        "type": "Video",
+        "family": "xai",
+        "version": "grok-imagine-video-1.5",
+        "label": "Grok Video",
+        "selector_label": "Grok Video",
+        "capability": "video",
+        "default_visible": 0,
+        "hide_in_selector": 0,
+        "limits": {
+          "max_image_attachments": 2,
+          "max_output_images": 1,
+          "prompt_optimizer": "xai_grok_4_6",
+          "prompt_optimize_default": true,
+          "default_ratio": "smart",
+          "default_resolution": "720p",
+          "default_output_videos": 1,
+          "max_output_videos": 1,
+          "video_counts": [
+            1
+          ],
+          "video_ratios": [
+            "smart",
+            "1:1",
+            "16:9",
+            "9:16",
+            "4:3",
+            "3:4",
+            "3:2",
+            "2:3"
+          ],
+          "video_durations": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default_duration": 5,
+          "max_video_seconds": 15,
+          "video_resolutions": [
+            "480p",
+            "720p"
+          ],
+          "video_mode_resolutions": {
+            "full": [
+              "480p",
+              "720p"
+            ],
+            "first_last": [
+              "480p",
+              "720p"
+            ]
+          },
+          "video_modes": [
+            "full",
+            "first_frame",
+            "first_last"
+          ],
+          "default_video_mode": "full",
+          "video_mode_labels": {
+            "full": "全能（文生/参考图）",
+            "first_frame": "首帧图生视频",
+            "first_last": "首尾帧"
+          },
+          "max_video_attachments": 0,
+          "max_audio_attachments": 0,
+          "supports_reference_images": true,
+          "supports_reference_videos": false,
+          "supports_reference_audios": false,
+          "supports_first_frame": true,
+          "supports_last_frame": true,
+          "supports_generate_audio": true,
+          "generate_audio": true,
+          "supports_return_last_frame": false,
+          "provider_native_prompt_optimize": false
+        }
+      }
+    }
+  }
+}

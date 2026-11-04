@@ -1,0 +1,7 @@
+{
+  "source": "receiver_configuration_required",
+  "requester_when_unspecified": null,
+  "producer_prefix_when_unspecified": null,
+  "explicit_source_takes_precedence": true,
+  "ai_source": "use_actual_matching_backend_enum_do_not_invent"
+}

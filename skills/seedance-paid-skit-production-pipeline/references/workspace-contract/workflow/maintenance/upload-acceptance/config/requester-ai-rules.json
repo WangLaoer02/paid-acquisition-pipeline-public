@@ -1,0 +1,24 @@
+{
+  "schema": "rongyao-requester-ai-1",
+  "requester_segment": "penultimate",
+  "selection_status": "receiver_configuration_required",
+  "requesters": {},
+  "ai_default": {
+    "name": null,
+    "backend_value": null
+  },
+  "non_ai_value": null,
+  "fixed_values": {
+    "origin_type": null,
+    "is_redbag": null,
+    "region_type": null
+  },
+  "max_workers": 4,
+  "feedback_deadline_seconds": 60,
+  "unknown_requester_action": "hold_without_upload",
+  "publication_scope": "formal_module_backend_upload",
+  "user_confirmation": null,
+  "confirmed_on": null,
+  "excluded_designer_tail_codes": [],
+  "release_id": "PUBLIC20261104.1"
+}

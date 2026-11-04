@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 提示词"
+  short_description: "编写与修订Seedance提示词，按任务选择格式与专项，保留参考职责和动作因果"
+  default_prompt: "使用 $seedance-prompts 编写或修订当前Seedance提示词，按任务选择必要专项，保留既定角色、参考和结果。"

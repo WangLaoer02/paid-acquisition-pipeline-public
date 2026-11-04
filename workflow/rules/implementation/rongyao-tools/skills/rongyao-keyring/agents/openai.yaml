@@ -1,0 +1,7 @@
+interface:
+  display_name: "荣耀钥匙包"
+  short_description: "复用荣耀账号配置，自动登录并核验查询与上传入口，免重复登录确认"
+  default_prompt: "使用 $rongyao-keyring 按本次业务复用已有账号；普通成片上传直接转rongyao-operations最短路径，独立入口诊断才核验登录，不重复询问授权。"
+
+policy:
+  allow_implicit_invocation: true

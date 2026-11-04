@@ -1,0 +1,2244 @@
+{
+  "schema_version": 2,
+  "release_id": "PUBLIC20261104.1",
+  "node_source": "workflow/stages.json",
+  "node_source_sha256": "426eae97964c16c72f37d8e7c7a2927f7dbca4f7b86898436b623be398187052",
+  "nodes": {
+    "A01": {
+      "id": "A01",
+      "label": "01 来源分析",
+      "order": 1,
+      "required_output": "原片、来源与实际规格；初步分段及选段起止、选择依据；第一层原片事实短表：时间、具体事件、必要人物关系／动作、关键对白／画面字、相关声音与实际变化／结果；单句动作只记实际内容，未知就地标注，不要求四张表或每格填满；第二层三条简短参考判断：吸引点、成立机制、迁移价值／边界（含暂定用途）；可合并或标不适用，推断／建议和未知分开，效果未验证；不提前编具体新增角色对白、反转或完整剧本；同版选段证据及必要上下文边界交A02；不在A01改编或单独请求第一次确认",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline",
+        "douyin-video"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A01.json",
+      "required_policy_ids": [
+        "main.20",
+        "main.21",
+        "main.84",
+        "reference-scope.01"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "new-project": [
+          "main.03",
+          "main.42",
+          "main.43",
+          "main.44",
+          "main.45",
+          "main.46",
+          "main.47",
+          "main.48",
+          "main.94",
+          "main.50",
+          "main.51",
+          "main.52",
+          "main.53",
+          "main.54"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A01.I01",
+          "description": "当前项目/用户范围、原片链接或已核验原件、来源与实际时长；A+B另读已选B真实时长",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A02": {
+      "id": "A02",
+      "label": "02 创意与改编",
+      "order": 2,
+      "required_output": "本次参考核心、匹配的真实框架／原文入口与选择理由，参考已有与AI补充的简短对照；未有适配框架沿参考脉络创作，不冒充库内命中；有稳定候选编号的多个实质不同简短创意及可选推荐理由；用户数量或单方案优先；原片事实、AI新增与未知分开；同版候选包直接交A03；不先要求用户选方向，不在A02触发首次确认，不提前交完整导演稿／提示词／预算",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A02.json",
+      "required_policy_ids": [
+        "main.22",
+        "main.58",
+        "main.93",
+        "main.88",
+        "reference-scope.01",
+        "creative-preview.01"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "favoritism": [],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A02.I01",
+          "description": "A01同版selected与交接正文：事实、吸引点、成立机制、迁移价值／边界和未知；当前用户目标、数量／框架、保留条件与A／A+B时长要求",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ],
+      "conditional_skills": {
+        "favoritism": [
+          "naruto-favoritism-skit-generator"
+        ]
+      },
+      "required_external_skills": [
+        "universal-skit-orchestrator"
+      ]
+    },
+    "A03": {
+      "id": "A03",
+      "label": "03 创意预演",
+      "order": 3,
+      "required_output": "各待选候选的一句话创意重点与简短剧本（人物、动作、必要对白、变化／结果）；共用参考与AI新增对照只呈现一次，不要求完整导演稿；A01拆解＋A02候选／方法＋A03预演的一份第一阶段审阅正文；实际选择／修改及采用范围记录后才进详细制作",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A03.json",
+      "required_policy_ids": [
+        "creative-preview.01",
+        "main.88",
+        "reference-scope.01"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A03.I01",
+          "description": "A01同版参考事实／判断／未知与A02尚未采用候选（含编号、借用核心、适用方法、用户限制）；已有采用或预演只按真实同版范围复用",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ],
+      "conditional_skills": {}
+    },
+    "A04": {
+      "id": "A04",
+      "label": "04 物料判断与分发",
+      "order": 4,
+      "required_output": "物料需求清单（分类、必要要求、已知用途／限制、待定项）",
+      "family": "a",
+      "skills": [
+        "seedance-paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A04.json",
+      "required_policy_ids": [
+        "material-preparation.01",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A04.I01",
+          "description": "A03实际采用的同版创意预演、采用范围、用户限制及已知物料要求",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A05": {
+      "id": "A05",
+      "label": "05 查找与锁定现有资产",
+      "order": 5,
+      "required_output": "已核选用原件、来源版本／引用及原需求中的真实缺口／待核项",
+      "family": "a",
+      "skills": [
+        "seedance-paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A05.json",
+      "required_policy_ids": [
+        "material-preparation.02",
+        "material-preparation.04",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "character-catalog": [
+          "character-format.02",
+          "character-format.03",
+          "character-format.04",
+          "character-format.05",
+          "character-format.06",
+          "character-format.08"
+        ],
+        "blogger-identity": [
+          "material-preparation.02",
+          "material-preparation.04"
+        ],
+        "performance-traits": [
+          "material-preparation.02",
+          "material-preparation.04"
+        ],
+        "outfit-breakdown": [
+          "material-preparation.02",
+          "material-preparation.04"
+        ],
+        "identity-noise-repair": [
+          "material-preparation.02",
+          "material-preparation.04"
+        ],
+        "parallel-character-delivery": [
+          "material-preparation.02",
+          "material-preparation.04"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "character-turnaround": [
+          "character-sheet.03",
+          "character-sheet.04",
+          "character-sheet.07",
+          "character-sheet.08"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A05.I01",
+          "description": "A04同版分类需求清单、已知用途／限制与待定项",
+          "required": true,
+          "integrity": "sha256_if_file"
+        },
+        {
+          "id": "A05.I02",
+          "description": "项目现有素材／实际资产入口及已有原件检查、来源版本和采用范围；不可访问或未定位如实记录",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A06": {
+      "id": "A06",
+      "label": "06 补充缺失资产",
+      "order": 6,
+      "required_output": "沿原记录交接当前可用原件、来源版本／引用、用途限制、采用／未验状态和未解决项；无缺口有据直接沿用",
+      "family": "a",
+      "skills": [
+        "seedance-paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A06.json",
+      "required_policy_ids": [
+        "material-preparation.03",
+        "material-preparation.04",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "character-catalog": [
+          "character-format.02",
+          "character-format.03",
+          "character-format.04",
+          "character-format.05",
+          "character-format.06",
+          "character-format.08"
+        ],
+        "blogger-identity": [
+          "character-format.07",
+          "character-format.15"
+        ],
+        "performance-traits": [
+          "character-format.11",
+          "main.70"
+        ],
+        "outfit-breakdown": [
+          "character-format.12"
+        ],
+        "identity-noise-repair": [
+          "main.70"
+        ],
+        "parallel-character-delivery": [
+          "character-format.10"
+        ],
+        "nonpaid-previs": [
+          "material-preparation.03",
+          "material-preparation.04"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "character-turnaround": [
+          "character-sheet.01",
+          "character-sheet.02",
+          "character-sheet.03",
+          "character-sheet.04",
+          "character-sheet.05",
+          "character-sheet.06",
+          "character-sheet.07",
+          "character-sheet.08",
+          "character-sheet.09",
+          "character-sheet.10"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A06.I01",
+          "description": "A05沿原物料记录交来的选用原件、有效检查、真实缺口／待核项及对应要求；无缺口明确记录",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A07": {
+      "id": "A07",
+      "label": "07 导演稿",
+      "order": 7,
+      "required_output": "唯一当前导演稿：完整剧情与逐镜画面／动作、对白归属、声音、时间、真实引用用途及对应视频提示词；必要关键帧沿有效授权取得或复用，待补／未验就地标明",
+      "family": "a",
+      "skills": [
+        "seedance-paid-skit-production-pipeline",
+        "seedance-cinematic-director",
+        "seedance-prompts"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A07.json",
+      "required_policy_ids": [
+        "main.23",
+        "main.61",
+        "main.65",
+        "storyboard.01",
+        "storyboard.02",
+        "storyboard.03",
+        "storyboard.04",
+        "storyboard.05",
+        "storyboard.06",
+        "storyboard.07",
+        "storyboard.08",
+        "storyboard.09",
+        "storyboard.10",
+        "main.66",
+        "reference-scope.02",
+        "video-prompts.03",
+        "video-prompts.04",
+        "video-prompts.09"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "favoritism": [],
+        "nonpaid-previs": [],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A07.I01",
+          "description": "同版已采用的创意预演与结构、可复用既有分镜、已选资产和目标时长；不要求A03预先完成详细分镜；接收A06沿原记录交来的可用原件／引用、用途限制、采用／未验状态及未解决项，仅在已核适用范围内使用，未解决项只约束依赖内容",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ],
+      "conditional_skills": {
+        "favoritism": [
+          "naruto-favoritism-skit-generator"
+        ]
+      }
+    },
+    "A08": {
+      "id": "A08",
+      "label": "08 关键镜头优化",
+      "order": 8,
+      "required_output": "同一导演稿中的关键镜头优化及对应提示词更新，保留未改镜头、真实物料限制和待核；无优化需求直接沿用A07完整稿交A09",
+      "family": "a",
+      "skills": [
+        "seedance-paid-skit-production-pipeline",
+        "seedance-cinematic-director",
+        "seedance-battle-action-prompts",
+        "seedance-combat-impact-prompts",
+        "seedance-vfx-prompt-writing",
+        "seedance-prompts"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A08.json",
+      "required_policy_ids": [
+        "main.24",
+        "main.88",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "prompt-authoring": [
+          "video-prompts.01",
+          "video-prompts.02",
+          "video-prompts.03",
+          "video-prompts.04",
+          "video-prompts.05",
+          "video-prompts.06",
+          "video-prompts.07",
+          "video-prompts.08",
+          "video-prompts.09",
+          "video-prompts.10",
+          "video-prompts.11",
+          "video-prompts.12"
+        ],
+        "local-shot-repair": [
+          "main.67",
+          "video-prompts.06"
+        ],
+        "nonpaid-previs": [],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ],
+        "shot-design": [
+          "storyboard.01",
+          "storyboard.02",
+          "storyboard.03",
+          "storyboard.04",
+          "storyboard.05",
+          "storyboard.06",
+          "storyboard.07",
+          "storyboard.08",
+          "storyboard.09",
+          "main.66"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A08.I01",
+          "description": "A07同一完整导演稿（剧情、全镜头、时间／声音／对白、提示词与关键帧状态）及A06物料限制、已有镜号／历史／手改；本次需要增强的具体镜头和问题",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A09": {
+      "id": "A09",
+      "label": "09 生成准备",
+      "order": 9,
+      "required_output": "同一当前稿中的完整生成方案：正文、真实引用与用途、参数、当前报价和预算、声音及交付范围；A+B含已选B来源／切点／实长；缺项、采用／待采用及受影响项如实保留",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A09.json",
+      "required_policy_ids": [
+        "main.26",
+        "video-prompts.01",
+        "video-prompts.02",
+        "video-prompts.09",
+        "video-prompts.04",
+        "video-prompts.11",
+        "main.68",
+        "main.83",
+        "main.88",
+        "main.92",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "prompt-authoring": [
+          "video-prompts.01",
+          "video-prompts.02",
+          "video-prompts.03",
+          "video-prompts.04",
+          "video-prompts.05",
+          "video-prompts.06",
+          "video-prompts.07",
+          "video-prompts.08",
+          "video-prompts.09",
+          "video-prompts.10",
+          "video-prompts.11",
+          "video-prompts.12"
+        ],
+        "local-shot-repair": [
+          "main.67",
+          "video-prompts.06"
+        ],
+        "nonpaid-previs": [],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A09.I01",
+          "description": "A08同一当前导演稿、镜号／历史和用户手改；沿原记录承接真实引用及用途限制、已采用／未验状态、未解决项与改稿影响；实际工具、账号及当前授权",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A10": {
+      "id": "A10",
+      "label": "10 样片验证",
+      "order": 10,
+      "required_output": "当前版本风险判断与实际处理记录：已有适用结果及验证范围，或无需额外样片的依据；未验项、硬失败、改稿影响与后续检查明确交给A11，实际媒体有则附原件／原task",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A10.json",
+      "required_policy_ids": [
+        "main.63",
+        "main.64",
+        "video-prompts.11",
+        "main.83",
+        "storyboard.10",
+        "reference-scope.02",
+        "video-prompts.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "prompt-authoring": [
+          "video-prompts.01",
+          "video-prompts.02",
+          "video-prompts.03",
+          "video-prompts.04",
+          "video-prompts.05",
+          "video-prompts.06",
+          "video-prompts.07",
+          "video-prompts.08",
+          "video-prompts.09",
+          "video-prompts.10",
+          "video-prompts.11",
+          "video-prompts.12"
+        ],
+        "local-shot-repair": [
+          "main.67",
+          "video-prompts.06"
+        ],
+        "nonpaid-previs": [],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A10.I01",
+          "description": "A09同版当前稿、真实绑定／配置、采用及有效授权范围；已有任务／结果和风险证据、未解决项及改稿影响",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A11": {
+      "id": "A11",
+      "label": "11 成片锁定",
+      "order": 11,
+      "required_output": "对A09同版清单的引用、当前输入与A10风险记录、实际可用结果（有则引用）及有据的局部修复范围；无媒体保留生成后待验，不为锁定再造片，不重复整单确认",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A11.json",
+      "required_policy_ids": [
+        "main.62",
+        "video-prompts.11",
+        "main.04",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "prompt-authoring": [
+          "video-prompts.01",
+          "video-prompts.02",
+          "video-prompts.03",
+          "video-prompts.04",
+          "video-prompts.05",
+          "video-prompts.06",
+          "video-prompts.07",
+          "video-prompts.08",
+          "video-prompts.09",
+          "video-prompts.10",
+          "video-prompts.11",
+          "video-prompts.12"
+        ],
+        "local-shot-repair": [
+          "main.67",
+          "video-prompts.06"
+        ],
+        "nonpaid-previs": [],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A11.I01",
+          "description": "当前剧本、资产、镜头、提示词、后期计划及A10当前版本风险记录（适用结果／验证范围，或无需额外样片的依据；仍待验项与硬失败）",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A12": {
+      "id": "A12",
+      "label": "12 正式生成",
+      "order": 12,
+      "required_output": "本版原task／原片与适用源区间、复用或新增依据、费用实况及音画核验记录；尚未生成、受理未知、真实文件可用、音画待验和用户采用分别交接，未知不填零或记完成",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A12.json",
+      "required_policy_ids": [
+        "main.27",
+        "main.64",
+        "main.83",
+        "main.92",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "prompt-authoring": [
+          "video-prompts.01",
+          "video-prompts.02",
+          "video-prompts.03",
+          "video-prompts.04",
+          "video-prompts.05",
+          "video-prompts.06",
+          "video-prompts.07",
+          "video-prompts.08",
+          "video-prompts.09",
+          "video-prompts.10",
+          "video-prompts.11",
+          "video-prompts.12"
+        ],
+        "local-shot-repair": [
+          "main.67",
+          "video-prompts.06"
+        ],
+        "nonpaid-previs": [],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A12.I01",
+          "description": "A11锁定范围、已有task／原片与局部缺口；需新提交时核对当前输入、账号、报价及剩余授权",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A13": {
+      "id": "A13",
+      "label": "13 剪辑后期",
+      "order": 13,
+      "required_output": "当前可编辑PR及本次交付主序列，保留原片、备选与手改；与当前工程版本／序列／范围／预设及实际内容对应的PR原生A段MP4和导出回执；有效既有结果可复用；实际已核画面／声音范围、待验项与候选身份；不推断全片通过或用户采用",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline",
+        "paid-skit-premiere"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A13.json",
+      "required_policy_ids": [
+        "main.32",
+        "main.33",
+        "main.34",
+        "main.35",
+        "main.36",
+        "main.37",
+        "main.38",
+        "main.39",
+        "main.40",
+        "main.41",
+        "main.05",
+        "premiere-automation.01",
+        "main.91",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "prompt-authoring": [
+          "video-prompts.01",
+          "video-prompts.02",
+          "video-prompts.03",
+          "video-prompts.04",
+          "video-prompts.05",
+          "video-prompts.06",
+          "video-prompts.07",
+          "video-prompts.08",
+          "video-prompts.09",
+          "video-prompts.10",
+          "video-prompts.11",
+          "video-prompts.12"
+        ],
+        "local-shot-repair": [
+          "main.67",
+          "video-prompts.06"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A13.I01",
+          "description": "A12实际可用原片、源区间、当前适用QA范围与待验项；A09已确认方案及当前稿；新读PR内存／磁盘工程、轨道、Source In/Out、实际音轨、字幕与BGM及既有导出回执。内部素材选用不等于用户最终采用。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A14": {
+      "id": "A14",
+      "label": "14 A段验收",
+      "order": 14,
+      "required_output": "A段实际QA、声音检查与当前分镜对应；A-only在此第三停点确认采用；A+B在此完成内部A段QA，候选接片仍标未采用；到B04一起确认完整成片，不新增A段停点",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A14.json",
+      "required_policy_ids": [
+        "main.37",
+        "main.39",
+        "main.40",
+        "main.05",
+        "main.88",
+        "premiere-automation.02",
+        "main.90",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "video-reference-transfer": [
+          "video-prompts.13"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A14.I01",
+          "description": "本次PR原生A文件、当前PR与绑定导出回执、最新当前稿的A范围及A13同版音画技术证据；A+B另读已预留B实长和最终总长目标，不要求此时已有完整AB文件。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "A15": {
+      "id": "A15",
+      "label": "15 已完成",
+      "order": 15,
+      "required_output": "已实际采用A版本／范围的归档与唯一入口：反链现有QA、采用、当前稿A范围、PR原件／原生导出回执、原片来源、真实费用状态和必要恢复信息；完整A只计一件，多B不重复计A。A+B未到B04实际采用时仅有候选资料，不标归档完成。",
+      "family": "a",
+      "skills": [
+        "paid-skit-production-pipeline",
+        "rongyao-material-upload"
+      ],
+      "rule_modules": [],
+      "upload_relation": "eligible_only_with_actual_file_qa_and_upload_authorization",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/A15.json",
+      "required_policy_ids": [
+        "main.71",
+        "main.05",
+        "premiere-automation.02",
+        "main.90",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "character-catalog": [
+          "character-format.02",
+          "character-format.03",
+          "character-format.04",
+          "character-format.05",
+          "character-format.06",
+          "character-format.08"
+        ],
+        "blogger-identity": [
+          "character-format.07",
+          "character-format.15"
+        ],
+        "performance-traits": [
+          "character-format.11",
+          "character-format.13"
+        ],
+        "outfit-breakdown": [
+          "character-format.12"
+        ],
+        "identity-noise-repair": [
+          "character-format.14"
+        ],
+        "parallel-character-delivery": [
+          "character-format.10"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "backend-upload": [
+          "backend-upload.07",
+          "backend-upload.08",
+          "backend-upload.09",
+          "backend-upload.10",
+          "backend-upload.11",
+          "backend-upload.12",
+          "main.89"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "A15.I01",
+          "description": "当前A文件、A14实际QA、实际采用记录及其版本／范围（A-only来自A14，A+B来自B04）、最新当前稿A范围、PR原件与原生导出回执、原片VID／task／源区间、真实费用状态及必要恢复身份；沿已有文档入口、文件路径和同版证据读取，不存在／未知／不适用如实标明，不用0或推断填补。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "B01": {
+      "id": "B01",
+      "label": "01 B段匹配",
+      "order": 1,
+      "required_output": "绑定当前A文件／SHA／版本与QA、最新稿及采用状态的A/B匹配记录；保留B原source／SHA／使用区间、实际音画／角色卖点／来源归属证据、A/B实长与全片总长；列出对应交接文件SHA／实长或B02待准备项，候选不冒充正式通过。",
+      "family": "b",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/B01.json",
+      "required_policy_ids": [
+        "main.05",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "portrait-layout": [
+          "portrait-layout.01"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "B01.I01",
+          "description": "A09已确认同版B来源／SHA、可用区间与实长、已有音画及归属证据；A14当前A文件／SHA、版本、实际QA与最新稿状态，及已有实际采用范围。沿现有入口读取，只补变化或缺项，未知／未核如实标明。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "B02": {
+      "id": "B02",
+      "label": "02 接B剪辑",
+      "order": 2,
+      "required_output": "可追溯的B原source／SHA／区间→实际交接片段SHA／实长、完整语句与核心展示核对；绑定当前A/B、最新稿、实际声音包装的接片配置及候选预览；已有同版合片连同回执、输出SHA／规格／实长交B03引用，标明复用范围、变化待复验和未采用状态。",
+      "family": "b",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "executor": "ffmpeg",
+      "a_input": "verified_premiere_native_export",
+      "premiere_ab_editing": "only_if_explicitly_requested",
+      "contract_path": "workflow/rules/stages/B02.json",
+      "required_policy_ids": [
+        "main.05",
+        "main.90",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "portrait-layout": [
+          "portrait-layout.01"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "B02.I01",
+          "description": "B01当前A文件／SHA／版本／QA、最新稿及实际采用范围；B原source／SHA／选定区间与完整语句证据、对应片段文件／SHA／实长或待准备项；当前声音、BGM、字幕、画幅包装要求与已有配置、预览／合片、执行回执。未知／未核如实标明。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "B03": {
+      "id": "B03",
+      "label": "03 成片导出",
+      "order": 3,
+      "required_output": "每版真实存在的完整A+B候选MP4、输出SHA／实测规格／总长／音视频流及完整解码证据；关联B02配置、原回执和实际A/B SHA／区间／参数的输入输出记录，注明复用或新导出、受影响待复验项及未采用状态，交B04。",
+      "family": "b",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "executor": "ffmpeg",
+      "a_input": "verified_premiere_native_export",
+      "premiere_ab_editing": "only_if_explicitly_requested",
+      "contract_path": "workflow/rules/stages/B03.json",
+      "required_policy_ids": [
+        "main.05",
+        "main.90",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "portrait-layout": [
+          "portrait-layout.01"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "B03.I01",
+          "description": "B02当前接片配置、已有同版候选及原执行回执；当前A/B文件与SHA、B原件及选定区间／实际片段对应、最新稿和声音包装版本；输出身份与已有有效技术证据，缺项如实标明。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "B04": {
+      "id": "B04",
+      "label": "04 成片验收",
+      "order": 4,
+      "required_output": "逐版绑定实际完整AB文件与最新完整分镜的音画／对白字幕／接点／片尾／包装和连续全帧覆盖核对、实测总长及待核记录；第三停点一次采用的真实文件SHA与其中A范围，未采用版保持候选。",
+      "family": "b",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/B04.json",
+      "required_policy_ids": [
+        "main.05",
+        "main.90",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "portrait-layout": [
+          "portrait-layout.01"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "B04.I01",
+          "description": "逐版实际完整AB文件路径与SHA、B03绑定该文件且仍有效的技术证据／实测总长、最新完整AB稿与分镜、当前包装需求及待核／变更项；已有采用记录按真实文件与范围读取。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "B05": {
+      "id": "B05",
+      "label": "05 已完成",
+      "order": 5,
+      "required_output": "已验且实际采用版本的唯一成片入口与归档反链：逐版绑定文件SHA256、最新完整分镜、B04音画／逐镜与真实采用范围，关联唯一父A（不重复计数）、B来源区间／片段、B02配置、B03原回执及原PR工程／恢复资料；未采用、缺证或变更版本保留各自待处理状态。",
+      "family": "b",
+      "skills": [
+        "paid-skit-production-pipeline",
+        "rongyao-material-upload"
+      ],
+      "rule_modules": [],
+      "upload_relation": "eligible_only_with_actual_file_qa_and_upload_authorization",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/B05.json",
+      "required_policy_ids": [
+        "main.05",
+        "main.71",
+        "main.90",
+        "storyboard.10",
+        "reference-scope.02"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "backend-upload": [
+          "backend-upload.07",
+          "backend-upload.08",
+          "backend-upload.09",
+          "backend-upload.10",
+          "backend-upload.11",
+          "backend-upload.12",
+          "main.89"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "B05.I01",
+          "description": "逐版实际完整A+B文件路径与SHA256、最新完整分镜及其版本／范围、B04绑定该文件的有效音画与逐镜证据和真实采用记录；关联父A文件／版本／使用区间、B来源区间与实际片段、B02配置、B03原回执、原PR工程与必要恢复资料。沿现有入口读取；未采用、缺证、文件或稿件变化逐版标明，不推断全批采用。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "LIBRARY01": {
+      "id": "LIBRARY01",
+      "label": "01 素材整理",
+      "order": 1,
+      "required_output": "沿原入口交接素材原件、来源／业务身份、SHA256与已有有效核验、用途／权利限制和待核项；素材整理不等于可接或用户采用。",
+      "family": "library",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/LIBRARY01.json",
+      "required_policy_ids": [
+        "main.71"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "character-catalog": [
+          "character-format.02",
+          "character-format.03",
+          "character-format.04",
+          "character-format.05",
+          "character-format.06",
+          "character-format.08"
+        ],
+        "blogger-identity": [
+          "character-format.07",
+          "character-format.15"
+        ],
+        "performance-traits": [
+          "character-format.11",
+          "character-format.13"
+        ],
+        "outfit-breakdown": [
+          "character-format.12"
+        ],
+        "identity-noise-repair": [
+          "character-format.14"
+        ],
+        "parallel-character-delivery": [
+          "character-format.10"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "new-project": [
+          "main.03",
+          "main.42",
+          "main.43",
+          "main.44",
+          "main.45",
+          "main.46",
+          "main.47",
+          "main.48",
+          "main.94",
+          "main.50",
+          "main.51",
+          "main.52",
+          "main.53",
+          "main.54"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ],
+        "naruto-b-library": [
+          "naruto-b-library.01"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "LIBRARY01.I01",
+          "description": "本次选用或用户提供的真实B原件／已有有效入口、来源与业务身份、用途／权利范围及已有核验；未知编号、归属、权利分别保留待核，不为本节点全库盘点。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "LIBRARY02": {
+      "id": "LIBRARY02",
+      "label": "02 剪辑整理",
+      "order": 2,
+      "required_output": "可读的原片及同源同区间同用途副本入口、版本／SHA256、实际入出点与对应核验；复用已有有效副本及证据，缺件或变区间才另版本；技术解码、内容、声音、归属／权利分列，待核项随原记录交LIBRARY03，副本不等于可接或用户采用。",
+      "family": "library",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/LIBRARY02.json",
+      "required_policy_ids": [],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "LIBRARY02.I01",
+          "description": "LIBRARY01交接的本次原片、画幅帧率、原声、目标用途／入出点，以及已有副本和对应证据；沿原记录保留来源编号／原创编号、实际角色／第二设计师、用途／权利限制和听审待核，未知不补造，不自动全库整理。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "LIBRARY03": {
+      "id": "LIBRARY03",
+      "label": "03 素材验收",
+      "order": 3,
+      "required_output": "沿已有记录交LIBRARY04：当前原件／副本的可读入口、版本／SHA256、区间与用途，以及分列的技术解码、实际画面、库片完整声音、来源权利／角色归属核验和待核项；已有有效结果直接引用，无需新建文件。检查记录不等于用户采用或上传授权，未知／失败不标可接。",
+      "family": "library",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/LIBRARY03.json",
+      "required_policy_ids": [],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "character-catalog": [
+          "character-format.02",
+          "character-format.03",
+          "character-format.04",
+          "character-format.05",
+          "character-format.06",
+          "character-format.08"
+        ],
+        "blogger-identity": [
+          "character-format.07",
+          "character-format.15"
+        ],
+        "performance-traits": [
+          "character-format.11",
+          "character-format.13"
+        ],
+        "outfit-breakdown": [
+          "character-format.12"
+        ],
+        "identity-noise-repair": [
+          "character-format.14"
+        ],
+        "parallel-character-delivery": [
+          "character-format.10"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "LIBRARY03.I01",
+          "description": "LIBRARY02交接的当前素材原件／剪辑副本、来源与版本／SHA256、实际区间、用途和检查证据；沿原记录承接来源编号／原创编号、实际角色／第二设计师、权利限制与待核项。同源同区间同用途且对应当前文件的有效证据直接复用，只复验变化与缺项，不自动检查全库。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    },
+    "LIBRARY04": {
+      "id": "LIBRARY04",
+      "label": "04 可接",
+      "order": 4,
+      "required_output": "沿既有素材入口记录证据齐全的对应可接范围、版本与用途、有效证据及待核／恢复入口；有效同版直接复用，不重复复制或另建库，真实缺口按main.71补件，保留PR原路径与手改。库可接不等于广告采用或上传授权，实际项目需要时才关联B01。",
+      "family": "library",
+      "skills": [
+        "paid-skit-production-pipeline"
+      ],
+      "rule_modules": [],
+      "upload_relation": "preparation_only_no_automatic_upload",
+      "gate_pass_inferred": false,
+      "contract_path": "workflow/rules/stages/LIBRARY04.json",
+      "required_policy_ids": [
+        "main.71"
+      ],
+      "conditional_policy_ids": {
+        "gui-failure": [
+          "main.06"
+        ],
+        "console-write": [
+          "console-format.01",
+          "console-format.02",
+          "console-format.03",
+          "console-format.04",
+          "main.72",
+          "console-format.05",
+          "console-format.06"
+        ],
+        "asset-archive": [
+          "asset-bridge.01",
+          "asset-bridge.02",
+          "asset-bridge.03",
+          "asset-bridge.04",
+          "asset-bridge.05",
+          "asset-bridge.06"
+        ],
+        "ip-source": [
+          "main.07"
+        ],
+        "nonpaid-previs": [
+          "main.02"
+        ],
+        "authorized-collaboration": [
+          "main.17"
+        ],
+        "asset-cleanup": [
+          "cleanup.01",
+          "cleanup.02",
+          "cleanup.03",
+          "cleanup.04",
+          "cleanup.05",
+          "cleanup.06",
+          "cleanup.07",
+          "cleanup.08",
+          "cleanup.09",
+          "cleanup.10",
+          "cleanup.11",
+          "main.86"
+        ],
+        "legacy-case-review": [
+          "character-format.09"
+        ]
+      },
+      "input_requirements": [
+        {
+          "id": "LIBRARY04.I01",
+          "description": "LIBRARY03交接的实际素材验收及来源／版本：当前原件／副本身份、可读入口、版本／SHA256、实际区间与用途，以及同源同区间同用途的技术解码、实际画面、库片完整声音、来源权利／角色归属有效证据和待核项；来源编号／原创编号、实际角色／第二设计师沿原记录承接，未知不补造。",
+          "required": true,
+          "integrity": "sha256_if_file"
+        }
+      ]
+    }
+  },
+  "conditional_routes": {
+    "A02/A07偏心题材": "适用时读取copywriting及naruto-favoritism-skit-generator；非偏心不强套",
+    "A09/A10/A12生成工具": "按项目实际选择rongyao-video、dreamina-canvas-cli或minimax-cli并重新核对账号、工具及费用"
+  },
+  "upload_extension": {
+    "is_original_single_select_node": false,
+    "skill": "rongyao-material-upload",
+    "steps": [
+      "输入范围及来源核对",
+      "名称、实际字段与本地注册计划",
+      "同版、writer、scope锁及输入SHA授权票据",
+      "HTTP单次分片合并与未知受理保护；显式Chrome分支才使用原生文件选择",
+      "原job有限回查、原ID归属收尾与分层反馈"
+    ],
+    "does_not_advance_production_nodes": true,
+    "direct_file_upload_requires_separate_explicit_authorization": true,
+    "cli": "workflow/tools/rongyao-http-upload/scripts/rongyao_upload.py",
+    "cli_version": "1.3.1",
+    "scope": "material-upload:rongyao-operations",
+    "generic_input_mode": "registered_plan_with_input_sha_ticket",
+    "legacy_fixed_plan_preserved": true,
+    "live_generic_upload_verified": false,
+    "plan_cli": "scripts/rongyao.py",
+    "plan_cli_version": "0.2.3",
+    "default_transport": "direct_http_sms",
+    "chrome_compatibility": "explicit-user-selection-only"
+  },
+  "resolution": "workflow_node.py: current item -> node contract -> required policies; conditional content is opt-in"
+}

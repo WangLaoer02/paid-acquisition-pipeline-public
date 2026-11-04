@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "semantics": "one selected current work node; earlier selection requests rework from that node",
+  "families": {
+    "a": [
+      {
+        "id": "A01",
+        "label": "01 来源分析",
+        "order": 1,
+        "required_output": "原片、来源与实际规格；初步分段及选段起止、选择依据；第一层原片事实短表：时间、具体事件、必要人物关系／动作、关键对白／画面字、相关声音与实际变化／结果；单句动作只记实际内容，未知就地标注，不要求四张表或每格填满；第二层三条简短参考判断：吸引点、成立机制、迁移价值／边界（含暂定用途）；可合并或标不适用，推断／建议和未知分开，效果未验证；不提前编具体新增角色对白、反转或完整剧本；同版选段证据及必要上下文边界交A02；不在A01改编或单独请求第一次确认"
+      },
+      {
+        "id": "A02",
+        "label": "02 创意与改编",
+        "order": 2,
+        "required_output": "本次参考核心、匹配的真实框架／原文入口与选择理由，参考已有与AI补充的简短对照；未有适配框架沿参考脉络创作，不冒充库内命中；有稳定候选编号的多个实质不同简短创意及可选推荐理由；用户数量或单方案优先；原片事实、AI新增与未知分开；同版候选包直接交A03；不先要求用户选方向，不在A02触发首次确认，不提前交完整导演稿／提示词／预算",
+        "legacy_labels": [
+          "02 剧情结构"
+        ]
+      },
+      {
+        "id": "A03",
+        "label": "03 创意预演",
+        "order": 3,
+        "required_output": "各待选候选的一句话创意重点与简短剧本（人物、动作、必要对白、变化／结果）；共用参考与AI新增对照只呈现一次，不要求完整导演稿；A01拆解＋A02候选／方法＋A03预演的一份第一阶段审阅正文；实际选择／修改及采用范围记录后才进详细制作",
+        "legacy_labels": [
+          "03 粗分镜"
+        ]
+      },
+      {
+        "id": "A04",
+        "label": "04 物料判断与分发",
+        "order": 4,
+        "required_output": "物料需求清单（分类、必要要求、已知用途／限制、待定项）",
+        "legacy_labels": [
+          "04 角色正视母版"
+        ]
+      },
+      {
+        "id": "A05",
+        "label": "05 查找与锁定现有资产",
+        "order": 5,
+        "required_output": "已核选用原件、来源版本／引用及原需求中的真实缺口／待核项",
+        "legacy_labels": [
+          "05 三视图"
+        ]
+      },
+      {
+        "id": "A06",
+        "label": "06 补充缺失资产",
+        "order": 6,
+        "required_output": "沿原记录交接当前可用原件、来源版本／引用、用途限制、采用／未验状态和未解决项；无缺口有据直接沿用",
+        "legacy_labels": [
+          "06 人物特征"
+        ]
+      },
+      {
+        "id": "A07",
+        "label": "07 导演稿",
+        "order": 7,
+        "required_output": "唯一当前导演稿：完整剧情与逐镜画面／动作、对白归属、声音、时间、真实引用用途及对应视频提示词；必要关键帧沿有效授权取得或复用，待补／未验就地标明",
+        "legacy_labels": [
+          "07 正式剧本"
+        ]
+      },
+      {
+        "id": "A08",
+        "label": "08 关键镜头优化",
+        "order": 8,
+        "required_output": "同一导演稿中的关键镜头优化及对应提示词更新，保留未改镜头、真实物料限制和待核；无优化需求直接沿用A07完整稿交A09",
+        "legacy_labels": [
+          "08 镜头设计"
+        ]
+      },
+      {
+        "id": "A09",
+        "label": "09 生成准备",
+        "order": 9,
+        "required_output": "同一当前稿中的完整生成方案：正文、真实引用与用途、参数、当前报价和预算、声音及交付范围；A+B含已选B来源／切点／实长；缺项、采用／待采用及受影响项如实保留"
+      },
+      {
+        "id": "A10",
+        "label": "10 样片验证",
+        "order": 10,
+        "required_output": "当前版本风险判断与实际处理记录：已有适用结果及验证范围，或无需额外样片的依据；未验项、硬失败、改稿影响与后续检查明确交给A11，实际媒体有则附原件／原task"
+      },
+      {
+        "id": "A11",
+        "label": "11 成片锁定",
+        "order": 11,
+        "required_output": "对A09同版清单的引用、当前输入与A10风险记录、实际可用结果（有则引用）及有据的局部修复范围；无媒体保留生成后待验，不为锁定再造片，不重复整单确认"
+      },
+      {
+        "id": "A12",
+        "label": "12 正式生成",
+        "order": 12,
+        "required_output": "本版原task／原片与适用源区间、复用或新增依据、费用实况及音画核验记录；尚未生成、受理未知、真实文件可用、音画待验和用户采用分别交接，未知不填零或记完成"
+      },
+      {
+        "id": "A13",
+        "label": "13 剪辑后期",
+        "order": 13,
+        "required_output": "当前可编辑PR及本次交付主序列，保留原片、备选与手改；与当前工程版本／序列／范围／预设及实际内容对应的PR原生A段MP4和导出回执；有效既有结果可复用；实际已核画面／声音范围、待验项与候选身份；不推断全片通过或用户采用"
+      },
+      {
+        "id": "A14",
+        "label": "14 A段验收",
+        "order": 14,
+        "required_output": "A段实际QA、声音检查与当前分镜对应；A-only在此第三停点确认采用；A+B在此完成内部A段QA，候选接片仍标未采用；到B04一起确认完整成片，不新增A段停点"
+      },
+      {
+        "id": "A15",
+        "label": "15 已完成",
+        "order": 15,
+        "required_output": "已实际采用A版本／范围的归档与唯一入口：反链现有QA、采用、当前稿A范围、PR原件／原生导出回执、原片来源、真实费用状态和必要恢复信息；完整A只计一件，多B不重复计A。A+B未到B04实际采用时仅有候选资料，不标归档完成。"
+      }
+    ],
+    "b": [
+      {
+        "id": "B01",
+        "label": "01 B段匹配",
+        "order": 1,
+        "required_output": "绑定当前A文件／SHA／版本与QA、最新稿及采用状态的A/B匹配记录；保留B原source／SHA／使用区间、实际音画／角色卖点／来源归属证据、A/B实长与全片总长；列出对应交接文件SHA／实长或B02待准备项，候选不冒充正式通过。"
+      },
+      {
+        "id": "B02",
+        "label": "02 接B剪辑",
+        "order": 2,
+        "required_output": "可追溯的B原source／SHA／区间→实际交接片段SHA／实长、完整语句与核心展示核对；绑定当前A/B、最新稿、实际声音包装的接片配置及候选预览；已有同版合片连同回执、输出SHA／规格／实长交B03引用，标明复用范围、变化待复验和未采用状态。",
+        "executor": "ffmpeg",
+        "a_input": "verified_premiere_native_export",
+        "premiere_ab_editing": "only_if_explicitly_requested"
+      },
+      {
+        "id": "B03",
+        "label": "03 成片导出",
+        "order": 3,
+        "required_output": "每版真实存在的完整A+B候选MP4、输出SHA／实测规格／总长／音视频流及完整解码证据；关联B02配置、原回执和实际A/B SHA／区间／参数的输入输出记录，注明复用或新导出、受影响待复验项及未采用状态，交B04。",
+        "executor": "ffmpeg",
+        "a_input": "verified_premiere_native_export",
+        "premiere_ab_editing": "only_if_explicitly_requested"
+      },
+      {
+        "id": "B04",
+        "label": "04 成片验收",
+        "order": 4,
+        "required_output": "逐版绑定实际完整AB文件与最新完整分镜的音画／对白字幕／接点／片尾／包装和连续全帧覆盖核对、实测总长及待核记录；第三停点一次采用的真实文件SHA与其中A范围，未采用版保持候选。"
+      },
+      {
+        "id": "B05",
+        "label": "05 已完成",
+        "order": 5,
+        "required_output": "已验且实际采用版本的唯一成片入口与归档反链：逐版绑定文件SHA256、最新完整分镜、B04音画／逐镜与真实采用范围，关联唯一父A（不重复计数）、B来源区间／片段、B02配置、B03原回执及原PR工程／恢复资料；未采用、缺证或变更版本保留各自待处理状态。"
+      }
+    ],
+    "library": [
+      {
+        "id": "LIBRARY01",
+        "label": "01 素材整理",
+        "order": 1,
+        "required_output": "沿原入口交接素材原件、来源／业务身份、SHA256与已有有效核验、用途／权利限制和待核项；素材整理不等于可接或用户采用。"
+      },
+      {
+        "id": "LIBRARY02",
+        "label": "02 剪辑整理",
+        "order": 2,
+        "required_output": "可读的原片及同源同区间同用途副本入口、版本／SHA256、实际入出点与对应核验；复用已有有效副本及证据，缺件或变区间才另版本；技术解码、内容、声音、归属／权利分列，待核项随原记录交LIBRARY03，副本不等于可接或用户采用。"
+      },
+      {
+        "id": "LIBRARY03",
+        "label": "03 素材验收",
+        "order": 3,
+        "required_output": "沿已有记录交LIBRARY04：当前原件／副本的可读入口、版本／SHA256、区间与用途，以及分列的技术解码、实际画面、库片完整声音、来源权利／角色归属核验和待核项；已有有效结果直接引用，无需新建文件。检查记录不等于用户采用或上传授权，未知／失败不标可接。"
+      },
+      {
+        "id": "LIBRARY04",
+        "label": "04 可接",
+        "order": 4,
+        "required_output": "沿既有素材入口记录证据齐全的对应可接范围、版本与用途、有效证据及待核／恢复入口；有效同版直接复用，不重复复制或另建库，真实缺口按main.71补件，保留PR原路径与手改。库可接不等于广告采用或上传授权，实际项目需要时才关联B01。"
+      }
+    ]
+  },
+  "rollback_rules": {
+    "preserve_historical_files_and_manual_premiere_edits": true,
+    "invalidate_affected_downstream_gates": true,
+    "manual_forward_selection_is_not_gate_pass": true,
+    "node_change_is_not_new_paid_generation_authorization": true,
+    "conflicting_mirror_edits_require_resolution": true,
+    "read_before_every_task": "scripts/workflow_state.py check"
+  }
+}

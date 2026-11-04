@@ -1,0 +1,17 @@
+{
+  "recipient": null,
+  "os": null,
+  "architecture": null,
+  "hostname": null,
+  "workspace": null,
+  "skills_directory": null,
+  "assigned_project_id": null,
+  "existing_sheet_url": null,
+  "item_id": null,
+  "requested_capability": null,
+  "generation_backend": null,
+  "allowed_actions": [],
+  "stop_at": null,
+  "writer_registration": "pending",
+  "secrets_allowed": false
+}

@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-08",
+  "input_install_zip_sha256": "744e07895774067320476f4eddd2e2ec33a36c1258b569695a04d808b7083f91",
+  "input_case_zip_sha256": "3176c13ee34d4076690ebf4e4dbf46e971ced87600213d27966788e10cea4422",
+  "changes": [
+    {
+      "package": "paid-skit-production-pipeline",
+      "file": "references/project-cases.md",
+      "source_sha256": "2fc5a44a2f9810808d83301abcd3c3ed5e62d8e081cb2c9ac4fa508fd064d7ff",
+      "distributed_sha256": "99a4d201199abef5c1a93ab5a32d5445f9becd0cc50eab0c1420bcba83861519",
+      "action": "portable_curated"
+    },
+    {
+      "package": "paid-skit-character-format",
+      "file": "references/implementation-history/compile_extension_records.py",
+      "source_sha256": "e7e8389c8e6cbe46b7e39351d8b9ba8f70a58aca513effba78ac925ac4eab4ba",
+      "distributed_sha256": null,
+      "action": "removed"
+    },
+    {
+      "package": "paid-skit-character-format",
+      "file": "references/implementation-routing.md",
+      "source_sha256": "f90715ac666a02ca3fc461e3f2fe2d051418c23d88994848dd00005efeb1e356",
+      "distributed_sha256": "456c4729b24c40f5335caefd6a04adef18d9599e018f229afe6af0bd290d99af",
+      "action": "portable_curated"
+    },
+    {
+      "package": "paid-skit-premiere",
+      "file": "SKILL.md",
+      "source_sha256": "560f7e33339a0362183ae6b20c5a787a4cb4aa42708b498b30c5d0e7652094e7",
+      "distributed_sha256": "8daa28d50e7e59a7c01c86653b02d2f7ee360ee5fda274e56739c8fe8c399793",
+      "action": "portable_curated"
+    },
+    {
+      "package": "paid-skit-premiere",
+      "file": "references/source-readme.md",
+      "source_sha256": "34ae33902591bee62d0b7b83963d8614d3a524e00b622c58e9f9ba3501365397",
+      "distributed_sha256": "da32579bae1cc417985b4b67a09ba5cc91e9374600c1c77157e493468248caca",
+      "action": "portable_curated"
+    }
+  ],
+  "canonical_shared_examples_preserved": true,
+  "all_original_case_media_preserved": true,
+  "fixes": [
+    "reject dangling output links; exclusive creation after media validation",
+    "reject linked environment/state/npm targets; random atomic state temporary file",
+    "portable media basename parsing; mandatory checks remain active with python -O",
+    "pr_inspect separates 24 external media paths from numeric generator IDs and stale relative aliases"
+  ]
+}

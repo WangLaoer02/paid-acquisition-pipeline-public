@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "universal-skit-orchestrator",
+  "version": "2.1",
+  "interface_version": 1,
+  "entrypoint": "SKILL.md",
+  "rules": "SKILL.md",
+  "files": {
+    "SKILL.md": "9f91ad682cab83e9542453d573e36d93ec6225843444c3c20338c0bff2a10df4",
+    "references/子Skill接入模板.md": "699ce9c044c0f2aa2bf5d672af38a021888ce17417f286ab51581b6aaca6c828",
+    "references/调用路径.md": "0e22aa3294c0a4abf483a770af2ae3b582ebd7e4ae4d47ec3a6f59504ea0ea70"
+  }
+}

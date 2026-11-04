@@ -1,0 +1,422 @@
+[
+  {
+    "skill": "lark-doc",
+    "original_archive_file_count": 44,
+    "distribution": "official_external",
+    "license": null,
+    "license_boundary": "external official terms",
+    "source": "https://github.com/larksuite/cli",
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "lark-sheets",
+    "original_archive_file_count": 29,
+    "distribution": "official_external",
+    "license": null,
+    "license_boundary": "external official terms",
+    "source": "https://github.com/larksuite/cli",
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "lark-drive",
+    "original_archive_file_count": 61,
+    "distribution": "official_external",
+    "license": null,
+    "license_boundary": "external official terms",
+    "source": "https://github.com/larksuite/cli",
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "lark-shared",
+    "original_archive_file_count": 7,
+    "distribution": "official_external",
+    "license": null,
+    "license_boundary": "external official terms",
+    "source": "https://github.com/larksuite/cli",
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "douyin-video",
+    "original_archive_file_count": 1,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "dreamina-canvas-cli",
+    "original_archive_file_count": 13,
+    "distribution": "official_external",
+    "license": null,
+    "license_boundary": "external official terms",
+    "source": "https://dreamina.capcut.com/ai-tool/install?from_page=explore",
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-production-pipeline",
+    "original_archive_file_count": 1,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-ai-generator",
+    "original_archive_file_count": 7,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "imagegen",
+    "original_archive_file_count": 12,
+    "distribution": "reviewed_project_source",
+    "license": "Apache-2.0",
+    "license_boundary": "See included license",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-copywriting",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-storyboard",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-character-sheet",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-video-prompts",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-asset-bridge",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-character-format",
+    "original_archive_file_count": 9,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-cleanup",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "paid-skit-premiere",
+    "original_archive_file_count": 14,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-material-upload",
+    "original_archive_file_count": 6,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "workflow-auditor",
+    "original_archive_file_count": 6,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-keyring",
+    "original_archive_file_count": 11,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-data-stack",
+    "original_archive_file_count": 29,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-operations",
+    "original_archive_file_count": 10,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-material-analysis",
+    "original_archive_file_count": 12,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-video-upload",
+    "original_archive_file_count": 9,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-dashboard-filter-finder",
+    "original_archive_file_count": 15,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-material-performance",
+    "original_archive_file_count": 11,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-http-readonly",
+    "original_archive_file_count": 24,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "rongyao-http-upload",
+    "original_archive_file_count": 16,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "naruto-favoritism-skit-generator",
+    "original_archive_file_count": 3,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-paid-skit-production-pipeline",
+    "original_archive_file_count": 1038,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "universal-skit-orchestrator",
+    "original_archive_file_count": 4,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-prompts",
+    "original_archive_file_count": 22,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-cinematic-director",
+    "original_archive_file_count": 49,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (upstream attribution retained; local edits)",
+    "license_boundary": "See included license",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-battle-action-prompts",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-combat-impact-prompts",
+    "original_archive_file_count": 4,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-vfx-prompt-writing",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-anime-cg-reference-shot",
+    "original_archive_file_count": 7,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-outfit-transition-planning",
+    "original_archive_file_count": 12,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-character-shortvideo-production",
+    "original_archive_file_count": 6,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-story-skit-production",
+    "original_archive_file_count": 5,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "seedance-douyin-video",
+    "original_archive_file_count": 11,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  },
+  {
+    "skill": "naruto-b-library",
+    "original_archive_file_count": 2,
+    "distribution": "reviewed_project_source",
+    "license": "MIT (project-owned source)",
+    "license_boundary": "Project-owned content only; see LICENSE.md and THIRD_PARTY_NOTICES.md",
+    "source": null,
+    "archive_contents_reviewed": true,
+    "nested_archives_in_original": 0
+  }
+]

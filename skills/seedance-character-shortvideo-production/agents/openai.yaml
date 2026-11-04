@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 角色短视频"
+  short_description: "用Seedance推进角色展示、舞蹈及动作制作，按本地检查点核验音画"
+  default_prompt: "使用 $seedance-character-shortvideo-production 沿本地当前检查点继续Seedance角色短视频，到指定阶段停止。"

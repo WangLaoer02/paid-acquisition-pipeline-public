@@ -1,0 +1,1 @@
+- **目标状态图优先**：局部补镜优先绑定目标状态的单幅关键帧，并核对是否需移除带旧剧情的视频参考；缩减无关动作后仍检查实际同框、声音与剪辑采用。原4秒结尾返工的完整结果见 `implementation/paid-skit-production-pipeline/references/project-cases.md`，不传播为其他项目已通过。

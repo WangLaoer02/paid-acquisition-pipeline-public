@@ -1,0 +1,37 @@
+{
+  "name": "rongyao-http-upload",
+  "version": "1.3.6",
+  "default_auth": "sms",
+  "transport": "direct_http",
+  "files": {
+    "README.md": "b8c733eafc8912766b1c520ad1143dd58b2cc422bf521cdf1b5e2e4c06e40450",
+    "SKILL.md": "4d295683a6fb2b9a79d2fe2db009367c3bfa0a1e1feb98a6a12707d4da43355d",
+    "references/defaults.json": "faf028915d8be0a39372cfed4134508428a4b6914e085cd9ead402042b34ced1",
+    "references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+    "scripts/attribution.py": "90f3a0bc742d69b3f85e2b5dcd73539626593646b2485d93f1ddb8893180eee8",
+    "scripts/rongyao_upload.py": "4487288b7c1db49ef6c92b26e3d267ebe20393ebc7ebd7f7b0ad16525cf8f8a8",
+    "scripts/test_designer.py": "8a8c774ddd1bd45049620f16032e809f82243e5702130c26e556038607fb79c2",
+    "scripts/test_native_alias.py": "9f361f1c48ad81706642efb3897f03d5618d015458897f78ef1ee65cd6ad2db0",
+    "scripts/test_session_reuse.py": "f1c5d34b7dd92a25ed3160381c7bb65e8f3540635aec3376c2262bbc0b2c8f6b",
+    "scripts/test_upload.py": "cc55762edf81d327bdd9ed7fed5ad4b992cc66fddff12ac5d1f2c2dee1e4a6e8",
+    "scripts/upload_api.py": "caa75ec7411b03624f2105306cdb243b455df81b1c51cc9dcb4f27239f9b369a",
+    "scripts/upload_page.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+    "scripts/upload_service.py": "616d2227dc0801d17a97f972201c2435b2df6457dfd6d66a2d9b15775eb18049",
+    "scripts/metadata_correction.py": "2e8f5bbef4b312e43f0c60143914501aef01d89df2c647bf8dc3beb4fa8cd51e",
+    "scripts/test_metadata_correction.py": "f4597572e37038614e05fca1b2f159def93930216b1ef268e0b5a787d32efd43"
+  },
+  "build_provenance": {
+    "cloud_version": "1.3.0",
+    "local_source_version": "1.1.1",
+    "release": "WF20261024.1",
+    "preserves": [
+      "per-host authentication",
+      "bounded query and market read",
+      "original-ID attribution",
+      "no replay on unknown acceptance"
+    ],
+    "local_access_routing_revision": "2026-10-29; documentation only; executor bytes unchanged",
+    "local_performance_candidate": "20261101: remove duplicate form GET within one validation; no account/schema cache, auth or submit changes; not installed to fixed release",
+    "local_performance_release": "WF20261101.5: immediate original-job readback with durable Retry-After; bounded no-login form probe; no generation or upload authorization"
+  }
+}

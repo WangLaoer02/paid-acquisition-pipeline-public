@@ -1,0 +1,58 @@
+---
+name: rongyao-material-upload
+description: 荣耀后台视频素材上传专项。用于已验成片的素材命名校对、需求人及AI字段映射、视频列表原生分片上传、受理去重、有限回查和固定反馈；用户给视频路径或聊天视频时先核对输入范围。沿飞书当前节点读取规则，区别素材上传与视频生成、投放发布。
+---
+
+# 荣耀后台素材上传
+
+本专项负责上传范围、制作与命名、归属字段和交付验收；执行版本以当前工作区中心清单及 [安装合同](implementation/backend-upload/skill/references/contract.json) 为准。已验成片直接按同级 [HTTP提交与恢复合同](../tools/rongyao-http-upload/SKILL.md)执行；该文件是默认提交和失败恢复的唯一主合同，不再依次加载三份重复步骤。只有计划格式、原job路由或显式Chrome任务需要补读operations对应段。
+
+明确上传请求覆盖该批正常提交及原账号正常登录，不重复询问同一授权；费用、生成、内容采用和广告发布仍分别授权。参数缺项才查真实枚举，需要制作才进入制作分支，旧接口映射只在对应分支读取；安装完成不表示上传验收通过。
+
+## 1. 读取当前节点
+
+有真实管线item才在工作区运行 `python3 scripts/workflow_node.py context --item <真实item_id> --condition backend-upload --format json`，读取当前节点与必要规则；独立文件委托仍分别核验本文件授权。已读取且同版的context直接复用；独立本地文件不虚构item或要求通过项目节点。逐节点路由见 `workflow/node_skills.json`；用本 Skill 的 `scripts/entry.py route --workspace <工作区> --node <实际节点ID>` 查询关联 Skill、规则和产出要求。
+
+A01—A14继续来源、创作、生成、后期及验收；B01—B04继续匹配、剪辑、导出及验收。A15或B05归档后，有实际验收文件及单独上传授权才进入本专项。LIBRARY04只是可接素材，不能自动视为广告成片。用户直接提供视频可以独立委托上传，但须核对该文件、用途和明确上传授权，不能替项目通过前置节点。本专项是“非原单选节点”，不新增、替换或推进原15／5／4节点；上传成功不表示内容采用或广告发布。
+
+## 2. 输入与名称
+
+路径应指向真实本地视频；聊天附件经可用附件工具取得原件，保留原名、来源及SHA。实际看视频帧后提出内容名、人物与分类候选，分别记录观察和用户指定，未知待核；不能凭资产名推断时期、服装或画风。技术证据留 evidence，业务栏只放对应业务正文，表格不新增备注、批注或红色角标。
+
+通用成片CLI受现有管线保护：本地真实视频经技术检查和完整字段确认后登记计划，提交必须绑定该计划的SHA及本次明确上传授权。聊天附件仍须先取得原文件。通用入口已做一次真实新视频提交并唯一入库ID124887，详情与播放仍待验；不能用历史视频补测试。原14条已验Plan的旧接口及范围保持，迁移包不带该Plan和媒体；旧接口缺失时仍为 `MISSING_REVIEWED_PLAN`，不得覆写原Plan来扩张其范围。
+
+A根编号沿真实制作日期（YYMMDD）＋A段成品名。上传素材名沿已核 `YYMMDD制作人代码序号-内容描述-需求人代码-设计师代码.mp4`，实测D代码不是账号ID。描述中的连字符不能挤掉最后两段身份语义。保留原文件；空段、非法日期、扩展名或编号冲突给出具体纠正项，未明确采用不改名。日期不等于今日只提示，历史补传保留真实日期，不强制 date_reason 或自动换今天。原生编号预检是最终冲突依据，不能只看本地重名。
+
+
+文件名预检仅为语法结果，不能据无警告推定需求人／设计师通过。逐字段读取最新用户选择与当前后台枚举，记录明确来源；用户明确选择“原创”等有效选项时沿用，不套旧Plan人员尾码。缺枚举只阻塞对应上传，不阻止独立准备。逐文件字段映射可用工作区delivery_contract.verify_mapping检查覆盖，结果不授予上传权限。
+
+## 3. 字段与旧接口映射
+
+通用成片使用本次实际计划与页面有效值；默认HTTP缺项才用其fields查询枚举，显式Chrome兼容分支才用video fields；提交执行器核验全部字段。原14条Plan的固定需求人、AI、角色、分类与类型字典只在明确续接旧Plan时读取[旧接口映射](implementation/backend-upload/skill/references/mapping.md)，不强加给新文件。
+
+## 4. 提交、效率与纠错
+
+### 通用成片默认HTTP
+
+按 [HTTP最短路径](../tools/rongyao-http-upload/SKILL.md#最短路径)逐项执行，复用原计划、原job及制作验收。计划/inspect-plan由同版operations完成，提交与回查由HTTP执行器完成；单次票据、writer、源码/文件SHA、锁、账本去重及当前发布守卫全部保留。submitted_pending不是完成，受理未知只回查，详情失败不重传。
+
+### Chrome兼容CLI（仅用户明确选择）
+
+读取operations的 [兼容提交合同](implementation/rongyao-tools/skills/rongyao-operations/references/cli-contract.md#chrome兼容提交合同)。该分支完整保留独立登录、同版入口、全字段读回、选文件前selection_pending、单次提交和有限回查。HTTP失败不自动切换到此分支。
+
+### 原生选框分支与恢复
+
+本批明确采用原生辅助功能选框时，按需读取[原生选框与未知受理恢复](implementation/backend-upload/skill/references/native-recovery.md)。使用发布的native-plan／native-upload，计划绑定实际执行器及本机构建SHA；项目内历史助手不用于续传。同目标两次无效跨进程保留，取消不算提交，未知受理保留真实原因且只回查。按Open最终提交前再次计算当前视频SHA，核对选框内唯一完整绝对路径、精确文件预览及当前全部表单字段；任一变化、缺失或歧义立即停止，未发出提交事件仍保留selection_pending和native_pre_submit_rejected证据。只有文件名而无完整路径不能证明是同一文件，不推断、双击或换接口提交。此分支的隔离守卫验证不等于真实新批次上传通过。
+
+
+### 原固定Plan接口（仅明确续接原14条Plan时）
+
+原Plan的私有安全输入、并行分片、完整归属反馈及恢复要求仅在本次明确续接该Plan时读[旧接口映射](implementation/backend-upload/skill/references/mapping.md)对应章节。它们不是普通CLI上传前置；不能因新文件缺旧Plan或私有请求文件而停通用CLI，不主动索取Cookie或再次询问登录授权。
+
+## 5. 回查、反馈和报告
+
+通用CLI仅在完整名称唯一匹配真实素材ID后记listed；已listed交付原ID，不另查同一事实。保存原生结果与脱敏回执，反馈入库数、跳过数、冲突/失败和待核对，以及逐条名称、ID和证据位置。HTTP200、分片进度或受理不能冒充入库。
+
+元数据全参数验收、远端播放、审核及广告发布另验；详情失败不重传。原固定Plan的完整反馈格式保留在mapping.md，仅对应分支适用。2026-10-12CLI单文件入库ID124887已验，不扩张为稳定一分钟入库或其他批次通过。状态和回查不推进项目节点；日常上传不维护发布规则。
+
+主设计师独立验收：沿当前同版 rongyao-http-upload 合同的 provenance 来源与原 ID finalize-attribution 收尾；禁止虚构 designer 表单参数、改登录 create_name 或重传修归属。详情验收不得漏主设计师。

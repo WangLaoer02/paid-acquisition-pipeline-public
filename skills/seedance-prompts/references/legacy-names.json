@@ -1,0 +1,15 @@
+{
+  "scope": "local Skill names; packaged historical identifiers remain unchanged",
+  "aliases": {
+    "cinematic-director": "seedance-cinematic-director",
+    "battle-action-prompts": "seedance-battle-action-prompts",
+    "combat-impact-prompts": "seedance-combat-impact-prompts",
+    "vfx-prompt-writing": "seedance-vfx-prompt-writing",
+    "anime-cg-reference-shot": "seedance-anime-cg-reference-shot",
+    "outfit-transition-planning": "seedance-outfit-transition-planning",
+    "character-shortvideo-production": "seedance-character-shortvideo-production",
+    "story-skit-production": "seedance-story-skit-production",
+    "douyin-video": "seedance-douyin-video",
+    "paid-skit-production-pipeline": "seedance-paid-skit-production-pipeline"
+  }
+}

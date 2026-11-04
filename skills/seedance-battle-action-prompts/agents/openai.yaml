@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 战斗动作"
+  short_description: "为Seedance编写完整交锋或修复动作因果、空间距离与攻防关系"
+  default_prompt: "使用 $seedance-battle-action-prompts 修订当前Seedance战斗段，保留人物、参考、胜负与时长，补清攻防因果。"

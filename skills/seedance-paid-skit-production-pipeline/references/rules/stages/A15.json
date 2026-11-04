@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A15",
+  "label": "15 已完成",
+  "family": "a",
+  "goal": "仅归档已验且实际采用的A段、原件与唯一关联，不代表整条A+B完成",
+  "depends_on": [
+    "A14"
+  ],
+  "environment": [
+    "既有资产归档工具"
+  ],
+  "references": [
+    "main.71",
+    "main.05",
+    "premiere-automation.02",
+    "main.90",
+    "storyboard.10",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "character-catalog": {
+      "when": "实际修改角色库字段／页面／版本索引，不是普通生图",
+      "policy_ids": [
+        "character-format.02",
+        "character-format.03",
+        "character-format.04",
+        "character-format.05",
+        "character-format.06",
+        "character-format.08"
+      ]
+    },
+    "blogger-identity": {
+      "when": "真实博主身份、体型锚点或多造型重建；实例授权不继承",
+      "policy_ids": [
+        "character-format.07",
+        "character-format.15"
+      ]
+    },
+    "performance-traits": {
+      "when": "镜头确需动作、情绪或表情特写",
+      "policy_ids": [
+        "character-format.11",
+        "character-format.13"
+      ]
+    },
+    "outfit-breakdown": {
+      "when": "用户或当前镜头明确需要服装／结构拆解",
+      "policy_ids": [
+        "character-format.12"
+      ]
+    },
+    "identity-noise-repair": {
+      "when": "当前图件存在身份漂移、派生顺序或噪点问题",
+      "policy_ids": [
+        "character-format.14"
+      ]
+    },
+    "parallel-character-delivery": {
+      "when": "已授权的多套角色并行交付与入库",
+      "policy_ids": [
+        "character-format.10"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "backend-upload": {
+      "when": "执行独立上传委托时，核该真实文件／账号／范围已有有效上传授权；仅缺失或变化补核，A15归档自身不授权或触发上传",
+      "policy_ids": [
+        "backend-upload.07",
+        "backend-upload.08",
+        "backend-upload.09",
+        "backend-upload.10",
+        "backend-upload.11",
+        "backend-upload.12",
+        "main.89"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    }
+  },
+  "read": [
+    "当前A文件、A14实际QA、实际采用记录及其版本／范围（A-only来自A14，A+B来自B04）、最新当前稿A范围、PR原件与原生导出回执、原片VID／task／源区间、真实费用状态及必要恢复身份；沿已有文档入口、文件路径和同版证据读取，不存在／未知／不适用如实标明，不用0或推断填补。"
+  ],
+  "deliver": [
+    "已实际采用A版本／范围的归档与唯一入口：反链现有QA、采用、当前稿A范围、PR原件／原生导出回执、原片来源、真实费用状态和必要恢复信息；完整A只计一件，多B不重复计A。A+B未到B04实际采用时仅有候选资料，不标归档完成。"
+  ],
+  "gate": [
+    {
+      "id": "A15.G01",
+      "criterion": "已归档范围确已采用：A-only核A14采用，A+B核B04实际采用所含A版本／范围；反链A14实际QA、最新稿A范围、PR原件／原生导出回执、原片VID／task／源区间、真实费用状态及必要恢复身份，原件与依赖可恢复。仅补真实缺项，不存在／未知／不适用如实标，缺输入或未验不报完成",
+      "evidence_required": true
+    },
+    {
+      "id": "A15.G02",
+      "criterion": "完整剧情A只计一件，不把A内部片段或多B重复计A",
+      "evidence_required": true
+    },
+    {
+      "id": "A15.G03",
+      "criterion": "A归档不触发或授权后台上传／商业发布；另有上传委托时复用该真实文件／账号／范围已有有效授权，仅缺失或变化补核",
+      "evidence_required": true
+    },
+    {
+      "id": "A15.G04",
+      "criterion": "沿用当前A范围已验且实际采用的同版证据，当前稿及改稿影响与归档A一致；不在A15重验，不以A归档替代B04完整A+B验收或推断整条A+B完成",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": null,
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "a-delivery",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A15.I01",
+      "description": "当前A文件、A14实际QA、实际采用记录及其版本／范围（A-only来自A14，A+B来自B04）、最新当前稿A范围、PR原件与原生导出回执、原片VID／task／源区间、真实费用状态及必要恢复身份；沿已有文档入口、文件路径和同版证据读取，不存在／未知／不适用如实标明，不用0或推断填补。",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "A-only在A14实际采用后归档；A+B在B04实际采用前仅准备候选资料，不提前标A15／B01正式Gate通过。B04采用后，只按实际包含的A版本与范围回填A归档，不由A归档推断整条A+B完成；已有同版采用沿原范围继续，不重复提问。",
+    "复用已有文档入口、文件路径和同版证据，关联当前A范围的QA、实际采用、工程／原件／导出、原片VID／task／源区间、真实费用及恢复身份。仅补真实缺失项；缺输入、未知或未验不可报完成，缺失／未知／不适用如实标，不伪造或填0。",
+    "已有有效原件入口直接引用，不为归档重复导出、复制或生成；确需且适用的补缺入库沿main.71，同项目hash去重、原路径与PR引用保持不变、修订新增版本。保留手改和原件，唯一Sheet承载采用与状态，不建第二套业务状态。",
+    "G04沿用当前A范围已验与实际采用证据，不在A15重复音画验收或替代B04全A+B验收。归档本身不授权或触发上传／发布；存在独立上传委托时核该真实文件、账号及范围的已有有效授权，只有缺失或变化才补核。"
+  ]
+}

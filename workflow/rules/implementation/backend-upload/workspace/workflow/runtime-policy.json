@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "writer_hosts": [],
+  "single_writer_policy": "Declared writer_hosts may mutate all supported actions. action_writer_hosts adds only the named action on the named host; other actions remain read-only. Host changes require a reviewed release.",
+  "local_lock_timeout_seconds": 0,
+  "circuit": {
+    "failure_threshold": 2,
+    "window_seconds": 600,
+    "cooldown_seconds": 900
+  },
+  "authorization": {
+    "directory": "workflow/authorizations",
+    "max_lifetime_minutes": 120,
+    "high_risk_actions": [
+      "paid_generation",
+      "material_upload",
+      "ad_publish"
+    ]
+  },
+  "event_log": {
+    "directory": "evidence/workflow-runtime-events",
+    "format": "jsonl"
+  },
+  "dependency_profiles": {
+    "state_sync": {
+      "executables": [
+        "lark-cli"
+      ],
+      "python_imports": []
+    },
+    "console_write": {
+      "executables": [
+        "lark-cli"
+      ],
+      "python_imports": []
+    },
+    "paid_generation": {
+      "executables": [
+        "lark-cli",
+        "node"
+      ],
+      "python_imports": [],
+      "workspace_files": [
+        "scripts/ryai.py",
+        "workflow/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/scripts/ryai.py",
+        "workflow/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/keyring.py"
+      ],
+      "required_paths": [
+        "~/.codex/state/rongyao-keyring/bin/rongyao-keychain"
+      ]
+    },
+    "material_upload": {
+      "executables": [
+        "lark-cli",
+        "node"
+      ],
+      "python_imports": [
+        "requests",
+        "bs4"
+      ]
+    },
+    "ad_publish": {
+      "unsupported": true
+    }
+  },
+  "action_writer_hosts": {},
+  "scope_dependency_profiles": {
+    "paid-generation:dreamina-canvas-cli": {
+      "executables": [
+        "lark-cli",
+        "dreamina-canvas"
+      ],
+      "python_imports": [],
+      "workspace_files": [
+        "scripts/dreamina_workflow.py"
+      ],
+      "action": "paid_generation"
+    }
+  }
+}

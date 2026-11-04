@@ -1,0 +1,34 @@
+{
+  "tested_date": "2026-10-08",
+  "python": "3.12.9",
+  "os": "Darwin",
+  "arch": "arm64",
+  "clean_stage_install": true,
+  "stage_isolation": true,
+  "repeat_preserves_files": true,
+  "whole_phase_conflict_no_write": true,
+  "symlink_and_broken_symlink_preserved": true,
+  "doctor_and_plan_read_only": true,
+  "installed_bootstrap_payloads_resolve": true,
+  "offline_help": true,
+  "account_login_performed": false,
+  "generated_or_uploaded_ad": false,
+  "other_machine_native_pr_verified": false,
+  "isolated_premiere": {
+    "python": "3.12.9",
+    "os": "Darwin",
+    "arch": "arm64",
+    "py_premiere_import_and_real_archive_parse": true,
+    "sequences": 1,
+    "video_tracks": 10,
+    "audio_tracks": 7,
+    "native_open_verified": false,
+    "source_modified": false
+  },
+  "isolated_media": {
+    "profile": "media",
+    "imports_verified": true
+  },
+  "speech_vision_align": "published version metadata checked; not installed by this packaging task",
+  "native_pr_on_other_machine": false
+}

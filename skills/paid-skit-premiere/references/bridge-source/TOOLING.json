@@ -1,0 +1,14 @@
+{
+  "cli_package": "@adobe/uxp-devtools-cli@1.2.0",
+  "helper_package": "@adobe/uxp-devtools-helper@1.2.0",
+  "runtime": "Node v24.21.0 darwin-x64 via Rosetta",
+  "cli_discovery_patch": {
+    "before_sha256": "68d39b98c0799c050c7d463d7383cedbeb72cfafe15a84b114f06b187a67b3e3",
+    "after_sha256": "8d66d3091e422aa6aba7a669e53740059e8c0c4af943889ad8739aee8467d387",
+    "added_host_ids": [
+      "PPRO",
+      "premierepro"
+    ]
+  },
+  "adobe_application_updated": false
+}

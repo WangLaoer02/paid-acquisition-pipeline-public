@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 故事小剧场"
+  short_description: "将完整故事整理成Seedance故事板与提示词，按当前项目保留人物和因果"
+  default_prompt: "使用 $seedance-story-skit-production 将当前故事整理为Seedance故事板和提示词，保留人物动机、冲突与结果。"

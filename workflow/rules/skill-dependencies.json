@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "skills": {
+    "naruto-favoritism-skit-generator": {
+      "interface_version": 1,
+      "min_version": "3.3",
+      "max_version_exclusive": "4.0",
+      "trigger": "偏心／双标／踩捧题材",
+      "baseline_rules_sha256": "5eb00681e05fe3ae61cf8ba348d7a50b94554ea382bb4e743e421e048bb174d0"
+    },
+    "universal-skit-orchestrator": {
+      "interface_version": 1,
+      "min_version": "2.1",
+      "max_version_exclusive": "3.0",
+      "trigger": "A02参考核心上的通用创意路由；专项按条件选择",
+      "baseline_rules_sha256": "3f0ac6fce51310950fb68bee8736e868e3420301159f8a09f1a8ccf075b9e68c"
+    }
+  }
+}

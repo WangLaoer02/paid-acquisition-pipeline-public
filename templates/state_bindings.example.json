@@ -1,0 +1,22 @@
+{
+  "bindings": [
+    {
+      "id": null,
+      "project_id": null,
+      "family": "a",
+      "kind": "a",
+      "sources": [
+        {
+          "spreadsheet_token": null,
+          "sheet_id": null,
+          "cell": null,
+          "anchor_cell": null,
+          "anchor_value": null,
+          "identity_cell": null,
+          "identity_value": null,
+          "role": "authority"
+        }
+      ]
+    }
+  ]
+}

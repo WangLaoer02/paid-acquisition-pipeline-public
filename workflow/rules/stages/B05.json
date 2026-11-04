@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "B05",
+  "label": "05 已完成",
+  "family": "b",
+  "goal": "按实际采用范围逐版归档完整A+B成片并反链唯一原A",
+  "depends_on": [
+    "B04"
+  ],
+  "environment": [
+    "既有归档工具"
+  ],
+  "references": [
+    "main.05",
+    "main.71",
+    "main.90",
+    "storyboard.10",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "backend-upload": {
+      "when": "执行明确上传委托时，核当前真实文件／账号／范围已有有效上传授权；仅缺失或变化补核，B05归档自身不授权或触发上传，提交交后续OUTPUT",
+      "policy_ids": [
+        "backend-upload.07",
+        "backend-upload.08",
+        "backend-upload.09",
+        "backend-upload.10",
+        "backend-upload.11",
+        "backend-upload.12",
+        "main.89"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    }
+  },
+  "read": [
+    "逐版实际完整A+B文件路径与SHA256、最新完整分镜及其版本／范围、B04绑定该文件的有效音画与逐镜证据和真实采用记录；关联父A文件／版本／使用区间、B来源区间与实际片段、B02配置、B03原回执、原PR工程与必要恢复资料。沿现有入口读取；未采用、缺证、文件或稿件变化逐版标明，不推断全批采用。"
+  ],
+  "deliver": [
+    "已验且实际采用版本的唯一成片入口与归档反链：逐版绑定文件SHA256、最新完整分镜、B04音画／逐镜与真实采用范围，关联唯一父A（不重复计数）、B来源区间／片段、B02配置、B03原回执及原PR工程／恢复资料；未采用、缺证或变更版本保留各自待处理状态。"
+  ],
+  "gate": [
+    {
+      "id": "B05.G01",
+      "criterion": "每个归档版本确已由B04采用，实际文件SHA256、最新完整分镜与B04有效音画／逐镜证据及真实采用范围一致；关联唯一父A版本与区间，多B不重复计A，不由部分采用推定全批完成",
+      "evidence_required": true
+    },
+    {
+      "id": "B05.G02",
+      "criterion": "逐版反链父A、B来源区间／实际片段、B02配置、B03原回执、原PR工程与必要恢复资料；沿用有效原入口和清单，不为归档重打包、重复制或另建一套归档，补缺仅沿main.71",
+      "evidence_required": true
+    },
+    {
+      "id": "B05.G03",
+      "criterion": "归档本身不授权或触发上传／广告发布；另有明确上传委托时核当前真实文件、账号、范围，已有有效授权续用，仅缺失或变化补核，不新增第四次是否继续；业务上传交后续OUTPUT，广告发布仍独立",
+      "evidence_required": true
+    },
+    {
+      "id": "B05.G04",
+      "criterion": "同版B04有效证据直接引用，不因归档重新完整音画／逐镜验收；未采用、缺对应证据或文件／稿件变化只保留相关版本待处理，回实际错误来源仅复验受影响范围，不以旧证或其他版本证据报齐",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": null,
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "b-delivery",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "B05.I01",
+      "description": "逐版实际完整A+B文件路径与SHA256、最新完整分镜及其版本／范围、B04绑定该文件的有效音画与逐镜证据和真实采用记录；关联父A文件／版本／使用区间、B来源区间与实际片段、B02配置、B03原回执、原PR工程与必要恢复资料。沿现有入口读取；未采用、缺证、文件或稿件变化逐版标明，不推断全批采用。",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ]
+}

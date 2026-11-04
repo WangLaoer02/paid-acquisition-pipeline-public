@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A08",
+  "label": "08 关键镜头优化",
+  "family": "a",
+  "goal": "对A07完整导演稿中确需加强的关键镜头做局部优化，同步提示词和邻镜连续性",
+  "depends_on": [
+    "A07"
+  ],
+  "environment": [
+    "分镜导演及图像用途检查"
+  ],
+  "references": [
+    "main.24",
+    "main.88",
+    "storyboard.10",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "prompt-authoring": {
+      "when": "实际编写或修改视频执行提示词",
+      "policy_ids": [
+        "video-prompts.01",
+        "video-prompts.02",
+        "video-prompts.03",
+        "video-prompts.04",
+        "video-prompts.05",
+        "video-prompts.06",
+        "video-prompts.07",
+        "video-prompts.08",
+        "video-prompts.09",
+        "video-prompts.10",
+        "video-prompts.11",
+        "video-prompts.12"
+      ]
+    },
+    "local-shot-repair": {
+      "when": "明确局部补镜／时间卡／旧对白污染修复",
+      "policy_ids": [
+        "main.67",
+        "video-prompts.06"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "仅无付费设计或审查A08当前镜头；沿本节点方法，不进入粗剪或生成",
+      "policy_ids": []
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "video-reference-transfer": {
+      "when": "用户要求保留原视频动态结构进行替换，或从用户成品反推；不为普通原创任务默认启用",
+      "policy_ids": [
+        "video-prompts.13"
+      ]
+    },
+    "shot-design": {
+      "when": "关键镜头需重新设计构图／调度／空间连续性时；非默认重做完整分镜",
+      "policy_ids": [
+        "storyboard.01",
+        "storyboard.02",
+        "storyboard.03",
+        "storyboard.04",
+        "storyboard.05",
+        "storyboard.06",
+        "storyboard.07",
+        "storyboard.08",
+        "storyboard.09",
+        "main.66"
+      ]
+    }
+  },
+  "read": [
+    "A07同一完整导演稿（剧情、全镜头、时间／声音／对白、提示词与关键帧状态）及A06物料限制、已有镜号／历史／手改；本次需要增强的具体镜头和问题"
+  ],
+  "deliver": [
+    "同一导演稿中的关键镜头优化及对应提示词更新，保留未改镜头、真实物料限制和待核；无优化需求直接沿用A07完整稿交A09"
+  ],
+  "gate": [
+    {
+      "id": "A08.G01",
+      "criterion": "选定问题得到对应的镜头／动作／特效优化，写回同一完整导演稿和对应提示词；没有需求时有据沿用，不强制战斗／特效、补图或另稿",
+      "evidence_required": true
+    },
+    {
+      "id": "A08.G02",
+      "criterion": "空间轴线、人物与道具状态及邻接镜头连续；默认最终总长10～25秒、用户指定优先，A+B预留已选B真实时长且不切断语句",
+      "evidence_required": true
+    },
+    {
+      "id": "A08.G03",
+      "criterion": "引用有真实来源、明确用途及限制；采用／未验和未解决项沿原记录保留，高风险终态有可用参考或明确待补，不为A08强制生图或虚构引用",
+      "evidence_required": true
+    },
+    {
+      "id": "A08.G04",
+      "criterion": "同一当前稿与手改已内部核对；必要新增／拆行保留旧ID及历史，新ID唯一且不复用，改序不重编号。改稿影响明确；A08无独立采用停点，完整方案在A09确认，最终逐镜音画和帧区间在A14／B04验收",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "A09",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "shots",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A08.I01",
+      "description": "A07同一完整导演稿（剧情、全镜头、时间／声音／对白、提示词与关键帧状态）及A06物料限制、已有镜号／历史／手改；本次需要增强的具体镜头和问题",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "读取A07完整同稿，选择确需加强的转折、情绪、战斗或特效镜头；没有具体缺口直接沿用，不另造导演稿或逐镜重做。",
+    "只读取实际问题对应方法：调度／摄影用seedance-cinematic-director，完整攻防用seedance-battle-action-prompts，已成立动作的接触与受力用seedance-combat-impact-prompts，特效触发／传播／互动／消散用seedance-vfx-prompt-writing；普通对白不加载战斗或特效专项。",
+    "将改动写回原镜号并同步对应提示词／关键帧状态；只复核受影响镜头及必要邻镜的方向、终态、声音和时间，保留其他手改与有效内容。确需拆镜用新ID，生成与费用按实际授权。",
+    "沿同稿交A09完整方案第二停点；核心、范围或报价变化只重核影响项，不新增A08确认；最终实际画面、对白与帧对应留A14／B04。"
+  ],
+  "skill_calls": [
+    {
+      "skill": "seedance-cinematic-director",
+      "when": "仅调度、构图、摄影或连续性问题"
+    },
+    {
+      "skill": "seedance-battle-action-prompts",
+      "when": "仅完整交锋、攻防关系与动作因果问题"
+    },
+    {
+      "skill": "seedance-combat-impact-prompts",
+      "when": "仅已有动作的接触、受力、冲击细节"
+    },
+    {
+      "skill": "seedance-vfx-prompt-writing",
+      "when": "仅特效形态、触发、运动、交互和消散"
+    },
+    {
+      "skill": "seedance-prompts",
+      "when": "仅同步受影响镜号的提示词，沿A07已读方法"
+    }
+  ]
+}

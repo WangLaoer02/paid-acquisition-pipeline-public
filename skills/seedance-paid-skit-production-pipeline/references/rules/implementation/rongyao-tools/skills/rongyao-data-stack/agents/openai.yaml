@@ -1,0 +1,4 @@
+interface:
+  display_name: "荣耀数据 Skill 套件"
+  short_description: "迁移、预检、打包并验证荣耀后台数据抓取与素材分析能力"
+  default_prompt: "Use $rongyao-data-stack to package and verify the 荣耀 data skills for another Codex computer."

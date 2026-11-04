@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A03",
+  "label": "03 创意预演",
+  "family": "a",
+  "goal": "把各候选写成直观的简短剧本与一句话创意重点，集中提交第一阶段选择／修改",
+  "depends_on": [
+    "A02"
+  ],
+  "environment": [
+    "同版文本与参考；默认不生图"
+  ],
+  "references": [
+    "creative-preview.01",
+    "main.88",
+    "reference-scope.01"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "video-reference-transfer": {
+      "when": "用户要求保留原视频动态结构进行替换，或从用户成品反推；不为普通原创任务默认启用",
+      "policy_ids": [
+        "video-prompts.13"
+      ]
+    }
+  },
+  "read": [
+    "A01同版参考事实／判断／未知与A02尚未采用候选（含编号、借用核心、适用方法、用户限制）；已有采用或预演只按真实同版范围复用"
+  ],
+  "deliver": [
+    "各待选候选的一句话创意重点与简短剧本（人物、动作、必要对白、变化／结果）；共用参考与AI新增对照只呈现一次，不要求完整导演稿",
+    "A01拆解＋A02候选／方法＋A03预演的一份第一阶段审阅正文；实际选择／修改及采用范围记录后才进详细制作"
+  ],
+  "gate": [
+    {
+      "id": "A03.G01",
+      "criterion": "各候选的人物、事件、变化／结果和吸引点能直观理解；不把未知补为原片事实",
+      "evidence_required": true
+    },
+    {
+      "id": "A03.G02",
+      "criterion": "候选编号与A02对应，差异可比较；关键画面数按内容，默认不要求生图、精确镜头或完整导演稿",
+      "evidence_required": true
+    },
+    {
+      "id": "A03.G03",
+      "criterion": "参考拆解、候选与预演齐备后一起首停；进入本节点不要求A02已采用",
+      "evidence_required": true
+    },
+    {
+      "id": "A03.G04",
+      "criterion": "有实际第一阶段选择／修改和本版采用范围才进入详细制作；旧同版采用保留，新增／改动仅复核受影响内容，不据节点位置推定验收",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "A04",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "creative_preview",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A03.I01",
+      "description": "A01同版参考事实／判断／未知与A02尚未采用候选（含编号、借用核心、适用方法、用户限制）；已有采用或预演只按真实同版范围复用",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "读取同版参考和未采用候选，用一句话说明各自创意与吸引点",
+    "说明参考中保留、调整、新增；共用事实只呈现一次",
+    "将每个候选按故事顺序写成可直接读懂的简短剧本，以人物、动作和必要对白呈现变化与结果；用户单方案优先。只保留帮助比较的创意重点，不要求逐条拆镜表、固定画面数或新增图像。",
+    "齐备后一次提交首停；用户选择／修改后沿同版稿进入A04—A09详细制作，不再补一个A02确认；旧项目沿真实采用范围与待复验项续接"
+  ],
+  "skill_calls": [
+    {
+      "skill": "seedance-paid-skit-production-pipeline",
+      "when": "执行当前多候选简短剧本预演；完整分镜与视频提示词由A07成稿，A08仅优化"
+    }
+  ]
+}

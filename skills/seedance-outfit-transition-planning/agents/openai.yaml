@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 变装规划"
+  short_description: "为Seedance复用角色与造型，先选输入再补缺口，交付精简变装提示词"
+  default_prompt: "使用 $seedance-outfit-transition-planning 为Seedance规划当前变装，复用原角色与造型，交付精简@图N正文。"

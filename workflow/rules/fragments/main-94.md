@@ -1,0 +1,1 @@
+- **偏心剧本**：按题材引用独立`naruto-favoritism-skit-generator`；完整正文位于该Skill的references/rules.md。

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "target_release": "WF20261011.1",
+  "items": {
+    "P0-1": {
+      "exists": "partial",
+      "fix": "single writer host + local scope lock; all other machines are read-only instead of attempting unsafe distributed writes"
+    },
+    "P0-2": {
+      "exists": "partial",
+      "fix": "exactly one authority source per binding; mirrors never overwrite authority"
+    },
+    "P0-3": {
+      "exists": "partial",
+      "fix": "existing release/hash check retained and mutation guard required at state/console/paid/upload entrypoints"
+    },
+    "P1-4": {
+      "exists": "maintenance_only",
+      "fix": "fresh-anchor safe patch helper; stale block ids are never reused"
+    },
+    "P1-5": {
+      "exists": "yes",
+      "fix": "local workflow-auditor package/install fallback added separately"
+    },
+    "P1-6": {
+      "exists": "partial",
+      "fix": "dependency profiles + repeated-failure circuit breaker"
+    },
+    "P1-7": {
+      "exists": "yes",
+      "fix": "unified JSONL runtime events"
+    },
+    "P2-8": {
+      "exists": "yes",
+      "fix": "24 contracts receive input_requirements and inspect-inputs validation"
+    },
+    "P2-9": {
+      "exists": "already_present",
+      "fix": "structured Gates retained; validator rejects empty/invalid Gates"
+    },
+    "P2-10": {
+      "exists": "partial",
+      "fix": "slot_schemas enforce allowed representations/size/no-notes"
+    },
+    "P2-11": {
+      "exists": "partial",
+      "fix": "paid generation/material upload require hard runtime gate and input-bound ticket; ad_publish unsupported and blocked"
+    }
+  }
+}

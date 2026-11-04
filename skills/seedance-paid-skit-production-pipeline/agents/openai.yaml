@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedance 买量短剧管线"
+  short_description: "沿当前买量项目节点准备Seedance输入与验收，保留资产、校验和业务边界"
+  default_prompt: "使用 $seedance-paid-skit-production-pipeline 续接当前买量项目节点，保留当前资产、采用稿与停止点。"

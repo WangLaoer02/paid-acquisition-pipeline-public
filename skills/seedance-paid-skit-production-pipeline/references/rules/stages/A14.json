@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A14",
+  "label": "14 A段验收",
+  "family": "a",
+  "goal": "逐项审核A段而非只凭编码成功",
+  "depends_on": [
+    "A13"
+  ],
+  "environment": [
+    "视频查看、完整声音审核及媒体检查"
+  ],
+  "references": [
+    "main.37",
+    "main.39",
+    "main.40",
+    "main.05",
+    "main.88",
+    "premiere-automation.02",
+    "main.90",
+    "storyboard.10",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "video-reference-transfer": {
+      "when": "用户要求保留原视频动态结构进行替换，或从用户成品反推；不为普通原创任务默认启用",
+      "policy_ids": [
+        "video-prompts.13"
+      ]
+    }
+  },
+  "read": [
+    "本次PR原生A文件、当前PR与绑定导出回执、最新当前稿的A范围及A13同版音画技术证据；A+B另读已预留B实长和最终总长目标，不要求此时已有完整AB文件。"
+  ],
+  "deliver": [
+    "A段实际QA、声音检查与当前分镜对应；A-only在此第三停点确认采用",
+    "A+B在此完成内部A段QA，候选接片仍标未采用；到B04一起确认完整成片，不新增A段停点"
+  ],
+  "gate": [
+    {
+      "id": "A14.G01",
+      "criterion": "实际A与当前保存工程／导出范围一致",
+      "evidence_required": true
+    },
+    {
+      "id": "A14.G02",
+      "criterion": "完整解码、首尾／切点／字幕、实际完整声音分别核对",
+      "evidence_required": true
+    },
+    {
+      "id": "A14.G03",
+      "criterion": "技术检查不代替听审／审美，残留问题不得标PASS",
+      "evidence_required": true
+    },
+    {
+      "id": "A14.G04",
+      "criterion": "按最新当前稿的A范围核验本次A文件全部镜头、实际对白／声音和连续全帧覆盖，改稿影响已复验；A-only此文件就是最终A，A+B此处只验A，B／转场及完整AB逐镜对应留B04，不以A通过冒充AB通过",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "A15",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "a-review",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A14.I01",
+      "description": "本次PR原生A文件、当前PR与绑定导出回执、最新当前稿的A范围及A13同版音画技术证据；A+B另读已预留B实长和最终总长目标，不要求此时已有完整AB文件。",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "delivery_check_required": true,
+  "storyboard_check_required": true,
+  "candidate_preparation": {
+    "route": "ab",
+    "next": "既有join-preview候选接片入口",
+    "constraint": "只制作候选，不把候选A登记为用户采用，不提前将A15／B01正式Gate标通过；B04确认后按真实采用范围回填"
+  },
+  "actions": [
+    "新读当前稿、当前工程与A导出绑定信息；同版同SHA且适用范围一致的A13技术证据可引用，不为验收重建单或重导。仍须真实完整看听当前A，未验、听不清、帧错、旧稿或残留问题不得PASS或上传；技术通过不证明用户采用、预算或上传授权。",
+    "按storyboard.10将当前A文件逐镜与最新稿的A范围核对，覆盖全部帧、实际对白与声音；沿现有script/review/latest及逐帧检查契约记录，不伪造新状态或漏掉当前A内容。",
+    "实测时长：A-only按当前最终目标验，默认10～25秒；A+B记录A实长及与预留B的关系，不要求A单独达到10秒，最终默认10～25秒针对完整A+B实际总长；明确目标优先。",
+    "A-only将最终A及对应分镜一起提交第三停点；A+B内部A QA后沿既有join-preview／join-batch准备未采用候选，到B04将完整成片与对应分镜一起第三停点确认。A15／B01正式依赖仍按真实采用状态，不提前标通过；已有同版采用沿原范围继续，不重复提问。"
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Seedance 冲击增强"
+  short_description: "局部增强Seedance既有动作的接触、受力与冲击帧，保留剧情结果"
+  default_prompt: "使用 $seedance-combat-impact-prompts 增强当前Seedance动作中的关键冲击事件，保留招式、镜头与结果。"
+policy:
+  allow_implicit_invocation: true

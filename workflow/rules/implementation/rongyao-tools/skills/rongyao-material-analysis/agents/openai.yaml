@@ -1,0 +1,4 @@
+interface:
+  display_name: "荣耀素材专项分析"
+  short_description: "分析荣耀素材ROI、付费、标签与方向，输出带边界的专家判断"
+  default_prompt: "Use $rongyao-material-analysis to produce evidence-linked material findings for the weekly-report synthesis layer."

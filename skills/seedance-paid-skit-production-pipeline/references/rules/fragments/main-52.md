@@ -1,0 +1,1 @@
+- **视频提示词**：[video-prompts 完整规则](../video-prompts.md).

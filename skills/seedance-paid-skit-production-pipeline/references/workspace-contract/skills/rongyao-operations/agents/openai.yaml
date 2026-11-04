@@ -1,0 +1,6 @@
+interface:
+  display_name: "荣耀后台操作"
+  short_description: "复用钥匙包统一检索、成片上传计划与记录回读，减少重复页面操作"
+  default_prompt: "使用 $rongyao-operations 按本次范围查询，或沿最短路径复用/准备计划、提交一次、等待并核对素材ID；登录由执行器复用钥匙包，不在外部重复检查或询问登录授权。"
+policy:
+  allow_implicit_invocation: true

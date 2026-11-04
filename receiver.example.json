@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "writer_host": null,
+  "rules_center": null,
+  "feishu_origin": null,
+  "account_label": null,
+  "backend": "dreamina",
+  "dreamina_cli": "dreamina-canvas",
+  "project_sheet": {
+    "spreadsheet_token": null,
+    "sheet_id": null
+  },
+  "backend_hosts": {},
+  "notes": "Only recipient configuration; never store credentials here. Account label is descriptive and not proof of authentication."
+}

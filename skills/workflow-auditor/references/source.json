@@ -1,0 +1,13 @@
+{
+  "canonical": "https://example.invalid/optional-authoring-source",
+  "canonical_version": "1.0.3",
+  "snapshot_date": "2026-10-11",
+  "purpose": "local fallback; Notion remains authoring source",
+  "files": {
+    "SKILL.md": "98cb6b772437be3852917e0cfe10a410df952776202313ebf3433585c72b3595",
+    "references/behavior-and-recovery.md": "5f4213d8729eff8efdb1e6b434ccf531d3b4892168d10889c7ae37e38af8f603",
+    "references/report-contract.md": "c62d99e5ec3cf80fe89fd60d912b108963054497dd04bc66fe561a410fe1d2d8",
+    "references/rule-quality-and-preservation.md": "7d08480d2f1dc6143701800ede00d19fa67c1fc559e5f32eb707af5dbd23debe",
+    "references/structure-and-dependencies.md": "1ad57cd4dcb53fd0f0009eeaab26baacdb2c30ce77f70122b9a8979591c2d417"
+  }
+}

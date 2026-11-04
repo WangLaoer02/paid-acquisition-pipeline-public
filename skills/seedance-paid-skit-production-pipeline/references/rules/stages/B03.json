@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "B03",
+  "label": "03 成片导出",
+  "family": "b",
+  "goal": "承接B02同版合片，核后复用或仅导出待完成版本，交B04技术可核的完整候选",
+  "depends_on": [
+    "B02"
+  ],
+  "environment": [
+    "FFmpeg"
+  ],
+  "references": [
+    "main.05",
+    "main.90",
+    "storyboard.10",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "portrait-layout": {
+      "when": "本次输出为竖版，且实际采用上下贴片或水印旋转包装；横版或无此包装要求不选择此分支",
+      "policy_ids": [
+        "portrait-layout.01"
+      ]
+    }
+  },
+  "read": [
+    "B02当前接片配置、已有同版候选及原执行回执；当前A/B文件与SHA、B原件及选定区间／实际片段对应、最新稿和声音包装版本；输出身份与已有有效技术证据，缺项如实标明。"
+  ],
+  "deliver": [
+    "每版真实存在的完整A+B候选MP4、输出SHA／实测规格／总长／音视频流及完整解码证据；关联B02配置、原回执和实际A/B SHA／区间／参数的输入输出记录，注明复用或新导出、受影响待复验项及未采用状态，交B04。"
+  ],
+  "gate": [
+    {
+      "id": "B03.G01",
+      "criterion": "每版完整输出真实存在且非空；同版复用或待完成版本导出后，音视频流、实测规格及A+B总长、完整解码有绑定该输出SHA的有效证据，不以配置或预览替代",
+      "evidence_required": true
+    },
+    {
+      "id": "B03.G02",
+      "criterion": "B02当前配置、实际A/B SHA、B原件／区间／片段对应、参数与成功原回执、输出身份一致；真实输入输出记录可追溯，未知回执或身份不一致不判完成",
+      "evidence_required": true
+    },
+    {
+      "id": "B03.G03",
+      "criterion": "每个B版本独立记录真实输出及复用／新导出来源；同版有效候选直接复用，旧成片不替变更版本验收，只复验受影响项",
+      "evidence_required": true
+    },
+    {
+      "id": "B03.G04",
+      "criterion": "关联最新当前稿与实际采用范围，改稿影响已核并交接待复验项；B03技术核验不宣称B04全片音画、完整听审、最终逐镜帧区间或用户采用完成",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "B04",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "b-export",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "B03.I01",
+      "description": "B02当前接片配置、已有同版候选及原执行回执；当前A/B文件与SHA、B原件及选定区间／实际片段对应、最新稿和声音包装版本；输出身份与已有有效技术证据，缺项如实标明。",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "candidate_preparation": {
+    "route": "ab",
+    "constraint": "第三停点前可沿既有join-preview／join-batch候选入口准备匹配、接片和导出；保持真实A/B版本与来源，未采用不通过正式Gate。B01正式依赖的A采用要求保留。"
+  },
+  "actions": [
+    "先按B02交接核当前配置、最新稿、A/B SHA及源区间／实际片段对应、原回执和输出身份；已有同版完整候选与成功结果一致、技术证据仍有效时直接复用并引用原记录，不因进入B03再次编码。文件名、计划检查或回执存在不能代替核验。",
+    "只有配置／预览而尚无完整合片、且确认未有未知受理时，才沿现有接片执行入口导出待完成版本；保留实际输入、参数、原回执与独立输出，不重导无关有效版本。执行器拒绝已有输出／回执，不能删除它们或换路径盲重试。",
+    "逐版核输出真实存在且非空、输出SHA与成功回执对应、实际音视频流／画幅／帧率／总长及完整解码；同一输出的有效实测证据可引用，缺证只补对应技术核验，不为补证重渲染。默认10～25秒按A+B总长，明确时长优先。",
+    "回执未知、失败或结果身份不一致时查原回执、实际输入输出及原记录，不判完成；定位真实缺口后仅处理受影响版本。A/B区间、稿件、声音包装或配置变化只使相关证据待复验，保留无关有效结果和历史。",
+    "记录每版真实输入→配置／回执→输出关系，标FFmpeg接片候选；B03只交技术核验与当前稿关联，B04负责全片音画、完整听审、最终逐镜帧区间及用户采用。候选技术通过不自动采用、不新增确认、不自动推进正式Gate。"
+  ]
+}

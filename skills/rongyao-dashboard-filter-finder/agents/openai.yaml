@@ -1,0 +1,4 @@
+interface:
+  display_name: "荣耀新素材2.0：查询、导出与分析"
+  short_description: "统一查询与导出素材数据，按需分析消耗、ROI、角色和方向表现"
+  default_prompt: "使用 $rongyao-dashboard-filter-finder，按我的项目、日期和筛选查询新素材2.0；按请求导出数据或分析表现，共用一次抓取。"

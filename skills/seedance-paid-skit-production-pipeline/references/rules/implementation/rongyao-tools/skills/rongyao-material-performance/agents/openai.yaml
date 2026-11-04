@@ -1,0 +1,4 @@
+interface:
+  display_name: "荣耀新素材2.0（兼容入口）"
+  short_description: "沿用统一主Skill查询、导出与分析流程，兼容原素材表现入口"
+  default_prompt: "使用 $rongyao-material-performance，按统一主Skill执行本次新素材2.0查询、导出或分析，不重复抓取。"

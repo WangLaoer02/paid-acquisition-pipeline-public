@@ -1,0 +1,9 @@
+{
+  "release_id": "PUBLIC20261104.1",
+  "authority": "recipient-configured rules center",
+  "mode": "standalone_feishu",
+  "module": "character-sheet",
+  "sha256": "0e59ffff15366a0ffbc693dd1204e82b07a936f3f4d14e9a20e3485216be757e",
+  "rule_entry": "workflow/rules/policy-index.json",
+  "runtime": "workflow_node.py"
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A02",
+  "label": "02 创意与改编",
+  "family": "a",
+  "goal": "承接A01同版参考核心，选用真实适用方法并提出差异创意，交A03预演后一次确认",
+  "depends_on": [
+    "A01"
+  ],
+  "environment": [
+    "文本分析与原片复核"
+  ],
+  "references": [
+    "main.22",
+    "main.58",
+    "main.93",
+    "main.88",
+    "reference-scope.01",
+    "creative-preview.01"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "favoritism": {
+      "when": "已确认偏心／双标／踩捧题材，非普通短剧",
+      "policy_ids": [],
+      "external_skills": [
+        "naruto-favoritism-skit-generator"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "video-reference-transfer": {
+      "when": "用户要求保留原视频动态结构进行替换，或从用户成品反推；不为普通原创任务默认启用",
+      "policy_ids": [
+        "video-prompts.13"
+      ]
+    }
+  },
+  "read": [
+    "A01同版selected与交接正文：事实、吸引点、成立机制、迁移价值／边界和未知；当前用户目标、数量／框架、保留条件与A／A+B时长要求"
+  ],
+  "deliver": [
+    "本次参考核心、匹配的真实框架／原文入口与选择理由，参考已有与AI补充的简短对照；未有适配框架沿参考脉络创作，不冒充库内命中",
+    "有稳定候选编号的多个实质不同简短创意及可选推荐理由；用户数量或单方案优先；原片事实、AI新增与未知分开",
+    "同版候选包直接交A03；不先要求用户选方向，不在A02触发首次确认，不提前交完整导演稿／提示词／预算"
+  ],
+  "gate": [
+    {
+      "id": "A02.G01",
+      "criterion": "原片事实、A01判断／未知、AI新增分开；效果无数据不称已证实",
+      "evidence_required": true
+    },
+    {
+      "id": "A02.G02",
+      "criterion": "方法真实存在且适用，用户指定优先；普通故事不强塞偏心；候选实质不同且保留参考核心，数量服从用户",
+      "evidence_required": true
+    },
+    {
+      "id": "A02.G03",
+      "criterion": "候选可供A03预演，单句输入可继续；候选方向能在项目时长约束内形成完整短剧（不要求已交最终成片），AB预留真实B时长；无需A02用户采用即可交接",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "A03",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "structure",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A02.I01",
+      "description": "A01同版selected与交接正文：事实、吸引点、成立机制、迁移价值／边界和未知；当前用户目标、数量／框架、保留条件与A／A+B时长要求",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "复用同版selected与A01判断，不默认整片重读；识别值得保留的关系、动作、对白、表达或体验",
+    "按本次A段／B段用途，在实际可访问且与参考核心相似的已有独立框架中匹配；用户指定优先，同等适配候选可随机选用或组合。先核框架原文与入口，没有对应分类或框架时沿参考脉络用通用方法创作，不捏造框架库或已调用专项。通用母协议只读指定节，偏心只按favoritism条件调用。",
+    "主动围绕参考核心补足／替换适用人物、场景、事件、冲突、变化和结果；多候选在机制或表达上实质不同，不仅换名；不要求用户先逐项列剧情",
+    "按creative-preview.01交A03；单句动作可启发完整短剧，A+B先预留B实际时长；非关键未知不阻塞"
+  ],
+  "skill_calls": [
+    {
+      "skill": "universal-skit-orchestrator",
+      "when": "本节点默认解析通用母协议；执行模型据参考与用户要求选择方法，不是后台自动生成"
+    },
+    {
+      "skill": "naruto-favoritism-skit-generator",
+      "when": "仅偏心／双标／踩捧题材或明确要求时选择favoritism；不让专项反向扭曲参考"
+    },
+    {
+      "skill": "seedance-story-skit-production",
+      "when": "确需完整故事因果／连续性时可按真实已装入口仅读第1、2节方法；当前只交简短候选，不执行后续分镜／提示词／生成"
+    }
+  ],
+  "required_external_skills": [
+    "universal-skit-orchestrator"
+  ],
+  "skill_read_sections": {
+    "universal-skit-orchestrator": [
+      "工作流调用接口",
+      "1｜六大通用维度（信息轴，不是剧情六步）",
+      "2｜核心操作：任务识别 → 路由 → 生成 → 校验 → 交付",
+      "4｜优先级与继承规则"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "media": "import requests; assert requests.__version__ == '2.34.2'",
+  "vision": "import PIL, scenedetect, cv2; assert PIL.__version__ == '12.3.0'",
+  "speech": "import faster_whisper; assert faster_whisper.__version__ == '1.2.1'",
+  "align": "import whisperx",
+  "premiere": "import py_premiere; from importlib.metadata import version; assert version('py-premiere') == '0.1.0'",
+  "upload": "import requests; import bs4"
+}

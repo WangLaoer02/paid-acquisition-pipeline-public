@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A06",
+  "label": "06 补充缺失资产",
+  "family": "a",
+  "goal": "补充缺失资产，按同版实际需求交接，不新增确认或推定授权",
+  "depends_on": [
+    "A05"
+  ],
+  "environment": [
+    "当前项目资料、实际原件与可访问的资产入口；图像工具仅在A06确有已授权缺口时使用"
+  ],
+  "references": [
+    "material-preparation.03",
+    "material-preparation.04",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "character-catalog": {
+      "when": "实际修改角色库字段／页面／版本索引，不是普通生图",
+      "policy_ids": [
+        "character-format.02",
+        "character-format.03",
+        "character-format.04",
+        "character-format.05",
+        "character-format.06",
+        "character-format.08"
+      ]
+    },
+    "blogger-identity": {
+      "when": "真实博主身份、体型锚点或多造型重建；实例授权不继承",
+      "policy_ids": [
+        "character-format.07",
+        "character-format.15"
+      ]
+    },
+    "performance-traits": {
+      "when": "A05沿原需求交来的角色动作／情绪／表情真缺口需要局部补充；仅当前所需项，不触发完整套组",
+      "policy_ids": [
+        "character-format.11",
+        "main.70"
+      ]
+    },
+    "outfit-breakdown": {
+      "when": "用户或当前镜头明确需要服装／结构拆解",
+      "policy_ids": [
+        "character-format.12"
+      ]
+    },
+    "identity-noise-repair": {
+      "when": "A05已核原件存在影响当前用途的身份／局部细节缺陷，需评估局修；不新建全套身份或派生队列",
+      "policy_ids": [
+        "main.70"
+      ]
+    },
+    "parallel-character-delivery": {
+      "when": "已授权的多套角色并行交付与入库",
+      "policy_ids": [
+        "character-format.10"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "A06只核现有物料或禁止新增费用时，只核原件／用途与未解决项；不转入粗剪或生成",
+      "policy_ids": [
+        "material-preparation.03",
+        "material-preparation.04"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "character-turnaround": {
+      "when": "实际选用三视图需跨视图核验，或A06确有已授权三视图补充缺口；不因节点名称触发",
+      "policy_ids": [
+        "character-sheet.01",
+        "character-sheet.02",
+        "character-sheet.03",
+        "character-sheet.04",
+        "character-sheet.05",
+        "character-sheet.06",
+        "character-sheet.07",
+        "character-sheet.08",
+        "character-sheet.09",
+        "character-sheet.10"
+      ]
+    }
+  },
+  "read": [
+    "A05沿原物料记录交来的选用原件、有效检查、真实缺口／待核项及对应要求；无缺口明确记录"
+  ],
+  "deliver": [
+    "沿原记录交接当前可用原件、来源版本／引用、用途限制、采用／未验状态和未解决项；无缺口有据直接沿用"
+  ],
+  "gate": [
+    {
+      "id": "A06.G01",
+      "criterion": "承接A05真实缺口及待核项；待核先核实，不当缺失或无缺口。无缺口须有同文件同用途的有效原件检查，才直接沿用，不额外生成／重复查找",
+      "evidence_required": true
+    },
+    {
+      "id": "A06.G02",
+      "criterion": "复用／替代／局部修正优先；确需生成才按真实工具、当前输入和有效授权执行，不强制三类图齐套",
+      "evidence_required": true
+    },
+    {
+      "id": "A06.G03",
+      "criterion": "新增／修正实际结果与来源、版本、引用及采用范围可核；失败和未解决项保留，只阻塞依赖动作，交A07不伪称视觉通过",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "A07",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "asset_gap_repair",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A06.I01",
+      "description": "A05沿原物料记录交来的选用原件、有效检查、真实缺口／待核项及对应要求；无缺口明确记录",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "补充并核对素材：承接A05原需求的真实缺口及待核，待核先核实；优先复用／替代／局部修复，确需且授权有效才生成；无缺口须有同文件同用途有效原件检查才沿用",
+    "整理可用素材：沿原物料记录交接可用原件、来源版本、引用、用途限制、采用／未验状态和未解决项；不另造清单或确认步骤"
+  ],
+  "skill_calls": [
+    {
+      "skill": "paid-skit-character-sheet",
+      "when": "实际需要三视图时读取character-turnaround分支；phase asset-turnaround可按需安装入口"
+    },
+    {
+      "skill": "本次实际选用的图像生成／编辑工具",
+      "when": "A05确认真缺口且复用／替代不能满足，提交前读取真实工具Skill并核授权；不是所有任务前置"
+    }
+  ]
+}

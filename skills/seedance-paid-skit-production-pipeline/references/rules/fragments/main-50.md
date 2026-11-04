@@ -1,0 +1,1 @@
+- **分镜执行**：[storyboard 完整规则](../storyboard.md).

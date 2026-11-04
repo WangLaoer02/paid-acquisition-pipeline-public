@@ -1,0 +1,1867 @@
+{
+  "version": "PUBLIC20261104.1",
+  "date": "2026-11-04",
+  "canonical": null,
+  "packages": {
+    "lark-doc": {
+      "external": true,
+      "source": "https://github.com/larksuite/cli",
+      "redistribution": "not_included_no_local_redistribution_evidence",
+      "files": {}
+    },
+    "lark-sheets": {
+      "external": true,
+      "source": "https://github.com/larksuite/cli",
+      "redistribution": "not_included_no_local_redistribution_evidence",
+      "files": {}
+    },
+    "lark-drive": {
+      "external": true,
+      "source": "https://github.com/larksuite/cli",
+      "redistribution": "not_included_no_local_redistribution_evidence",
+      "files": {}
+    },
+    "lark-shared": {
+      "external": true,
+      "source": "https://github.com/larksuite/cli",
+      "redistribution": "not_included_no_local_redistribution_evidence",
+      "files": {}
+    },
+    "douyin-video": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/douyin-video.zip",
+      "sha256": "4a9c00a10bba0c3f47842cada137329b1da855f2cde103a720560b20bcded2c0",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "a623979a20816b58a6124c5092095a6045f507f58c2887ea89791d8a44245527"
+      },
+      "file_count": 2,
+      "bytes": 1009
+    },
+    "dreamina-canvas-cli": {
+      "external": true,
+      "source": "https://dreamina.capcut.com/ai-tool/install?from_page=explore",
+      "redistribution": "not_included_no_local_redistribution_evidence",
+      "files": {}
+    },
+    "paid-skit-production-pipeline": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-production-pipeline.zip",
+      "sha256": "470d94bbc33eab0665a49b1cc43a09b060293a355363bc3d6ce1d91943fc321d",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "190e0be37a8426451d357cdef012f7fafbd1ed386507061da78df19a3ca295e0"
+      },
+      "file_count": 2,
+      "bytes": 1323
+    },
+    "rongyao-ai-generator": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-ai-generator.zip",
+      "sha256": "c8a2ba649e637dbc4be05000ee52e0fe561043f00b2d4315adddb5de9556d17a",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "eba803d0e984ee37f8a539bacf9b3f8e15b64df70191d856fc01306201c812c6",
+        "agents/openai.yaml": "102a6a9fb2afdd6272c6864152578a2b0f548f8bbbbcb6eb384f54d8f232d339",
+        "references/backend-contract.md": "67b5e205fceab7adae7adc5ff881e6c503f42d491eab3f01697d6175adcae106",
+        "references/models.snapshot.json": "6d02b09a7c44cb101cfe91a42e74bccdb3178594688195d4c60e7d94551977b8",
+        "scripts/browser_adapter.js": "bee8af678ba6fd83726864129b70de56b40d60b5ae81517a8574dd30397deb2c",
+        "scripts/cdp_bridge.mjs": "eab26a732ec202e11729845abff1dcc2971ef35837f5533e6884c1c080865b17",
+        "scripts/ryai.py": "06dfb33f8afac4674c77a5231d702843a8d320d4eab767e9a63a91485aff07ae"
+      },
+      "file_count": 8,
+      "bytes": 30585
+    },
+    "imagegen": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/imagegen.zip",
+      "sha256": "aa9f99b23bdad6b52308cffca04cc7c5b56e61685e62ebdafba8b63f3908d6dc",
+      "files": {
+        "LICENSE.txt": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+        "SKILL.md": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba",
+        "agents/openai.yaml": "9ca574af14580dc7a2a3dc37a1796d17f93cb8850be66501f0799ef8603e9dc0",
+        "references/cli.md": "ecfc2e09261a0feb3482517a5fa0ff410cb7d1958e3cbd2ac6b61586f5b81405",
+        "references/codex-network.md": "c88298ca4481f6116a16fa7987434fc977f8b311c1bbc0c3d862ffd0c5981148",
+        "references/image-api.md": "dc975d7af8a4888967251a0276014b4a71ea30455294944b762256373ce3e569",
+        "references/prompting.md": "b210b051c775860267080941eba968212bf0ac7fce581d75c5dcc217d8293f8b",
+        "references/sample-prompts.md": "70474177d151855b175c6133de2aae1d90b7f146b0dab50ec830972c47d72183",
+        "scripts/image_gen.py": "b4345cf835e5b593b97df6bb2b70bda493b8a97eee4cabbc99b2fa57dba9b448",
+        "scripts/remove_chroma_key.py": "a5893c4bd04b21abced33731ea89d2ac428e81d92a0368eb18ffbe4fda5253e2"
+      },
+      "file_count": 10,
+      "bytes": 40673
+    },
+    "paid-skit-copywriting": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-copywriting.zip",
+      "sha256": "9c0ae8b393748244a2720ec0f53931b9b237eea20370269ad7d4a0b2f40acae5",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "79f5bfde25143855826264b60d1fda0d95b349d397c242cea1d590d54590001a",
+        "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
+        "source.json": "b7d53faf4c0b48762fd4c818731dc7a892c96862a26ea0151dc23d82278c9df5"
+      },
+      "file_count": 4,
+      "bytes": 1882
+    },
+    "paid-skit-storyboard": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-storyboard.zip",
+      "sha256": "9a82cb6df99e4f66fa72a054b212ac50fd5abe685e8501d01060c6ce864d4446",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "d39c35b57d745637663f6f7673614f575e0ee90c091b31d2fd07479b77a823fd",
+        "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
+        "source.json": "2b2e1c4de07440370d08b5ee10cfb329c472fe6b8aab6e102a7100d00080fad2"
+      },
+      "file_count": 4,
+      "bytes": 2237
+    },
+    "paid-skit-character-sheet": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-character-sheet.zip",
+      "sha256": "dd22e884eab019c9a3a052f8cdd77d4a85a2faec1bee14a44b9542884641a3fe",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "63da991cd4204134a08b5c9829585ea7c9f6c2a8a95746d3c172972d8fdd03ae",
+        "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
+        "source.json": "dd539e25155a6f3fb5ad0adba14eeb5623b10d78be6ba76f10a0af9f87854505"
+      },
+      "file_count": 4,
+      "bytes": 2117
+    },
+    "paid-skit-video-prompts": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-video-prompts.zip",
+      "sha256": "31b0391ac0d01f1b24a7f258420e7cf98a85d6cc05c26b62181af28d70e523e6",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "94ed9bb5cdaa4209b88147cd3152f62260e9c4a7e74ba7b3781330e1c5de9b46",
+        "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
+        "source.json": "8b6f3e0d9c990376113b5886f7cda535270969a14bc28c9ea842e63f9b5372fc"
+      },
+      "file_count": 4,
+      "bytes": 2227
+    },
+    "paid-skit-asset-bridge": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-asset-bridge.zip",
+      "sha256": "d65c22df0c55ec35954e500145a2550f9928ee9b1a62432a9213b8d80a51ec38",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "499dbc36043c55950c2891274bba3b6fc1da38446fab2fc142c239a2adeb369e",
+        "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
+        "source.json": "9b9f722a1a45eeb8f64c926a63fb5a1687f91515d3f6439092f955f0ecc70c15"
+      },
+      "file_count": 4,
+      "bytes": 2060
+    },
+    "paid-skit-character-format": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-character-format.zip",
+      "sha256": "580ef5e657221b9f5ca03ef828362c2bb806cefc4bf89834d8553ee8edacb20b",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "57bb84da5c2380ccbdb052fbe26a7ab4947ee0c490e65354b68b0b1703e1b178",
+        "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
+        "references/implementation-routing.md": "456c4729b24c40f5335caefd6a04adef18d9599e018f229afe6af0bd290d99af",
+        "scripts/character_consistency_gate.py": "6abad5e5b140b1995505aa32367536c624580c733f8fe4b452e525a2e2c5c3b6",
+        "scripts/extension_queue_status.py": "e6452f7aeef3d26ea8dad82be156718b2f6476c33d62e7820015b81c0e2ad6ed",
+        "scripts/face_reference_gate.py": "2d315432d6994fcc8e7d08ad85853ebd1c50889065317c167497b4faf43ab499",
+        "source.json": "f35d3fc0fc9a14321e9ca2237c4c4a6c00fd1277e2aac194940138ea67981808"
+      },
+      "file_count": 8,
+      "bytes": 11562
+    },
+    "paid-skit-cleanup": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-cleanup.zip",
+      "sha256": "f17e8957ff3d21a7ec991630402e89913fb41b6a71ac19b9822f2cc6d420aab8",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "419f0dc80db09d0c95c886adea3d7d9e6228b004e15bf18ba55a5b4e4934430c",
+        "references/canonical.md": "ddd554796e4624eba03122962b570e304c6f12d47b34031bbf42fc524a41065f",
+        "source.json": "67ed23bb35e63a2e40582f64391c47f16cb58d9e884a4ca297492e659376880d"
+      },
+      "file_count": 4,
+      "bytes": 2044
+    },
+    "paid-skit-premiere": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/paid-skit-premiere.zip",
+      "sha256": "136b2d1d934d0776caad98623356ea3525a2ed4a3d4801a985814322b02ccf12",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "4f58bec17c5113e5615c867fec0eb679c6ec3fb8e820c527f3983e412f5861f5",
+        "references/bridge-source/README.md": "c14e43f2d1cab72ea5cc783c82f4eb7b1ccce30f2728f74a24873ea382f0273b",
+        "references/bridge-source/TOOLING.json": "288d5465bacd2ed87ded80883849c5d47e8dc477a8ab43b47a34c0fb291c80de",
+        "references/bridge-source/bridge.py": "b51dc28c81098fceda76a40c1b34c108cee9f029fa5e10f2a9e676a32bb02343",
+        "references/bridge-source/make_preset.py": "af2cdb04f0b7521d9d94d701c13594db79764e3119a1d48cb29aa440743fc681",
+        "references/bridge-source/manage.py": "adaecbd46877545de510238d55f9512179d24deb373a7bd0d13f6c52eed4eece",
+        "references/bridge-source/plugin/index.html": "425aa16fe890808843a4a6d2e53b35dc3944b47b22711af0883bb1d56a7e451c",
+        "references/bridge-source/plugin/main.js": "8141e4e9b4f54e3be87e93df3d5bf1bd52c7e007e913e7608af4b5b0b235795d",
+        "references/bridge-source/plugin/manifest.json": "6a44281e7bcfd2ad078144faefea6439bda6518e433bbd5c8c2eb9b54ecb46f7",
+        "references/bridge-source/verify_export.py": "d4677409c97a9e915d2e0ab64846b48aa046e91392fb5ea04870584a6111672b",
+        "references/premiere-automation.md": "b7bdf9383e96c9f113e99abda11ea047c736f8abe6afa9503f1b819485c804ee",
+        "references/source-readme.md": "85330c9c60afb98831e76d9b74163dc1639188d800475816ed0891d0bd26875d",
+        "scripts/pr_inspect.py": "8b0adddb9df15bc67e5c2d881246a80f0ca5615002059172ad7ab21fa0f6a5c8"
+      },
+      "file_count": 14,
+      "bytes": 36021
+    },
+    "rongyao-material-upload": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-material-upload.zip",
+      "sha256": "c7fb3850002e8005ee8cb2f4762803ef50d2a64b448b396055ee70e5874b847b",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "1550c42d0b7492f50ea9466696c40a56b2a0d2a74067568e7273649ec4850aae",
+        "agents/openai.yaml": "aeea92acbdefb9ecf3624e53d53c933bfc026496f9482eb10488cc6f4bbf0529",
+        "references/contract.json": "5fd4893e418a94a22be2ac92c884f9c047eac03f6af4aad064b07ef9cb83856c",
+        "references/mapping.md": "5e2711cf49b5c071cfec2c3e88862d91e621c2b1c0e9a7ae65c2bcbc3b9b9309",
+        "references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "scripts/entry.py": "2478df00037725e76360bbb41b091e55783b358bf489fc247d4550403c53fe7e"
+      },
+      "file_count": 7,
+      "bytes": 18142
+    },
+    "workflow-auditor": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/workflow-auditor.zip",
+      "sha256": "a7a44c5c92e0c2f1af0d47bf8ffcbaf29bf7d4ce850da40f280e497543a613e7",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "d58ef13eb29ad947140c4ab015eb87654598b7e8c9ad32f77651effda97c8bc5",
+        "references/behavior-and-recovery.md": "5f4213d8729eff8efdb1e6b434ccf531d3b4892168d10889c7ae37e38af8f603",
+        "references/report-contract.md": "c62d99e5ec3cf80fe89fd60d912b108963054497dd04bc66fe561a410fe1d2d8",
+        "references/rule-quality-and-preservation.md": "7d08480d2f1dc6143701800ede00d19fa67c1fc559e5f32eb707af5dbd23debe",
+        "references/source.json": "afc59b64eafc2eaca7038981f32ee252898ba26da5dbf5ce858ee61b64baa092",
+        "references/structure-and-dependencies.md": "1ad57cd4dcb53fd0f0009eeaab26baacdb2c30ce77f70122b9a8979591c2d417"
+      },
+      "file_count": 7,
+      "bytes": 13313
+    },
+    "rongyao-keyring": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-keyring.zip",
+      "sha256": "aea0a4b10355e6728b4c930e0b06df3725d53023a984e468c22db2f1a82ad393",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "73ca71568f06a5374e90b37610f5c39159f12e05f67d845343c633fd564bb3e3",
+        "agents/openai.yaml": "36a7aca331b54b152ee41692037c4c89e3d853b74a39aa108fb13db3b8f31e20",
+        "references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "scripts/ai_probe.mjs": "87543755616044c61d8b125196146d3b3aa2e3f101824aa885071c4bd16f1af6",
+        "scripts/keychain.swift": "61ee07967b880d39fe05c60c7af57f1a36581def8c3b62de3dd754dec76f4f20",
+        "scripts/keyring.py": "d006ea2a75325792d73562415c7eb03b08221073a6055e07c553ab7638c6028a",
+        "scripts/test_ai_recovery.mjs": "171d1bc6107da5839e49662b580bea51c03c7f4f4020b6beddd388b4788c1b0b",
+        "scripts/test_keyring.py": "1c766f8f8f038f58598fdacba21f4fa01cc4848eab8865153019f821cf690ef4",
+        "scripts/test_upload_login.mjs": "9ceb5ddb9d1f619527e1806df937cfc93c87bc5b4511f3c7af0af9d46edb2d28",
+        "scripts/upload_probe.mjs": "84cd9ea5fba2d7599e741c6744c56e9dd575f9dda43878177bd603689357742e",
+        "scripts/worker.py": "40eb249c047bc340d43a45cb357b74e7f7bf18141fd13ffe837e06bdf211427c"
+      },
+      "file_count": 12,
+      "bytes": 22796
+    },
+    "rongyao-data-stack": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-data-stack.zip",
+      "sha256": "1afd791138752048af5b833a27df23e8fc36b73dbbfd379e87da74fa3ffbfdd3",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "20cc68376ff5a10344ff7afca9fd9f55f839e9a931e06ea839c8d38cc491a01c",
+        "START_HERE.md": "4be243d623c9c4dac016c58d518804814b9d1c1801166e8deb0a3c45459bb541",
+        "agents/openai.yaml": "4b5bd7eabb6e5e2d1a94764f2e8dcde4c927e6363adfea529353e6b647c21ee0",
+        "references/bundle-files.json": "4e4cce0158db5e0b7ced525fa6dbdbce68edae7b47286dedcfe3b409035c33f0",
+        "references/capture-habits.md": "2322017a7fe2829fe441f9979ade3b5ae5514d6c5e7f05559f971e724989876a",
+        "references/chrome-session.md": "0276fa3ee195f01cf9435b1ae61068a3f7fc3dde27217f3ea9fb91c22a3e6507",
+        "references/codex-handoff.md": "305f44434298b91d331c94c4b6940a7dc9b97131ff2b76ffe3f1adacff6d0d33",
+        "references/portability.md": "4a4ffc4b6a3202e3bd78141e70c3f76f461aa4b4170e91ba17cc440ef341eb08",
+        "references/runtime-and-validation.md": "1b1f783a2a33b94ed0dac6061f10308dc00f45a942d0a3e6e7922683c9135789",
+        "references/video-chatgpt.md": "62d5819041a616103ebf0bd7dbca423f172ec1893d2cf61854510a2f9a0dfd6f",
+        "scripts/active_chrome_bridge.mjs": "9443a6cb43411be90cbef0a5f8ae689c4c25500d95749c7379b1436d20fdd992",
+        "scripts/active_session_cli.py": "d58e91ee4acd4d48bf25ab82afbd1f82b4ea7edb3ad81d7be8cf5d48e541fe39",
+        "scripts/backend_export_cli.py": "680bed6bb2e460a3939da317e4cfd05275ac22688401ef4d72ae0be3739e183d",
+        "scripts/fast_video.py": "9879b74f71ce6f0975aa5b6d7ee9a1cc11ff5066ea13aa9f4698e4659b8fc392",
+        "scripts/install_bundle.py": "2525b5a34e998e9d0a02de2ccf6c39c3c43ae8aac301ad461ce959dfd7a5342b",
+        "scripts/live_regression.py": "5f67d1a35f9e526e09f54d89cd669b5f969c7e4930d90e090df0c696e5b3e22c",
+        "scripts/package_bundle.py": "9a9747d678a59f6234b286db4d20b714f6a59651d3fe0b83f784fb7913cddca5",
+        "scripts/preflight.py": "1cc67c18e715efda684f83962b0980b476dae433662f11709736d2b512273f19",
+        "scripts/readonly_capture.py": "c8aedc4bb876a55933f57ef31033b643d05113aac4ea717c1a63598c22283108",
+        "scripts/static_reference_check.py": "34c956560c2c29ecaf307292eb3ba5ac614d917af88c19cac206356e4d8a7ee7",
+        "scripts/test_fast_video.py": "8622eafae943d2e2fb534f105af6a3fac79dfd753b8683644ae7215ffb1b7045",
+        "scripts/test_login_window.mjs": "cd0e702c1155b297e0a02f6e4bb2b1cf0e46a7f87a753e4f1504f8bd29423b19",
+        "scripts/test_portability.py": "40b7910e30a8ea675f71b8ca06aacf93574cc7a0756064dd046894f39fc4ccdf",
+        "scripts/test_readonly_capture.py": "b6848d4eab82c105475ad8a65f9bd207376d7e81609691b3d1dc7e8ead8a9d74",
+        "scripts/test_session_boundaries.py": "ad5be23b73bb0d57cb76bd1ef99d8100399599557aa4e5db072b2e89016c4e39",
+        "scripts/test_static_reference_check.py": "71ff50a0fc1c4d7eb08c9f7831a9e56cbd870dcfd5337c4bf22fbd877e7981b4",
+        "scripts/validate_local.py": "9d885ea759edf0669fc625f520faabde71d41f7819cb8f10e9c594cd4baba5e5",
+        "scripts/video_bridge.mjs": "45338a5c689f3fcae4a5a9c676adcc71a4272b86e74ed7c9e6a550c885b0d183",
+        "scripts/video_mcp.py": "a81364e335f22cbeab80a4b522f621a5791985875507cf398775cce480ac51b0"
+      },
+      "file_count": 30,
+      "bytes": 100386
+    },
+    "rongyao-operations": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-operations.zip",
+      "sha256": "864d104f78978a6d1a6ca8b1a005e1344c8a4b0cd8db2397b4f00bdcaa36591e",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "3874edda76ba140a5386c3b847bcb8a657c1b3d1bacc6e0a97d41073b092821b",
+        "agents/openai.yaml": "cd1ddd427ab6fe8cb82b18cdd75b75ea07dc4fc91a98816ba50857ef6f1f765b",
+        "references/cli-contract.md": "b50ca8796c2fa7fff007495c12801cbb808b4e7091b010f4816bd06acf7eb8ad",
+        "references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "references/observed-upload-protocol.json": "2b904d3812078921e5e3982eb05b55e0b5d29132f90d42b7a8a35f4129cb289b",
+        "references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "scripts/rongyao.py": "238af95f8414f451c38844590b14a3cf5573b5817aef34bb5d82cdbae42548b1",
+        "scripts/test_navigation.mjs": "3094b129ed045bd1caf5dc495b78c20e557ae5f351ecca606d27f2963c80c4bf",
+        "scripts/test_operations.py": "da76c29f20ab5f12add5e4aa4e6f205c85f8d064d751cd22f4ea95576fbec470",
+        "scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d"
+      },
+      "file_count": 11,
+      "bytes": 37468
+    },
+    "rongyao-material-analysis": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-material-analysis.zip",
+      "sha256": "d8b8fa1a3761bb15f0d6b9a50d92516076212ac788d3f9496c78504f0a8e3141",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "71eb7b6a9db64c214ad14bafdfe7ff4086809d1b08b98071ae4566eb7b1b411d",
+        "agents/openai.yaml": "cac4f406933ed1396343a0552954360ae8ace99af3182008acf84d12018fed5b",
+        "references/evidence-boundaries.md": "f32eef8397817ea281438820744f9800dc6a4b0d4e01b157d1f2d4f42e3461e0",
+        "references/examples.md": "96f6ab1a330012a3ec9006a368be772dafc126d4bb61506909204132ca72e739",
+        "references/judging-rules.md": "ce3c3e9cde7f92c79d8db19cccd2026300f77cc263306205ac5c3fbd03560db1",
+        "references/language-style.md": "033362aa3ac665634f222f3f41e748bda3d474f7d98f765af9a67ce5561d6759",
+        "references/material-taxonomy.md": "45cbffdd70fee395505f2062e0cab211a63da03315daf4ade378b507b81cf0fa",
+        "references/metrics-glossary.md": "e3c5b47d57bdf9ef66231eef80c91ba3c1f1eb90d964a3627c0a61a579e9f6f7",
+        "references/project-context.md": "1baa9761a98a21c3e5a6e2dddfb33ff6c1deaee8555dec7d301148507dc7cef5",
+        "references/report-logic.md": "26feb6f0d0f3d50a7c904e67b60d022a7dd1efd8454bd303174f82792df95179",
+        "references/status-report.md": "5e525501a73fe2408a98f37e91dea779ecfc8eb0d267e7807bc85f2bd909c7a1",
+        "references/weekly-report-formula.md": "89ac661f3fff99a872d4787ff32716264108a981b647e8de44f403185db72b15"
+      },
+      "file_count": 13,
+      "bytes": 17566
+    },
+    "rongyao-video-upload": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-video-upload.zip",
+      "sha256": "bc6ab7bf7deb7864172831baf48b378a9865d4e8316e2264258ee30cb5114b5d",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "36055e1aa0d53350bc690d3e6e6719c3f22b9daab54f758a8f2ab008321bd79f",
+        "agents/openai.yaml": "a51d0502a3e6e35fa464118e168e9a03671709c6c6020b7c7b1d4a1289fdf7cc",
+        "references/browser-upload.md": "232df6a5b451e89fb5dfc0a017d68bb1caa96ce94e8bb186ded71d94f66ee322",
+        "references/company-rules.md": "a367611420b688a982cbf55adadbf23533a3e1b9b2712dd356c39ccc8e6b3553",
+        "references/job-schema.md": "8b73964ca2bd1ecc2af78b43873233227468bbf45036b73f0d6ac4ad6709c494",
+        "references/native-recovery.md": "2a96093e35f381c7a39e6702d05c12a54df281669e3e515f415ec081ec2d1e6b",
+        "references/verified-presets.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "scripts/prepare_upload.py": "a18a705d4c4f6e8a610b4e81034a48e83d62945ce59af474a59f3423270a0735",
+        "scripts/test_handoff.py": "6dc5468beb12d5a7063d808ab4962f1bf79311346ca668ccc5accd0c882db12c"
+      },
+      "file_count": 10,
+      "bytes": 22456
+    },
+    "rongyao-dashboard-filter-finder": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-dashboard-filter-finder.zip",
+      "sha256": "c198507bdb0a26728f0f52f16f0eb34f0c9554016efec50a5d89803940c176b6",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "c8c1f8f0f9958a38b3620337d0c54493a6682207a783b3258d5d6aeb4ffc09fe",
+        "agents/openai.yaml": "61ef3f64a9edf34f59115deb3ecfddf1cf5806685702f43a20e995389d0497e4",
+        "references/aggregate-queries.md": "086cff2e0d0df9d7e34bf298f4e6b5b24cef31361a65ea29b8189494f810e124",
+        "references/data-identification.md": "ed15302fa7726af329ec3fa5cc3d8a3b3ef2a3e70f68fe13778c5256ae55a808",
+        "references/export-and-filter-map.md": "9347c861a4e12b7792cee56b81531b02954b00876d56245ec125df92361ab8c1",
+        "references/fast-monthly-capture.md": "a3eebb4fee6e84f7962210ee10d9b78862426b6c3dcf519a66f091082c6d338f",
+        "references/high-cost-material-query.md": "a344ef7fb316565f75fcc080604f4465d05408d26a9f1d3396060a73abc05425",
+        "references/material-output-capture.md": "7ce476a2975cad04ea62b7deee2f06707038bd54a3c07ed7860dd89dea158959",
+        "references/monthly-spend-capture.md": "e828fbac4e82bdb4c1a4690e49d0311320c140ad5f0519b4aaee7b06f2a54cd4",
+        "references/output-contract.md": "6a85a3d4a92c8c650ff1a5689aad71543cf7cd67ecc72e208a76656546abcc54",
+        "scripts/build_export_contract.py": "7219879d7de7430765d0d43936fc14e7dc8784415c082f3f0eac37a6c87ee2ae",
+        "scripts/capture_material_output.py": "dd4e0c6cbb067f43569123c0c2f3a7c00c524ec2d6c2cfd1d389758070541fb8",
+        "scripts/capture_monthly_spend.py": "31c4e8783557e196822c30e5193d73920337f6d55c548c7de52f91be80c4eadf",
+        "scripts/capture_original_materials.py": "e692cb4085e25a1a4f59e05ab369200efcda9ac34a848fec3d7b7a6bd8b12e31",
+        "scripts/test_dashboard_capture.py": "29d5b9d9e1e04274703d8d3a10347553a05eb0ce4f31242abbfe7f1ece5dede2"
+      },
+      "file_count": 16,
+      "bytes": 37972
+    },
+    "rongyao-material-performance": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-material-performance.zip",
+      "sha256": "9d55f9cafb80011570af3f5e1e83d564016058f8c49efb5096ba0279a96cba42",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "1b87b2d8ab790ec70530684f2dc554efbe46c5a009eb5cc063ad620015b92651",
+        "agents/openai.yaml": "a724606a224a77076c699ef2b5b26904cfdcefd55b69109676ccf5289aa37af1",
+        "references/active-chrome-session.md": "064e1a0e7afc3f03032af757df8c34ab72e3a8bed58912dfe72197f25638e479",
+        "references/judgment-contract.md": "f9de50d06e6ada2a7e5b89b9dbb51348ed59a361f5d05f6324a238c2840d748c",
+        "references/normalization-rules.json": "1d211ec0e45903d24dfd806008326e5082d94fdebb1b3df7735a78c675f43655",
+        "references/performance-analysis.md": "e15c84964fef6c849569fd31f297af412352aa9594ffd65832674b7dda1cec47",
+        "references/query-contract.md": "920442ce090313b1cb713bfa86421bd397f63d5d5bdb0b0452f816216a0e4708",
+        "scripts/evidence_contract.py": "4b9fb9dd67d45fb2b010ae12b84cbc3c83ba81b60b83914eea4f7abd4a337e89",
+        "scripts/material_performance.py": "9a9afb806c62955b6613b12accdda01611b2167d7aff42785bbab1a207c6fb22",
+        "scripts/test_capture_habits.py": "9509c33010f6e7a0c5ebcf37ff64b927aa2ddacca422b7d8ae0962c0aa6c2c8b",
+        "scripts/test_material_performance.py": "e81155426f3efc27311bed9e620ab0fc7b6b6f14c7259e9fc772ded67f3f87cb"
+      },
+      "file_count": 12,
+      "bytes": 34834
+    },
+    "rongyao-http-readonly": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-http-readonly.zip",
+      "sha256": "241659f67fcbfe5d4a1b08df95f1b5e00e4ca5bd50604102bfeb76042bab82fe",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "README.md": "4d473205c284427fdb855079af6fadc7ebad85dd955362cfc27694473da6f3d5",
+        "SKILL.md": "44675874dcfe650c11fee86460dbbfa12a52c6b6cf1683302121a0ec2decdada",
+        "manifest.json": "8be3a9b28b7c375e578410b71d68f0c7e073ae355f123b9d0e20653f913b2ccd",
+        "references/fire-weekly-production.md": "a0151051693860ab524a33bd7d40292d8430c516a5c8c7a296d161f4359b0135",
+        "references/legacy-feishu-qr.md": "06ec86e924079a7808e746ac85a7f1e02d3a0452fd30ddfb84ffef094e31df08",
+        "references/protocol.md": "c2f1a611a0284f135c6e26342cce6a9b70d29a086ca678609145dd483d5dc03f",
+        "references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "scripts/http_core.py": "e54bb0a77e82e13f9b888f11252242b19346694d2918ebdca567c5ed9661cd3d",
+        "scripts/http_transport.py": "37910f535aebc522deed31069cd9786e698c4af135ec9e140852e66a8cbc255a",
+        "scripts/initialize_session.py": "2ab240a2ec1a11b0961b63b79b5fdb1d2e936d5c4f8f95053ad16e40c241805e",
+        "scripts/install.py": "c825814a028e2791cd1ee1e244f36ad9a96f42c0fce58ca308403e460c10bcae",
+        "scripts/market_export_cli.py": "eef4f9e8451dbcd1fe20fe701f32e7683bb7d566821610e0bb5521c999121bde",
+        "scripts/market_readonly.py": "c9ecf062e5cb93fcfb057a57679cb0019ac27036a4ce49988087a194c2aa9018",
+        "scripts/rongyao_http.py": "e4ef3ecf90f4f79ae5aba48342fd5cf5797107e99c0a8a7af83ed9eb723c9bbe",
+        "scripts/session_store.py": "ae6eeb4d264cbf0d5883a8dac584bcc2ab480688297cb1eb83d1edff004c3640",
+        "scripts/session_vault.swift": "b6733676fd6892badc84d12b6eb7a8018ce244edc78271a1a2600bb5e90c484d",
+        "scripts/sms_login.py": "dad015d3e82809bcc00ad760b5f61a14106b93d2c005089bdbea91a4d0d619c9",
+        "scripts/sms_receiver.py": "78dcb8881d6add896b7613f9f71c1f31c7e25e468dc6f10bee7126bc5d2e66eb",
+        "scripts/sms_worker.py": "9999f0b2a60e434d9e34ba04ea466df9fe27d5256a43d918e7019120f530aadb",
+        "scripts/test_http.py": "b76f431f3deb043d6d794afc23ef94587080082f3328594392550b5a713e47b2",
+        "scripts/test_session_store.py": "5b54b268f51f4ef9ac11502534ecda42e0844f3d80532f8b08b68c2bb813fed5",
+        "scripts/test_sms.py": "133a2e9de14f62466f0f41140724ae0bb379050c7aab199eff945f880b754de5",
+        "scripts/weekly_page_parser.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "scripts/weekly_query.py": "f67e564d40fcc370513ee6233fad6ecf945532b56b40ed07813f83f0f911af9f"
+      },
+      "file_count": 25,
+      "bytes": 49235
+    },
+    "rongyao-http-upload": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/rongyao-http-upload.zip",
+      "sha256": "718e4ded509a8c347d6ebc8129cdd70d9f08e183e21d9850051f92a22c186363",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "README.md": "b8c733eafc8912766b1c520ad1143dd58b2cc422bf521cdf1b5e2e4c06e40450",
+        "SKILL.md": "4d295683a6fb2b9a79d2fe2db009367c3bfa0a1e1feb98a6a12707d4da43355d",
+        "manifest.json": "0ab03a38992d0d4a9747c4f7804768f2d48533d9e83cd621e018af22c41315e4",
+        "references/defaults.json": "faf028915d8be0a39372cfed4134508428a4b6914e085cd9ead402042b34ced1",
+        "references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "scripts/attribution.py": "90f3a0bc742d69b3f85e2b5dcd73539626593646b2485d93f1ddb8893180eee8",
+        "scripts/metadata_correction.py": "2e8f5bbef4b312e43f0c60143914501aef01d89df2c647bf8dc3beb4fa8cd51e",
+        "scripts/rongyao_upload.py": "4487288b7c1db49ef6c92b26e3d267ebe20393ebc7ebd7f7b0ad16525cf8f8a8",
+        "scripts/test_designer.py": "8a8c774ddd1bd45049620f16032e809f82243e5702130c26e556038607fb79c2",
+        "scripts/test_metadata_correction.py": "f4597572e37038614e05fca1b2f159def93930216b1ef268e0b5a787d32efd43",
+        "scripts/test_native_alias.py": "9f361f1c48ad81706642efb3897f03d5618d015458897f78ef1ee65cd6ad2db0",
+        "scripts/test_session_reuse.py": "f1c5d34b7dd92a25ed3160381c7bb65e8f3540635aec3376c2262bbc0b2c8f6b",
+        "scripts/test_upload.py": "cc55762edf81d327bdd9ed7fed5ad4b992cc66fddff12ac5d1f2c2dee1e4a6e8",
+        "scripts/upload_api.py": "caa75ec7411b03624f2105306cdb243b455df81b1c51cc9dcb4f27239f9b369a",
+        "scripts/upload_page.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "scripts/upload_service.py": "616d2227dc0801d17a97f972201c2435b2df6457dfd6d66a2d9b15775eb18049"
+      },
+      "file_count": 17,
+      "bytes": 50143
+    },
+    "naruto-favoritism-skit-generator": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/naruto-favoritism-skit-generator.zip",
+      "sha256": "6833798b13bb18f95a0012628c681bd2c746e660715a71cb01d3948ed1a147c3",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "53221c6e28feadd6235a98d35b9e02ea5b2cedefea0b65b123f9d289405c51a9",
+        "manifest.json": "cd5c951711bfcb52ea2f2deae076ca74d9f39a641a3c33f6d9bc0aa8686cc1fd",
+        "references/rules.md": "5eb00681e05fe3ae61cf8ba348d7a50b94554ea382bb4e743e421e048bb174d0"
+      },
+      "file_count": 4,
+      "bytes": 6970
+    },
+    "seedance-paid-skit-production-pipeline": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-paid-skit-production-pipeline.zip",
+      "sha256": "aa408f3a2ec095f78e17b3a5547e8e57bf310fab0ba3f2cf28644916ab0a6453",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "f3a661856e21aeaf9edcf9ac65fdf583b9b5cb8cdd06199da5e1b2b7600aba8d",
+        "agents/openai.yaml": "bb3b91113eb54024517b3cef202bbff6b30f835a5203559a709a01ed522c8f66",
+        "references/deployment.md": "562fc4b51af77bf076dabb46ad2d8f4ead1ca3b37dd18bb6e9e386238c909c59",
+        "references/rules/asset-bridge.md": "db68d429a2822ecf8de0ddd4c61d93cb09d6345d6b91ef64a5eaa76e5e8a1480",
+        "references/rules/backend-upload.md": "78a7582693dd3578edbb435597b452b822e1f4b55be3c63ff10acbb29fc45151",
+        "references/rules/character-format.md": "af32d6973e52fd2982914e0a6cc14762351e8d296b48a4d7c9ced8e94af9d977",
+        "references/rules/character-sheet.md": "0e59ffff15366a0ffbc693dd1204e82b07a936f3f4d14e9a20e3485216be757e",
+        "references/rules/cleanup.md": "cfb12c7534d389cb28e5ee881d409707c6b8db454386228c64be099f61335c2a",
+        "references/rules/console-format.md": "8224e5fdebb99953d0010162f5d0cab7a2637f4edff769a20133ff69ad34ce61",
+        "references/rules/copywriting.md": "c927cf2823c04c0c7788ebecd9038371576d3608279635f69e7d095cd7d969e3",
+        "references/rules/coverage.json": "05856d7e7556538b61ce9658b547d5ee033194767009d321b65899e0380acf7c",
+        "references/rules/creative-preview.md": "9f84c21f97a23bc747fd2de2ee86eedf54a1e09427816017f5c32e56ce914867",
+        "references/rules/fragments/asset-bridge-01.md": "cf3180d325e062ce3917c6ce85a31f4a555a7caccb81ea744b7075ba5c3ab482",
+        "references/rules/fragments/asset-bridge-02.md": "3e1c3aadad3c5327a8bde615667d5a978abba10afcdc254b761d5e1be64ac4a0",
+        "references/rules/fragments/asset-bridge-03.md": "d521cff8b3b7fd9bfcd615de5059987e1f2ada25fc69a56cf6af5dba6780746f",
+        "references/rules/fragments/asset-bridge-04.md": "7da2e83a7b82b59f6f4dffed3e4c465cdb301b402a378cb4cd0056e4aae4b44e",
+        "references/rules/fragments/asset-bridge-05.md": "fa5778e57233077e66b897dccd212d71b4a08824b55d887b5349a223bca7b50e",
+        "references/rules/fragments/asset-bridge-06.md": "1614853aa9cfbcff5ea8c69515a7ffc2e46ea1399d4842697a369b401c7681c2",
+        "references/rules/fragments/backend-upload-01.md": "eaa875c8931eb839732d6e7b42461745afa6d4b62b8f4827dc8679a9a450651c",
+        "references/rules/fragments/backend-upload-02.md": "98e680487a4a90e4f58dbd4697d3658e959154a47a655ff2b1cb3d925e7f7180",
+        "references/rules/fragments/backend-upload-03.md": "4654347fcc7a3a0622ad738c486cdb8e4a1578842cac7ee990ca1a49e34913df",
+        "references/rules/fragments/backend-upload-04.md": "78102a62d2954b034e813a8b68d7041cb178ad4c4cc7090af776d168cba876d8",
+        "references/rules/fragments/backend-upload-05.md": "40019d2f58f9b273949b4033b2d76e15d94a3e277305dca7aec9f99d1da6fe6f",
+        "references/rules/fragments/backend-upload-06.md": "40fe4e5f1d0840062dcfded391b7c9765f46cd1d3a85464b271fd73394c9c29b",
+        "references/rules/fragments/backend-upload-07.md": "cebf7a5d24f5e0bb07fa62e5c2585b62342d4fd2d3d20b7f929bbbfb03707d34",
+        "references/rules/fragments/backend-upload-08.md": "12831ef805147f36bca937e715c1607916e68e4403a5b1845d6ed0347e93de98",
+        "references/rules/fragments/backend-upload-09.md": "339d0d5f4bb9f1b0f15bf76a778e55322ee872fbdb3ef796086be1eebea029c0",
+        "references/rules/fragments/backend-upload-10.md": "52cd4ae7f2a811f2ffd58d5d141c8166c311e9ca7f78b38f3419cc5cffa9ad83",
+        "references/rules/fragments/backend-upload-11.md": "aaf523f6fe3178e76b16b918eb14b681faeafed005a70139fdb70f125c21c0da",
+        "references/rules/fragments/backend-upload-12.md": "681028d8f7fe9f71fc97bba3e625f47b5fb69521b432a76b10a7a3ab93951776",
+        "references/rules/fragments/character-format-01.md": "5941c83fc1739e8799330e89612934169602f21ad16fa199865a0028148e3b6e",
+        "references/rules/fragments/character-format-02.md": "dd49535e1cb64d8f96848b8dcd7d422bbe079dc133e706cf69c6f719eb3c0d25",
+        "references/rules/fragments/character-format-03.md": "94437fe0d33bba714e38d2a34ece50ce8181b44e2862ce7a5a07221d3a84f8da",
+        "references/rules/fragments/character-format-04.md": "4df073e6c1083b98dabff3d84612a80ec65261830df236f622957c531fe979da",
+        "references/rules/fragments/character-format-05.md": "7c00ff420ecc03ce1c3dc3ed56b977c22a0a4c6ae7d62806ea99e9022aaab6c4",
+        "references/rules/fragments/character-format-06.md": "0ce500c8d87b328609a27196e5befad6895297523d64c495943d99d5f5568c0e",
+        "references/rules/fragments/character-format-07.md": "448204ee70b5135629f6b15a43cad0fc093c77b80dc384a636eb5ba18b09480f",
+        "references/rules/fragments/character-format-08.md": "6c6471d28d97c6d0fc032bb9e8e95dca1f05ca676c0e11dd1bf748004c7df075",
+        "references/rules/fragments/character-format-09.md": "b8d46945190e083e971a2b3edd2ba5b669f31bedda69fa89478277ce732e1115",
+        "references/rules/fragments/character-format-10.md": "ed9ae1208e96bd2951a8597195bf39a3c00708a711e539c1dce526f5a19e5c4c",
+        "references/rules/fragments/character-format-11.md": "e918181fffbe22070977a0cfe3c29d743f9bb0dc9157cf9e12913b1ff64c4a02",
+        "references/rules/fragments/character-format-12.md": "06d34a4128dab446bd06ba7e305a8ae62c2d0af4bcba6c0671e394f43bff80fe",
+        "references/rules/fragments/character-format-13.md": "7d4bceee64a1d98279cfcab273b5ebae1b7672e8341588f2f74d7f3f5286c691",
+        "references/rules/fragments/character-format-14.md": "6f910d3879a56cd27b3ea916e6af1d84e36b879bed7e452e17027a7f0d717ce9",
+        "references/rules/fragments/character-format-15.md": "6c43e5be0eaf6c8f4539e1e45324801deeb5ee5d3a543ae4b6a394e92f5b049d",
+        "references/rules/fragments/character-sheet-01.md": "a8b2ef54d45b7ec1408559aa84d7986de1e1ae2b91fcb59e4c4dd206a5e516b2",
+        "references/rules/fragments/character-sheet-02.md": "50deb6c64a2d7c76f060bf8a6aaa9db497ed5a4d89a6144b7ae27b576766146e",
+        "references/rules/fragments/character-sheet-03.md": "483145f9d7d4e4011f8320c5db7ebaea695ed43afc0f884fe3b29c198a552987",
+        "references/rules/fragments/character-sheet-04.md": "80ded8a80a393f4ee5da71792c958404db920518a7f94c75f9d40b4d1703a0fd",
+        "references/rules/fragments/character-sheet-05.md": "71102c23cfb2f145e04cba0462468b2f2ddff7fd1614b67426dfb1b36a159ae5",
+        "references/rules/fragments/character-sheet-06.md": "d7634588874696a17402928be9b1e3b76b457b88e003f7eeec827e7b8be521c6",
+        "references/rules/fragments/character-sheet-07.md": "e1ca051f88e7ba9306e07473939b52942159d0d9c5a1477c28850d456c6f4d6d",
+        "references/rules/fragments/character-sheet-08.md": "a76a4f27ec10dd68a4f8378cb79cdbf1935b314de5532d3f8cec224e84338c4c",
+        "references/rules/fragments/character-sheet-09.md": "16815dfcd2eebc3ac5e01ee8e3269053591bc11cf6c1e4f81a4247266603f572",
+        "references/rules/fragments/character-sheet-10.md": "ac57b48e3bbb0de7e2cb6ebb9f349fe0b04155bcb81baad80a3fd733ee23122e",
+        "references/rules/fragments/cleanup-01.md": "48a37f46e2f47d485a0eebfad4d0d73d4f2119c4abf5ed6987a62c715b81db1e",
+        "references/rules/fragments/cleanup-02.md": "e74fb3a906c2423cc8486fb1df89fcf0d191cd34615735dba7dab994ddf5e7ef",
+        "references/rules/fragments/cleanup-03.md": "c8dd9ed2086e310a0fbaccc8effbb381f19d4d2190fecc57bb1ec88182c032c9",
+        "references/rules/fragments/cleanup-04.md": "1bf4113d0b38fa4abbec476b2fee6509ee5e44b20b32f6d549c4646cfe3d9754",
+        "references/rules/fragments/cleanup-05.md": "7019815c7c8d183785c3f3451b8f1e1b9d2298d6802ed6ca45583b6751bb4487",
+        "references/rules/fragments/cleanup-06.md": "b903e4c1f4f1013457758d2ed0f55e014379293de35285756c6aee6feb31af68",
+        "references/rules/fragments/cleanup-07.md": "4081eda4722dea3116da7771985c46f5eac6ee6433fd6f909a3a032f76a57c26",
+        "references/rules/fragments/cleanup-08.md": "09ae5c3ed24345aa7abd23db4a141596496e2e6c97da7bb19674d7cbcc520bc3",
+        "references/rules/fragments/cleanup-09.md": "0b02003fe3a93a76adc6b00391c1876f623859215393df1c743e6d3ffd6dfd6f",
+        "references/rules/fragments/cleanup-10.md": "e04f3422f80277fd1854c73a1e037f188e8060bdb6aa738187edc4e76c42c44c",
+        "references/rules/fragments/cleanup-11.md": "d0deda9d9092bfece86b193d4457639153f6b8706e2450b542c92bbdd67b7e22",
+        "references/rules/fragments/console-format-01.md": "71c6bcd8a5337956e4fcfa9e161049618bc5b70af97cf24bb3f8232e4469f016",
+        "references/rules/fragments/console-format-02.md": "fefbb511ff6a12c0bb9fe6c34e97cb1b6d9ab7aa5bb57c03d2f211287e41049f",
+        "references/rules/fragments/console-format-03.md": "a1166d8c7c7c2d0b8295199e7674585896cee3c4a715c5d3d15efdead0dcd0ed",
+        "references/rules/fragments/console-format-04.md": "81ba9f2672fd10e4c3dee0c065006798a645c8b09adb8f9c98f543c1d00d0f42",
+        "references/rules/fragments/console-format-05.md": "9b36d82095d399ced4de4681511ded4cededa4abdd310a4787cdcdba09225693",
+        "references/rules/fragments/console-format-06.md": "c440e4fcbd8ff11434c00fd78a7382302a62d20687c95c76c2b323e0f26d2235",
+        "references/rules/fragments/creative-preview-01.md": "909048b8020e51a224f41b25a1f0cc56d814cf1e3c5a76c0a90936908f4dcc1e",
+        "references/rules/fragments/main-01.md": "241cfc79c3ed4a1f3d1dc85c272e16fd8ff53b2c8f7768303ac5e67ba99c5d81",
+        "references/rules/fragments/main-02.md": "7a91ca383d890d50edef59d73b7c7171c96999dc4dc17428b327789950089bd2",
+        "references/rules/fragments/main-03.md": "f360e096b8f98a4aa9d2a2ea72a4675e47ac4fd160cb451f2768de20f1981f42",
+        "references/rules/fragments/main-04.md": "8bd460f78e55a64d453bc4a3d5bc4cf99e5905424787ff53a7285c49bc74d8e9",
+        "references/rules/fragments/main-05.md": "2c4ee4c394b016e3c6a472876db929b2351eab0be236990526bd29c390f5b1f4",
+        "references/rules/fragments/main-06.md": "e61e8049f98c56ae01caf40338f80a2d4cf3371c3e902736ca97dbbb4240a124",
+        "references/rules/fragments/main-07.md": "7df16c519427b07052bb6d2db36ac67b4bf59409b599e04ff269c03411198cdd",
+        "references/rules/fragments/main-08.md": "7aa892c678d88323f1a438ff6a0375dfd74c1e5bdbe11e366d5218fedc0a84c0",
+        "references/rules/fragments/main-09.md": "68115db09276a0ff95ac524cc7fe5b5c8392b440eafb5533d4a5d31cd24c5132",
+        "references/rules/fragments/main-10.md": "da5c5a160f35079daaa60d1da69104c34dc0775466ab31d0fa6d145cbd378a23",
+        "references/rules/fragments/main-11.md": "1e4256e54050b8eef72b3820281f52e2453954b1e45a4cf35af2cf5b569a4777",
+        "references/rules/fragments/main-12.md": "3291a655c616fda76ea4b4e4639dd6c04794734b91f68840c91b42880e9bebf3",
+        "references/rules/fragments/main-13.md": "4b0f8591bd799b72caf44c8858a80c822336a8b44d1f0e96306c3ec459d015fa",
+        "references/rules/fragments/main-14.md": "0c129dfc5bce0b700124755fb5f2df0d8535153bc8b973e5441d10b1ff5e9c8f",
+        "references/rules/fragments/main-15.md": "d6bf74e837d4a7b347b537258648aa33751c4abc5e11d2891a0e76ef6653543a",
+        "references/rules/fragments/main-16.md": "4928de965a7386eed7fdac9e3068bfb0d936b10b6ff4e5c6b35a8e327d905a12",
+        "references/rules/fragments/main-17.md": "cd94976a5e972089931491c6f91cf2bda39c96d7e39bc35fbdcc80c1136b61ea",
+        "references/rules/fragments/main-18.md": "9bde01d3d65355e75463872d3690fd8cff0d7d599a7ab39252e41208c7b2c968",
+        "references/rules/fragments/main-19.md": "4e855a15daa09d2967e8e47a6fc39c5e45c4a07a0dc330fd40c6a39e57f94c46",
+        "references/rules/fragments/main-20.md": "ccd1a9f1649ab621aec559b48e81c36549d6c165ae00879b631271e8ebb318ea",
+        "references/rules/fragments/main-21.md": "ffba82ab292e49e9ae14f1a84126cc4c2bf93275b9a2bf2d633c703aeaf0e66a",
+        "references/rules/fragments/main-22.md": "2a24747f7ba80799a01804d0dde13cf340b2cb3cd2c7ccb8141f6f9a938d3eb4",
+        "references/rules/fragments/main-23.md": "ff12c172cbeba15fd734e34ab7da084901a976e3580909ce9cffe39827116d69",
+        "references/rules/fragments/main-24.md": "c4c9ef155a0e7ce28b4bf102a7c5a96c404568c7cf4f7efe53e85e45d0a6196f",
+        "references/rules/fragments/main-25.md": "27094cbd6b1f432ca00b1537b9646c9b5fce308130f758d75f8bef56d3c1c07a",
+        "references/rules/fragments/main-26.md": "8a5180ec38257e149698d855864d9a4edb92289d806ca1aadd832420821d0138",
+        "references/rules/fragments/main-27.md": "7145baccfda5fdceb2800e73d85369c0ea1e891f2e6922f7fe3649cae78ecfe5",
+        "references/rules/fragments/main-28.md": "a7a5a02cb51d386bb2d0ba5afd383bff23f465ce34cc0841ac3f44bf8954ff91",
+        "references/rules/fragments/main-29.md": "7c23be3b03226bc68717987a303cdb285cba4ac5edd8f124c7e268b1b304a87c",
+        "references/rules/fragments/main-30.md": "39ef45f100c8cc8571097d26c875fc98e2ba0d5f05498d11e708bc0dffb44ace",
+        "references/rules/fragments/main-31.md": "71ab64670ddd4af0b2af643be03fc27d79dfa82e17a39e524f3cd654293fd63c",
+        "references/rules/fragments/main-32.md": "d6d1bac436e20fc81b17ae4aa47d9623a14d71064040cdc2ea5ca8385d2fa5f5",
+        "references/rules/fragments/main-33.md": "d310937460f938647fbcae6c7ffa5ac1002a923f4b2b59e984d23fb191de58a8",
+        "references/rules/fragments/main-34.md": "4f34ad6a297deeea5fe841ac17f3103f6b792e239334a94e52984f09615e2cd3",
+        "references/rules/fragments/main-35.md": "eebe4eb0ac0e71f8f964e196fe29cd507ef41b8e850773c67015dea9674ccb97",
+        "references/rules/fragments/main-36.md": "0cb049ee6b100b4004f04f3ee6cc94b92787d4dbce4859a2ab2903299b157f33",
+        "references/rules/fragments/main-37.md": "e49f66dd60504c7932e8f995eff8f6d74ff8c967ae1c2553933565a9beac6612",
+        "references/rules/fragments/main-38.md": "acbd872bc0974a5485b91e1acb2d9ab6d90c45a3897d0c715b42275be213e003",
+        "references/rules/fragments/main-39.md": "a1a30f608e0240b68f0d94df29e81a546d73c7fef1e38bb8dadd6f101372348b",
+        "references/rules/fragments/main-40.md": "c54560f48568751dfe70909f6265af32f7490950442ea0086872575129786cfe",
+        "references/rules/fragments/main-41.md": "a9bf7c83b305bb529f47196acf0cb1e89a2af44fea69492fc8a8b0069f447150",
+        "references/rules/fragments/main-42.md": "6efea05d16b9f006fbc4473ddeaeeef20f7cafd816c968a560c16174b8ed6de1",
+        "references/rules/fragments/main-43.md": "0f77b451471169492ab00499128f2676d41d149f54f8a40168d816393ca8cdf2",
+        "references/rules/fragments/main-44.md": "afdaea6b0350adc6fa86c0dbb6486ed69404359e96e536bf1040705ba1330222",
+        "references/rules/fragments/main-45.md": "e30392a2c9951e937f1e7b92e0c05233cb212df79cb3983a19f7b0e157c1e57c",
+        "references/rules/fragments/main-46.md": "cc96bca153b429dd11b2eebe53332f05b3a9e5b4e4c1c47d424afd68718468a5",
+        "references/rules/fragments/main-47.md": "faa5b6d760d70c74f56e3ae8f2193d738a28102eac60d64153c128d742be912e",
+        "references/rules/fragments/main-48.md": "c49a8bb48f195df0dd0b9797201a3d48df9a47316425c01e5ad38335cb561796",
+        "references/rules/fragments/main-49.md": "f3da0d17f9f1e1805fdd2bde7ce80e94a21bd711f4d0cff690a4a837e9f273ea",
+        "references/rules/fragments/main-50.md": "bf35942531080ca3a18de1bc72692fcf958a8c3c4e8ac492de0972e0b33ef893",
+        "references/rules/fragments/main-51.md": "2b737bbaf8ac16b2db7ae7063d44d376b4472c3378ef41f79a62b9be13f1c37b",
+        "references/rules/fragments/main-52.md": "57de8caca2f8589e81c8506a6c34ac958ec814b7f8c60ae404b1e531b6b804d9",
+        "references/rules/fragments/main-53.md": "96422b068a8b2a2804f52a2b887e10d7697c67d528a3614251f6cf06a9d963bf",
+        "references/rules/fragments/main-54.md": "b6985f512e1fef574b6bb1968ad039c6d3dd6d620d398babd9d692af43ee5741",
+        "references/rules/fragments/main-55.md": "4a9fd1a6e84f03036c9b47cbf039c1c18d3751b87498076df9d1243f7c16afdd",
+        "references/rules/fragments/main-56.md": "ed5606d6280b194d4b80fdb6b56e2a38b8fdae6c6f03043e8f7381389c4a38f7",
+        "references/rules/fragments/main-57.md": "fe3ee7416b3dfde21af13be6f76d92984501310136344e9baebb19b2cb012e63",
+        "references/rules/fragments/main-58.md": "55e57f10f15ece47b0ff95e98047bbbe943cba5253dea59e048ed08bf3152ccd",
+        "references/rules/fragments/main-59.md": "06f2d274e0f1c661a7dbceef6eb61493f8c8991d122be8c7fc4f86fd078ddc9a",
+        "references/rules/fragments/main-60.md": "5848c2baa05ef622eeb256573df3640f05d2a172803e0ff22edd0ec6c8a251a5",
+        "references/rules/fragments/main-61.md": "2e2158507b521b919a194e99abba5e193f4c86c48cea3e9db7eb9ef8512f5640",
+        "references/rules/fragments/main-62.md": "e9a99eab0f1c829003a486762d8a680fdb1bc95e9ea38923d164bdd3cd24ac39",
+        "references/rules/fragments/main-63.md": "79e24ca8cf4c06af6007659899786a8c6c8eeb6a1f3df98265ac12000b3175b8",
+        "references/rules/fragments/main-64.md": "892b9b923a457e4df98e2cdc08f72ea2e22929652c17d33e178d4b8d31c06820",
+        "references/rules/fragments/main-65.md": "04e221cf9c720cfb03f98b642e967cabd0fbe5f69aeec06863765a62ba5626ea",
+        "references/rules/fragments/main-66.md": "fbcb73f6649720a2303e1e74ee68d648bee6ed7415a2d935bb08ffde09e5501f",
+        "references/rules/fragments/main-67.md": "d3320cdbb2d2727ecaf73f0ab5be446ff6c87847fc2a58cc10732aee4afe79af",
+        "references/rules/fragments/main-68.md": "89f6f9a68227289fd3642c17a654f7df2f6259ec3fd1ad0411547ff0c3bd6a9e",
+        "references/rules/fragments/main-69.md": "fbe2866a0d6626f3d8dec5e58555083e538c42303c3d4fcb210fb28c6d524c7f",
+        "references/rules/fragments/main-70.md": "059973729deba582fef4336aab8bfccab492e1b6ca3374838636c8b56d965330",
+        "references/rules/fragments/main-71.md": "b363787ab15001c9a385f604acfc290cb38573642f85bcddaf3fbbc293b3657a",
+        "references/rules/fragments/main-72.md": "83f672a7696b3470ed990f2a04eb64e73b6d17f2fb61a6c42571eb7b34ce794d",
+        "references/rules/fragments/main-73.md": "27d5c7f64fa76ba53498c2a0ab8f4b7dd691ab75c480b760afab9397c4c66da1",
+        "references/rules/fragments/main-74.md": "02dd533dabc14c6d4e08c0955b01d01ec46feefa5f09bb154d3d7b8a50bb5681",
+        "references/rules/fragments/main-75.md": "abcab8df017e9c230653ef24e749285ef40a61c48c549ce0034a3221291deaea",
+        "references/rules/fragments/main-76.md": "cb7527a18e59c59bb2c640d1643a48e6916f00c7d06c4aa7a9dd2e7fe2446087",
+        "references/rules/fragments/main-77.md": "7bff7321e3642a1d3b9a7540710a4662d5ca757a5a038c1aef3c38fae01eb217",
+        "references/rules/fragments/main-78.md": "11de1ff8a25b9a9cf65b75c566fffedf760bc1867819d3f70f4f5cc42e73750a",
+        "references/rules/fragments/main-79.md": "e06d22641b90e2b7eff863a061e1780ea2839bc8c06d0c9fb610b54e99addccf",
+        "references/rules/fragments/main-80.md": "c38fa8eaf79b11a04b2c039fac60eca1a6a539d84d2739550c0f09baa881a86c",
+        "references/rules/fragments/main-81.md": "0a3d9c621aae333ff3d642a0475642fcc7589d9d6fb8f32c53a1b8c04c8e584e",
+        "references/rules/fragments/main-82.md": "1fbdfa77c5bf38296669d31989270503698eaf231bf96b7f41fcf76237677e8d",
+        "references/rules/fragments/main-83.md": "7b448bdd7999b032957e54771618138e027aa548f46b98ae36a3bff35dfa8328",
+        "references/rules/fragments/main-84.md": "b4ac1e5567a351ffd208d093c622f45df685a4f79e6d1fa74791e9cb11481600",
+        "references/rules/fragments/main-85.md": "e16abc69a3c2d4fbd724396bde689f793a3e2e31a8982b69e2757c20f5386932",
+        "references/rules/fragments/main-86.md": "f6860655f072775f48a575b75d10966bacd9e109b892ea43d88c85fa97492f94",
+        "references/rules/fragments/main-87.md": "1d180fdb9c0abdbf3d5c4dd8dbf0fa83a42151877a342e8a78c92eb633300938",
+        "references/rules/fragments/main-88.md": "f1f48e3eb51c78328e0d80e5b28bb0a908a69c1b8fb1fc16ffe3db0b7f9f7445",
+        "references/rules/fragments/main-89.md": "9b49e8f8335e057cb1cef19e728632a9d2fd22eb6096d6c402783ece40f5235b",
+        "references/rules/fragments/main-90.md": "1007d1c237b72f4876f7d42a448eb2bc7eb0e234d1e7a6e282cec8e4cc93c50d",
+        "references/rules/fragments/main-91.md": "92672a7ad81ee1aa244c02ab53d63ef34cfae94152d2065645b7bcb6a8ab057a",
+        "references/rules/fragments/main-92.md": "48fa731af7c7d96aaf6f18c50d564ed519580f9698ebef9dec4ce077a5309ae4",
+        "references/rules/fragments/main-93.md": "4227dddc21f1beec234659e11ffdcb6774ed69ff5668f94209ae64acc679bcd5",
+        "references/rules/fragments/main-94.md": "105d4e8a8a7c2e4e227a52d48ac6c3d94f4cc6fb63dacb7a689de654b605f382",
+        "references/rules/fragments/material-preparation-01.md": "35eaa919d2045489783da8f4bc4e65550d4bba7b94755cef5389e713101129a6",
+        "references/rules/fragments/material-preparation-02.md": "d8119140bfe65653e09f65357ded385d68679a04912ada32befb41848da56432",
+        "references/rules/fragments/material-preparation-03.md": "590056fb86d263fc7e84785a0205fd2373f6673bf14e7eab276c69e838e5c0b1",
+        "references/rules/fragments/material-preparation-04.md": "b6084cfd1934b14f637ab024c6aa129c21808fd40a3f39f0c6a32d8e72126c1a",
+        "references/rules/fragments/naruto-b-library-01.md": "8251c7e5d4159baf0f8b7d635c23a1c7efa7f9bf961f1c3e8d35fd2e7a4a677d",
+        "references/rules/fragments/operations-01.md": "fcc88b3b68674ff5e3af5624e11327fe2f7bfd9be46e9f2fbf2058b370b75581",
+        "references/rules/fragments/operations-02.md": "2d59b41feda7befe1a049b16c199133bfb24cce35723dabc2017d149d1537877",
+        "references/rules/fragments/operations-03.md": "714eec084b5a206e3a21a38263f87d2733caa7cc53f25e60d254c32e34f84f6a",
+        "references/rules/fragments/operations-04.md": "f0160ea7ee6bc67e88617d58f0b0f054d7cb2f9165deb359519598cc7948d202",
+        "references/rules/fragments/operations-05.md": "e61e8049f98c56ae01caf40338f80a2d4cf3371c3e902736ca97dbbb4240a124",
+        "references/rules/fragments/premiere-automation-01.md": "e8e31ec90c581931ab95b22ec31103be3353a001ce755168bbfc21ea92d5e547",
+        "references/rules/fragments/premiere-automation-02.md": "1ee80a854e35016c1b651219726989c314062e2d95421ef9f72b6b7616d7649e",
+        "references/rules/fragments/reference-scope-01.md": "97096ca87c68475f6c5caf9dbba6b869dab7274cef3b3d430ae3c029137cb2d9",
+        "references/rules/fragments/reference-scope-02.md": "a5f472b21472fadd37413aa40b999f58d3b0c88cf0e2005ba64e3624fc84b110",
+        "references/rules/fragments/storyboard-01.md": "d0624a349d2a2df8d79dab9d9910bbeaaf87303825769305f4bcf5f9e141d3fe",
+        "references/rules/fragments/storyboard-02.md": "be4d70f397f943d9cbc43e5a5dfc631320728ca01b48c6c9f0b4c71d609012fd",
+        "references/rules/fragments/storyboard-03.md": "3f1c3f6762134f1b1f716128a5d3ec28fec87778f90a9257bfb68bcfd2f811eb",
+        "references/rules/fragments/storyboard-04.md": "cb39ddc1144282d4bbc134e7fc0c92170e74e0f9fb23751508692fca99a3b57c",
+        "references/rules/fragments/storyboard-05.md": "f61a79419f409aae7fd08a803a207822885906527c2f50321b1aef1c725f5dcf",
+        "references/rules/fragments/storyboard-06.md": "6fd13ac31c23b506d3e21a32e0c627f48201e593e53ab4c148069c7dc0ebc459",
+        "references/rules/fragments/storyboard-07.md": "e173481179a1325b8cfb134ffe0265ae3cb56636e9a1dff98062f7225e0fe056",
+        "references/rules/fragments/storyboard-08.md": "5ef11f090925ec7b006d3e1ffa32a64bcb6335209f729cf919dd22bfc11c7480",
+        "references/rules/fragments/storyboard-09.md": "055a7ee079d4a8c5876b7259ef9a18e25c60071c1b297fdce7e895a00000cc04",
+        "references/rules/fragments/storyboard-10.md": "a01607d74fe8a5c2049a3eed8468a4a3fe286bb8af29b27f6e8ab112834cf3d3",
+        "references/rules/fragments/video-prompts-01.md": "13feefd3a6e07f6e1577498e7b14dd7c0f116851dcbece28d5a99447a952fb80",
+        "references/rules/fragments/video-prompts-02.md": "a824204b2301dbcbf92b46dbff95002824bf099a4a4e8112f657fd0cb7163601",
+        "references/rules/fragments/video-prompts-03.md": "b85a7ce496d3bb00b722e1bebb1bd5c31aa3610aa29d41a458ed537208d594cd",
+        "references/rules/fragments/video-prompts-04.md": "5a8347790d8dc7bc5f76e99bac1d563130d00a9603c27ae3f16170a5125ab979",
+        "references/rules/fragments/video-prompts-05.md": "0d3b34eb78ec4b2c9e946b9899c935672e7df96030a110889261ea63b5d28489",
+        "references/rules/fragments/video-prompts-06.md": "af152fa565d521d8515ed833770f98d413f1ec24f607646c4cdc1cd2a387d8a3",
+        "references/rules/fragments/video-prompts-07.md": "6e5002c2ad74b2afdcd6a922be50a872b2b3faa526a375fa513807878a9b5edc",
+        "references/rules/fragments/video-prompts-08.md": "d14a11df531a5aa3653f10a031a16c9f417441e4ee2dd6fc12beb31f70fe176a",
+        "references/rules/fragments/video-prompts-09.md": "9a646aca1347edf7fa1c0c57f782c4784694d8ec7a410f4690b0038d741264e8",
+        "references/rules/fragments/video-prompts-10.md": "ac720ea3896462075aa7c93fb8d342fd02de671eb7f643957bffe41bfc1e96f3",
+        "references/rules/fragments/video-prompts-11.md": "c318deed6d11bac9513e1d3de6a564c3e46fed49fc34807607e9caa384acb347",
+        "references/rules/fragments/video-prompts-12.md": "81609aa75d96590261b8e14d7a8ae475ffa38b3424fb4590022bd3fad09e0abd",
+        "references/rules/fragments/video-prompts-13.md": "fb5777589442e194440acd8acef3c9ee52037929a425cab576c5c5b1e5e6c852",
+        "references/rules/implementation/backend-upload/skill/SKILL.md": "90ae648bdf7517f8ced25c276d3e7a6e1c8b86f638be1ca56866060470fe5233",
+        "references/rules/implementation/backend-upload/skill/agents/openai.yaml": "aeea92acbdefb9ecf3624e53d53c933bfc026496f9482eb10488cc6f4bbf0529",
+        "references/rules/implementation/backend-upload/skill/references/contract.json": "5aabfe7ef6106195c98949bf45754491489e1c892100a3c25b5bce02597c70d4",
+        "references/rules/implementation/backend-upload/skill/references/mapping.md": "5e2711cf49b5c071cfec2c3e88862d91e621c2b1c0e9a7ae65c2bcbc3b9b9309",
+        "references/rules/implementation/backend-upload/skill/references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "references/rules/implementation/backend-upload/skill/scripts/entry.py": "2478df00037725e76360bbb41b091e55783b358bf489fc247d4550403c53fe7e",
+        "references/rules/implementation/backend-upload/workspace/scripts/console_content.py": "1206f2f19717b6ad8f75b316a1bb663a21eb2cc8b76c0cdc5f9863ab0597ce8e",
+        "references/rules/implementation/backend-upload/workspace/scripts/console_template.py": "8cd4f276f93929ff441349c2979682b5be528b482315262897ff40d384c6fc0a",
+        "references/rules/implementation/backend-upload/workspace/scripts/delivery_contract.py": "4d378d62da8beae723d63487286b7ecfb12f3e93a891969ce2c2f64cd031fedd",
+        "references/rules/implementation/backend-upload/workspace/scripts/dreamina_workflow.py": "122d63e200cc6ffb22f8eb3c46f368aa838f87ed76aef00bc0dfa9b94ec8daa9",
+        "references/rules/implementation/backend-upload/workspace/scripts/feishu_safe_patch.py": "b3bf4c74351faa2255202fd3067f5bb950e61ea8c17c26420a39ee119f8bac45",
+        "references/rules/implementation/backend-upload/workspace/scripts/hailuo_workflow.py": "23f0cd014a985c22bc4ae05f2b9c20ef349a96c66bc482ec5f5656aaf75a9906",
+        "references/rules/implementation/backend-upload/workspace/scripts/material_upload.py": "b99edf7b845b37fc89985e0154221cafeaa4f4b6d1dea0d05e5998d5aa7ce60f",
+        "references/rules/implementation/backend-upload/workspace/scripts/native_upload_build.py": "e33cd6f294f1d74aeffcd983ff4bb398024edf1154abf5e63ff63b5027ca3cd7",
+        "references/rules/implementation/backend-upload/workspace/scripts/native_upload_controller.py": "330ba60dcb1390ea2a3711e1ccfa245731074d9f84871c8e6e73ba5e61a8003b",
+        "references/rules/implementation/backend-upload/workspace/scripts/native_upload_guard.py": "d2b7a4c0e9a287c30306364004056419c3a87a533294e38844ee69463b997fb5",
+        "references/rules/implementation/backend-upload/workspace/scripts/production_order.py": "58ef11ee8d22b1f36aebecda59d37b2d78145e19be56c24ee74c41407f532350",
+        "references/rules/implementation/backend-upload/workspace/scripts/prompt_contract.py": "b72854b070c134ab2544f1b19de7c5e9c17d2b15d25ff56199a0d919ddf38842",
+        "references/rules/implementation/backend-upload/workspace/scripts/receiver_config.py": "bf3369a9a19002e464941a55a18e0e8a675078c7a63732f22c1deee7106eb48f",
+        "references/rules/implementation/backend-upload/workspace/scripts/reference_scope.py": "37f41141707891ee89a72724ce3a0148a6b7875b257ef05e5dd0212ed1e85389",
+        "references/rules/implementation/backend-upload/workspace/scripts/rongyao.py": "0013c5ebb8b749d40c00c36b933fe6fe84deac5ed3e1dc9a4219c93851f5cbf6",
+        "references/rules/implementation/backend-upload/workspace/scripts/rongyao_checked_upload.py": "4846852ae42313355957cb35e01cdc4a0c8786cf994c14bf71ceb35e2a1fe39a",
+        "references/rules/implementation/backend-upload/workspace/scripts/rongyao_fast_session.py": "3661fbe7008f1959549d58049f7f3870b1cd6265d89456b815668c82903cae1e",
+        "references/rules/implementation/backend-upload/workspace/scripts/rongyao_material_upload.py": "e40c85b50519588e2eb678a9d03d5bbca97c69e8250232b3df3d349a57342a51",
+        "references/rules/implementation/backend-upload/workspace/scripts/rongyao_upload_preview.py": "a0644ff2b84cbfe19807d7ec7e78e4a304084c60d955208cdd10ecd83bf1bea8",
+        "references/rules/implementation/backend-upload/workspace/scripts/rongyao_video_list_upload.py": "2a3992b66c4e61b67d1fcfe347ad9961d7c4da69bc7c56088440c8a0b7610643",
+        "references/rules/implementation/backend-upload/workspace/scripts/ryai.py": "0d7823dbbaa69f930c908079684892da1a6c34b0dc07236f3470c815a506ec08",
+        "references/rules/implementation/backend-upload/workspace/scripts/storyboard_parity.py": "4cb31253856aaf5377d23f1e2a228dffde2145a84ce11fbbdf2b0ed489e879aa",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_deployment.py": "f24fdd5a09b3a0f4b8247777b84b758ff7ab0488fc427079c51e8a43e6a632c4",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_node.py": "b0ebc0a960fb9da11d787b8f6693832e797d9a887c3c820c052bfedc8da62f0f",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_readiness.py": "49c83e7e6c8a2f164ba453986edb91a42ee453f12729632f611cefb4ad2db604",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_rules.py": "f0c4c9475ee38c7ff349fb4bd640ae2c3b875a4534bf8a4292058d791d8a74cc",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_runtime.py": "af32668b8dd521df74298f50c597c10a2c33fa32c488baf7dae25ad758893821",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_skill_dependencies.py": "f38a7f241a730be67ac80eb395b11c618167fba45d28731de0db5d86a3846645",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_state.py": "3ec0393b419ae562e6c43a20ccafd2be5ee51dee304919e9f3da1328c85f6e62",
+        "references/rules/implementation/backend-upload/workspace/scripts/workflow_step.py": "e7350129ffbeb2227d21e7dc20b852b72659e3cfbc5700a05ffb31b72166e322",
+        "references/rules/implementation/backend-upload/workspace/tests/test_cli_stability.py": "e06874aa6bc09757a71886b56b6e461cb73a77a2d127c8552e95ae2c708a12e8",
+        "references/rules/implementation/backend-upload/workspace/tests/test_console_empty_content.py": "149c60a03e128b76241a6cd319e73c105b6cb9338904471a82669a5eca91f0c2",
+        "references/rules/implementation/backend-upload/workspace/tests/test_context_recovery_output.py": "c496d3d0f384b622edf9405cd7e4f688b10b405a3e5b2bfbf1688b735d4bb8aa",
+        "references/rules/implementation/backend-upload/workspace/tests/test_hailuo_workflow.py": "34c0edd8314a833dd579dbdbef3587fd2b8c5a7aa305427f1b1061514fc033e3",
+        "references/rules/implementation/backend-upload/workspace/tests/test_native_upload_guard.py": "9f4c1edba94fcd572d073128fd6c5837d2136978c9d527abd895717c6df514f1",
+        "references/rules/implementation/backend-upload/workspace/tests/test_prompt_contract.py": "dac7f6cf9bd1a01aef0cf3cf7774a2c044dd8490f6f9191573a88cb60bbe38e5",
+        "references/rules/implementation/backend-upload/workspace/tests/test_prompt_public_entry.py": "7d154f76f6575fb6c84af1a54c3261078d80fb09bd1e50d368c13e863c458246",
+        "references/rules/implementation/backend-upload/workspace/tests/test_rongyao_fast_rules.py": "b95fed7f85accc29161bf7913e5f042ce1bbdb276febde98c35337bd3547b112",
+        "references/rules/implementation/backend-upload/workspace/tests/test_upload_deployment.py": "ac9ca7a84618d2e24cf010ceb3aa87d71fee5518d375d5598b316dcc68bc9e62",
+        "references/rules/implementation/backend-upload/workspace/tests/test_upload_skill_entry.py": "6fd3885b3b80b5f49051cb55769d9d59b08a3364b1fe0652085ed3c2e932ede1",
+        "references/rules/implementation/backend-upload/workspace/workflow/console-compact-template.json": "93028196f3423af170bd049a095f65165bb8dffba06e5c2788fb3d86b7e780c1",
+        "references/rules/implementation/backend-upload/workspace/workflow/console-template.json": "f133b5f35b06823e5849475fc3be928ecd9b4f9914f9ed698eb5d59fc5a7fe38",
+        "references/rules/implementation/backend-upload/workspace/workflow/director-storyboard-template.json": "cd83841673f871e9d107c7918f37889bb1d7e0d9d1406b3b7edc193a3f9b92c1",
+        "references/rules/implementation/backend-upload/workspace/workflow/maintenance/upload-acceptance/config/requester-ai-rules.json": "1254d8f5579ca812e2909ae469a715dd169cf0782700726a5bb176b9f34d9cf2",
+        "references/rules/implementation/backend-upload/workspace/workflow/maintenance/upload-acceptance/config/rongyao-observed-protocol.json": "fed4888ae752cff5bdcb92e830f4f45b7385eaf35d650fa73678449221dfc79e",
+        "references/rules/implementation/backend-upload/workspace/workflow/node_skills.json": "759595c0993e0f3cabf4cd601cc9dbea360152c7b7cadd82fc9a81669e9f9ec0",
+        "references/rules/implementation/backend-upload/workspace/workflow/risk-hardening.json": "d16da9f594701681a7e5e00e42d27057f4c1e0a612de426a2ebb64c27af52f90",
+        "references/rules/implementation/backend-upload/workspace/workflow/runtime-policy.json": "14ba45afd8e64f428c82f227cd64db1408ad7ddc8c0d347039c36bbfe7eab88d",
+        "references/rules/implementation/backend-upload/workspace/workflow/stages.json": "877c1601c35f87075c4587dea8c938da7031b953dab9edc06f65b542be69d332",
+        "references/rules/implementation/backend-upload/workspace/workflow/tools/native-upload/native-ui.swift": "c83c9b58e0556b692f0937eb61a26351aea7520d3949aafc4fb23f7d447766ef",
+        "references/rules/implementation/console/console-template.json": "f133b5f35b06823e5849475fc3be928ecd9b4f9914f9ed698eb5d59fc5a7fe38",
+        "references/rules/implementation/console/console_content.py": "1206f2f19717b6ad8f75b316a1bb663a21eb2cc8b76c0cdc5f9863ab0597ce8e",
+        "references/rules/implementation/console/console_template.py": "8cd4f276f93929ff441349c2979682b5be528b482315262897ff40d384c6fc0a",
+        "references/rules/implementation/console/reference_scope.py": "37f41141707891ee89a72724ce3a0148a6b7875b257ef05e5dd0212ed1e85389",
+        "references/rules/implementation/console/workflow_node.py": "b0ebc0a960fb9da11d787b8f6693832e797d9a887c3c820c052bfedc8da62f0f",
+        "references/rules/implementation/console/workflow_rules.py": "f0c4c9475ee38c7ff349fb4bd640ae2c3b875a4534bf8a4292058d791d8a74cc",
+        "references/rules/implementation/paid-skit-character-format/references/implementation-routing.md": "456c4729b24c40f5335caefd6a04adef18d9599e018f229afe6af0bd290d99af",
+        "references/rules/implementation/paid-skit-character-format/scripts/character_consistency_gate.py": "6abad5e5b140b1995505aa32367536c624580c733f8fe4b452e525a2e2c5c3b6",
+        "references/rules/implementation/paid-skit-character-format/scripts/extension_queue_status.py": "e6452f7aeef3d26ea8dad82be156718b2f6476c33d62e7820015b81c0e2ad6ed",
+        "references/rules/implementation/paid-skit-character-format/scripts/face_reference_gate.py": "2d315432d6994fcc8e7d08ad85853ebd1c50889065317c167497b4faf43ab499",
+        "references/rules/implementation/paid-skit-production-pipeline/references/minimal-task.md": "955739e4b94b4b9d49940156de6117435d59f68d8766110819d2aad2a48f35b8",
+        "references/rules/implementation/paid-skit-production-pipeline/references/nonpaid-previs.md": "0aeda34422e7aec53520e8a1048a6e8b1ae1c7ae8387b0fae1b9199661665f60",
+        "references/rules/implementation/paid-skit-production-pipeline/references/portable-delivery.md": "49c116de3294307d5f138b702e6c3ab1bd717a09a3f682f1f9693690fef6eb33",
+        "references/rules/implementation/paid-skit-production-pipeline/references/project-cases.md": "6e8b80e1ee56f3edd8684efbf145e14c4ae22639244752fc13211e4a1eeaaf32",
+        "references/rules/implementation/paid-skit-production-pipeline/templates/project-config.json": "5e61fb70d57c8b940de480c5b26ac6e48b2c92b2563979cba7abc60639f0e257",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/SKILL.md": "eba803d0e984ee37f8a539bacf9b3f8e15b64df70191d856fc01306201c812c6",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/agents/openai.yaml": "102a6a9fb2afdd6272c6864152578a2b0f548f8bbbbcb6eb384f54d8f232d339",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/references/backend-contract.md": "67b5e205fceab7adae7adc5ff881e6c503f42d491eab3f01697d6175adcae106",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/references/models.snapshot.json": "6d02b09a7c44cb101cfe91a42e74bccdb3178594688195d4c60e7d94551977b8",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/scripts/browser_adapter.js": "bee8af678ba6fd83726864129b70de56b40d60b5ae81517a8574dd30397deb2c",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/scripts/cdp_bridge.mjs": "eab26a732ec202e11729845abff1dcc2971ef35837f5533e6884c1c080865b17",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-ai-generator/scripts/ryai.py": "06dfb33f8afac4674c77a5231d702843a8d320d4eab767e9a63a91485aff07ae",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/SKILL.md": "c8c1f8f0f9958a38b3620337d0c54493a6682207a783b3258d5d6aeb4ffc09fe",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/agents/openai.yaml": "61ef3f64a9edf34f59115deb3ecfddf1cf5806685702f43a20e995389d0497e4",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/aggregate-queries.md": "086cff2e0d0df9d7e34bf298f4e6b5b24cef31361a65ea29b8189494f810e124",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/data-identification.md": "ed15302fa7726af329ec3fa5cc3d8a3b3ef2a3e70f68fe13778c5256ae55a808",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/export-and-filter-map.md": "9347c861a4e12b7792cee56b81531b02954b00876d56245ec125df92361ab8c1",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/fast-monthly-capture.md": "a3eebb4fee6e84f7962210ee10d9b78862426b6c3dcf519a66f091082c6d338f",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/high-cost-material-query.md": "a344ef7fb316565f75fcc080604f4465d05408d26a9f1d3396060a73abc05425",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/material-output-capture.md": "7ce476a2975cad04ea62b7deee2f06707038bd54a3c07ed7860dd89dea158959",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/monthly-spend-capture.md": "e828fbac4e82bdb4c1a4690e49d0311320c140ad5f0519b4aaee7b06f2a54cd4",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/references/output-contract.md": "6a85a3d4a92c8c650ff1a5689aad71543cf7cd67ecc72e208a76656546abcc54",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/scripts/build_export_contract.py": "7219879d7de7430765d0d43936fc14e7dc8784415c082f3f0eac37a6c87ee2ae",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/scripts/capture_material_output.py": "dd4e0c6cbb067f43569123c0c2f3a7c00c524ec2d6c2cfd1d389758070541fb8",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/scripts/capture_monthly_spend.py": "31c4e8783557e196822c30e5193d73920337f6d55c548c7de52f91be80c4eadf",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/scripts/capture_original_materials.py": "e692cb4085e25a1a4f59e05ab369200efcda9ac34a848fec3d7b7a6bd8b12e31",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-dashboard-filter-finder/scripts/test_dashboard_capture.py": "29d5b9d9e1e04274703d8d3a10347553a05eb0ce4f31242abbfe7f1ece5dede2",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/SKILL.md": "20cc68376ff5a10344ff7afca9fd9f55f839e9a931e06ea839c8d38cc491a01c",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/START_HERE.md": "4be243d623c9c4dac016c58d518804814b9d1c1801166e8deb0a3c45459bb541",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/agents/openai.yaml": "4b5bd7eabb6e5e2d1a94764f2e8dcde4c927e6363adfea529353e6b647c21ee0",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/references/bundle-files.json": "4e4cce0158db5e0b7ced525fa6dbdbce68edae7b47286dedcfe3b409035c33f0",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/references/capture-habits.md": "2322017a7fe2829fe441f9979ade3b5ae5514d6c5e7f05559f971e724989876a",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/references/chrome-session.md": "0276fa3ee195f01cf9435b1ae61068a3f7fc3dde27217f3ea9fb91c22a3e6507",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/references/codex-handoff.md": "305f44434298b91d331c94c4b6940a7dc9b97131ff2b76ffe3f1adacff6d0d33",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/references/portability.md": "4a4ffc4b6a3202e3bd78141e70c3f76f461aa4b4170e91ba17cc440ef341eb08",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/references/runtime-and-validation.md": "1b1f783a2a33b94ed0dac6061f10308dc00f45a942d0a3e6e7922683c9135789",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/references/video-chatgpt.md": "62d5819041a616103ebf0bd7dbca423f172ec1893d2cf61854510a2f9a0dfd6f",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/active_chrome_bridge.mjs": "9443a6cb43411be90cbef0a5f8ae689c4c25500d95749c7379b1436d20fdd992",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/active_session_cli.py": "d58e91ee4acd4d48bf25ab82afbd1f82b4ea7edb3ad81d7be8cf5d48e541fe39",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/backend_export_cli.py": "680bed6bb2e460a3939da317e4cfd05275ac22688401ef4d72ae0be3739e183d",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/fast_video.py": "9879b74f71ce6f0975aa5b6d7ee9a1cc11ff5066ea13aa9f4698e4659b8fc392",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/install_bundle.py": "2525b5a34e998e9d0a02de2ccf6c39c3c43ae8aac301ad461ce959dfd7a5342b",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/live_regression.py": "5f67d1a35f9e526e09f54d89cd669b5f969c7e4930d90e090df0c696e5b3e22c",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/package_bundle.py": "9a9747d678a59f6234b286db4d20b714f6a59651d3fe0b83f784fb7913cddca5",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/preflight.py": "1cc67c18e715efda684f83962b0980b476dae433662f11709736d2b512273f19",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/readonly_capture.py": "c8aedc4bb876a55933f57ef31033b643d05113aac4ea717c1a63598c22283108",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/static_reference_check.py": "34c956560c2c29ecaf307292eb3ba5ac614d917af88c19cac206356e4d8a7ee7",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/test_fast_video.py": "8622eafae943d2e2fb534f105af6a3fac79dfd753b8683644ae7215ffb1b7045",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/test_login_window.mjs": "cd0e702c1155b297e0a02f6e4bb2b1cf0e46a7f87a753e4f1504f8bd29423b19",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/test_portability.py": "40b7910e30a8ea675f71b8ca06aacf93574cc7a0756064dd046894f39fc4ccdf",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/test_readonly_capture.py": "b6848d4eab82c105475ad8a65f9bd207376d7e81609691b3d1dc7e8ead8a9d74",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/test_session_boundaries.py": "ad5be23b73bb0d57cb76bd1ef99d8100399599557aa4e5db072b2e89016c4e39",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/test_static_reference_check.py": "71ff50a0fc1c4d7eb08c9f7831a9e56cbd870dcfd5337c4bf22fbd877e7981b4",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/validate_local.py": "9d885ea759edf0669fc625f520faabde71d41f7819cb8f10e9c594cd4baba5e5",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/video_bridge.mjs": "45338a5c689f3fcae4a5a9c676adcc71a4272b86e74ed7c9e6a550c885b0d183",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-data-stack/scripts/video_mcp.py": "a81364e335f22cbeab80a4b522f621a5791985875507cf398775cce480ac51b0",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/SKILL.md": "73ca71568f06a5374e90b37610f5c39159f12e05f67d845343c633fd564bb3e3",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/agents/openai.yaml": "36a7aca331b54b152ee41692037c4c89e3d853b74a39aa108fb13db3b8f31e20",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/ai_probe.mjs": "87543755616044c61d8b125196146d3b3aa2e3f101824aa885071c4bd16f1af6",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/keychain.swift": "61ee07967b880d39fe05c60c7af57f1a36581def8c3b62de3dd754dec76f4f20",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/keyring.py": "d006ea2a75325792d73562415c7eb03b08221073a6055e07c553ab7638c6028a",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/test_ai_recovery.mjs": "171d1bc6107da5839e49662b580bea51c03c7f4f4020b6beddd388b4788c1b0b",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/test_keyring.py": "1c766f8f8f038f58598fdacba21f4fa01cc4848eab8865153019f821cf690ef4",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/test_upload_login.mjs": "9ceb5ddb9d1f619527e1806df937cfc93c87bc5b4511f3c7af0af9d46edb2d28",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/upload_probe.mjs": "84cd9ea5fba2d7599e741c6744c56e9dd575f9dda43878177bd603689357742e",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-keyring/scripts/worker.py": "40eb249c047bc340d43a45cb357b74e7f7bf18141fd13ffe837e06bdf211427c",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/SKILL.md": "71eb7b6a9db64c214ad14bafdfe7ff4086809d1b08b98071ae4566eb7b1b411d",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/agents/openai.yaml": "cac4f406933ed1396343a0552954360ae8ace99af3182008acf84d12018fed5b",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/evidence-boundaries.md": "f32eef8397817ea281438820744f9800dc6a4b0d4e01b157d1f2d4f42e3461e0",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/examples.md": "96f6ab1a330012a3ec9006a368be772dafc126d4bb61506909204132ca72e739",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/judging-rules.md": "ce3c3e9cde7f92c79d8db19cccd2026300f77cc263306205ac5c3fbd03560db1",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/language-style.md": "033362aa3ac665634f222f3f41e748bda3d474f7d98f765af9a67ce5561d6759",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/material-taxonomy.md": "45cbffdd70fee395505f2062e0cab211a63da03315daf4ade378b507b81cf0fa",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/metrics-glossary.md": "e3c5b47d57bdf9ef66231eef80c91ba3c1f1eb90d964a3627c0a61a579e9f6f7",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/project-context.md": "1baa9761a98a21c3e5a6e2dddfb33ff6c1deaee8555dec7d301148507dc7cef5",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/report-logic.md": "26feb6f0d0f3d50a7c904e67b60d022a7dd1efd8454bd303174f82792df95179",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/status-report.md": "5e525501a73fe2408a98f37e91dea779ecfc8eb0d267e7807bc85f2bd909c7a1",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-analysis/references/weekly-report-formula.md": "89ac661f3fff99a872d4787ff32716264108a981b647e8de44f403185db72b15",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/SKILL.md": "1b87b2d8ab790ec70530684f2dc554efbe46c5a009eb5cc063ad620015b92651",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/agents/openai.yaml": "a724606a224a77076c699ef2b5b26904cfdcefd55b69109676ccf5289aa37af1",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/references/active-chrome-session.md": "064e1a0e7afc3f03032af757df8c34ab72e3a8bed58912dfe72197f25638e479",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/references/judgment-contract.md": "f9de50d06e6ada2a7e5b89b9dbb51348ed59a361f5d05f6324a238c2840d748c",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/references/normalization-rules.json": "1d211ec0e45903d24dfd806008326e5082d94fdebb1b3df7735a78c675f43655",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/references/performance-analysis.md": "e15c84964fef6c849569fd31f297af412352aa9594ffd65832674b7dda1cec47",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/references/query-contract.md": "920442ce090313b1cb713bfa86421bd397f63d5d5bdb0b0452f816216a0e4708",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/scripts/evidence_contract.py": "4b9fb9dd67d45fb2b010ae12b84cbc3c83ba81b60b83914eea4f7abd4a337e89",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/scripts/material_performance.py": "9a9afb806c62955b6613b12accdda01611b2167d7aff42785bbab1a207c6fb22",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/scripts/test_capture_habits.py": "9509c33010f6e7a0c5ebcf37ff64b927aa2ddacca422b7d8ae0962c0aa6c2c8b",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-material-performance/scripts/test_material_performance.py": "e81155426f3efc27311bed9e620ab0fc7b6b6f14c7259e9fc772ded67f3f87cb",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/SKILL.md": "abfbf1600c2fc7a0f0f58ac8aed1f1d69fe1297a577b1394e8a57e5455964159",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/agents/openai.yaml": "cd1ddd427ab6fe8cb82b18cdd75b75ea07dc4fc91a98816ba50857ef6f1f765b",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/references/cli-contract.md": "0d7e436b1af3b9953c2de60c46588e8fdaa79c49ae55267a6e2d9013e3995071",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/references/observed-upload-protocol.json": "2b904d3812078921e5e3982eb05b55e0b5d29132f90d42b7a8a35f4129cb289b",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/scripts/rongyao.py": "238af95f8414f451c38844590b14a3cf5573b5817aef34bb5d82cdbae42548b1",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/scripts/test_navigation.mjs": "3094b129ed045bd1caf5dc495b78c20e557ae5f351ecca606d27f2963c80c4bf",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/scripts/test_operations.py": "da76c29f20ab5f12add5e4aa4e6f205c85f8d064d751cd22f4ea95576fbec470",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-operations/scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/SKILL.md": "36055e1aa0d53350bc690d3e6e6719c3f22b9daab54f758a8f2ab008321bd79f",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/agents/openai.yaml": "a51d0502a3e6e35fa464118e168e9a03671709c6c6020b7c7b1d4a1289fdf7cc",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/references/browser-upload.md": "232df6a5b451e89fb5dfc0a017d68bb1caa96ce94e8bb186ded71d94f66ee322",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/references/company-rules.md": "a367611420b688a982cbf55adadbf23533a3e1b9b2712dd356c39ccc8e6b3553",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/references/job-schema.md": "8b73964ca2bd1ecc2af78b43873233227468bbf45036b73f0d6ac4ad6709c494",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/references/native-recovery.md": "2a96093e35f381c7a39e6702d05c12a54df281669e3e515f415ec081ec2d1e6b",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/references/verified-presets.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/scripts/prepare_upload.py": "a18a705d4c4f6e8a610b4e81034a48e83d62945ce59af474a59f3423270a0735",
+        "references/rules/implementation/rongyao-tools/skills/rongyao-video-upload/scripts/test_handoff.py": "6dc5468beb12d5a7063d808ab4962f1bf79311346ca668ccc5accd0c882db12c",
+        "references/rules/main.md": "aded8207ef2f24efe83f884b32ce0cd15d43e039cf4aaba6eae86221ef52cbf4",
+        "references/rules/manifest.json": "a5904814f58e8d1db90fe64aa21bc49c9dc3de9dfdd0cab8b9b78c3436af5472",
+        "references/rules/material-preparation.md": "7fb2db76aa652a4c5239afea9c4673df2c9faf616e5785e145b5c7fb696e5e45",
+        "references/rules/operations.md": "e758c222456581b337b7ff3c61a8595791a90598d86fda4c668ecb3b465f0dc5",
+        "references/rules/policy-index.json": "8beecf209b4767be6181eb1dd5bf492da6ad2413afa46af2a6c8218fb58f2b7a",
+        "references/rules/portrait-layout.md": "0c97dea80bbaf1bb3d758a5d9baaeb90b02c8af4d870ef0eb5804e607408a6a6",
+        "references/rules/premiere-automation.md": "b7bdf9383e96c9f113e99abda11ea047c736f8abe6afa9503f1b819485c804ee",
+        "references/rules/reference-scope.md": "f895bb4ceff2dbca8b15eb7f4c90ebca55dbf5361413bfe810c02eb8d634f21f",
+        "references/rules/shared/guards.md": "92a155f2e08b027c4018f7e4701af47278cc0bf5c82cadbb5d4f709c91f1a28e",
+        "references/rules/skill-dependencies.json": "67e52fb6483e0c83603e1abfa1d35fdeeb230eb926e88d0b78d11be4ec72f71a",
+        "references/rules/stages/A01.json": "7df2b3fbd95f653361134b8a996ecea463dd51ca31c262c1c809c289bbec54da",
+        "references/rules/stages/A02.json": "a38a6fa765118b32818e0b2f4e28ad6398c768e7b102a627ececfa08f728bbad",
+        "references/rules/stages/A03.json": "bdc54830e6be59eae4b7f1986b40bc51700c2dc9775200b88665449308960503",
+        "references/rules/stages/A04.json": "9d1df17416582c4d1a9acc0200b80bce4e7b329b3250e604d76b06bd7b0737cc",
+        "references/rules/stages/A05.json": "1e34a1927da4931793ea7560df6c26ff2050845069b2c970c351c0d496a0d0f1",
+        "references/rules/stages/A06.json": "915867a7f5322673d9ed021201da3e11706a41ee73c39429437513cb4d44fd22",
+        "references/rules/stages/A07.json": "2d1e4bf342d60a4350a447113881402692e6369fc3188263023e8c69fe68e031",
+        "references/rules/stages/A08.json": "e887637ee04444bd1190fb3456e956cfb81d788a012470fecf4932691e47d88e",
+        "references/rules/stages/A09.json": "6ad4b62bade5ba0db8dbdbf66eec666c02d3cc96ea2bb79aefa7cf0e18243a17",
+        "references/rules/stages/A10.json": "f124d376b8135b9ac52fea5e987ef2bd3757ea5ea839119c322dee8febd2784e",
+        "references/rules/stages/A11.json": "d949b8ecd15f6bc7b51d6f380b6da712b2e97521228c4ded32fe922913f63304",
+        "references/rules/stages/A12.json": "9967a9f98e1b6c294232643648d622b63d96dbbd5a6417fddbaf8479ea990837",
+        "references/rules/stages/A13.json": "160aff066a9f362e04197c5b617199b2048ce5a4dc20906350c28c1d8771d14a",
+        "references/rules/stages/A14.json": "38d3c9f003936494a465184d0c8ef86538f1e909c22ab488ddd3761bb5549409",
+        "references/rules/stages/A15.json": "30464139093a6b37608b1a73ebde185810387a8aa3f8d435cd7f07a938e11694",
+        "references/rules/stages/B01.json": "854086e685a42bb564bbd06711c01caab0c01987b7b1ac3707f74f16aadba1b9",
+        "references/rules/stages/B02.json": "ab104bead6e14fd72837d223315cce1b686eba6a953a0d08b1bf1681007ca953",
+        "references/rules/stages/B03.json": "eca0a6e3ef75aa0ed5014b4cec7625a5968be4bb73c9259a939304631a8f359d",
+        "references/rules/stages/B04.json": "6a4c632a5ae96f9033ab657f213170d02c25c639cfc327d4117c4dd2ef208f30",
+        "references/rules/stages/B05.json": "f128e82a4ca0267006122e5620255d887c65e5581e4503c13ab7a445dbfa567d",
+        "references/rules/stages/LIBRARY01.json": "a12d136ed80e546167f20c25893ed1961c0d5f3483182836204f671f2dee1fcb",
+        "references/rules/stages/LIBRARY02.json": "150984015e3ecdd0aa52dc98ecd6dd77cae01a9b9d61cd8cf2cc4fdfcc17caba",
+        "references/rules/stages/LIBRARY03.json": "4f99fc62cbe7bf9e30b3203f1b15a3f627c6c374efbe025826fbe70f7175240c",
+        "references/rules/stages/LIBRARY04.json": "9d5f5c7f799ec8df3f6c95b5f2a6660acdee7e99b7b5c802b48bc9b5d9dd87db",
+        "references/rules/storyboard.md": "30e54b28dd4c7b471a91cc2f25656db213f672a87dfd75099339e53b6c8dd824",
+        "references/rules/video-prompts.md": "5df90cf5de9912d68dbd7e93716cbd1d3793ddebbb5e0a63928481084bcec928",
+        "references/seedance-local.md": "f1ec195d79b1f0e422de120552523d3891df3c177eb4c2867ae8f760b8a73cac",
+        "references/stage-actions.md": "41ba2b215905533607b2c2e2addc050d8f31a3a15fe2c430a09667e026e06220",
+        "references/tools/native-upload/native-ui.swift": "c83c9b58e0556b692f0937eb61a26351aea7520d3949aafc4fb23f7d447766ef",
+        "references/tools/premiere-bridge/README.md": "c14e43f2d1cab72ea5cc783c82f4eb7b1ccce30f2728f74a24873ea382f0273b",
+        "references/tools/premiere-bridge/TOOLING.json": "288d5465bacd2ed87ded80883849c5d47e8dc477a8ab43b47a34c0fb291c80de",
+        "references/tools/premiere-bridge/bridge.py": "b51dc28c81098fceda76a40c1b34c108cee9f029fa5e10f2a9e676a32bb02343",
+        "references/tools/premiere-bridge/make_preset.py": "af2cdb04f0b7521d9d94d701c13594db79764e3119a1d48cb29aa440743fc681",
+        "references/tools/premiere-bridge/manage.py": "adaecbd46877545de510238d55f9512179d24deb373a7bd0d13f6c52eed4eece",
+        "references/tools/premiere-bridge/plugin/index.html": "425aa16fe890808843a4a6d2e53b35dc3944b47b22711af0883bb1d56a7e451c",
+        "references/tools/premiere-bridge/plugin/main.js": "8141e4e9b4f54e3be87e93df3d5bf1bd52c7e007e913e7608af4b5b0b235795d",
+        "references/tools/premiere-bridge/plugin/manifest.json": "6a44281e7bcfd2ad078144faefea6439bda6518e433bbd5c8c2eb9b54ecb46f7",
+        "references/tools/premiere-bridge/verify_export.py": "d4677409c97a9e915d2e0ab64846b48aa046e91392fb5ea04870584a6111672b",
+        "references/tools/rongyao-http-readonly/README.md": "4d473205c284427fdb855079af6fadc7ebad85dd955362cfc27694473da6f3d5",
+        "references/tools/rongyao-http-readonly/SKILL.md": "44675874dcfe650c11fee86460dbbfa12a52c6b6cf1683302121a0ec2decdada",
+        "references/tools/rongyao-http-readonly/manifest.json": "f099453104d26b1c87807a7c91c2397571b9a2fb30b0e414040f6f5d585134fb",
+        "references/tools/rongyao-http-readonly/references/fire-weekly-production.md": "a0151051693860ab524a33bd7d40292d8430c516a5c8c7a296d161f4359b0135",
+        "references/tools/rongyao-http-readonly/references/legacy-feishu-qr.md": "06ec86e924079a7808e746ac85a7f1e02d3a0452fd30ddfb84ffef094e31df08",
+        "references/tools/rongyao-http-readonly/references/protocol.md": "c2f1a611a0284f135c6e26342cce6a9b70d29a086ca678609145dd483d5dc03f",
+        "references/tools/rongyao-http-readonly/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/tools/rongyao-http-readonly/scripts/http_core.py": "e54bb0a77e82e13f9b888f11252242b19346694d2918ebdca567c5ed9661cd3d",
+        "references/tools/rongyao-http-readonly/scripts/http_transport.py": "37910f535aebc522deed31069cd9786e698c4af135ec9e140852e66a8cbc255a",
+        "references/tools/rongyao-http-readonly/scripts/initialize_session.py": "2ab240a2ec1a11b0961b63b79b5fdb1d2e936d5c4f8f95053ad16e40c241805e",
+        "references/tools/rongyao-http-readonly/scripts/install.py": "c825814a028e2791cd1ee1e244f36ad9a96f42c0fce58ca308403e460c10bcae",
+        "references/tools/rongyao-http-readonly/scripts/market_export_cli.py": "eef4f9e8451dbcd1fe20fe701f32e7683bb7d566821610e0bb5521c999121bde",
+        "references/tools/rongyao-http-readonly/scripts/market_readonly.py": "c9ecf062e5cb93fcfb057a57679cb0019ac27036a4ce49988087a194c2aa9018",
+        "references/tools/rongyao-http-readonly/scripts/rongyao_http.py": "e4ef3ecf90f4f79ae5aba48342fd5cf5797107e99c0a8a7af83ed9eb723c9bbe",
+        "references/tools/rongyao-http-readonly/scripts/session_store.py": "ae6eeb4d264cbf0d5883a8dac584bcc2ab480688297cb1eb83d1edff004c3640",
+        "references/tools/rongyao-http-readonly/scripts/session_vault.swift": "b6733676fd6892badc84d12b6eb7a8018ce244edc78271a1a2600bb5e90c484d",
+        "references/tools/rongyao-http-readonly/scripts/sms_login.py": "dad015d3e82809bcc00ad760b5f61a14106b93d2c005089bdbea91a4d0d619c9",
+        "references/tools/rongyao-http-readonly/scripts/sms_receiver.py": "78dcb8881d6add896b7613f9f71c1f31c7e25e468dc6f10bee7126bc5d2e66eb",
+        "references/tools/rongyao-http-readonly/scripts/sms_worker.py": "9999f0b2a60e434d9e34ba04ea466df9fe27d5256a43d918e7019120f530aadb",
+        "references/tools/rongyao-http-readonly/scripts/test_http.py": "b76f431f3deb043d6d794afc23ef94587080082f3328594392550b5a713e47b2",
+        "references/tools/rongyao-http-readonly/scripts/test_session_store.py": "5b54b268f51f4ef9ac11502534ecda42e0844f3d80532f8b08b68c2bb813fed5",
+        "references/tools/rongyao-http-readonly/scripts/test_sms.py": "133a2e9de14f62466f0f41140724ae0bb379050c7aab199eff945f880b754de5",
+        "references/tools/rongyao-http-readonly/scripts/weekly_page_parser.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "references/tools/rongyao-http-readonly/scripts/weekly_query.py": "f67e564d40fcc370513ee6233fad6ecf945532b56b40ed07813f83f0f911af9f",
+        "references/tools/rongyao-http-upload/README.md": "b8c733eafc8912766b1c520ad1143dd58b2cc422bf521cdf1b5e2e4c06e40450",
+        "references/tools/rongyao-http-upload/SKILL.md": "6c71ded33d2265ccf83bb575b71c00ee571733bbc32ea7f6110ff87a8d8e8450",
+        "references/tools/rongyao-http-upload/manifest.json": "697cc7f2819696922dda79220c6f8314aefb957d78e88c2b8e93f9be8cc6ea1a",
+        "references/tools/rongyao-http-upload/references/defaults.json": "faf028915d8be0a39372cfed4134508428a4b6914e085cd9ead402042b34ced1",
+        "references/tools/rongyao-http-upload/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/tools/rongyao-http-upload/scripts/attribution.py": "90f3a0bc742d69b3f85e2b5dcd73539626593646b2485d93f1ddb8893180eee8",
+        "references/tools/rongyao-http-upload/scripts/metadata_correction.py": "2e8f5bbef4b312e43f0c60143914501aef01d89df2c647bf8dc3beb4fa8cd51e",
+        "references/tools/rongyao-http-upload/scripts/rongyao_upload.py": "4487288b7c1db49ef6c92b26e3d267ebe20393ebc7ebd7f7b0ad16525cf8f8a8",
+        "references/tools/rongyao-http-upload/scripts/test_designer.py": "8a8c774ddd1bd45049620f16032e809f82243e5702130c26e556038607fb79c2",
+        "references/tools/rongyao-http-upload/scripts/test_metadata_correction.py": "f4597572e37038614e05fca1b2f159def93930216b1ef268e0b5a787d32efd43",
+        "references/tools/rongyao-http-upload/scripts/test_native_alias.py": "9f361f1c48ad81706642efb3897f03d5618d015458897f78ef1ee65cd6ad2db0",
+        "references/tools/rongyao-http-upload/scripts/test_session_reuse.py": "f1c5d34b7dd92a25ed3160381c7bb65e8f3540635aec3376c2262bbc0b2c8f6b",
+        "references/tools/rongyao-http-upload/scripts/test_upload.py": "cc55762edf81d327bdd9ed7fed5ad4b992cc66fddff12ac5d1f2c2dee1e4a6e8",
+        "references/tools/rongyao-http-upload/scripts/upload_api.py": "caa75ec7411b03624f2105306cdb243b455df81b1c51cc9dcb4f27239f9b369a",
+        "references/tools/rongyao-http-upload/scripts/upload_page.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "references/tools/rongyao-http-upload/scripts/upload_service.py": "616d2227dc0801d17a97f972201c2435b2df6457dfd6d66a2d9b15775eb18049",
+        "references/tools/rongyao-operations/SKILL.md": "3874edda76ba140a5386c3b847bcb8a657c1b3d1bacc6e0a97d41073b092821b",
+        "references/tools/rongyao-operations/agents/openai.yaml": "cd1ddd427ab6fe8cb82b18cdd75b75ea07dc4fc91a98816ba50857ef6f1f765b",
+        "references/tools/rongyao-operations/references/cli-contract.md": "b50ca8796c2fa7fff007495c12801cbb808b4e7091b010f4816bd06acf7eb8ad",
+        "references/tools/rongyao-operations/references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "references/tools/rongyao-operations/references/observed-upload-protocol.json": "2b904d3812078921e5e3982eb05b55e0b5d29132f90d42b7a8a35f4129cb289b",
+        "references/tools/rongyao-operations/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/tools/rongyao-operations/scripts/rongyao.py": "238af95f8414f451c38844590b14a3cf5573b5817aef34bb5d82cdbae42548b1",
+        "references/tools/rongyao-operations/scripts/test_navigation.mjs": "3094b129ed045bd1caf5dc495b78c20e557ae5f351ecca606d27f2963c80c4bf",
+        "references/tools/rongyao-operations/scripts/test_operations.py": "da76c29f20ab5f12add5e4aa4e6f205c85f8d064d751cd22f4ea95576fbec470",
+        "references/tools/rongyao-operations/scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d",
+        "references/workspace-contract/AGENTS.md": "871c1e1f3413aadbc03e2eb5a87337cd042e26cfba4f4969eb1c94ad83590370",
+        "references/workspace-contract/scripts/console_content.py": "1206f2f19717b6ad8f75b316a1bb663a21eb2cc8b76c0cdc5f9863ab0597ce8e",
+        "references/workspace-contract/scripts/console_template.py": "8cd4f276f93929ff441349c2979682b5be528b482315262897ff40d384c6fc0a",
+        "references/workspace-contract/scripts/delivery_contract.py": "4d378d62da8beae723d63487286b7ecfb12f3e93a891969ce2c2f64cd031fedd",
+        "references/workspace-contract/scripts/dreamina_workflow.py": "122d63e200cc6ffb22f8eb3c46f368aa838f87ed76aef00bc0dfa9b94ec8daa9",
+        "references/workspace-contract/scripts/feishu_safe_patch.py": "b3bf4c74351faa2255202fd3067f5bb950e61ea8c17c26420a39ee119f8bac45",
+        "references/workspace-contract/scripts/hailuo_workflow.py": "23f0cd014a985c22bc4ae05f2b9c20ef349a96c66bc482ec5f5656aaf75a9906",
+        "references/workspace-contract/scripts/material_upload.py": "b99edf7b845b37fc89985e0154221cafeaa4f4b6d1dea0d05e5998d5aa7ce60f",
+        "references/workspace-contract/scripts/native_upload_build.py": "e33cd6f294f1d74aeffcd983ff4bb398024edf1154abf5e63ff63b5027ca3cd7",
+        "references/workspace-contract/scripts/native_upload_controller.py": "330ba60dcb1390ea2a3711e1ccfa245731074d9f84871c8e6e73ba5e61a8003b",
+        "references/workspace-contract/scripts/native_upload_guard.py": "d2b7a4c0e9a287c30306364004056419c3a87a533294e38844ee69463b997fb5",
+        "references/workspace-contract/scripts/production_order.py": "58ef11ee8d22b1f36aebecda59d37b2d78145e19be56c24ee74c41407f532350",
+        "references/workspace-contract/scripts/prompt_contract.py": "b72854b070c134ab2544f1b19de7c5e9c17d2b15d25ff56199a0d919ddf38842",
+        "references/workspace-contract/scripts/receiver_config.py": "bf3369a9a19002e464941a55a18e0e8a675078c7a63732f22c1deee7106eb48f",
+        "references/workspace-contract/scripts/reference_scope.py": "37f41141707891ee89a72724ce3a0148a6b7875b257ef05e5dd0212ed1e85389",
+        "references/workspace-contract/scripts/rongyao.py": "0013c5ebb8b749d40c00c36b933fe6fe84deac5ed3e1dc9a4219c93851f5cbf6",
+        "references/workspace-contract/scripts/rongyao_checked_upload.py": "4846852ae42313355957cb35e01cdc4a0c8786cf994c14bf71ceb35e2a1fe39a",
+        "references/workspace-contract/scripts/rongyao_fast_session.py": "3661fbe7008f1959549d58049f7f3870b1cd6265d89456b815668c82903cae1e",
+        "references/workspace-contract/scripts/rongyao_material_upload.py": "e40c85b50519588e2eb678a9d03d5bbca97c69e8250232b3df3d349a57342a51",
+        "references/workspace-contract/scripts/rongyao_upload_preview.py": "a0644ff2b84cbfe19807d7ec7e78e4a304084c60d955208cdd10ecd83bf1bea8",
+        "references/workspace-contract/scripts/rongyao_video_list_upload.py": "2a3992b66c4e61b67d1fcfe347ad9961d7c4da69bc7c56088440c8a0b7610643",
+        "references/workspace-contract/scripts/ryai.py": "0d7823dbbaa69f930c908079684892da1a6c34b0dc07236f3470c815a506ec08",
+        "references/workspace-contract/scripts/storyboard_parity.py": "4cb31253856aaf5377d23f1e2a228dffde2145a84ce11fbbdf2b0ed489e879aa",
+        "references/workspace-contract/scripts/workflow_deployment.py": "f24fdd5a09b3a0f4b8247777b84b758ff7ab0488fc427079c51e8a43e6a632c4",
+        "references/workspace-contract/scripts/workflow_node.py": "b0ebc0a960fb9da11d787b8f6693832e797d9a887c3c820c052bfedc8da62f0f",
+        "references/workspace-contract/scripts/workflow_readiness.py": "49c83e7e6c8a2f164ba453986edb91a42ee453f12729632f611cefb4ad2db604",
+        "references/workspace-contract/scripts/workflow_rules.py": "f0c4c9475ee38c7ff349fb4bd640ae2c3b875a4534bf8a4292058d791d8a74cc",
+        "references/workspace-contract/scripts/workflow_runtime.py": "af32668b8dd521df74298f50c597c10a2c33fa32c488baf7dae25ad758893821",
+        "references/workspace-contract/scripts/workflow_skill_dependencies.py": "f38a7f241a730be67ac80eb395b11c618167fba45d28731de0db5d86a3846645",
+        "references/workspace-contract/scripts/workflow_state.py": "3ec0393b419ae562e6c43a20ccafd2be5ee51dee304919e9f3da1328c85f6e62",
+        "references/workspace-contract/scripts/workflow_step.py": "e7350129ffbeb2227d21e7dc20b852b72659e3cfbc5700a05ffb31b72166e322",
+        "references/workspace-contract/skills/rongyao-http-upload/LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "references/workspace-contract/skills/rongyao-http-upload/README.md": "b8c733eafc8912766b1c520ad1143dd58b2cc422bf521cdf1b5e2e4c06e40450",
+        "references/workspace-contract/skills/rongyao-http-upload/SKILL.md": "4d295683a6fb2b9a79d2fe2db009367c3bfa0a1e1feb98a6a12707d4da43355d",
+        "references/workspace-contract/skills/rongyao-http-upload/manifest.json": "0ab03a38992d0d4a9747c4f7804768f2d48533d9e83cd621e018af22c41315e4",
+        "references/workspace-contract/skills/rongyao-http-upload/references/defaults.json": "faf028915d8be0a39372cfed4134508428a4b6914e085cd9ead402042b34ced1",
+        "references/workspace-contract/skills/rongyao-http-upload/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/attribution.py": "90f3a0bc742d69b3f85e2b5dcd73539626593646b2485d93f1ddb8893180eee8",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/metadata_correction.py": "2e8f5bbef4b312e43f0c60143914501aef01d89df2c647bf8dc3beb4fa8cd51e",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/rongyao_upload.py": "4487288b7c1db49ef6c92b26e3d267ebe20393ebc7ebd7f7b0ad16525cf8f8a8",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/test_designer.py": "8a8c774ddd1bd45049620f16032e809f82243e5702130c26e556038607fb79c2",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/test_metadata_correction.py": "f4597572e37038614e05fca1b2f159def93930216b1ef268e0b5a787d32efd43",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/test_native_alias.py": "9f361f1c48ad81706642efb3897f03d5618d015458897f78ef1ee65cd6ad2db0",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/test_session_reuse.py": "f1c5d34b7dd92a25ed3160381c7bb65e8f3540635aec3376c2262bbc0b2c8f6b",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/test_upload.py": "cc55762edf81d327bdd9ed7fed5ad4b992cc66fddff12ac5d1f2c2dee1e4a6e8",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/upload_api.py": "caa75ec7411b03624f2105306cdb243b455df81b1c51cc9dcb4f27239f9b369a",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/upload_page.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "references/workspace-contract/skills/rongyao-http-upload/scripts/upload_service.py": "616d2227dc0801d17a97f972201c2435b2df6457dfd6d66a2d9b15775eb18049",
+        "references/workspace-contract/skills/rongyao-operations/LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "references/workspace-contract/skills/rongyao-operations/SKILL.md": "3874edda76ba140a5386c3b847bcb8a657c1b3d1bacc6e0a97d41073b092821b",
+        "references/workspace-contract/skills/rongyao-operations/agents/openai.yaml": "cd1ddd427ab6fe8cb82b18cdd75b75ea07dc4fc91a98816ba50857ef6f1f765b",
+        "references/workspace-contract/skills/rongyao-operations/references/cli-contract.md": "b50ca8796c2fa7fff007495c12801cbb808b4e7091b010f4816bd06acf7eb8ad",
+        "references/workspace-contract/skills/rongyao-operations/references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "references/workspace-contract/skills/rongyao-operations/references/observed-upload-protocol.json": "2b904d3812078921e5e3982eb05b55e0b5d29132f90d42b7a8a35f4129cb289b",
+        "references/workspace-contract/skills/rongyao-operations/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/workspace-contract/skills/rongyao-operations/scripts/rongyao.py": "238af95f8414f451c38844590b14a3cf5573b5817aef34bb5d82cdbae42548b1",
+        "references/workspace-contract/skills/rongyao-operations/scripts/test_navigation.mjs": "3094b129ed045bd1caf5dc495b78c20e557ae5f351ecca606d27f2963c80c4bf",
+        "references/workspace-contract/skills/rongyao-operations/scripts/test_operations.py": "da76c29f20ab5f12add5e4aa4e6f205c85f8d064d751cd22f4ea95576fbec470",
+        "references/workspace-contract/skills/rongyao-operations/scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d",
+        "references/workspace-contract/tests/fixtures/premiere_host.cjs": "0c1f83881ac5b1b892e38f8b06d470b0997b5b7f3301f9e2f0c606426a6e26aa",
+        "references/workspace-contract/tests/test_cli_stability.py": "9e050e63b74e9cca13a6074de1f6416bc9fdc38714010c7646b6863a2ed307f6",
+        "references/workspace-contract/tests/test_compact_console.py": "a3db0418ad2b8bd6d53a7611786e594f7817a2196c45c04646408734f520aaca",
+        "references/workspace-contract/tests/test_console_empty_content.py": "149c60a03e128b76241a6cd319e73c105b6cb9338904471a82669a5eca91f0c2",
+        "references/workspace-contract/tests/test_console_slot_schema.py": "8ce81adc7da05fed7a9aea3b8259c3ac19def0cbc85b8f81fce7b3bebb0b1159",
+        "references/workspace-contract/tests/test_context_recovery_output.py": "a386f1d317dd3f06efe03570f60ca2580ab7347c95b5a8355a6dc2273ed6dbcf",
+        "references/workspace-contract/tests/test_delivery_contract.py": "95df22bb5c116c18e22fefe6e2476919a3d57956fb2eac3f47ffe6cdda3a4c1c",
+        "references/workspace-contract/tests/test_director_storyboard.py": "fb232ec1cd1d4f8e350e1b5e747f3423fffd5dd652c2ff2d7f8596cdbfd4bc9b",
+        "references/workspace-contract/tests/test_hailuo_workflow.py": "34c0edd8314a833dd579dbdbef3587fd2b8c5a7aa305427f1b1061514fc033e3",
+        "references/workspace-contract/tests/test_material_preparation.py": "e98ffb61d55a94b049a0e84b96c30bb175ed9d65102672af9817f96e5416e239",
+        "references/workspace-contract/tests/test_native_id_persistence.py": "7776991c77fe73a71b1d8685be6d1dc4f140dbd6e31656a80695923a6310bc7a",
+        "references/workspace-contract/tests/test_native_upload_guard.py": "9f4c1edba94fcd572d073128fd6c5837d2136978c9d527abd895717c6df514f1",
+        "references/workspace-contract/tests/test_portrait_routing.py": "6accacf3444419c81e9a9cef2acf34fe2465f6a08303b66788f02899798d036a",
+        "references/workspace-contract/tests/test_premiere_bridge.py": "9e7de42c138ea305b0b665e035dfe2d016e80e77359dc554185742b62274a36e",
+        "references/workspace-contract/tests/test_production_order.py": "c579451d790437bf9c4146873ec1b8c0760d8dd680aca290490aef596b5158e1",
+        "references/workspace-contract/tests/test_prompt_contract.py": "dac7f6cf9bd1a01aef0cf3cf7774a2c044dd8490f6f9191573a88cb60bbe38e5",
+        "references/workspace-contract/tests/test_prompt_public_entry.py": "7d154f76f6575fb6c84af1a54c3261078d80fb09bd1e50d368c13e863c458246",
+        "references/workspace-contract/tests/test_public_portability.py": "5a14c7b14b609a13814cb0fa32f78de74c9853b761dadfa3795970cfa04b9674",
+        "references/workspace-contract/tests/test_receiver_compact_storyboard.py": "94c2709236083c3f67f334185eceaed60a9e008f44969c874c2890358c9c5b05",
+        "references/workspace-contract/tests/test_reference_scope.py": "f444dcbcc0c66506de7a3f8df0056da2aba83fcdae1f003c1adc603d81035525",
+        "references/workspace-contract/tests/test_result_recovery_speed.py": "9a5628e58f3fbe520a4e31476561e78114a0a624e4d7b10ffcbd0a38fe7ce1ca",
+        "references/workspace-contract/tests/test_rongyao_pipeline.py": "c75b10d0275ea007a96899eddbf186a5a40041130d752fd8aa901056de6eb64d",
+        "references/workspace-contract/tests/test_safe_original_recovery.py": "b5ac6187eb116eefebcd6ba02a0ff34c88a82bc3134a78d93424e37287c2fa80",
+        "references/workspace-contract/tests/test_story_copy_standard.py": "49af475201062878b8f715e941aab632c44cc7a094f2143fd40e44eb21771b67",
+        "references/workspace-contract/tests/test_storyboard_parity.py": "0a3434c104f5565813472244b299efa0b4410d7f7b1959b084a9168cd1a00e42",
+        "references/workspace-contract/tests/test_upload_auth_route.py": "4b99137f2ced84f62db70dd1162245f93cc592a86c810dffc3b83f08240073e3",
+        "references/workspace-contract/tests/test_upload_hard_gate_cli.py": "c9a0efbd7f87b6ad61d3941355d6a693bedde586fed6874ee9f82a1261f0989d",
+        "references/workspace-contract/tests/test_workflow_node.py": "8f39aea2f8adb5809f3da79bf63239dcb42f07da40cbe62030b670cdd19a3ccc",
+        "references/workspace-contract/tests/test_workflow_readiness.py": "00a3c1d97bd74d7640b833b43da5296690a8cbc9f1ecc01e9f413a7c17d06ae1",
+        "references/workspace-contract/tests/test_workflow_runtime.py": "28bb530be5ff4a97e991f418d83034a293f6acab76f58345b1fd4c81fc856367",
+        "references/workspace-contract/tests/test_workflow_state.py": "7044e93ad16d55e076244547f7ed1211a9c130b96b72f55f632905672dc62826",
+        "references/workspace-contract/workflow/console-compact-template.json": "93028196f3423af170bd049a095f65165bb8dffba06e5c2788fb3d86b7e780c1",
+        "references/workspace-contract/workflow/console-template.json": "f133b5f35b06823e5849475fc3be928ecd9b4f9914f9ed698eb5d59fc5a7fe38",
+        "references/workspace-contract/workflow/director-storyboard-template.json": "cd83841673f871e9d107c7918f37889bb1d7e0d9d1406b3b7edc193a3f9b92c1",
+        "references/workspace-contract/workflow/maintenance/upload-acceptance/config/requester-ai-rules.json": "1254d8f5579ca812e2909ae469a715dd169cf0782700726a5bb176b9f34d9cf2",
+        "references/workspace-contract/workflow/maintenance/upload-acceptance/config/rongyao-observed-protocol.json": "fed4888ae752cff5bdcb92e830f4f45b7385eaf35d650fa73678449221dfc79e",
+        "references/workspace-contract/workflow/node_skills.json": "759595c0993e0f3cabf4cd601cc9dbea360152c7b7cadd82fc9a81669e9f9ec0",
+        "references/workspace-contract/workflow/risk-hardening.json": "d16da9f594701681a7e5e00e42d27057f4c1e0a612de426a2ebb64c27af52f90",
+        "references/workspace-contract/workflow/runtime-policy.json": "14ba45afd8e64f428c82f227cd64db1408ad7ddc8c0d347039c36bbfe7eab88d",
+        "references/workspace-contract/workflow/stages.json": "877c1601c35f87075c4587dea8c938da7031b953dab9edc06f65b542be69d332",
+        "references/workspace-contract/workflow/tools/native-upload/native-ui.swift": "c83c9b58e0556b692f0937eb61a26351aea7520d3949aafc4fb23f7d447766ef",
+        "references/workspace-contract/workflow/tools/premiere-bridge/README.md": "c14e43f2d1cab72ea5cc783c82f4eb7b1ccce30f2728f74a24873ea382f0273b",
+        "references/workspace-contract/workflow/tools/premiere-bridge/TOOLING.json": "288d5465bacd2ed87ded80883849c5d47e8dc477a8ab43b47a34c0fb291c80de",
+        "references/workspace-contract/workflow/tools/premiere-bridge/bridge.py": "b51dc28c81098fceda76a40c1b34c108cee9f029fa5e10f2a9e676a32bb02343",
+        "references/workspace-contract/workflow/tools/premiere-bridge/make_preset.py": "af2cdb04f0b7521d9d94d701c13594db79764e3119a1d48cb29aa440743fc681",
+        "references/workspace-contract/workflow/tools/premiere-bridge/manage.py": "adaecbd46877545de510238d55f9512179d24deb373a7bd0d13f6c52eed4eece",
+        "references/workspace-contract/workflow/tools/premiere-bridge/plugin/index.html": "425aa16fe890808843a4a6d2e53b35dc3944b47b22711af0883bb1d56a7e451c",
+        "references/workspace-contract/workflow/tools/premiere-bridge/plugin/main.js": "8141e4e9b4f54e3be87e93df3d5bf1bd52c7e007e913e7608af4b5b0b235795d",
+        "references/workspace-contract/workflow/tools/premiere-bridge/plugin/manifest.json": "6a44281e7bcfd2ad078144faefea6439bda6518e433bbd5c8c2eb9b54ecb46f7",
+        "references/workspace-contract/workflow/tools/premiere-bridge/verify_export.py": "d4677409c97a9e915d2e0ab64846b48aa046e91392fb5ea04870584a6111672b",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/README.md": "4d473205c284427fdb855079af6fadc7ebad85dd955362cfc27694473da6f3d5",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/SKILL.md": "44675874dcfe650c11fee86460dbbfa12a52c6b6cf1683302121a0ec2decdada",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/manifest.json": "f099453104d26b1c87807a7c91c2397571b9a2fb30b0e414040f6f5d585134fb",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/references/fire-weekly-production.md": "a0151051693860ab524a33bd7d40292d8430c516a5c8c7a296d161f4359b0135",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/references/legacy-feishu-qr.md": "06ec86e924079a7808e746ac85a7f1e02d3a0452fd30ddfb84ffef094e31df08",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/references/protocol.md": "c2f1a611a0284f135c6e26342cce6a9b70d29a086ca678609145dd483d5dc03f",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/http_core.py": "e54bb0a77e82e13f9b888f11252242b19346694d2918ebdca567c5ed9661cd3d",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/http_transport.py": "37910f535aebc522deed31069cd9786e698c4af135ec9e140852e66a8cbc255a",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/initialize_session.py": "2ab240a2ec1a11b0961b63b79b5fdb1d2e936d5c4f8f95053ad16e40c241805e",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/install.py": "c825814a028e2791cd1ee1e244f36ad9a96f42c0fce58ca308403e460c10bcae",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/market_export_cli.py": "eef4f9e8451dbcd1fe20fe701f32e7683bb7d566821610e0bb5521c999121bde",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/market_readonly.py": "c9ecf062e5cb93fcfb057a57679cb0019ac27036a4ce49988087a194c2aa9018",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/rongyao_http.py": "e4ef3ecf90f4f79ae5aba48342fd5cf5797107e99c0a8a7af83ed9eb723c9bbe",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/session_store.py": "ae6eeb4d264cbf0d5883a8dac584bcc2ab480688297cb1eb83d1edff004c3640",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/session_vault.swift": "b6733676fd6892badc84d12b6eb7a8018ce244edc78271a1a2600bb5e90c484d",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/sms_login.py": "dad015d3e82809bcc00ad760b5f61a14106b93d2c005089bdbea91a4d0d619c9",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/sms_receiver.py": "78dcb8881d6add896b7613f9f71c1f31c7e25e468dc6f10bee7126bc5d2e66eb",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/sms_worker.py": "9999f0b2a60e434d9e34ba04ea466df9fe27d5256a43d918e7019120f530aadb",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/test_http.py": "b76f431f3deb043d6d794afc23ef94587080082f3328594392550b5a713e47b2",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/test_session_store.py": "5b54b268f51f4ef9ac11502534ecda42e0844f3d80532f8b08b68c2bb813fed5",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/test_sms.py": "133a2e9de14f62466f0f41140724ae0bb379050c7aab199eff945f880b754de5",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/weekly_page_parser.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "references/workspace-contract/workflow/tools/rongyao-http-readonly/scripts/weekly_query.py": "f67e564d40fcc370513ee6233fad6ecf945532b56b40ed07813f83f0f911af9f",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/README.md": "b8c733eafc8912766b1c520ad1143dd58b2cc422bf521cdf1b5e2e4c06e40450",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/SKILL.md": "6c71ded33d2265ccf83bb575b71c00ee571733bbc32ea7f6110ff87a8d8e8450",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/manifest.json": "697cc7f2819696922dda79220c6f8314aefb957d78e88c2b8e93f9be8cc6ea1a",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/references/defaults.json": "faf028915d8be0a39372cfed4134508428a4b6914e085cd9ead402042b34ced1",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/attribution.py": "90f3a0bc742d69b3f85e2b5dcd73539626593646b2485d93f1ddb8893180eee8",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/metadata_correction.py": "2e8f5bbef4b312e43f0c60143914501aef01d89df2c647bf8dc3beb4fa8cd51e",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/rongyao_upload.py": "4487288b7c1db49ef6c92b26e3d267ebe20393ebc7ebd7f7b0ad16525cf8f8a8",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/test_designer.py": "8a8c774ddd1bd45049620f16032e809f82243e5702130c26e556038607fb79c2",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/test_metadata_correction.py": "f4597572e37038614e05fca1b2f159def93930216b1ef268e0b5a787d32efd43",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/test_native_alias.py": "9f361f1c48ad81706642efb3897f03d5618d015458897f78ef1ee65cd6ad2db0",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/test_session_reuse.py": "f1c5d34b7dd92a25ed3160381c7bb65e8f3540635aec3376c2262bbc0b2c8f6b",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/test_upload.py": "cc55762edf81d327bdd9ed7fed5ad4b992cc66fddff12ac5d1f2c2dee1e4a6e8",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/upload_api.py": "caa75ec7411b03624f2105306cdb243b455df81b1c51cc9dcb4f27239f9b369a",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/upload_page.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "references/workspace-contract/workflow/tools/rongyao-http-upload/scripts/upload_service.py": "616d2227dc0801d17a97f972201c2435b2df6457dfd6d66a2d9b15775eb18049",
+        "references/workspace-contract/workflow/tools/rongyao-operations/SKILL.md": "3874edda76ba140a5386c3b847bcb8a657c1b3d1bacc6e0a97d41073b092821b",
+        "references/workspace-contract/workflow/tools/rongyao-operations/agents/openai.yaml": "cd1ddd427ab6fe8cb82b18cdd75b75ea07dc4fc91a98816ba50857ef6f1f765b",
+        "references/workspace-contract/workflow/tools/rongyao-operations/references/cli-contract.md": "b50ca8796c2fa7fff007495c12801cbb808b4e7091b010f4816bd06acf7eb8ad",
+        "references/workspace-contract/workflow/tools/rongyao-operations/references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "references/workspace-contract/workflow/tools/rongyao-operations/references/observed-upload-protocol.json": "2b904d3812078921e5e3982eb05b55e0b5d29132f90d42b7a8a35f4129cb289b",
+        "references/workspace-contract/workflow/tools/rongyao-operations/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "references/workspace-contract/workflow/tools/rongyao-operations/scripts/rongyao.py": "238af95f8414f451c38844590b14a3cf5573b5817aef34bb5d82cdbae42548b1",
+        "references/workspace-contract/workflow/tools/rongyao-operations/scripts/test_navigation.mjs": "3094b129ed045bd1caf5dc495b78c20e557ae5f351ecca606d27f2963c80c4bf",
+        "references/workspace-contract/workflow/tools/rongyao-operations/scripts/test_operations.py": "da76c29f20ab5f12add5e4aa4e6f205c85f8d064d751cd22f4ea95576fbec470",
+        "references/workspace-contract/workflow/tools/rongyao-operations/scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d",
+        "scripts/deploy_workspace.py": "83dac3c32b9e1da573b13b65ddaa7bd15c60f05818c3e35654e07c43849595bc",
+        "skills/rongyao-http-upload/README.md": "b8c733eafc8912766b1c520ad1143dd58b2cc422bf521cdf1b5e2e4c06e40450",
+        "skills/rongyao-http-upload/SKILL.md": "4d295683a6fb2b9a79d2fe2db009367c3bfa0a1e1feb98a6a12707d4da43355d",
+        "skills/rongyao-http-upload/manifest.json": "0ab03a38992d0d4a9747c4f7804768f2d48533d9e83cd621e018af22c41315e4",
+        "skills/rongyao-http-upload/references/defaults.json": "faf028915d8be0a39372cfed4134508428a4b6914e085cd9ead402042b34ced1",
+        "skills/rongyao-http-upload/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "skills/rongyao-http-upload/scripts/attribution.py": "90f3a0bc742d69b3f85e2b5dcd73539626593646b2485d93f1ddb8893180eee8",
+        "skills/rongyao-http-upload/scripts/metadata_correction.py": "2e8f5bbef4b312e43f0c60143914501aef01d89df2c647bf8dc3beb4fa8cd51e",
+        "skills/rongyao-http-upload/scripts/rongyao_upload.py": "4487288b7c1db49ef6c92b26e3d267ebe20393ebc7ebd7f7b0ad16525cf8f8a8",
+        "skills/rongyao-http-upload/scripts/test_designer.py": "8a8c774ddd1bd45049620f16032e809f82243e5702130c26e556038607fb79c2",
+        "skills/rongyao-http-upload/scripts/test_metadata_correction.py": "f4597572e37038614e05fca1b2f159def93930216b1ef268e0b5a787d32efd43",
+        "skills/rongyao-http-upload/scripts/test_native_alias.py": "9f361f1c48ad81706642efb3897f03d5618d015458897f78ef1ee65cd6ad2db0",
+        "skills/rongyao-http-upload/scripts/test_session_reuse.py": "f1c5d34b7dd92a25ed3160381c7bb65e8f3540635aec3376c2262bbc0b2c8f6b",
+        "skills/rongyao-http-upload/scripts/test_upload.py": "cc55762edf81d327bdd9ed7fed5ad4b992cc66fddff12ac5d1f2c2dee1e4a6e8",
+        "skills/rongyao-http-upload/scripts/upload_api.py": "caa75ec7411b03624f2105306cdb243b455df81b1c51cc9dcb4f27239f9b369a",
+        "skills/rongyao-http-upload/scripts/upload_page.py": "3b6f72ab837a0626c088a26fbaa59aba5caf0772ccb4f7faf5bf5e93b6f1b271",
+        "skills/rongyao-http-upload/scripts/upload_service.py": "616d2227dc0801d17a97f972201c2435b2df6457dfd6d66a2d9b15775eb18049",
+        "skills/rongyao-operations/SKILL.md": "3874edda76ba140a5386c3b847bcb8a657c1b3d1bacc6e0a97d41073b092821b",
+        "skills/rongyao-operations/agents/openai.yaml": "cd1ddd427ab6fe8cb82b18cdd75b75ea07dc4fc91a98816ba50857ef6f1f765b",
+        "skills/rongyao-operations/references/cli-contract.md": "b50ca8796c2fa7fff007495c12801cbb808b4e7091b010f4816bd06acf7eb8ad",
+        "skills/rongyao-operations/references/native-recovery.md": "0794d1a9ed5b6416c5660df17c0ac410aa1affef293e22d06935aa183a0a4c88",
+        "skills/rongyao-operations/references/observed-upload-protocol.json": "2b904d3812078921e5e3982eb05b55e0b5d29132f90d42b7a8a35f4129cb289b",
+        "skills/rongyao-operations/references/verification.json": "66ce6687d94bcdada80200ff477524802f628ad271ea832bcdd6b36eb994b34d",
+        "skills/rongyao-operations/scripts/rongyao.py": "238af95f8414f451c38844590b14a3cf5573b5817aef34bb5d82cdbae42548b1",
+        "skills/rongyao-operations/scripts/test_navigation.mjs": "3094b129ed045bd1caf5dc495b78c20e557ae5f351ecca606d27f2963c80c4bf",
+        "skills/rongyao-operations/scripts/test_operations.py": "da76c29f20ab5f12add5e4aa4e6f205c85f8d064d751cd22f4ea95576fbec470",
+        "skills/rongyao-operations/scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d"
+      },
+      "file_count": 664,
+      "bytes": 1746419
+    },
+    "universal-skit-orchestrator": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/universal-skit-orchestrator.zip",
+      "sha256": "9030e4e68559e722e03ff1a799f13ae3ddbba0c4205a8f2252699741737f2dd1",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "9f91ad682cab83e9542453d573e36d93ec6225843444c3c20338c0bff2a10df4",
+        "manifest.json": "f16d212c510f67a343aa376a1547d2a7505e4a7a87af903b329bbcad4d09e5d4",
+        "references/子Skill接入模板.md": "699ce9c044c0f2aa2bf5d672af38a021888ce17417f286ab51581b6aaca6c828",
+        "references/调用路径.md": "0e22aa3294c0a4abf483a770af2ae3b582ebd7e4ae4d47ec3a6f59504ea0ea70"
+      },
+      "file_count": 5,
+      "bytes": 12069
+    },
+    "seedance-prompts": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-prompts.zip",
+      "sha256": "d8670dc3059f15ca7d80af75de8cc26deb181f40c48b1ffccfd274ffba9231b3",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "bfaa0a4d8619df7e81ab72500925a175fe2601bb22489dc3cce341ba9f2d1b82",
+        "agents/openai.yaml": "31eb26cd8085e1606f89806845b2cb4a1ad447a6d4c4d62499e42ae0f3a3ff42",
+        "references/contract.md": "047f23193673bd07fd30774175ff85496d3748d5a89225f5c2be88a1b4d10850",
+        "references/formats.md": "3bf3369adebeceb05965b0ce21361fdbbf12f6ae1b14b0961bc6d78a89ec871a",
+        "references/legacy-names.json": "08d9eb3403b4fbda1574a8fee83373acfe186b1e45381cb6d4618892239286e3",
+        "references/studio.md": "35986c73a0b0d4827c93e61f0b247c942c81787f4b2b8b7e7ac7cabfca3a50de",
+        "runtime/studio/AGENT.md": "deca7e8ec9931958d1ecc9241b5f3a66559dd95e2ea2ac7aa74a9e2545dd63f1",
+        "runtime/studio/catalog.py": "edcfd6027c8253ed9e40a2d67597ae5d83bcb16d1c83b743599a3ddc61ab81cb",
+        "runtime/studio/configuration.py": "f24617985ccfeb42e9dec0b589a8a68c344c6ba554185302eaa554f634ccf4a5",
+        "runtime/studio/diagnostics.py": "23dd6c1ef8be709479f6708e90da8c9fa6eee88da43505a288ed8319a006936a",
+        "runtime/studio/index.html": "e255d2b33a64d74eb732b77a03dd5f02940152c1166eab0b1ddf6b2559759abb",
+        "runtime/studio/launch.py": "6c447afcd76db8aa74c34399fcc8343bc3b420c2628a77fc174bc790462cb620",
+        "runtime/studio/maker.html": "9b07a3ee24247b216909d49cf93154cd21936bb3ae5896e67cff7349a2c9197b",
+        "runtime/studio/monitor.css": "2c1025dd1f5ce78df4e9a3a487a106f180831a665eb677a3f5569779ede2443b",
+        "runtime/studio/monitor.js": "9ecc800e32aecac21172e00ba6552af89cbb0950f430c271ccac0bbf2a8300fb",
+        "runtime/studio/serve.py": "12dda994d1ee868918563bd16df85eddceef94098b10d7b0c6b8245006cf0e41",
+        "runtime/studio/store.py": "e0e725d7b2fae13e49705b3cd7dfca65d194841660184817f68fdd715e0e1666",
+        "runtime/studio/studio.py": "0865fecd12209b1249f92ecc24e9f74ff9d958251dd35694742f3b9080222bbc",
+        "runtime/studio/test_monitor.py": "57d316bdbc60fba6d2893615cf946991443ea8550857b866416da63501f1d634",
+        "runtime/studio/workspace.css": "b6dba29a22f5335ad24672b8ecc1a262e40f4ddab8e902d65f1c280627d5ef83",
+        "runtime/studio/workspace.js": "5881c04fd31209b517e0a1660a43c5ab529d1b5372d8ac75ecee4d49b9f3cfb6",
+        "scripts/studio.py": "aa3910f6820ea2b9e5167b3f58dbaf99dadf0f74611c271e539199e3fa9e9791"
+      },
+      "file_count": 23,
+      "bytes": 88365
+    },
+    "seedance-cinematic-director": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-cinematic-director.zip",
+      "sha256": "c2ea33bbb40dcb4b38983d29ad038b33d1c15414876db0a1ebbf40b32651b2af",
+      "files": {
+        "LICENSE": "df731ea2e1ffd3b8890ad246da3df96ceba3301c16fb4970c16811df4c728b56",
+        "SKILL.md": "5c6cde07f201bf29f25e5e4848a902cf25d9bb19d9d258918760cb77a8776cf1",
+        "agents/openai.yaml": "e7971ab9eb11fbed5c9ed077e5168b644bf29ff6b70cf842cb49ac837f7189b5",
+        "assets/beat-sheet-template.md": "e53e846e9f43cdc80cf261bde4978001628d6383a6d4bd702762f88131e04bda",
+        "assets/director-book-template.md": "d6f0901207a822220fe87a7ca2feeea0ddeaf142a168a03704456e69b0ad68b0",
+        "assets/edit-timeline-template.md": "b6a6ad673094a419ada6afb9d8e613b4d2c8538cface5cb17031bc7b408fc5ee",
+        "assets/keyframe-prompt-template.md": "6db0bfaaca1ff4e0217fb1e5f9ab596b4fcba8a16dcc4fb73b5c028be8bb3902",
+        "assets/qc-checklist.md": "296de7c29e9ab74dbb13b43b2013f63261e17483a6cec72c8ae89f563fce7ae0",
+        "assets/shot-plan-template.md": "7b813095f47492f59b463c6762f3c95843f1f9e4ec86894cb9b6bc2a8ebde60a",
+        "assets/sound-plan-template.md": "98753f44d04af2c01b525c36bdcfc1922e1717e6e09dd3973dc89161e8215b79",
+        "assets/video-prompt-template.md": "ef5b5e07f3920b8c7584d91aa85fed18056b0ec53e2b415d5b1f0833586615e0",
+        "references/ai-video-tool-adapters.md": "ff3e5c2a113e00094f0cd4ea7cc63fb00c29e44a14156eff6676ed005459797c",
+        "references/blocking-and-staging.md": "141df4e2199aa6aae6a1609ab4e8ccf22ae24aec3612f98628947dbd9b576f98",
+        "references/cinematic-language.md": "637e2ba72512a4b21af00f08d217240ed459a3392842b03ded714ccb48168296",
+        "references/continuity-bible.md": "8840aa74e9e4008c014b7cca97c6707242ea883f9a760373c4835bb18ab77ad5",
+        "references/directing-workflow.md": "2b42e4bc686d2c70ffc2381c9ce63cd59271ab78d7e852e9bf3015bc04437f0c",
+        "references/director_styles/01_spielberg.md": "c1d8db44ae145e3a5bc1791967afb2d02a9f838ae5691dbbe47d006b754d7783",
+        "references/director_styles/02_hitchcock.md": "fcd7952d7c1970ed9b477d1d8ac3c03b3c3c956d4fc057dfb2a061a8a180b4a8",
+        "references/director_styles/03_kubrick.md": "fb63f95a6e0467cac92c7a876bf5d371d844ac60bee160280cbf94f895f32117",
+        "references/director_styles/04_kurosawa.md": "492e644362f4942616f28ae51c330a82c0116094a20a0bcf7c54378009a8e2ac",
+        "references/director_styles/05_scorsese.md": "cf1449787769cd918b6b8438a66a61979211005039ffba24c48ec4ab1969c942",
+        "references/director_styles/06_fellini.md": "6f6fe403c2da97e8bda4c6c2429f5f9418e9f04da74d91f201df6b5b3fd74211",
+        "references/director_styles/07_bergman.md": "e277116732258c3557eba5c040ade8b71646fa5c23b704355017f4688bb6fd00",
+        "references/director_styles/08_tarkovsky.md": "fe7e26e409ae727a859f07374d8a5f910e6a8a737695b0a6605db8f24bd6d77d",
+        "references/director_styles/09_wong_kar_wai.md": "c60e33b3d99cc1e52dc02d57e40f61fb008c5647ac2eab30a51c45544711c57b",
+        "references/director_styles/10_nolan.md": "ef506940f2447567427c819725351f6bafc91e51c935c3bbdc6cacdf94f5a6dd",
+        "references/director_styles/11_villeneuve.md": "8f825927d68091767cd901e293484bfe50646b778c1cac8a8f77cccca198ca9c",
+        "references/director_styles/12_fincher.md": "4cf9cce055dd14088ba7cd01446b389ac62e327a7aea7dac2d345939526061b5",
+        "references/director_styles/13_refn.md": "05dc74f79684cc9f1bb4ec760d69ba4498e1fcca904fa504f58acde96442de74",
+        "references/director_styles/14_bi_gan.md": "47ca34530e8573fbe49818c0dcaf8553ce92be37279c03ae388e92e6faf6a82a",
+        "references/director_styles/15_zhang_yimou.md": "9bc951babbf3e51f8c2f0e129216578378536d17fac42663596a8397b28505c3",
+        "references/director_styles/16_hou_hsiao_hsien.md": "c336fab4d549603beaf47a01ec0dbdcb52be99837d774425e50ec0350691f8b1",
+        "references/director_styles/17_park_chan_wook.md": "8ada598768c187ea8b057a1b5e1107045b567811487eee73f64199507c1efb7b",
+        "references/director_styles/18_malick.md": "ee5c6786c58385772e99eb003430bd24eafea83db19023619d63e47954af1f95",
+        "references/director_styles/19_michael_mann.md": "b34fd4c8b0ca4833818f4d3f6471777341c6b23481b6efc6f69b4cfb0554cf79",
+        "references/director_styles/20_coen_brothers.md": "4809d2861e696a54df4b28f3abe442311dc722b0a67f2f6e99db19dd385d5a68",
+        "references/director_styles/README.md": "f2f11004bc66c4b88087558c6bbb665a6196bd744918b594e3b91814d72d724a",
+        "references/director_styles/example_comparisons.md": "14e82c18e7f796ac3d9143803256529c99be616e9147f694d06fdbecf5d8faf5",
+        "references/editing-and-assembly.md": "b10906168c487bf17d4e62834a9d61517f35f025c54f92e07f334bb61c76d42f",
+        "references/element-control-contract.md": "9dd4d2abe6be1a5f4319dc53adc26cbac2c564e989713c93841cce42c62919c5",
+        "references/failure-modes.md": "c44ee74dd872902e2f9b42e6d39ef88fb474ec4dfc6579bc5024e91ad862d1cf",
+        "references/genre-playbooks.md": "ef49f3e46ba72fb425ae5e26cb6166bc4dcb74dd9af37a6753c559f95f7952d4",
+        "references/image-model-adapters.md": "91eab7daf41c5aac32eb7dcb22308f5c1a179cf9f3d609f524f708392c0e2656",
+        "references/lighting-and-color.md": "fb34edea030bbb29b047ff7e489968dded8978f1a3acb768ede230a1c106792b",
+        "references/output-defaults.md": "0230c17667e45c7a4b22588e8698c13d78f1d5fb84d791c90ba5808885ca0c01",
+        "references/product-and-macro.md": "c6b791fe96db082517c8e3d639269228cee3ae68d55ddababbb7b09d967ca350",
+        "references/production-workflow.md": "ada12c24025f63212fc14d264f7acb930b0766430c886dbd033dda57a048a511",
+        "references/prompt-lexicon.md": "2ee95dc87df1e1cd5be308c01d108353808704997b82367112dd2a231c3d8f67",
+        "references/sound-and-dialogue.md": "82ddcc21647c15651c3a0b279e855e1f1e4c17a44d8d061a8295aa4d05e096b5"
+      },
+      "file_count": 49,
+      "bytes": 446807
+    },
+    "seedance-battle-action-prompts": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-battle-action-prompts.zip",
+      "sha256": "d2ff01a8b2b8a2caa6287108446f361a1be0ad1784c751daca2ed9b0ccd38eca",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "6370dbe369e1c8daf37ecc7a2770463335a08e152936d64a17ac1a30d12f126d",
+        "agents/openai.yaml": "fa24ec420d0f2e9d0c2da684208a9c1274549b153f1bff3d3312c1bfcfa3f3b1",
+        "references/combat-branches.md": "275ecf2e592c307689544044f2432307331e144cbb8853cb7075446d4b9cc215",
+        "references/examples.md": "db473031e87b0a0d5d3ba6c9dc8efaa1b578644166ab7ec5001cc896c6c41f6b",
+        "references/source-status.md": "617d830830bbc557bf54781277e7a4c06b5e60001e71a0fffe299cdaaf3878be"
+      },
+      "file_count": 6,
+      "bytes": 12293
+    },
+    "seedance-combat-impact-prompts": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-combat-impact-prompts.zip",
+      "sha256": "6328bef0dd6b81bafea93e3a59ba02281bc9d7aef95c588e645c210d3634ff45",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "6a9bd10b8ca86821c99eaa6581064ce296f165c1004c2b577693e1e6fd2cf6e9",
+        "agents/openai.yaml": "c877c49dc5b0635ea56a7f0bf71592a9ee29ed7e27ca5f8ab8aa4b4b83fba9cb",
+        "references/patterns.md": "75b2b14f9fd84280422aff524b38acdb65787a2ab8afbdda90550996b6db3417",
+        "references/source-status.md": "ae2870b6c7402202c4dfa80faf89904e3b4c45e612062e03ee1323079f6df9c5"
+      },
+      "file_count": 5,
+      "bytes": 8866
+    },
+    "seedance-vfx-prompt-writing": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-vfx-prompt-writing.zip",
+      "sha256": "19bf9e3d3cec3ae9fa16f35a6f9b023d7aa3c73f28c6723f6bca9297cc9189c0",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "6b72d9ebc320bdcaaf230262d12ed6e0df6054a71c292deefa70c0cb36d437f6",
+        "agents/openai.yaml": "a200879f64479351a2c4e1f2cc3995a078778cf808da3bcbabb9d877ca06f0ae",
+        "references/effect-patterns.md": "b1720851186fd5086e9fa4354277063b9d567528c1f70c88defd9521f7ae4cad",
+        "references/source-note.md": "ee343bd4ab020c615f95e05b87af2572a9a5c6ff1210dc6f233ab9679e6f7dc1",
+        "references/workflow.md": "c2722b5239eda8b51ce4a34def6809f81d6f88c4ad4a1b884091d326cbd1fa43"
+      },
+      "file_count": 6,
+      "bytes": 10922
+    },
+    "seedance-anime-cg-reference-shot": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-anime-cg-reference-shot.zip",
+      "sha256": "2884dda6dafa17509a96b110a34a055a25c13e4d9f48c86e0b6ee373a6913136",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "9cd02046da234cb1596f274cacde8e1ebccc4d8ea7fd0d9be1bde1058488a8be",
+        "agents/openai.yaml": "19cf7ac4212474bcf172bc054da4491669a6ec84d3b8e5e24405eabbe96e652f",
+        "references/atmosphere-example.txt": "011b345d78cf8a92af7c221090484660a3f777ddb4ef9e3349b8475b840ece3e",
+        "references/effects.md": "8401dcf6f8fb9ba6d9f09f6e103d7292de7be4ab4760cfef8ab1e4136c7cb2ac",
+        "references/sources-and-lessons.md": "7d9fc2767efab78da6f09caccdc5776716130bf9a08ba2dbc60014d358ab7477",
+        "references/user-video-prompt-template.txt": "52d1870c9675e01805bea6b6afd704aac434e60a91461cebeeed8d4acbcde644",
+        "references/workflow.md": "eaf1d1e1b29a5212339fb045381778343257aa38e35c896ee745beed8579d7bb"
+      },
+      "file_count": 8,
+      "bytes": 9710
+    },
+    "seedance-outfit-transition-planning": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-outfit-transition-planning.zip",
+      "sha256": "71dc2e2166c4b13d08f362378e7656b757b40a926c7203496fa376defa1f6153",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "a7b3944af8ca9375e5f58225c6c9760b003c4df88b01e4f2dc143581e07a9131",
+        "agents/openai.yaml": "9af62f7990cd7ca9d6c05bf0c53d8dc3b91caae1d70ac3c64cc5d8ac9039dbde",
+        "assets/final-prompt-template.md": "0bb0ea4c06a7cdcafee280f02d03e06a9ddacdec72cd6eeedc1b7a6717fe3c71",
+        "assets/planning-template.md": "07c8c7b844967e9f260a4bfe4ead5bedbff267b602d1ae989ebbc9e45c66e7ae",
+        "references/case-curtain.md": "8608aef9296731094e5e43e77cc07f4464cfec9fecc7934b6e37ec941b8283d5",
+        "references/case-seated.md": "8608aef9296731094e5e43e77cc07f4464cfec9fecc7934b6e37ec941b8283d5",
+        "references/fifteen-second.md": "2eacdfaad8c6fafde43cc6088290bd62e29fe020cab5c7e904bfe9d97eff7c1a",
+        "references/five-second.md": "aa2232873abf0b0cb43216fd5f2d1f389885ddaf44e53ceef9bd862808a2a2f4",
+        "references/github-methods.md": "2392b358b86bc2ecb69dd515ae94cd1c0491060d2caa6e03895a81b6c76fb840",
+        "references/keyframe-quality.md": "30b831ebcdd158bd31e7d2ad6dcbe11a66bcba4fff766b4da3bf173fd18e0c00",
+        "references/material-sources.md": "8608aef9296731094e5e43e77cc07f4464cfec9fecc7934b6e37ec941b8283d5",
+        "references/video-production.md": "0af2fe6d9d20658335b2294cf34bb9a8e1d55729910651b77b02bc526dff01c5"
+      },
+      "file_count": 13,
+      "bytes": 28366
+    },
+    "seedance-character-shortvideo-production": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-character-shortvideo-production.zip",
+      "sha256": "e5f9d890d885fdc69fa5368039abedfe5e52ea768e23996139f6cfb7c1531180",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "a70abcbca53c1bcf49475a694707981f6f088b8f8ba8c998b244a10f80e9e9ee",
+        "agents/openai.yaml": "71cab7be51776494b22ecd4c8eceeb2b78ba059ec5418370437aa7be6cb10c45",
+        "references/kig-mode.md": "44743f0726961f89ed7a63ee15763ac0d6cbdd39959ad0ed90389a45b40c6fd0",
+        "references/mianmian-project.md": "8608aef9296731094e5e43e77cc07f4464cfec9fecc7934b6e37ec941b8283d5",
+        "references/minimal-task.md": "fab5c54a71ff9bec5553b9859f49ca9f1073d2993ac4f0c5e3890dbc086ea6af",
+        "templates/project-config.json": "4c4c590903e09e36eef55b1e10ff836a6a03b5013ae25f85c9fec837d26bebc7"
+      },
+      "file_count": 7,
+      "bytes": 12834
+    },
+    "seedance-story-skit-production": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-story-skit-production.zip",
+      "sha256": "a30d4e104852db8f8108fac47612399a6c2959f8be4b203e06eb596d73b57a73",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "c5dc89bbe2a67b7bb488f03f63b05056f91dbf79ad8a496283c2b6453c9fcd6c",
+        "agents/openai.yaml": "9238910f2ede96ac231036c44dfe8a4b4a130367a3b3e5c96012fed3342a0883",
+        "references/legacy-project.md": "8608aef9296731094e5e43e77cc07f4464cfec9fecc7934b6e37ec941b8283d5",
+        "references/provenance.md": "8608aef9296731094e5e43e77cc07f4464cfec9fecc7934b6e37ec941b8283d5",
+        "references/template-and-example.md": "87857d271e96001c1b87c16fde7d12d85b0f1f04f8b7556278193be92f44d6b4"
+      },
+      "file_count": 6,
+      "bytes": 8813
+    },
+    "seedance-douyin-video": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/seedance-douyin-video.zip",
+      "sha256": "89c6599d43fc88009f3d615b113d7dc1f4b9b5bebb5ac3c3bd2bc3fff2d8f902",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "60e3673a342e607d14bb956dad058c39bdc8dfc73999de9f4c11e4a971f51778",
+        "agents/openai.yaml": "03c9a5b19566fb288b9af38084f48e05494223d0976d9e4e653ef43315dccdfa",
+        "recipes/extract-bgm.md": "3ec1fdfc211b5a6620c947173bf06bca07321eeea90b6fa9ed16256e23199b5d",
+        "references/asr-verification.md": "ce732b37f96b46eddc0278fb1c53b2d5dd74169466967a7c2378cf40844e2976",
+        "references/download-and-transcribe.md": "8113e5855ba0772f817f5ee62e7089404b3323924998ee963aba6c583ecdc7c4",
+        "scripts/douyin_downloader.py": "3f14db27b0421c5d599789e35ee52b8641922e084992cb987032deb33e4a174c",
+        "scripts/extract_bgm.py": "5c64bd217806e97572cea08bbe600f8f0b15f136b2baf1bab7b3454874ac48dd",
+        "scripts/fast_transcribe.py": "42ad1bd0ebb9cf6490bf812185239ab33eaa944e7f5ed44eaa3de82da95ffc38",
+        "scripts/faster_whisper_runner.py": "8666fdc8a1041969eda009e723c3987dc2677c75b7e48295a9da5f4c9f4011d8",
+        "scripts/local_audio_probe.py": "5775d2a8f4a6015ee61a14251e0cfb02470e4a094af74df8cec7dbd37d360589",
+        "scripts/srt_workflow.py": "9b30c154c569e488936ef95ed469289e309b9be64d6a9bf02a30801d2652863a"
+      },
+      "file_count": 12,
+      "bytes": 43439
+    },
+    "naruto-b-library": {
+      "kind": "public_reviewed_source",
+      "archive": "assets/payloads/naruto-b-library.zip",
+      "sha256": "8a5f015ad3ac59d8ff8a75843db7573ac41e5855567dc0928f54b25a2f840289",
+      "files": {
+        "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
+        "SKILL.md": "5b9d131f04de192d74a6e4fbc1b9b4a573bad1c450445cf8e8ca9ae3798321f3",
+        "references/library-location.json": "d58416a06eb55a802b5184c28191c3304287f62310e315d61d8078e1bdc3c7c0"
+      },
+      "file_count": 3,
+      "bytes": 3331
+    }
+  },
+  "phases": {
+    "bootstrap": {
+      "skills": [
+        "paid-skit-progressive-setup"
+      ],
+      "purpose": "仅安装渐进部署入口",
+      "manual_gates": []
+    },
+    "0": {
+      "skills": [
+        "seedance-paid-skit-production-pipeline",
+        "paid-skit-production-pipeline",
+        "lark-shared",
+        "lark-doc",
+        "lark-drive",
+        "lark-sheets",
+        "workflow-auditor",
+        "universal-skit-orchestrator"
+      ],
+      "purpose": "项目与控制台基础",
+      "manual_gates": [
+        "接收者的飞书配置/登录与权限",
+        "接收者的飞书连接或当前规则获取",
+        "新项目事实与有效授权"
+      ]
+    },
+    "1": {
+      "skills": [
+        "seedance-douyin-video",
+        "douyin-video"
+      ],
+      "purpose": "原片、元数据、转写",
+      "environment": [
+        "media",
+        "speech only if needed"
+      ],
+      "manual_gates": [
+        "FFmpeg/ffprobe and readable source",
+        "ASR backend/model only when transcription is requested"
+      ]
+    },
+    "2": {
+      "skills": [
+        "paid-skit-copywriting",
+        "paid-skit-storyboard",
+        "naruto-favoritism-skit-generator",
+        "seedance-prompts",
+        "seedance-cinematic-director"
+      ],
+      "purpose": "A07完整导演稿与提示词；题材专项仅读适用分支",
+      "manual_gates": [
+        "中心当前独立规则与当前用户创作方向"
+      ]
+    },
+    "3": {
+      "skills": [
+        "paid-skit-character-sheet",
+        "paid-skit-asset-bridge",
+        "paid-skit-character-format",
+        "imagegen"
+      ],
+      "purpose": "可选旧兼容资产工具组合；A04-A06不必经，优先按实际缺口选asset-*阶段",
+      "environment": [
+        "vision only if needed"
+      ],
+      "manual_gates": [
+        "可调用生图/编辑工具及相应授权",
+        "审美确认",
+        "如需飞书入库，原生资产上传回读能力"
+      ]
+    },
+    "4": {
+      "skills": [
+        "seedance-prompts",
+        "paid-skit-video-prompts",
+        "rongyao-ai-generator",
+        "rongyao-keyring",
+        "rongyao-data-stack",
+        "rongyao-operations",
+        "rongyao-http-readonly",
+        "rongyao-http-upload"
+      ],
+      "purpose": "正文与真实绑定/参数预检",
+      "manual_gates": [
+        "原专用会话及AI protect只读核验通过；CLI自动发现，前台窗口无需保持",
+        "真实模型能力与报价",
+        "预算及费用授权；即梦分支另需binary/schema/账号确认"
+      ]
+    },
+    "5": {
+      "skills": [
+        "rongyao-ai-generator",
+        "rongyao-keyring",
+        "rongyao-data-stack",
+        "rongyao-operations",
+        "rongyao-http-readonly",
+        "rongyao-http-upload"
+      ],
+      "purpose": "单次提交、原任务查询与音画核验",
+      "manual_gates": [
+        "A09同版完整方案及有效费用授权；真实模型、当前输入和剩余预算",
+        "已受理沿原task回查；下载原片与实际音画分别核验；未知不重提"
+      ]
+    },
+    "6": {
+      "skills": [
+        "paid-skit-premiere"
+      ],
+      "purpose": "可编辑PR、字幕、连续音乐",
+      "environment": [
+        "premiere only for scripted edits"
+      ],
+      "manual_gates": [
+        "有许可的Premiere",
+        "字体真实字重",
+        "原生打开与手改保护",
+        "实际音画确认",
+        "接口能力按本机宿主／桥版本独立验证，候选工程回读且不覆盖用户手改"
+      ]
+    },
+    "7": {
+      "skills": [
+        "paid-skit-premiere"
+      ],
+      "purpose": "已验证本机桥优先，参数化PR原生导A及简短回执；FFmpeg接B、逐版验收归档",
+      "manual_gates": [
+        "A段实际PR原生编码完成；接B成片由FFmpeg输出并保留来源",
+        "逐版完整画面/声音核验及最终采用；发布单独授权",
+        "PR原生直导使用已验证UXP IMMEDIATELY或已验证兼容接口；AME队列不代替本流程直导；未知结果不重发"
+      ]
+    },
+    "cleanup": {
+      "skills": [
+        "paid-skit-cleanup"
+      ],
+      "purpose": "仅用户明确要求的维护清理",
+      "manual_gates": [
+        "精确清理范围授权和回读"
+      ]
+    },
+    "upload": {
+      "skills": [
+        "rongyao-material-upload",
+        "rongyao-keyring",
+        "rongyao-data-stack",
+        "rongyao-operations",
+        "rongyao-material-analysis",
+        "rongyao-video-upload",
+        "rongyao-dashboard-filter-finder",
+        "rongyao-material-performance",
+        "rongyao-http-readonly",
+        "rongyao-http-upload"
+      ],
+      "purpose": "A15／接B05归档后独立上传专项（非原单选节点）",
+      "environment": [
+        "upload only if needed"
+      ],
+      "manual_gates": [
+        "同版工作区及嵌套依赖合同check通过",
+        "当前真实成片、完整字段与本批明确上传授权",
+        "指定writer、scope锁及input_sha256短期单次票据",
+        "本机Keychain、Mac短信来源绑定及HTTP上传会话独立核验；Chrome仅明确兼容验证时使用",
+        "真实新批次上传、详情及播放另验；不重传历史视频"
+      ]
+    },
+    "seedance-specialists": {
+      "skills": [
+        "seedance-prompts",
+        "seedance-cinematic-director",
+        "seedance-battle-action-prompts",
+        "seedance-combat-impact-prompts",
+        "seedance-vfx-prompt-writing",
+        "seedance-anime-cg-reference-shot",
+        "seedance-outfit-transition-planning",
+        "seedance-character-shortvideo-production",
+        "seedance-story-skit-production"
+      ],
+      "purpose": "Optional creative methods; read only the selected branch",
+      "manual_gates": []
+    },
+    "asset-turnaround": {
+      "skills": [
+        "paid-skit-character-sheet"
+      ],
+      "purpose": "仅需三视图方法／检查时",
+      "manual_gates": [
+        "读取或安装不授权生成、费用或采用；实际工具与授权在动作前核验"
+      ]
+    },
+    "asset-catalog": {
+      "skills": [
+        "paid-skit-character-format"
+      ],
+      "purpose": "仅实际修改角色目录时",
+      "manual_gates": [
+        "读取或安装不授权生成、费用或采用；实际工具与授权在动作前核验"
+      ]
+    },
+    "asset-archive": {
+      "skills": [
+        "paid-skit-asset-bridge"
+      ],
+      "purpose": "仅已授权归档／恢复入口时",
+      "manual_gates": [
+        "读取或安装不授权生成、费用或采用；实际工具与授权在动作前核验"
+      ]
+    },
+    "asset-image": {
+      "skills": [
+        "imagegen"
+      ],
+      "purpose": "仅已选该工具且真缺口需要生图／修图时",
+      "manual_gates": [
+        "读取或安装不授权生成、费用或采用；实际工具与授权在动作前核验"
+      ]
+    },
+    "naruto-b-library": {
+      "skills": [
+        "naruto-b-library"
+      ],
+      "purpose": "仅实际维护火影B库时安装专业方法；不包含库、维护脚本或主机配置",
+      "manual_gates": [
+        "真实库路径与既有维护工具可用性另验；空配置不能称库就绪",
+        "仅当前素材与有效授权范围，不自动剪片、同步或上传"
+      ]
+    }
+  },
+  "conditional_dependencies": [
+    {
+      "trigger": "Selected service or method",
+      "state": "external_requirements",
+      "action": "See docs/dependencies.md; install official software using your own account. No accounts or author datasets are included."
+    }
+  ],
+  "files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "0b6bcb4921c094bfa2a6021bf410d0c9c26e02d7742ca1fdda954ffe09a1ab04"
+    },
+    {
+      "path": "assets/payloads/douyin-video.zip",
+      "sha256": "4a9c00a10bba0c3f47842cada137329b1da855f2cde103a720560b20bcded2c0"
+    },
+    {
+      "path": "assets/payloads/imagegen.zip",
+      "sha256": "aa9f99b23bdad6b52308cffca04cc7c5b56e61685e62ebdafba8b63f3908d6dc"
+    },
+    {
+      "path": "assets/payloads/naruto-b-library.zip",
+      "sha256": "8a5f015ad3ac59d8ff8a75843db7573ac41e5855567dc0928f54b25a2f840289"
+    },
+    {
+      "path": "assets/payloads/naruto-favoritism-skit-generator.zip",
+      "sha256": "6833798b13bb18f95a0012628c681bd2c746e660715a71cb01d3948ed1a147c3"
+    },
+    {
+      "path": "assets/payloads/paid-skit-asset-bridge.zip",
+      "sha256": "d65c22df0c55ec35954e500145a2550f9928ee9b1a62432a9213b8d80a51ec38"
+    },
+    {
+      "path": "assets/payloads/paid-skit-character-format.zip",
+      "sha256": "580ef5e657221b9f5ca03ef828362c2bb806cefc4bf89834d8553ee8edacb20b"
+    },
+    {
+      "path": "assets/payloads/paid-skit-character-sheet.zip",
+      "sha256": "dd22e884eab019c9a3a052f8cdd77d4a85a2faec1bee14a44b9542884641a3fe"
+    },
+    {
+      "path": "assets/payloads/paid-skit-cleanup.zip",
+      "sha256": "f17e8957ff3d21a7ec991630402e89913fb41b6a71ac19b9822f2cc6d420aab8"
+    },
+    {
+      "path": "assets/payloads/paid-skit-copywriting.zip",
+      "sha256": "9c0ae8b393748244a2720ec0f53931b9b237eea20370269ad7d4a0b2f40acae5"
+    },
+    {
+      "path": "assets/payloads/paid-skit-premiere.zip",
+      "sha256": "136b2d1d934d0776caad98623356ea3525a2ed4a3d4801a985814322b02ccf12"
+    },
+    {
+      "path": "assets/payloads/paid-skit-production-pipeline.zip",
+      "sha256": "470d94bbc33eab0665a49b1cc43a09b060293a355363bc3d6ce1d91943fc321d"
+    },
+    {
+      "path": "assets/payloads/paid-skit-storyboard.zip",
+      "sha256": "9a82cb6df99e4f66fa72a054b212ac50fd5abe685e8501d01060c6ce864d4446"
+    },
+    {
+      "path": "assets/payloads/paid-skit-video-prompts.zip",
+      "sha256": "31b0391ac0d01f1b24a7f258420e7cf98a85d6cc05c26b62181af28d70e523e6"
+    },
+    {
+      "path": "assets/payloads/rongyao-ai-generator.zip",
+      "sha256": "c8a2ba649e637dbc4be05000ee52e0fe561043f00b2d4315adddb5de9556d17a"
+    },
+    {
+      "path": "assets/payloads/rongyao-dashboard-filter-finder.zip",
+      "sha256": "c198507bdb0a26728f0f52f16f0eb34f0c9554016efec50a5d89803940c176b6"
+    },
+    {
+      "path": "assets/payloads/rongyao-data-stack.zip",
+      "sha256": "1afd791138752048af5b833a27df23e8fc36b73dbbfd379e87da74fa3ffbfdd3"
+    },
+    {
+      "path": "assets/payloads/rongyao-http-readonly.zip",
+      "sha256": "241659f67fcbfe5d4a1b08df95f1b5e00e4ca5bd50604102bfeb76042bab82fe"
+    },
+    {
+      "path": "assets/payloads/rongyao-http-upload.zip",
+      "sha256": "718e4ded509a8c347d6ebc8129cdd70d9f08e183e21d9850051f92a22c186363"
+    },
+    {
+      "path": "assets/payloads/rongyao-keyring.zip",
+      "sha256": "aea0a4b10355e6728b4c930e0b06df3725d53023a984e468c22db2f1a82ad393"
+    },
+    {
+      "path": "assets/payloads/rongyao-material-analysis.zip",
+      "sha256": "d8b8fa1a3761bb15f0d6b9a50d92516076212ac788d3f9496c78504f0a8e3141"
+    },
+    {
+      "path": "assets/payloads/rongyao-material-performance.zip",
+      "sha256": "9d55f9cafb80011570af3f5e1e83d564016058f8c49efb5096ba0279a96cba42"
+    },
+    {
+      "path": "assets/payloads/rongyao-material-upload.zip",
+      "sha256": "c7fb3850002e8005ee8cb2f4762803ef50d2a64b448b396055ee70e5874b847b"
+    },
+    {
+      "path": "assets/payloads/rongyao-operations.zip",
+      "sha256": "864d104f78978a6d1a6ca8b1a005e1344c8a4b0cd8db2397b4f00bdcaa36591e"
+    },
+    {
+      "path": "assets/payloads/rongyao-video-upload.zip",
+      "sha256": "bc6ab7bf7deb7864172831baf48b378a9865d4e8316e2264258ee30cb5114b5d"
+    },
+    {
+      "path": "assets/payloads/seedance-anime-cg-reference-shot.zip",
+      "sha256": "2884dda6dafa17509a96b110a34a055a25c13e4d9f48c86e0b6ee373a6913136"
+    },
+    {
+      "path": "assets/payloads/seedance-battle-action-prompts.zip",
+      "sha256": "d2ff01a8b2b8a2caa6287108446f361a1be0ad1784c751daca2ed9b0ccd38eca"
+    },
+    {
+      "path": "assets/payloads/seedance-character-shortvideo-production.zip",
+      "sha256": "e5f9d890d885fdc69fa5368039abedfe5e52ea768e23996139f6cfb7c1531180"
+    },
+    {
+      "path": "assets/payloads/seedance-cinematic-director.zip",
+      "sha256": "c2ea33bbb40dcb4b38983d29ad038b33d1c15414876db0a1ebbf40b32651b2af"
+    },
+    {
+      "path": "assets/payloads/seedance-combat-impact-prompts.zip",
+      "sha256": "6328bef0dd6b81bafea93e3a59ba02281bc9d7aef95c588e645c210d3634ff45"
+    },
+    {
+      "path": "assets/payloads/seedance-douyin-video.zip",
+      "sha256": "89c6599d43fc88009f3d615b113d7dc1f4b9b5bebb5ac3c3bd2bc3fff2d8f902"
+    },
+    {
+      "path": "assets/payloads/seedance-outfit-transition-planning.zip",
+      "sha256": "71dc2e2166c4b13d08f362378e7656b757b40a926c7203496fa376defa1f6153"
+    },
+    {
+      "path": "assets/payloads/seedance-paid-skit-production-pipeline.zip",
+      "sha256": "aa408f3a2ec095f78e17b3a5547e8e57bf310fab0ba3f2cf28644916ab0a6453"
+    },
+    {
+      "path": "assets/payloads/seedance-prompts.zip",
+      "sha256": "d8670dc3059f15ca7d80af75de8cc26deb181f40c48b1ffccfd274ffba9231b3"
+    },
+    {
+      "path": "assets/payloads/seedance-story-skit-production.zip",
+      "sha256": "a30d4e104852db8f8108fac47612399a6c2959f8be4b203e06eb596d73b57a73"
+    },
+    {
+      "path": "assets/payloads/seedance-vfx-prompt-writing.zip",
+      "sha256": "19bf9e3d3cec3ae9fa16f35a6f9b023d7aa3c73f28c6723f6bca9297cc9189c0"
+    },
+    {
+      "path": "assets/payloads/universal-skit-orchestrator.zip",
+      "sha256": "9030e4e68559e722e03ff1a799f13ae3ddbba0c4205a8f2252699741737f2dd1"
+    },
+    {
+      "path": "assets/payloads/workflow-auditor.zip",
+      "sha256": "a7a44c5c92e0c2f1af0d47bf8ffcbaf29bf7d4ce850da40f280e497543a613e7"
+    },
+    {
+      "path": "references/curation.json",
+      "sha256": "960d1c3a2cfda970f4c07142aac615bdb27c132c2e5c598d81607c92e34bebc2"
+    },
+    {
+      "path": "references/environment-probes.json",
+      "sha256": "ab93652e80808f38ce92b81870d32d15594fc6bc65cbfe112dc5ee87c269966c"
+    },
+    {
+      "path": "references/historical-locks/requirements.lock",
+      "sha256": "96ddb075ce7cf60ac066cdda1166476750b4ae4edc37f87e9a63154bc43e90d4"
+    },
+    {
+      "path": "references/historical-locks/vision-requirements.lock",
+      "sha256": "06deba99bc861ab86e5ec49a318147f354ec5cd3471a34b7bb336d1d382c4abd"
+    },
+    {
+      "path": "references/progressive-setup.md",
+      "sha256": "6190e53efa4aa7887956a8d92aef01963c3cc49abc4501cda4343240cbd2a6a3"
+    },
+    {
+      "path": "references/source-and-conditions.md",
+      "sha256": "938d8d4e66cbb46646f7a90796dffb27190c22615ce8ae5056c706d1cb1e487f"
+    },
+    {
+      "path": "references/verified-installation.json",
+      "sha256": "46ca0d8c6b5a074173ca4e25daa50f823051cdf6d6f1c93c2bcc8b1d9d8903fe"
+    },
+    {
+      "path": "requirements/align.txt",
+      "sha256": "b72c1dcd66493e2bb7defedd4a5ac555ddb1887c5135c018821d6ffec2d72c2a"
+    },
+    {
+      "path": "requirements/media.txt",
+      "sha256": "0d0d2938e5443f318fc97363f42cffe3309df1b718cc2bf713263a68cb7bbee5"
+    },
+    {
+      "path": "requirements/premiere.txt",
+      "sha256": "c70578230424f15f05ac2920c9445f8e00559c6680c39ea9c2608baf68a54c31"
+    },
+    {
+      "path": "requirements/speech.txt",
+      "sha256": "a0e33d44fb0f6e7b348f475f40b9395baa4f2c9739a6bdba663835169f600c84"
+    },
+    {
+      "path": "requirements/upload.txt",
+      "sha256": "a8d04c425e3598b81b4aedae4d01698ce869796e38e3d89e0d0c46a61465461f"
+    },
+    {
+      "path": "requirements/vision.txt",
+      "sha256": "0117838a0af905ed6a9c0683fe5e3de9137e3a5cb1ec10336048a073781d9c49"
+    },
+    {
+      "path": "scripts/pr_inspect.py",
+      "sha256": "8b0adddb9df15bc67e5c2d881246a80f0ca5615002059172ad7ab21fa0f6a5c8"
+    },
+    {
+      "path": "scripts/progressive_install.py",
+      "sha256": "7eaa41329a939d7f0bb75756b7c132508001e8e3deae45d3677a15cb8bc40903"
+    },
+    {
+      "path": "scripts/test_upload_phase.py",
+      "sha256": "3aef6b51149429e6f3c859a163762ae129eaf6857943fac8b121cb2ac9fdd476"
+    },
+    {
+      "path": "scripts/transcribe_local.py",
+      "sha256": "6953e267002e47cd63e2011fcd03f2fbf4c26e466c466c336ecd7460e3f857fc"
+    }
+  ],
+  "no_credentials_models_or_browser_profiles": true,
+  "external_rule_dependencies": []
+}

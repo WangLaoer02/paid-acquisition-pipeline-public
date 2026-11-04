@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "LIBRARY03",
+  "label": "03 素材验收",
+  "family": "library",
+  "goal": "验收当前库片对指定用途的真实可接性，承接有效证据，仅复验变化与缺项",
+  "depends_on": [
+    "LIBRARY02"
+  ],
+  "environment": [
+    "媒体检查及资产回读"
+  ],
+  "references": [],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户明确要求角色图片资产的飞书归档、挂载或角色入口修复时；普通B视频原件／副本整理、归档或可读链接交接不触发",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "character-catalog": {
+      "when": "实际修改角色库字段／页面／版本索引，不是普通生图",
+      "policy_ids": [
+        "character-format.02",
+        "character-format.03",
+        "character-format.04",
+        "character-format.05",
+        "character-format.06",
+        "character-format.08"
+      ]
+    },
+    "blogger-identity": {
+      "when": "真实博主身份、体型锚点或多造型重建；实例授权不继承",
+      "policy_ids": [
+        "character-format.07",
+        "character-format.15"
+      ]
+    },
+    "performance-traits": {
+      "when": "镜头确需动作、情绪或表情特写",
+      "policy_ids": [
+        "character-format.11",
+        "character-format.13"
+      ]
+    },
+    "outfit-breakdown": {
+      "when": "用户或当前镜头明确需要服装／结构拆解",
+      "policy_ids": [
+        "character-format.12"
+      ]
+    },
+    "identity-noise-repair": {
+      "when": "当前图件存在身份漂移、派生顺序或噪点问题",
+      "policy_ids": [
+        "character-format.14"
+      ]
+    },
+    "parallel-character-delivery": {
+      "when": "已授权的多套角色并行交付与入库",
+      "policy_ids": [
+        "character-format.10"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    }
+  },
+  "read": [
+    "LIBRARY02交接的当前素材原件／剪辑副本、来源与版本／SHA256、实际区间、用途和检查证据；沿原记录承接来源编号／原创编号、实际角色／第二设计师、权利限制与待核项。同源同区间同用途且对应当前文件的有效证据直接复用，只复验变化与缺项，不自动检查全库。"
+  ],
+  "deliver": [
+    "沿已有记录交LIBRARY04：当前原件／副本的可读入口、版本／SHA256、区间与用途，以及分列的技术解码、实际画面、库片完整声音、来源权利／角色归属核验和待核项；已有有效结果直接引用，无需新建文件。检查记录不等于用户采用或上传授权，未知／失败不标可接。"
+  ],
+  "gate": [
+    {
+      "id": "LIBRARY03.G01",
+      "criterion": "技术完整解码、实际画面和当前库片完整区间的声音分别有对应证据，符合指定接片用途；同源同区间同用途有效听审可复用，未听清或未完整听审标待核，此Gate不完成，不判可接；后续整条A+B独立完整听审不能替代本次库片完整听审",
+      "evidence_required": true
+    },
+    {
+      "id": "LIBRARY03.G02",
+      "criterion": "原件／副本入口与版本可读，来源、区间、用途、当前文件SHA256与证据对应；来源权利／角色归属逐项记录，保留来源编号／原创编号及实际角色／第二设计师，未知不补造；变化或缺项仅复验受影响项，不挪用旧源、旧区间、旧用途或旧版本证据",
+      "evidence_required": true
+    },
+    {
+      "id": "LIBRARY03.G03",
+      "criterion": "技术、画面、声音、来源权利／角色归属核验与用户采用分离；未知或失败素材不冒认可接，保留待核及恢复入口；完整检查记录和可读链接交LIBRARY04，仅对核验齐全且用途匹配者给出可接结论，不自动采用、上传或推进状态",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "LIBRARY04",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "library-review",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "LIBRARY03.I01",
+      "description": "LIBRARY02交接的当前素材原件／剪辑副本、来源与版本／SHA256、实际区间、用途和检查证据；沿原记录承接来源编号／原创编号、实际角色／第二设计师、权利限制与待核项。同源同区间同用途且对应当前文件的有效证据直接复用，只复验变化与缺项，不自动检查全库。",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "读取LIBRARY02原记录，核对当前原件／副本、来源、区间、用途、版本／SHA256及证据；已有同源同区间同用途有效结果直接引用，仅变化或缺项复验，范围限当前片段。",
+    "分列技术解码、实际画面、当前库片完整声音、来源权利／角色归属结果；逐项保留证据和待核，不用解码、机器转写或后续整条A+B听审替代库片完整听审。",
+    "沿已有记录交LIBRARY04可读入口、有效证据、可用范围或待核与恢复入口；未听清不判可接，检查通过不等于用户采用或上传授权，不因节点名新建制品。"
+  ]
+}

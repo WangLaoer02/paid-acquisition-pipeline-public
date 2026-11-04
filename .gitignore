@@ -1,0 +1,16 @@
+receiver.local.json
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+.venv/
+projects/
+library/
+evidence/
+workflow/authorizations/
+workflow/runtime/
+workflow/execution-profile.json
+installation-state.json

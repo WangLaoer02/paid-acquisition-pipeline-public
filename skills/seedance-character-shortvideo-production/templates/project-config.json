@@ -1,0 +1,57 @@
+{
+  "project_id": null,
+  "project_url": null,
+  "current_content_url": null,
+  "mode": null,
+  "series": null,
+  "stop_after": null,
+  "character": {
+    "page_url": null,
+    "master_id": null,
+    "look_id": null,
+    "file_version": null,
+    "face_behavior": null,
+    "material_reference": null,
+    "master_path": null
+  },
+  "references": {
+    "action": [],
+    "camera": [],
+    "scene": [],
+    "input_roles": []
+  },
+  "audio": {
+    "mode": null,
+    "source_work_url": null,
+    "music_id": null,
+    "in_seconds": null,
+    "out_seconds": null,
+    "beats": [],
+    "dialogue_script": null
+  },
+  "generation": {
+    "tool": null,
+    "account_confirmed_for_project": null,
+    "model": null,
+    "reference_mode": null,
+    "aspect_ratio": null,
+    "resolution": null,
+    "duration_seconds": null,
+    "count": null,
+    "quote": null,
+    "authorization_scope": null,
+    "binding_readback": null,
+    "task_id": null,
+    "target_family": "Seedance"
+  },
+  "checkpoint": {
+    "stage": null,
+    "input_versions": [],
+    "actual_checks": [],
+    "pending": [],
+    "next": null
+  },
+  "project_root": null,
+  "state_file": null,
+  "current_content_path": null
+}

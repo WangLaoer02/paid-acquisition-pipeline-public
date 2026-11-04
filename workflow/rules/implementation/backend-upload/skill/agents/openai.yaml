@@ -1,0 +1,4 @@
+interface:
+  display_name: "荣耀后台素材上传"
+  short_description: "核对视频素材命名、固定需求人与分类参数、原生上传及真实素材ID回查"
+  default_prompt: "使用 $rongyao-material-upload 按当前发布、在线节点和已验输入范围处理后台素材上传。"

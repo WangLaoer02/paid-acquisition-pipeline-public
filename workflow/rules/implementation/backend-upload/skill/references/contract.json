@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "module": "backend-upload",
+  "module_version": "1.4",
+  "workspace_dependencies": {
+    "scripts/material_upload.py": "b99edf7b845b37fc89985e0154221cafeaa4f4b6d1dea0d05e5998d5aa7ce60f",
+    "scripts/rongyao_checked_upload.py": "4846852ae42313355957cb35e01cdc4a0c8786cf994c14bf71ceb35e2a1fe39a",
+    "scripts/rongyao_material_upload.py": "e40c85b50519588e2eb678a9d03d5bbca97c69e8250232b3df3d349a57342a51",
+    "scripts/rongyao_upload_preview.py": "a0644ff2b84cbfe19807d7ec7e78e4a304084c60d955208cdd10ecd83bf1bea8",
+    "scripts/rongyao_video_list_upload.py": "2a3992b66c4e61b67d1fcfe347ad9961d7c4da69bc7c56088440c8a0b7610643",
+    "scripts/rongyao_fast_session.py": "3661fbe7008f1959549d58049f7f3870b1cd6265d89456b815668c82903cae1e",
+    "workflow/maintenance/upload-acceptance/config/requester-ai-rules.json": "1254d8f5579ca812e2909ae469a715dd169cf0782700726a5bb176b9f34d9cf2",
+    "workflow/maintenance/upload-acceptance/config/rongyao-observed-protocol.json": "fed4888ae752cff5bdcb92e830f4f45b7385eaf35d650fa73678449221dfc79e",
+    "workflow/node_skills.json": "759595c0993e0f3cabf4cd601cc9dbea360152c7b7cadd82fc9a81669e9f9ec0",
+    "workflow/stages.json": "877c1601c35f87075c4587dea8c938da7031b953dab9edc06f65b542be69d332",
+    "scripts/workflow_node.py": "b0ebc0a960fb9da11d787b8f6693832e797d9a887c3c820c052bfedc8da62f0f",
+    "scripts/console_content.py": "1206f2f19717b6ad8f75b316a1bb663a21eb2cc8b76c0cdc5f9863ab0597ce8e",
+    "scripts/workflow_runtime.py": "af32668b8dd521df74298f50c597c10a2c33fa32c488baf7dae25ad758893821",
+    "workflow/runtime-policy.json": "14ba45afd8e64f428c82f227cd64db1408ad7ddc8c0d347039c36bbfe7eab88d",
+    "scripts/rongyao.py": "0013c5ebb8b749d40c00c36b933fe6fe84deac5ed3e1dc9a4219c93851f5cbf6",
+    "scripts/delivery_contract.py": "4d378d62da8beae723d63487286b7ecfb12f3e93a891969ce2c2f64cd031fedd",
+    "scripts/workflow_deployment.py": "f24fdd5a09b3a0f4b8247777b84b758ff7ab0488fc427079c51e8a43e6a632c4",
+    "scripts/workflow_rules.py": "f0c4c9475ee38c7ff349fb4bd640ae2c3b875a4534bf8a4292058d791d8a74cc",
+    "scripts/native_upload_guard.py": "d2b7a4c0e9a287c30306364004056419c3a87a533294e38844ee69463b997fb5",
+    "scripts/native_upload_controller.py": "330ba60dcb1390ea2a3711e1ccfa245731074d9f84871c8e6e73ba5e61a8003b",
+    "scripts/native_upload_build.py": "e33cd6f294f1d74aeffcd983ff4bb398024edf1154abf5e63ff63b5027ca3cd7",
+    "workflow/tools/native-upload/native-ui.swift": "c83c9b58e0556b692f0937eb61a26351aea7520d3949aafc4fb23f7d447766ef",
+    "tests/test_native_upload_guard.py": "9f4c1edba94fcd572d073128fd6c5837d2136978c9d527abd895717c6df514f1",
+    "tests/test_console_empty_content.py": "149c60a03e128b76241a6cd319e73c105b6cb9338904471a82669a5eca91f0c2",
+    "scripts/prompt_contract.py": "b72854b070c134ab2544f1b19de7c5e9c17d2b15d25ff56199a0d919ddf38842",
+    "tests/test_prompt_contract.py": "dac7f6cf9bd1a01aef0cf3cf7774a2c044dd8490f6f9191573a88cb60bbe38e5",
+    "tests/test_prompt_public_entry.py": "7d154f76f6575fb6c84af1a54c3261078d80fb09bd1e50d368c13e863c458246",
+    "workflow/console-compact-template.json": "93028196f3423af170bd049a095f65165bb8dffba06e5c2788fb3d86b7e780c1",
+    "workflow/director-storyboard-template.json": "cd83841673f871e9d107c7918f37889bb1d7e0d9d1406b3b7edc193a3f9b92c1",
+    "scripts/workflow_step.py": "e7350129ffbeb2227d21e7dc20b852b72659e3cfbc5700a05ffb31b72166e322",
+    "scripts/production_order.py": "58ef11ee8d22b1f36aebecda59d37b2d78145e19be56c24ee74c41407f532350",
+    "scripts/workflow_readiness.py": "49c83e7e6c8a2f164ba453986edb91a42ee453f12729632f611cefb4ad2db604",
+    "scripts/reference_scope.py": "37f41141707891ee89a72724ce3a0148a6b7875b257ef05e5dd0212ed1e85389",
+    "scripts/dreamina_workflow.py": "122d63e200cc6ffb22f8eb3c46f368aa838f87ed76aef00bc0dfa9b94ec8daa9"
+  },
+  "python_imports": [
+    "requests",
+    "bs4"
+  ],
+  "reviewed_plan_path": "workflow/maintenance/upload-acceptance/evidence/folder-20260930-run-20261010/plan.json",
+  "reviewed_plan_sha256": "a5eb96f25e3618aa0510b74bbae1fda50e6e545176f03d800f362eeaa4671e66",
+  "reviewed_plan_count": 14,
+  "public_receipts_path": "workflow/maintenance/upload-acceptance/evidence/fast-native-20261010",
+  "unverified_capabilities": [
+    "数字登录UID与真实多登录态并行",
+    "新截止与并行策略的实网稳定一分钟入库",
+    "历史样本新需求人/AI规则的实际详情应用",
+    "角色/需求人/AI/方向的逐字段详情一致性完整验收",
+    "通用CLI归属详情与远端播放；单文件提交及入库ID124887已验"
+  ],
+  "credentials_included": false,
+  "project_media_or_plan_included": false,
+  "submits_upload_from_entry": false,
+  "generic_cli": {
+    "path": "scripts/rongyao.py",
+    "version": "0.2.3",
+    "registered_plan": true,
+    "scope": "material-upload:rongyao-operations",
+    "authorization_ticket_required": true,
+    "real_upload_verified": true,
+    "verified_record_id": "124887",
+    "default_route": "plans-and-explicit-chrome",
+    "standalone_prechecks_required": false,
+    "historical_transport_validation_version": "0.2.1",
+    "current_native_branch_real_upload_verified": false,
+    "current_version_real_upload_verified": false
+  },
+  "native_execution": {
+    "plan_pins": [
+      "controller",
+      "guard",
+      "swift_source",
+      "local_binary",
+      "window_title",
+      "release_id"
+    ],
+    "persistent_goal_budget": 2,
+    "unknown_reconcile_only": true,
+    "real_upload_verified": false,
+    "pre_submit_revalidation": [
+      "current_media_sha256",
+      "exact_absolute_selected_path",
+      "all_visible_parameters"
+    ],
+    "pre_submit_rejection_state": "selection_pending"
+  },
+  "deployment_dependencies": [
+    "rongyao-operations",
+    "rongyao-keyring",
+    "rongyao-data-stack"
+  ],
+  "default_http": {
+    "skill": "rongyao-http-upload",
+    "path": "workflow/tools/rongyao-http-upload/scripts/rongyao_upload.py",
+    "version": "1.3.1",
+    "contract": "workflow/tools/rongyao-http-upload/SKILL.md",
+    "registered_plan": true,
+    "authorization_ticket_required": true,
+    "unknown_acceptance": "reconcile-original-job-and-transport-only"
+  }
+}

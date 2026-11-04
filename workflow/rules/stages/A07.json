@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "A07",
+  "label": "07 导演稿",
+  "family": "a",
+  "goal": "在唯一当前稿完成剧情、完整分镜、时间／对白、必要关键帧及对应视频提示词，交A08优化",
+  "depends_on": [
+    "A02",
+    "A03",
+    "A06"
+  ],
+  "environment": [
+    "剧本方法；偏心专项仅匹配题材时"
+  ],
+  "references": [
+    "main.23",
+    "main.61",
+    "main.65",
+    "storyboard.01",
+    "storyboard.02",
+    "storyboard.03",
+    "storyboard.04",
+    "storyboard.05",
+    "storyboard.06",
+    "storyboard.07",
+    "storyboard.08",
+    "storyboard.09",
+    "storyboard.10",
+    "main.66",
+    "reference-scope.02",
+    "video-prompts.03",
+    "video-prompts.04",
+    "video-prompts.09"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "favoritism": {
+      "when": "已确认偏心／双标／踩捧题材，非普通短剧",
+      "policy_ids": [],
+      "external_skills": [
+        "naruto-favoritism-skit-generator"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "仅无付费拟稿或审查A07当前剧本；沿本节点方法，不进入后期预演",
+      "policy_ids": []
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    }
+  },
+  "read": [
+    "同版已采用的创意预演与结构、可复用既有分镜、已选资产和目标时长；不要求A03预先完成详细分镜；接收A06沿原记录交来的可用原件／引用、用途限制、采用／未验状态及未解决项，仅在已核适用范围内使用，未解决项只约束依赖内容"
+  ],
+  "deliver": [
+    "唯一当前导演稿：完整剧情与逐镜画面／动作、对白归属、声音、时间、真实引用用途及对应视频提示词；必要关键帧沿有效授权取得或复用，待补／未验就地标明"
+  ],
+  "gate": [
+    {
+      "id": "A07.G01",
+      "criterion": "当前导演稿完整呈现剧情及全部镜头、必要对白与说话人、声音、时间和真实引用用途；承接已采用创意和A06限制，不以A03缺逐镜行阻塞",
+      "evidence_required": true
+    },
+    {
+      "id": "A07.G02",
+      "criterion": "对应镜号的视频提示词与当前剧情／引用一致；关键帧复用或在有效授权内取得，未补／未验项明确，不能把规划当已生成或实际音画通过",
+      "evidence_required": true
+    },
+    {
+      "id": "A07.G03",
+      "criterion": "保留来源稿、历史与手改；关键创意拟删改明确标出且不冒称已采用，完整方案到A09第二停点集中确认；同版原授权不重复追认",
+      "evidence_required": true
+    },
+    {
+      "id": "A07.G04",
+      "criterion": "完整剧情、全部镜头、时间／对白及逐镜提示词写在唯一当前导演稿；已有适用行及镜号沿用，缺行按需建立且新标识不复用。与已采用预演及真实改稿对应；A08仅按真实问题优化关键镜头并同步同稿，无缺口沿用。此阶段不要求最终真实音画或成片帧区间证据，最终逐镜对应仍在A14／B04验收",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "A08",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "script",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "A07.I01",
+      "description": "同版已采用的创意预演与结构、可复用既有分镜、已选资产和目标时长；不要求A03预先完成详细分镜；接收A06沿原记录交来的可用原件／引用、用途限制、采用／未验状态及未解决项，仅在已核适用范围内使用，未解决项只约束依赖内容",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "actions": [
+    "承接已采用创意及A06原物料记录，在同一当前导演稿建立必要逐镜行；已有镜号、历史和手改保留，新行ID唯一，不要求A03先有完整分镜。",
+    "写完整剧情并按故事顺序完成画面、动作起止、景别／机位／运镜、对白及说话人、声音、引用用途与时间分配；按需要读取seedance-cinematic-director相应方法，不以无关模板增加镜头。",
+    "按seedance-prompts编写与镜号对应的视频提示词，已有适用稿复用；关键帧优先复用已核图，仅真实缺口且相应授权有效时调用选定图像工具，未授权或未验内容保留待补，不因此阻塞独立文本准备。",
+    "按已采用创意、真实引用及自然语速核对完整同稿，A+B预留B实长；交A08仅优化重点，再到A09备齐实时报价等完整方案一次确认，不在A07单独批稿。"
+  ],
+  "skill_calls": [
+    {
+      "skill": "seedance-cinematic-director",
+      "when": "A07完整镜头与空间／连续性设计，只读当前需要的导演方法；安装phase 2提供入口"
+    },
+    {
+      "skill": "seedance-prompts",
+      "when": "A07编写与镜号对应的视频提示词；读取共用合同与所需格式，平台操作和报价留A09"
+    },
+    {
+      "skill": "本次选定图像工具",
+      "when": "必要关键帧有真实缺口且授权有效时；已有图适用直接复用"
+    }
+  ]
+}

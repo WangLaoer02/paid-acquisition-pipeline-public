@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "release_id": "PUBLIC20261104.1",
+  "id": "B04",
+  "label": "04 成片验收",
+  "family": "b",
+  "goal": "独立验收每一版完整接B成片",
+  "depends_on": [
+    "B03"
+  ],
+  "environment": [
+    "媒体查看与完整声音检查"
+  ],
+  "references": [
+    "main.05",
+    "main.90",
+    "storyboard.10",
+    "reference-scope.02"
+  ],
+  "conditional_reads": {
+    "gui-failure": {
+      "when": "同一GUI目标失败或用户质疑当前操作路径",
+      "policy_ids": [
+        "main.06"
+      ]
+    },
+    "console-write": {
+      "when": "即将写入项目业务正文、图片或修改控制台格式",
+      "policy_ids": [
+        "console-format.01",
+        "console-format.02",
+        "console-format.03",
+        "console-format.04",
+        "main.72",
+        "console-format.05",
+        "console-format.06"
+      ]
+    },
+    "asset-archive": {
+      "when": "用户已要求归档、挂载或修复资产入口",
+      "policy_ids": [
+        "asset-bridge.01",
+        "asset-bridge.02",
+        "asset-bridge.03",
+        "asset-bridge.04",
+        "asset-bridge.05",
+        "asset-bridge.06"
+      ]
+    },
+    "ip-source": {
+      "when": "查找火影原有资产或核对角色时期服装",
+      "policy_ids": [
+        "main.07"
+      ]
+    },
+    "nonpaid-previs": {
+      "when": "只审查已有产物或用户禁止新增费用",
+      "policy_ids": [
+        "main.02"
+      ]
+    },
+    "authorized-collaboration": {
+      "when": "本次有明确的跨会话／子Agent协作安排",
+      "policy_ids": [
+        "main.17"
+      ]
+    },
+    "asset-cleanup": {
+      "when": "用户明确要求整理／清理，先完整性对照",
+      "policy_ids": [
+        "cleanup.01",
+        "cleanup.02",
+        "cleanup.03",
+        "cleanup.04",
+        "cleanup.05",
+        "cleanup.06",
+        "cleanup.07",
+        "cleanup.08",
+        "cleanup.09",
+        "cleanup.10",
+        "cleanup.11",
+        "main.86"
+      ]
+    },
+    "legacy-case-review": {
+      "when": "明确复现历史案例或排查对应旧项目",
+      "policy_ids": [
+        "character-format.09"
+      ]
+    },
+    "portrait-layout": {
+      "when": "本次输出为竖版，且实际采用上下贴片或水印旋转包装；横版或无此包装要求不选择此分支",
+      "policy_ids": [
+        "portrait-layout.01"
+      ]
+    }
+  },
+  "read": [
+    "逐版实际完整AB文件路径与SHA、B03绑定该文件且仍有效的技术证据／实测总长、最新完整AB稿与分镜、当前包装需求及待核／变更项；已有采用记录按真实文件与范围读取。"
+  ],
+  "deliver": [
+    "逐版绑定实际完整AB文件与最新完整分镜的音画／对白字幕／接点／片尾／包装和连续全帧覆盖核对、实测总长及待核记录；第三停点一次采用的真实文件SHA与其中A范围，未采用版保持候选。"
+  ],
+  "gate": [
+    {
+      "id": "B04.G01",
+      "criterion": "每版实际完整AB文件和SHA对应B03有效技术证据及实测总长；已逐版完整看听并核对白字幕、声音、接点、片尾和当前包装，A通过不替代完整AB",
+      "evidence_required": true
+    },
+    {
+      "id": "B04.G02",
+      "criterion": "技术／内容／用户采用分开；听不清、未知或其他待核未清不能通过，完整成片与对应分镜在第三停点一次采用；记录真实采用文件与其中A范围，按范围回填A15／正式B01，未采用保持候选",
+      "evidence_required": true
+    },
+    {
+      "id": "B04.G03",
+      "criterion": "稿件、文件、声音包装变化定位实际影响，仅复验相关版本及必要邻镜，保留其他有效证据与历史，不重确认已采用同版",
+      "evidence_required": true
+    },
+    {
+      "id": "B04.G04",
+      "criterion": "每条交付文件逐个绑定最新完整AB稿、分镜核对及实际文件路径／SHA；含B、转场、字幕卡和片尾，逐镜画面、对白与连续全帧覆盖齐全，缺一版或旧证不得报齐",
+      "evidence_required": true
+    }
+  ],
+  "after_pass": {
+    "next_node": "B05",
+    "writeback": "复核实际制品／审核／采用后更新唯一项目Sheet；状态同步沿workflow_state，不自动推进",
+    "automatic_side_effects": false
+  },
+  "failure": {
+    "resume": "回最近实际错误来源，修复后仅复验受影响下游",
+    "unknown_external_result": "只读回查原任务／上传，不重新提交",
+    "blocked_scope": "只阻塞依赖缺项的动作，独立非付费准备继续"
+  },
+  "execution_kind": "b-review",
+  "shared": [
+    "shared/guards.md"
+  ],
+  "gate_pass_inferred": false,
+  "contract_schema_version": 2,
+  "gate_schema_version": 1,
+  "input_requirements": [
+    {
+      "id": "B04.I01",
+      "description": "逐版实际完整AB文件路径与SHA、B03绑定该文件且仍有效的技术证据／实测总长、最新完整AB稿与分镜、当前包装需求及待核／变更项；已有采用记录按真实文件与范围读取。",
+      "required": true,
+      "integrity": "sha256_if_file"
+    }
+  ],
+  "delivery_check_required": true,
+  "storyboard_check_required": true,
+  "actions": [
+    "先核每版实际文件SHA、B03有效技术证据、最新完整AB稿／分镜与包装要求；同文件同范围有效技术证据可引用，不因验收重新编码。默认10～25秒按完整AB实测总长，明确时长优先；技术通过、内容通过和用户采用分开记录。",
+    "逐版实际完整观看并听审，核对白原字、字幕、声音、接点不断句、片尾无遗漏，以及B、转场和字幕卡在完整分镜中的逐镜连续全帧覆盖；A段通过不能替代整片。听不清、缺帧、旧稿或未知项均保留待核，不能标完成。",
+    "按storyboard.10逐版调用storyboard_parity.py check并保存绑定结果，再用inspect-evidence核齐本次交付清单中全部文件的分镜证据；机器检查不证明实际看听、审美或采用。",
+    "第三停点一次交完整成片与对应分镜，记录用户实际采用的文件／SHA、完整稿版本和其中A文件／区间；据真实采用范围回填A15与正式B01，不因整条AB采用就推定未展示的完整A已采用。未采用版本仍为候选，已采用同版不额外确认。",
+    "文件、稿件、声音或包装变化只复验受影响版本及连续性相关镜头，保留无关有效证据；不以新外壳引用旧证通过。采用与原上传授权核清后交B05，不增加上传前确认；上传执行由后续负责。"
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "rongyao-observed-upload-1",
+  "observed_on": "2026-10-10",
+  "status": "observed_read_only_no_production_acceptance",
+  "evidence": "workflow/maintenance/upload-acceptance/evidence/live-browser-discovery.json",
+  "production_ready": false,
+  "entry": "http://demand.backend.example.invalid/data/?_c=jrttOpenNewVideo&_a=index&ac=toInfo",
+  "readback_url": "http://demand.backend.example.invalid/data/?_c=creativeVideoList&_a=index&ac=openVideo",
+  "readback_fields": [
+    ".video_title",
+    "img[id]唯一数字素材ID",
+    "h6分类",
+    "h6视频尺寸",
+    "h6一类 img[name]",
+    "h6二类 img[name]",
+    "h6角色/标签 img[name]"
+  ],
+  "readback_remote_file_available": false,
+  "chunk_bytes": 30971520,
+  "endpoints": {
+    "precheck": "http://demand.backend.example.invalid/data/?_c=creativeVideoList&_a=index&ac=getVideoName",
+    "chunk": "http://cdnapk.backend.example.invalid/api/controller/ApiUploadVideo.php?act=upload",
+    "join": "http://cdnapk.backend.example.invalid/api/controller/ApiUploadVideo.php?act=join",
+    "source": "http://demand.backend.example.invalid/data/?_c=creativeVideoList&_a=index&ac=saveSourceData",
+    "roles": "http://demand.backend.example.invalid/data/?_c=creativeVideoList&_a=index&ac=saveVideoTag"
+  },
+  "categories": {
+    "火影": "117",
+    "火影-AI批量": "129",
+    "直播-火影": "128",
+    "火影微信": "34",
+    "火影腾讯": "33",
+    "火影扒": "32",
+    "火影头条": "30",
+    "忍界大战-抖音图文": "130",
+    "太吾纪元": "58"
+  },
+  "categories_complete": false,
+  "source_type": [
+    "图片-攻略",
+    "图片-品宣",
+    "图片-界面",
+    "图片-AI",
+    "图片-梗图",
+    "休闲类",
+    "KOL",
+    "图片-玩法",
+    "图片-福利",
+    "图片-展示",
+    "大蓝",
+    "玩法",
+    "剪辑",
+    "真人",
+    "战斗",
+    "小剧场",
+    "口播",
+    "展示"
+  ],
+  "source_direction_list": {
+    "图片-界面": [
+      "伪实机",
+      "IP面板",
+      "原创面板",
+      "伪商店"
+    ],
+    "图片-梗图": [
+      "梗图"
+    ],
+    "玩法": [
+      "小剧场AI",
+      "竞品",
+      "小游戏",
+      "原生录屏",
+      "UE"
+    ],
+    "小剧场": [
+      "AI",
+      "UE",
+      "AE",
+      "小剧场"
+    ],
+    "休闲类": [
+      "原生玩法",
+      "货不对板"
+    ],
+    "图片-攻略": [
+      "纯文字",
+      "攻略图"
+    ],
+    "图片-AI": [
+      "AI界面",
+      "AI展示",
+      "AI品宣"
+    ],
+    "图片-展示": [
+      "切分图",
+      "角色展示",
+      "属性",
+      "进阶",
+      "抽卡",
+      "大字报"
+    ],
+    "图片-福利": [
+      "充值折扣",
+      "礼包奖励"
+    ],
+    "图片-品宣": [
+      "世界观",
+      "海报",
+      "群像"
+    ],
+    "展示": [
+      "界面",
+      "非角色AI",
+      "角色AI",
+      "立绘竞品",
+      "真人cos",
+      "外部立绘",
+      "序列帧",
+      "手办",
+      "AI-Q版",
+      "AI",
+      "UE",
+      "立绘"
+    ],
+    "大蓝": [
+      "大蓝"
+    ],
+    "剪辑": [
+      "动画",
+      "竞品"
+    ],
+    "口播": [
+      "抽卡",
+      "老外",
+      "解说类",
+      "品宣类",
+      "攻略",
+      "剧情",
+      "玩法",
+      "福利"
+    ],
+    "战斗": [
+      "录屏",
+      "UE"
+    ]
+  },
+  "roles": {
+    "鼬": "宇智波鼬",
+    "宇智波鼬": "宇智波鼬",
+    "佐助": "佐助",
+    "带土": "带土",
+    "卡卡西": "卡卡西"
+  },
+  "roles_complete": false,
+  "note": "文字值直接传给对应端点；gid、category_type、旧编辑页source_type分别保留命名空间。其余选项必须再读真实字典，不据缺省认定失效。"
+}

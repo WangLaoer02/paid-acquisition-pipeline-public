@@ -1,0 +1,4 @@
+interface:
+  display_name: "荣耀 AI 后台 CLI"
+  short_description: "复用现有浏览器登录，校验荣耀 AI 生成参数并查询会话、额度和任务"
+  default_prompt: "使用 $rongyao-ai-generator 查看公司 AI 后台的模型与额度，准备可审阅的生成计划。"
