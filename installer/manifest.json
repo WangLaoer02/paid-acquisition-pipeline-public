@@ -484,7 +484,7 @@
     "seedance-paid-skit-production-pipeline": {
       "kind": "public_reviewed_source",
       "archive": "assets/payloads/seedance-paid-skit-production-pipeline.zip",
-      "sha256": "8d41c2a82c3988812c630e167b8e141f79a1620ae60987ee24203af24bd03af8",
+      "sha256": "477558501246236b94714ef4d8bb2ea1387937546a95542c4bd9a05c1431b425",
       "files": {
         "LICENSE.txt": "eefc52b863689741ed14a22726091f39d816c59ec268ca41f946abf985960052",
         "SKILL.md": "f3a661856e21aeaf9edcf9ac65fdf583b9b5cb8cdd06199da5e1b2b7600aba8d",
@@ -1032,7 +1032,7 @@
         "references/workspace-contract/tests/test_delivery_contract.py": "95df22bb5c116c18e22fefe6e2476919a3d57956fb2eac3f47ffe6cdda3a4c1c",
         "references/workspace-contract/tests/test_director_storyboard.py": "fb232ec1cd1d4f8e350e1b5e747f3423fffd5dd652c2ff2d7f8596cdbfd4bc9b",
         "references/workspace-contract/tests/test_hailuo_workflow.py": "34c0edd8314a833dd579dbdbef3587fd2b8c5a7aa305427f1b1061514fc033e3",
-        "references/workspace-contract/tests/test_install_completion.py": "300da420dbe2b75a1f077aae78d3b013ef7783d59ad0dcda37af6ced92bbd454",
+        "references/workspace-contract/tests/test_install_completion.py": "b0168faca9c98a6f5ac5cb2b9eda32555e655e4897b326f137fcd3c7464ddabc",
         "references/workspace-contract/tests/test_material_preparation.py": "e98ffb61d55a94b049a0e84b96c30bb175ed9d65102672af9817f96e5416e239",
         "references/workspace-contract/tests/test_native_id_persistence.py": "7776991c77fe73a71b1d8685be6d1dc4f140dbd6e31656a80695923a6310bc7a",
         "references/workspace-contract/tests/test_native_upload_guard.py": "9f4c1edba94fcd572d073128fd6c5837d2136978c9d527abd895717c6df514f1",
@@ -1153,7 +1153,7 @@
         "skills/rongyao-operations/scripts/upload_bridge.mjs": "cdd279350aaa78fba30f4173e45d949a213a1f6a9c795864d28cfea8404bd38d"
       },
       "file_count": 665,
-      "bytes": 1748661
+      "bytes": 1749496
     },
     "universal-skit-orchestrator": {
       "kind": "public_reviewed_source",
@@ -1772,7 +1772,7 @@
     },
     {
       "path": "assets/payloads/seedance-paid-skit-production-pipeline.zip",
-      "sha256": "8d41c2a82c3988812c630e167b8e141f79a1620ae60987ee24203af24bd03af8"
+      "sha256": "477558501246236b94714ef4d8bb2ea1387937546a95542c4bd9a05c1431b425"
     },
     {
       "path": "assets/payloads/seedance-prompts.zip",

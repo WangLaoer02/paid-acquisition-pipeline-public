@@ -4,6 +4,8 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
+import subprocess
 from pathlib import Path
 import sys
 import tarfile
@@ -31,6 +33,50 @@ class CompletionTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()) as out:
             rc = fn(*args)
         return rc, json.loads(out.getvalue())
+
+    @unittest.skipIf(os.name == 'nt', 'POSIX executable fixtures; Windows remains unverified')
+    def test_feishu_cli_process_exit_and_existing_files_preserved(self):
+        # Invoke the real entry point in a child process: function-only tests cannot
+        # catch main() accidentally discarding the tool-install-feishu return code.
+        for case, exit_code, executable, on_path in [
+            ('version_failure', 9, True, False),
+            ('not_executable', 0, False, False),
+            ('version_success', 0, True, False),
+            ('path_version_failure', 9, True, True),
+        ]:
+            with self.subTest(case=case):
+                root = Path(self.tmp.name) / case
+                tool_root = root / 'tools'
+                path_dir = root / 'path'
+                path_dir.mkdir(parents=True)
+                if on_path:
+                    binary = path_dir / 'lark-cli'
+                else:
+                    package = tool_root / 'npm/node_modules/@larksuite/cli/package.json'
+                    package.parent.mkdir(parents=True)
+                    package.write_text('{"version":"existing-manual-version","manual":"preserve"}')
+                    binary = tool_root / 'npm/node_modules/.bin/lark-cli'
+                    binary.parent.mkdir(parents=True)
+                binary.write_text('#!/bin/sh\nexit ' + str(exit_code) + '\n')
+                binary.chmod(0o755 if executable else 0o644)
+                def snapshot():
+                    return {p.relative_to(root).as_posix(): (p.read_bytes(), p.stat().st_mode)
+                            for p in root.rglob('*') if p.is_file()}
+                before = snapshot()
+                environment = dict(os.environ, PATH=str(path_dir))
+                result = subprocess.run([
+                    sys.executable, str(ROOT / 'installer/scripts/progressive_install.py'),
+                    '--skills-dir', str(root / 'skills'), '--tool-root', str(tool_root),
+                    'tool-install-feishu',
+                ], capture_output=True, text=True, env=environment, timeout=25)
+                output = json.loads(result.stdout)
+                expected = 0 if executable and exit_code == 0 else 2
+                self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
+                self.assertEqual(output['version_probe_passed'], expected == 0)
+                self.assertTrue(output['existing_cli_preserved'])
+                self.assertFalse(output['compatibility_verified'])
+                self.assertEqual(snapshot(), before)
+                self.assertFalse((root / 'skills').exists())
 
     def test_stage_missing_external_is_nonzero(self):
         rc, result = self.capture(install.install, self.args, self.manifest)
