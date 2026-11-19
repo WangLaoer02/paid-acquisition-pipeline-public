@@ -1607,7 +1607,9 @@ def _sheet_info(row):
     if js and js.is_file():
         try:
             d = json.loads(js.read_text(encoding="utf-8"))
-            info["b"] = d.get("naming", {}).get("b_source_name") or ""
+            n = d.get("naming", {})
+            src = (n.get("b_source_name") or "").split("（")[0]
+            info["b"] = f'{n["b_title"]}（{src}）' if n.get("b_title") and src else (n.get("b_title") or src)
             info["role"] = d.get("form", {}).get("角色标签") or ""
         except ValueError:
             pass
@@ -1690,6 +1692,7 @@ th,td{text-align:left;padding:8px 12px;border-top:1px solid var(--line)}th{color
 .bar{display:inline-block;vertical-align:middle;width:90px;height:6px;border-radius:3px;background:var(--line);margin-right:6px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--acc)}td.prog{white-space:nowrap}
 ul.done{margin:0;padding:12px 16px 12px 32px;background:var(--card);border:1px solid var(--line);border-radius:10px}ul.done li{margin:4px 0}
+.scroll{overflow-x:auto;border-radius:10px}.scroll table{min-width:560px}
 .alert{background:color-mix(in srgb,var(--warn) 12%,var(--card));border:1px solid var(--warn);border-radius:10px;padding:10px 14px}
 """
 
@@ -1750,7 +1753,8 @@ def render_board(st):
         if not p["items"]:
             return f'<p class="mute">{e(p["name"])}：还没有登记项目（新项目从 A01 开始，绑定项目表后会出现在这里）</p>'
         rows = []
-        for it in sorted(p["items"], key=lambda x: (x["done"], x["project"], x["id"])):
+        # 已同步的在前（返工、进行中优先看），已完成和未同步的放后面
+        for it in sorted(p["items"], key=lambda x: (x["index"] is None, x["done"], x["project"], x["id"])):
             pct = round(100 * it["index"] / it["total"]) if it["index"] and it["total"] else 0
             cls = {"返工": "bad", "依赖复核": "warn", "已推进": "ok"}.get(it["action_label"], "")
             bar = (f'<div class="bar"><i style="width:{pct}%"></i></div><span class="mute">{it["index"]}/{it["total"]}</span>'
@@ -1762,7 +1766,7 @@ def render_board(st):
                         f'<td class="{cls}">{"✓ 已完成" if it["done"] else e(it["action_label"])}</td>'
                         f'<td class="mute" title="{e(need)}">{e(short)}</td></tr>')
         return (f'<p class="mute">{e(p["name"])} · 状态同步于 {e(p.get("synced_at") or "—")}（管线最近一次同步项目表的结果，不是实时读取）</p>'
-                '<table><tr><th>项目</th><th>当前节点</th><th>进度</th><th>状态</th><th>这一步要交付</th></tr>' + "".join(rows) + "</table>")
+                '<div class="scroll"><table><tr><th>项目</th><th>当前节点</th><th>进度</th><th>状态</th><th>这一步要交付</th></tr>' + "".join(rows) + "</table></div>")
     pipes_html = "".join(pipe_block(p) for p in st["pipelines"])
     health = " · ".join(f'{e(k)} <b class="{"ok" if v else "bad"}">{"正常" if v else "缺"}</b>' for k, v in st["health"].items())
     now = dt.datetime.now().strftime("%Y-%m-%d %H:%M")

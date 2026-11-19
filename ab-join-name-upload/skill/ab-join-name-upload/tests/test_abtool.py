@@ -1122,6 +1122,8 @@ class PipelineBoard(TempState, unittest.TestCase):
         self.assertIn("13 节点13 → 14 节点14", html)
         self.assertIn("管线状态", html)
         self.assertIn("不是实时读取", html)
+        self.assertLess(html.index("SK008-A"), html.index("SK005-A"))  # 未完成的排在已完成前
+        self.assertIn('class="scroll"', html)
         abtool.board_state()  # 没变化不重复记
         self.assertEqual(len(abtool.board_state()["pipeline_today"]), 1)
 
