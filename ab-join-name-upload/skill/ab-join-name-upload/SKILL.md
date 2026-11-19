@@ -5,7 +5,7 @@ description: "把本人做好的 A 段自动接上选B台里合适的 B 段，�
 
 # 接B · 命名 · 上传准备
 
-所有命令都用本 Skill 目录下的 `scripts/abtool.py`，输出 JSON。`ok:false` 时把 `error` 原话告诉用户，不要猜着补。
+所有命令都用本 Skill 目录下的 `scripts/abtool.py`，输出 JSON。下文写作 `python3`；Windows 上换成 `py -3`（或 `python`），PowerShell 里路径带空格时用引号。最省事的是照工作台 `AGENTS.md` 里写好的那条命令。`ok:false` 时把 `error` 原话告诉用户，不要猜着补。
 
 ## 开工前只问这几样（已知的不再问）
 
@@ -24,7 +24,7 @@ description: "把本人做好的 A 段自动接上选B台里合适的 B 段，�
 - 还没有工作台：`python3 scripts/abtool.py workspace init --designer <设计师码>`。可重复运行，只补齐缺的，不覆盖用户改过的 `AGENTS.md`。
 - 有旧版数据（`init` 输出 `legacy_found` 非空）：`workspace migrate` 把 `~/.ab-join-name-upload` 和 `桌面/待上传` 搬进工作台（先 `--dry-run` 给用户看也可以）。有 `conflicts` 就停下报告，不要手动覆盖。
 - 每次开工：`workspace today`（建今天的目录、更新桌面「今日待上传」快捷方式），`workspace status` 看有没有出了清单还没回填素材 ID 的。
-- 看板：`workspace board` 刷新工作台根目录的 `看板.html`（桌面「买量看板.html」），显示今天进行到哪一步、每条素材状态、还没回填素材 ID 的条目；`run`、`record`、`today` 后自动刷新。用户问“进行到哪了”“刷新看板”时运行它，把输出的 `next` 原话告诉用户。
+- 看板：`workspace board` 刷新工作台根目录的 `看板.html`（桌面「买量看板」），显示今天进行到哪一步、今日完成、每条素材状态、还没回填素材 ID 的条目、买量管线各项目当前节点（读管线本地检查点，不是实时读项目表；其他管线工作区用 `workspace init --pipeline <路径>` 加进来）；`run`、`record`、`today` 后自动刷新。用户问“进行到哪了”“刷新看板”时运行它，把输出的 `next` 原话告诉用户。
 
 第一次使用：如果用户给了负责人发的团队配置（zip 或文件夹），先运行 `python3 scripts/abtool.py import-config --from <路径>`；然后跑 `python3 scripts/abtool.py doctor`，不是 `ok:true` 就按输出处理（多半是缺 FFmpeg 或选B台地址变了）。
 

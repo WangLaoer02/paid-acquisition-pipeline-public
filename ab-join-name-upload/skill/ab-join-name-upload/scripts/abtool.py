@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-VERSION = "0.7.1"
+VERSION = "0.8.0"
 ILLEGAL = re.compile(r'[\\/\x00-\x1f:*?"<>|]')
 FORMAL = re.compile(r'^(\d{6})([A-Za-z]+)(\d+)(?:-(.+))?$')
 # STATE：旧版配置目录，同时存放指向工作台的 workspace.json。HOME：当前生效的配置目录。
@@ -72,14 +72,15 @@ def tool(name):
 
 
 def run(cmd):
-    return subprocess.run(cmd, capture_output=True, text=True)
+    # Windows 默认代码页不是 UTF-8：FFmpeg 输出统一按 UTF-8 解码，坏字节替换掉，不让解码报错
+    return subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
 
 
 # ---------------------------------------------------------------- 配置
 def load_json(path, label):
     p = Path(path).expanduser()
     if not p.is_file():
-        raise ToolError(f"缺少{label}：{p}。先运行 install.sh 或从飞书同步配置")
+        raise ToolError(f"缺少{label}：{p}。先运行安装（install.py）或 import-config 导入团队配置")
     return json.loads(p.read_text(encoding="utf-8"))
 
 
@@ -955,6 +956,189 @@ def cmd_doctor(_args):
     return res
 
 
+# ---------------------------------------------------------------- 跨平台（macOS / Windows）
+def _win_folder(*names):
+    """Windows 的桌面、下载可能被 OneDrive 重定向：按注册表里的真实位置找。"""
+    try:
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER,
+                            r"Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders") as k:
+            for n in names:
+                try:
+                    p = Path(os.path.expandvars(winreg.QueryValueEx(k, n)[0]))
+                    if p.is_dir():
+                        return p
+                except OSError:
+                    pass
+    except (ImportError, OSError):
+        pass
+    return None
+
+
+def desktop_dir():
+    if os.environ.get("AB_DESKTOP"):
+        return Path(os.environ["AB_DESKTOP"])
+    if os.name == "nt":
+        return _win_folder("Desktop") or Path.home() / "Desktop"
+    return Path.home() / "Desktop"
+
+
+def downloads_dir():
+    if os.environ.get("AB_DOWNLOADS"):
+        return Path(os.environ["AB_DOWNLOADS"])
+    if os.name == "nt":
+        return _win_folder("{374DE290-123F-4565-9164-39C4925E467B}") or Path.home() / "Downloads"
+    return Path.home() / "Downloads"
+
+
+def shortcut_mode():
+    m = os.environ.get("AB_SHORTCUT")
+    return m if m in ("symlink", "lnk") else ("lnk" if os.name == "nt" else "symlink")
+
+
+def make_lnk(link, target):
+    """Windows 快捷方式（.lnk）：路径经环境变量传给 PowerShell，避免引号和中文编码问题。"""
+    env = {**os.environ, "AB_LNK": str(link), "AB_TARGET": str(target)}
+    ps = "$s=(New-Object -ComObject WScript.Shell).CreateShortcut($env:AB_LNK);$s.TargetPath=$env:AB_TARGET;$s.Save()"
+    r = subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps], env=env, capture_output=True)
+    if r.returncode != 0 or not Path(link).is_file():
+        raise OSError(r.stderr.decode("utf-8", "replace").strip() or "PowerShell 没有建出快捷方式")
+
+
+def ws_save_meta(meta):
+    tmp = WS / (WS_FILE + ".partial")
+    tmp.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp.replace(WS / WS_FILE)
+
+
+def py_cmd():
+    """写进 AGENTS.md 的 Python 命令：用安装时实际在用的解释器，macOS、Windows 都能直接照抄。"""
+    exe = sys.executable or ("python" if os.name == "nt" else "python3")
+    return f'"{exe}"' if " " in exe else exe
+
+
+# ---------------------------------------------------------------- 管线状态
+ACTION_LABEL = {"CONTINUE": "进行中", "FORWARD_REQUEST": "已推进", "ROLLBACK_REWORK": "返工",
+                "DEPENDENCY_RECHECK": "依赖复核"}
+FAMILY_LABEL = {"a": "A 段", "b": "接 B", "library": "B 段入库"}
+
+
+def pipeline_roots():
+    roots, seen = [], set()
+    for p in [WS / "管线"] + [Path(x).expanduser() for x in ws_meta().get("pipelines", [])]:
+        key = os.path.normcase(os.path.abspath(p))
+        if key not in seen:
+            seen.add(key)
+            roots.append(p)
+    return roots
+
+
+def _show_path(p):
+    try:
+        return "工作台/" + Path(p).relative_to(WS).as_posix()
+    except ValueError:
+        try:
+            return "~/" + Path(p).relative_to(Path.home()).as_posix()
+        except ValueError:
+            return str(p)
+
+
+def pipeline_status():
+    """读买量管线工作区的本地检查点（workflow/state_checkpoint.json）。这是管线最近一次同步的结果，不是实时读飞书。"""
+    out = []
+    for root in pipeline_roots():
+        wf = root / "workflow"
+        entry = {"root": str(root), "name": _show_path(root), "ok": False, "items": []}
+        if not (wf / "node_skills.json").is_file():
+            entry["reason"] = "还没初始化买量管线工作区" if root == WS / "管线" else "不是买量管线工作区"
+            out.append(entry)
+            continue
+        try:
+            nodes = json.loads((wf / "node_skills.json").read_text(encoding="utf-8"))["nodes"]
+            cp_path = wf / "state_checkpoint.json"
+            cp = json.loads(cp_path.read_text(encoding="utf-8")) if cp_path.is_file() else {}
+            sb_path = wf / "state_bindings.json"
+            binds = json.loads(sb_path.read_text(encoding="utf-8")).get("bindings", []) if sb_path.is_file() else []
+        except (OSError, ValueError, KeyError) as e:
+            entry["reason"] = f"读不了管线状态：{type(e).__name__}"
+            out.append(entry)
+            continue
+        fam = {}
+        for v in nodes.values():
+            fam.setdefault(v.get("family"), []).append(v)
+        for v in fam.values():
+            v.sort(key=lambda n: n.get("order", 0))
+        bound = {b["id"]: b for b in binds}
+        cp_items = cp.get("items") or {}
+        for iid in dict.fromkeys(list(bound) + list(cp_items)):
+            it, b = cp_items.get(iid) or {}, bound.get(iid) or {}
+            family = it.get("family") or b.get("family")
+            seq = fam.get(family, [])
+            nid = it.get("current_node_id")
+            idx = next((i for i, n in enumerate(seq) if n["id"] == nid), None)
+            entry["items"].append({
+                "id": iid, "project": b.get("project_id") or iid.split("-")[0], "family": family,
+                "family_label": FAMILY_LABEL.get(family, family or "—"),
+                "node_id": nid, "node": it.get("current_node") or (nodes.get(nid) or {}).get("label"),
+                "action": it.get("action"), "action_label": ACTION_LABEL.get(it.get("action"), it.get("action") or "未同步"),
+                "required_output": it.get("required_output") or "",
+                "index": idx + 1 if idx is not None else None, "total": len(seq),
+                "done": bool(seq) and idx == len(seq) - 1})
+        entry["labels"] = {k: v.get("label") for k, v in nodes.items()}
+        entry["orders"] = {k: v.get("order", 0) for k, v in nodes.items()}
+        entry["synced_at"] = (dt.datetime.fromtimestamp(cp_path.stat().st_mtime).strftime("%m-%d %H:%M")
+                              if cp_path.is_file() else None)
+        entry["ok"] = True
+        out.append(entry)
+    return out
+
+
+def _cn_now():
+    return dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
+
+
+def record_pipeline_changes(status, record=True):
+    """看板每次刷新时记下各项目当前节点；和上次不同就写进 日志/管线进度.jsonl。返回今天记到的变化。"""
+    log = WS / "日志" / "管线进度.jsonl"
+    snap_p = WS / "日志" / "管线快照.json"
+    if record:
+        try:
+            snap = json.loads(snap_p.read_text(encoding="utf-8")) if snap_p.is_file() else {}
+        except ValueError:
+            snap = {}
+        now, cur, events = _cn_now(), {}, []
+        for p in status:
+            for it in p["items"] if p["ok"] else []:
+                if not it["node_id"]:
+                    continue
+                key = f"{p['name']}|{it['id']}"
+                cur[key] = it["node_id"]
+                old = snap.get(key)
+                if old and old != it["node_id"]:
+                    o, n = p["orders"].get(old, 0), p["orders"].get(it["node_id"], 0)
+                    events.append({"time": now.strftime("%Y-%m-%d %H:%M"), "pipeline": p["name"], "item": it["id"],
+                                   "from": p["labels"].get(old, old), "to": p["labels"].get(it["node_id"], it["node_id"]),
+                                   "kind": "推进" if n > o else "返工", "finished": it["done"]})
+        (WS / "日志").mkdir(exist_ok=True)
+        if events:
+            with log.open("a", encoding="utf-8") as f:
+                for e in events:
+                    f.write(json.dumps(e, ensure_ascii=False) + "\n")
+        if cur != snap:
+            snap_p.write_text(json.dumps(cur, ensure_ascii=False, indent=2), encoding="utf-8")
+    today = _cn_now().strftime("%Y-%m-%d")
+    got = []
+    if log.is_file():
+        for line in log.read_text(encoding="utf-8").splitlines():
+            try:
+                e = json.loads(line)
+            except ValueError:
+                continue
+            if e.get("time", "").startswith(today):
+                got.append(e)
+    return got
+
+
 # ---------------------------------------------------------------- 工作台
 DAY_DIRS = ("01_A段", "02_接片", "03_待上传", "04_已上传")
 WS_DIRS = ("程序", "配置", "台账", "B段缓存", "每日", "日志")
@@ -965,10 +1149,6 @@ DEFAULT_ROOT = Path.home() / "买量工作台"
 
 def skill_abtool():
     return Path(os.environ.get("CODEX_HOME", Path.home() / ".codex")) / "skills" / "ab-join-name-upload" / "scripts" / "abtool.py"
-
-
-def desktop_dir():
-    return Path(os.environ.get("AB_DESKTOP", Path.home() / "Desktop"))
 
 
 def ensure_day(date):
@@ -984,19 +1164,39 @@ def ws_meta():
 
 
 def desktop_link(target, name="今日待上传"):
-    """桌面快捷方式（今日待上传、买量看板）：只建或更新符号链接，桌面上同名的真实文件或文件夹绝不动。"""
+    """桌面快捷方式（今日待上传、买量看板）。macOS 用符号链接，Windows 用 .lnk。
+    桌面上同名、但不是工作台建的文件或文件夹绝不改动。"""
     if not WS or ws_meta().get("desktop_link") is False:
         return None
-    link = desktop_dir() / name
-    if not link.parent.is_dir():
-        return {"ok": False, "reason": f"没有桌面目录：{link.parent}"}
+    desk = desktop_dir()
+    if not desk.is_dir():
+        return {"ok": False, "reason": f"没有桌面目录：{desk}"}
+    if shortcut_mode() == "lnk":
+        link = desk / (Path(name).stem + ".lnk")
+        meta = ws_meta()
+        made = meta.setdefault("shortcuts", {})
+        if link.exists() and str(link) not in made:
+            return {"ok": False, "reason": f"桌面上已有同名快捷方式，不是工作台建的，没有改动：{link}"}
+        if link.exists() and made.get(str(link)) == str(target):
+            return {"ok": True, "path": str(link), "target": str(target)}
+        try:
+            make_lnk(link, target)
+        except OSError as e:
+            return {"ok": False, "reason": f"建快捷方式失败：{e}"}
+        made[str(link)] = str(target)
+        ws_save_meta(meta)
+        return {"ok": True, "path": str(link), "target": str(target)}
+    link = desk / name
     if link.exists() and not link.is_symlink():
         return {"ok": False, "reason": f"桌面上已有同名的真实文件或文件夹，没有改动：{link}"}
     if link.is_symlink():
-        if Path(os.readlink(link)) == Path(target):
+        if link.resolve() == Path(target).resolve():
             return {"ok": True, "path": str(link), "target": str(target)}
         link.unlink()
-    link.symlink_to(target, target_is_directory=Path(target).is_dir())
+    try:
+        link.symlink_to(target, target_is_directory=Path(target).is_dir())
+    except OSError as e:
+        return {"ok": False, "reason": f"建快捷方式失败：{e}"}
     return {"ok": True, "path": str(link), "target": str(target)}
 
 
@@ -1009,7 +1209,7 @@ def render_agents(root, designer):
 
 这是 {who} 的买量工作台，根目录 `{root}`。这台电脑上的买量工作都在这里进行，不要把产物写到别处。
 
-接B工具：`python3 {ab}`（下面简写 `abtool`），输出 JSON；`ok:false` 时把 `error` 原话告诉用户，不要猜着补。
+接B工具：`{py_cmd()} "{ab}"`（下面简写 `abtool`），输出 JSON；`ok:false` 时把 `error` 原话告诉用户，不要猜着补。macOS 和 Windows 都用这一条；在 Windows 的 PowerShell 里前面加 `& `。
 
 ## 目录
 
@@ -1034,7 +1234,7 @@ def render_agents(root, designer):
 | `04_已上传/` | B04 | 用户回填素材 ID 后，`record` 自动移过来 |
 | `作废/` | — | 序号被改用后退下来的旧版本，不要上传 |
 
-桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式；「买量看板.html」指向根目录的 `看板.html`：今天进行到哪一步、每条素材的状态、还没回填素材 ID 的条目。`run`、`record`、`workspace today` 后会自动刷新；用户说“刷新看板”或“现在进行到哪了”时运行 `abtool workspace board`，并把输出里的 `next` 告诉用户。
+桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式；「买量看板」打开根目录的 `看板.html`：今天进行到哪一步、今日完成、每条素材的状态、还没回填素材 ID 的条目、各买量管线项目当前节点（来自管线本地检查点 `workflow/state_checkpoint.json`，不是实时读取项目表）。另有管线工作区要显示时：`abtool workspace init --pipeline <工作区路径>`。`run`、`record`、`workspace today` 后会自动刷新；用户说“刷新看板”或“现在进行到哪了”时运行 `abtool workspace board`，并把输出里的 `next` 告诉用户。
 
 ## 每次开工
 
@@ -1055,7 +1255,7 @@ def render_agents(root, designer):
 ## 更新（用户说“更新交付包”时）
 
 1. `git -C 程序/源码 pull --ff-only`；失败就停下报告，不要强制。
-2. `bash 程序/源码/ab-join-name-upload/install.sh --upgrade`。
+2. `{py_cmd()} 程序/源码/ab-join-name-upload/install.py`（升级技能；本机团队配置保留，不会被示例覆盖）。
 3. 「下载」里有比当前更新的团队配置 zip 时：`abtool import-config --from <zip>`（旧配置会自动备份）。
 4. `abtool workspace init --root {root}`：补齐目录、更新本文件（改过的不覆盖）。
 5. `abtool doctor`，逐项报告结果。
@@ -1078,7 +1278,7 @@ def render_start(root, designer):
 4. 打开桌面上的 **今日待上传**：看一遍成片，照每条的 `上传清单.md` 在后台上传（先填名称和字段，最后选文件）。
 5. 把素材 ID 告诉 Codex，它会记进台账，并把这条移到 `04_已上传/`。
 
-**想知道进行到哪了**：双击桌面上的 **买量看板.html**（就是工作台里的 `看板.html`）。它显示今天在哪一步、下一步做什么、每条素材是待上传还是已上传、还有哪些没回填素材 ID。
+**想知道进行到哪了**：双击桌面上的 **买量看板**（就是工作台里的 `看板.html`）。它显示今天在哪一步、下一步做什么、今日完成了什么、每条素材是待上传还是已上传、还有哪些没回填素材 ID，以及买量管线各项目走到了哪个节点。
 
 **不要动的**：`台账/`、`配置/`、`程序/`。账号、密码、验证码只在你自己的浏览器里输入，不要发给 Codex。
 """
@@ -1118,6 +1318,17 @@ def legacy_leftovers():
     return found
 
 
+def merge_pipelines(old, new):
+    out = list(old or [])
+    for p in new or []:
+        root = Path(os.path.abspath(Path(p).expanduser()))
+        if not (root / "workflow" / "node_skills.json").is_file():
+            raise ToolError(f"{root} 不是买量管线工作区（没有 workflow/node_skills.json）")
+        if str(root) not in out:
+            out.append(str(root))
+    return out
+
+
 def cmd_ws_init(args):
     global WS, HOME
     root = Path(os.path.abspath(Path(args.root or WS or DEFAULT_ROOT).expanduser()))  # 不给位置时沿用已有工作台
@@ -1143,6 +1354,7 @@ def cmd_ws_init(args):
         "created": meta.get("created") or dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
         "designer": designer.upper() if designer else None,
         "desktop_link": meta.get("desktop_link", True) if args.desktop_link is None else args.desktop_link,
+        "pipelines": merge_pipelines(meta.get("pipelines", []), getattr(args, "pipeline", None)),
         "paths": {"源码": "程序/源码", "skills": "程序/skills", "tools": "程序/tools", "管线": "管线",
                   "配置": "配置", "台账": "台账/上传台账.csv", "B段缓存": "B段缓存", "每日": "每日", "日志": "日志"},
     })
@@ -1361,7 +1573,7 @@ def _sheet_info(row):
     return info
 
 
-def board_state(today=None):
+def board_state(today=None, record=True):
     """看板数据：今天进行到哪一步、每条素材的状态、各天汇总、待回填。只读本机文件，不联网。"""
     today = today or resolve_date("today")[0]
     rows = ledger_rows()
@@ -1392,11 +1604,8 @@ def board_state(today=None):
     for r in rows:
         d = days.setdefault(r.get("日期") or "?", {"todo": 0, "done": 0, "void": 0})
         d[kind(r)] += 1
-    projects = []
-    pdir = WS / "管线" / "projects"
-    if pdir.is_dir():
-        for p in sorted((x for x in pdir.iterdir() if x.is_dir()), key=lambda x: x.stat().st_mtime, reverse=True):
-            projects.append({"name": p.name, "updated": dt.datetime.fromtimestamp(p.stat().st_mtime).strftime("%m-%d %H:%M")})
+    pipes = pipeline_status()
+    changes = record_pipeline_changes(pipes, record)
     lib = {}
     try:
         lib = json.loads((HOME / "library.json").read_text(encoding="utf-8"))
@@ -1405,7 +1614,7 @@ def board_state(today=None):
     base = lib.get("base_url") or ""
     return {"today": today, "step": step, "next": nxt, "a_files": a_files, "joined": joined,
             "todo": todo, "done": done, "void": void, "older_todo": older,
-            "days": sorted(days.items(), reverse=True)[:7], "projects": projects,
+            "days": sorted(days.items(), reverse=True)[:7], "pipelines": pipes, "pipeline_today": changes,
             "health": {"配置": all((HOME / n).is_file() for n in CONFIG_FILES),
                        "选B台地址": bool(base) and base.isascii() and "选B台地址" not in base,
                        "FFmpeg": bool(shutil.which("ffmpeg") and shutil.which("ffprobe"))},
@@ -1435,6 +1644,9 @@ h1{font-size:20px;margin:0}h2{font-size:15px;margin:28px 0 10px}.mute{color:var(
 .ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
 table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px}
 th,td{text-align:left;padding:8px 12px;border-top:1px solid var(--line)}th{color:var(--mute);font-weight:500;border-top:0}
+.bar{display:inline-block;vertical-align:middle;width:90px;height:6px;border-radius:3px;background:var(--line);margin-right:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc)}td.prog{white-space:nowrap}
+ul.done{margin:0;padding:12px 16px 12px 32px;background:var(--card);border:1px solid var(--line);border-radius:10px}ul.done li{margin:4px 0}
 .alert{background:color-mix(in srgb,var(--warn) 12%,var(--card));border:1px solid var(--warn);border-radius:10px;padding:10px 14px}
 """
 
@@ -1475,8 +1687,40 @@ def render_board(st):
     days = "".join(f'<tr><td>{e(d)}</td><td>{c["todo"]}</td><td class="ok">{c["done"]}</td><td class="mute">{c["void"]}</td>'
                    f'<td><a href="{_rel(WS / "每日" / d)}">打开</a></td></tr>' for d, c in st["days"]) \
         or '<tr><td colspan="5" class="mute">还没有记录</td></tr>'
-    projects = "".join(f'<tr><td>{e(p["name"])}</td><td class="mute">{e(p["updated"])}</td></tr>' for p in st["projects"]) \
-        or '<tr><td colspan="2" class="mute">管线/projects 里还没有项目（A 段制作按买量管线节点进行）</td></tr>'
+    # 今日完成：接B侧（出清单、上传）＋管线侧（看板记到的节点变化）
+    done_today = []
+    for r in st["done"]:
+        done_today.append(f'<li><span class="pill ok">已上传</span> {e(r["素材名称"])} <span class="mute">素材 ID {e(r.get("素材ID"))}</span></li>')
+    if st["todo"]:
+        done_today.append(f'<li><span class="pill">已出清单</span> {len(st["todo"])} 条，等待上传</li>')
+    for c in st["pipeline_today"]:
+        tag = "ok" if c["kind"] == "推进" else "warn"
+        fin = "（已完成）" if c.get("finished") else ""
+        done_today.append(f'<li><span class="pill {tag}">管线{e(c["kind"])}</span> {e(c["item"])}：{e(c["from"])} → {e(c["to"])}{fin}'
+                          f' <span class="mute">{e(c["time"][-5:])} · {e(c["pipeline"])}</span></li>')
+    done_html = "<ul class='done'>" + "".join(done_today) + "</ul>" if done_today else \
+        '<p class="mute">今天还没有完成的任务。</p>'
+
+    def pipe_block(p):
+        if not p["ok"]:
+            return f'<p class="mute">{e(p["name"])}：{e(p.get("reason"))}</p>'
+        if not p["items"]:
+            return f'<p class="mute">{e(p["name"])}：还没有登记项目（新项目从 A01 开始，绑定项目表后会出现在这里）</p>'
+        rows = []
+        for it in sorted(p["items"], key=lambda x: (x["done"], x["project"], x["id"])):
+            pct = round(100 * it["index"] / it["total"]) if it["index"] and it["total"] else 0
+            cls = {"返工": "bad", "依赖复核": "warn", "已推进": "ok"}.get(it["action_label"], "")
+            bar = (f'<div class="bar"><i style="width:{pct}%"></i></div><span class="mute">{it["index"]}/{it["total"]}</span>'
+                   if it["index"] else '<span class="mute">未同步</span>')
+            need = it["required_output"]
+            short = need[:46] + ("…" if len(need) > 46 else "")
+            rows.append(f'<tr><td><b>{e(it["id"])}</b><div class="mute">{e(it["family_label"])}</div></td>'
+                        f'<td>{e(it["node"] or "—")}</td><td class="prog">{bar}</td>'
+                        f'<td class="{cls}">{"✓ 已完成" if it["done"] else e(it["action_label"])}</td>'
+                        f'<td class="mute" title="{e(need)}">{e(short)}</td></tr>')
+        return (f'<p class="mute">{e(p["name"])} · 状态同步于 {e(p.get("synced_at") or "—")}（管线最近一次同步项目表的结果，不是实时读取）</p>'
+                '<table><tr><th>项目</th><th>当前节点</th><th>进度</th><th>状态</th><th>这一步要交付</th></tr>' + "".join(rows) + "</table>")
+    pipes_html = "".join(pipe_block(p) for p in st["pipelines"])
     health = " · ".join(f'{e(k)} <b class="{"ok" if v else "bad"}">{"正常" if v else "缺"}</b>' for k, v in st["health"].items())
     now = dt.datetime.now().strftime("%Y-%m-%d %H:%M")
     who = f"设计师 {e(st['designer'])} · " if st["designer"] else ""
@@ -1486,12 +1730,13 @@ def render_board(st):
 <header><h1>买量看板 · {e(st['today'])}</h1><span class="mute">{who}更新于 {now} · 对 Codex 说“刷新看板”可立即更新</span></header>
 <h2>今天进行到哪</h2><div class="steps">{steps}</div>
 <div class="next"><b>下一步：</b>{e(st['next'])}</div>
+<h2>今日完成</h2>{done_html}
 <p class="mute">今天的 A 段：{a_list} · 已接好 {st['joined']} 条 · <a href="{_rel(day / DAY_DIRS[2])}">打开今日待上传</a></p>
 <h2>今天的素材</h2><div class="cols">
 {col("待上传（已出清单）", st["todo"], "warn", empty="还没有")}{col("已上传", st["done"], "ok", True, empty="还没有")}{col("作废（不要上传）", st["void"], "mute", empty="没有")}
 </div>{older}
 <h2>最近 7 天</h2><table><tr><th>日期</th><th>待上传</th><th>已上传</th><th>作废</th><th></th></tr>{days}</table>
-<h2>买量管线项目</h2><table><tr><th>项目</th><th>最近改动</th></tr>{projects}</table>
+<h2>管线状态</h2>{pipes_html}
 <h2>环境</h2><p>{health} · 接B技能 {e(st['version'])}</p>
 </main></body></html>
 """
@@ -1522,6 +1767,11 @@ def cmd_ws_board(_args):
 
 
 def main(argv=None):
+    for stream in (sys.stdout, sys.stderr):  # Windows 控制台默认不是 UTF-8，中文 JSON 会报错
+        try:
+            stream.reconfigure(encoding="utf-8")
+        except (AttributeError, ValueError):
+            pass
     p = argparse.ArgumentParser(prog="abtool", description="接B·命名·上传准备（本地，不上传）")
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("doctor", help="检查 Python、FFmpeg 和配置")
@@ -1600,6 +1850,7 @@ def main(argv=None):
     w.add_argument("--no-desktop-link", dest="desktop_link", action="store_false", default=None,
                    help="不在桌面放「今日待上传」快捷方式")
     w.add_argument("--force", action="store_true", help="这台电脑已有别处的工作台时，改指向新位置（旧的不删）")
+    w.add_argument("--pipeline", action="append", help="另外要在看板上显示状态的买量管线工作区（可多次）；工作台/管线 默认就有")
     wsub.add_parser("today", help="建好今天的目录并更新桌面快捷方式")
     wsub.add_parser("status", help="工作台状态：配置、台账、今天的产物、待回填素材ID")
     w = wsub.add_parser("migrate", help="把旧版 ~/.ab-join-name-upload 和 桌面/待上传 搬进工作台")

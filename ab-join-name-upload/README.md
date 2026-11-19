@@ -4,31 +4,22 @@
 
 > 本目录是公开源码，**不含团队配置**（人员代号表、后台字段可选项、选B台地址）。团队配置由负责人单独发放，用 `import-config` 导入。请勿把团队配置提交到本仓库。
 
-## 安装（Mac）
+## 安装（macOS / Windows）
 
-需要：Codex（本人账号）、Python 3.9+、FFmpeg。
+需要：Codex（本人账号）、Python 3.9+、FFmpeg、git。
 
 ```bash
 git clone https://github.com/WangLaoer02/paid-acquisition-pipeline-public.git
 ```
 
-```bash
-cd paid-acquisition-pipeline-public/ab-join-name-upload
-```
+进入 `paid-acquisition-pipeline-public/ab-join-name-upload`：
 
-然后双击 `双击安装.command`（或运行 `bash install.sh`）。把负责人发的 `团队配置*.zip` 放在“下载”文件夹里，双击安装会自动导入；也可以手动导入：
+- **macOS**：双击 `双击安装.command`，或运行 `python3 install.py`。
+- **Windows**：双击 `双击安装.bat`，或在 PowerShell 运行 `py -3 install.py`。
 
-```bash
-python3 ~/.codex/skills/ab-join-name-upload/scripts/abtool.py import-config --from ~/Downloads/团队配置.zip
-```
+`install.py` 两个系统通用：建好买量工作台（默认在个人文件夹下的 `买量工作台`）→ 把技能装到 Codex（`CODEX_HOME` 或 `~/.codex`）→ 导入“下载”文件夹里最新的 `团队配置*.zip`（也可 `--config <zip>`）→ 搬入旧版数据 → doctor → 刷新看板。已导入的团队配置**不会**被示例配置覆盖；缺 FFmpeg 时会给出对应系统的安装方式。可选参数：`--designer D`、`--root <位置>`、`--pipeline <买量管线工作区>`（在看板上显示该工作区的项目状态）。
 
-以后更新：在仓库目录 `git pull`，再双击安装一次（已有配置会保留，变更前自动备份）。
-
-也可以直接让 Codex 安装：
-
-```text
-从 https://github.com/WangLaoer02/paid-acquisition-pipeline-public 拉取 ab-join-name-upload，运行里面的 install.sh 安装技能，再用 import-config 导入我“下载”文件夹里的团队配置 zip，最后跑 doctor 告诉我结果。
-```
+以后更新：`git pull` 后再运行一次安装。
 
 ## 买量工作台
 
@@ -46,7 +37,7 @@ python3 ~/.codex/skills/ab-join-name-upload/scripts/abtool.py import-config --fr
 └── 日志/
 ```
 
-桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式；「买量看板.html」打开工作台的 `看板.html`，一眼看到今天进行到哪一步、每条素材的状态和还没回填素材 ID 的条目（`workspace board` 刷新，`run`／`record` 后自动刷新）。命令：`workspace init`（建立／补齐，可重复运行，不覆盖改过的 `AGENTS.md`）、`workspace today`、`workspace status`、`workspace migrate`（把旧版 `~/.ab-join-name-upload` 和 `桌面/待上传` 搬进来；内容核对一致才移走原件，同名不同内容的不搬）。
+桌面上有两个快捷方式（macOS 为替身链接，Windows 为 .lnk）：「今日待上传」指向当天 `03_待上传/`；「买量看板」打开工作台的 `看板.html`：今天进行到哪一步、今日完成、每条素材的状态、还没回填素材 ID 的条目，以及买量管线各项目的当前节点（读工作区本地检查点 `workflow/state_checkpoint.json`，标明同步时间，不是实时读取项目表）。`workspace board` 刷新，`run`／`record`／`today` 后自动刷新。命令：`workspace init`（建立／补齐，可重复运行，不覆盖改过的 `AGENTS.md`）、`workspace today`、`workspace status`、`workspace migrate`（把旧版 `~/.ab-join-name-upload` 和 `桌面/待上传` 搬进来；内容核对一致才移走原件，同名不同内容的不搬）。
 
 ## 使用
 

@@ -642,7 +642,8 @@ class TempState:
         self.addCleanup(self._restore, saved)
         self.desk = self.base / "Desktop"
         self.desk.mkdir()
-        env = unittest.mock.patch.dict(os.environ, {"AB_DESKTOP": str(self.desk), "CODEX_HOME": str(self.base / "codex")})
+        env = unittest.mock.patch.dict(os.environ, {"AB_DESKTOP": str(self.desk), "CODEX_HOME": str(self.base / "codex"),
+                                                    "AB_SHORTCUT": "symlink"})
         env.start()
         self.addCleanup(env.stop)
         abtool.STATE = self.base / "state"
@@ -677,7 +678,7 @@ class WorkspaceInit(TempState, unittest.TestCase):
         self.assertIn("03_待上传", (self.root / "AGENTS.md").read_text(encoding="utf-8"))
         link = self.desk / "今日待上传"
         self.assertTrue(link.is_symlink())
-        self.assertEqual(Path(os.readlink(link)), self.root / "每日" / today / "03_待上传")
+        self.assertEqual(link.resolve(), (self.root / "每日" / today / "03_待上传").resolve())
         self.assertEqual(abtool.HOME, self.root / "配置")
         self.assertEqual(abtool.ledger_path(), self.root / "台账" / "上传台账.csv")
 
@@ -946,7 +947,7 @@ class Board(TempState, unittest.TestCase):
         self.assertTrue((self.root / "看板.html").is_file())
         link = self.desk / "买量看板.html"
         self.assertTrue(link.is_symlink())
-        self.assertEqual(Path(os.readlink(link)), self.root / "看板.html")
+        self.assertEqual(link.resolve(), (self.root / "看板.html").resolve())
         res = abtool.cmd_ws_board(None)
         self.assertTrue(res["ok"])
         self.assertIn("next", res)
@@ -1003,21 +1004,149 @@ import urllib.parse  # noqa: E402
 PKG = Path(__file__).resolve().parents[3]
 
 
+
+def run_install(tmp, *extra):
+    env = {k: v for k, v in os.environ.items() if k not in ("AB_WORKSPACE", "AB_TOOL_HOME", "AB_DESKTOP", "AB_DOWNLOADS")}
+    (tmp / "Desktop").mkdir(exist_ok=True)
+    (tmp / "Downloads").mkdir(exist_ok=True)
+    env.update(AB_TOOL_HOME=str(tmp / "state"), CODEX_HOME=str(tmp / "codex"), HOME=str(tmp), USERPROFILE=str(tmp),
+               AB_DESKTOP=str(tmp / "Desktop"), AB_DOWNLOADS=str(tmp / "Downloads"), AB_SHORTCUT="symlink" if os.name != "nt" else "lnk")
+    return subprocess.run([sys.executable, str(PKG / "install.py"), *extra], env=env, capture_output=True)
+
+
 @unittest.skipIf((PKG / "team-config").is_dir(), "只在不带团队配置的公开版里检查")
 class InstallKeepsConfig(unittest.TestCase):
-    """回归：公开版 install.sh --upgrade 曾用示例配置覆盖本机已导入的团队配置。"""
+    """回归：公开版升级曾用示例配置覆盖本机已导入的团队配置。"""
 
-    def test_upgrade_never_overwrites_imported_config_with_examples(self):
+    def test_reinstall_never_overwrites_imported_config_with_examples(self):
         tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp, True)
-        conf = tmp / "state"
-        conf.mkdir()
-        real = {n: json.dumps({"real": n}) for n in ("codes", "fields", "library")}
+        src = tmp / "团队配置"
+        src.mkdir()
+        real = {n: json.dumps({"real": n, "people": {"ZS": "测试甲"}, "base_url": "https://example.invalid/pick/"})
+                for n in ("codes", "fields", "library")}
         for n, v in real.items():
-            (conf / f"{n}.json").write_text(v, encoding="utf-8")
-        env = {k: v for k, v in os.environ.items() if k not in ("AB_WORKSPACE",)}
-        env.update(AB_TOOL_HOME=str(conf), CODEX_HOME=str(tmp / "codex"), HOME=str(tmp))
-        for _ in range(2):  # 首次安装＋升级
-            subprocess.run(["bash", str(PKG / "install.sh"), "--upgrade"], env=env, capture_output=True)
+            (src / f"{n}.json").write_text(v, encoding="utf-8")
+        run_install(tmp, "--config", str(src))
+        run_install(tmp)  # 再装一次：“下载”里没有团队配置
+        conf = tmp / "买量工作台" / "配置"
         for n, v in real.items():
             self.assertEqual((conf / f"{n}.json").read_bytes(), v.encode("utf-8"), f"{n}.json 被改动")
+        self.assertTrue((tmp / "买量工作台" / "看板.html").is_file())
+        self.assertTrue((tmp / "codex" / "skills" / "ab-join-name-upload" / "scripts" / "abtool.py").is_file())
+
+
+class CrossPlatform(TempState, unittest.TestCase):
+    def test_lnk_mode_records_and_respects_foreign_shortcuts(self):
+        made = []
+        orig = abtool.make_lnk
+        abtool.make_lnk = lambda link, target: (Path(link).write_text(str(target), encoding="utf-8"), made.append(str(link)))
+        self.addCleanup(setattr, abtool, "make_lnk", orig)
+        with unittest.mock.patch.dict(os.environ, {"AB_SHORTCUT": "lnk"}):
+            r = self.init()
+            self.assertTrue(r["desktop_link"]["ok"], r["desktop_link"])
+            self.assertTrue((self.desk / "今日待上传.lnk").is_file())
+            self.assertTrue((self.desk / "买量看板.lnk").is_file())
+            n = len(made)
+            abtool.cmd_ws_today(None)  # 目标没变就不重建
+            self.assertEqual(len(made), n)
+            meta = json.loads((self.root / "工作台.json").read_text(encoding="utf-8"))
+            self.assertIn(str(self.desk / "今日待上传.lnk"), meta["shortcuts"])
+            (self.desk / "买量看板.lnk").unlink()
+            (self.desk / "买量看板.lnk").write_text("别人的", encoding="utf-8")
+            meta["shortcuts"].pop(str(self.desk / "买量看板.lnk"))
+            abtool.ws_save_meta(meta)
+            r = abtool.write_board()
+            self.assertFalse(r["desktop_link"]["ok"])
+            self.assertEqual((self.desk / "买量看板.lnk").read_text(encoding="utf-8"), "别人的")
+
+    def test_lnk_failure_is_reported_not_raised(self):
+        def boom(link, target):
+            raise OSError("没有 PowerShell")
+        orig = abtool.make_lnk
+        abtool.make_lnk = boom
+        self.addCleanup(setattr, abtool, "make_lnk", orig)
+        with unittest.mock.patch.dict(os.environ, {"AB_SHORTCUT": "lnk"}):
+            r = self.init()
+        self.assertTrue(r["ok"])
+        self.assertIn("没有 PowerShell", r["desktop_link"]["reason"])
+
+    def test_folders_from_env(self):
+        with unittest.mock.patch.dict(os.environ, {"AB_DOWNLOADS": str(self.base)}):
+            self.assertEqual(abtool.downloads_dir(), self.base)
+        self.assertEqual(abtool.desktop_dir(), self.desk)
+
+    def test_agents_uses_current_python(self):
+        self.init()
+        text = (self.root / "AGENTS.md").read_text(encoding="utf-8")
+        self.assertIn(Path(sys.executable).name, text)
+        self.assertIn("install.py", text)
+        self.assertNotIn("bash ", text)
+
+
+def make_pipeline(root, items, nodes=None):
+    wf = root / "workflow"
+    wf.mkdir(parents=True, exist_ok=True)
+    nodes = nodes or {f"A{i:02d}": {"id": f"A{i:02d}", "label": f"{i:02d} 节点{i}", "order": i, "family": "a",
+                                    "required_output": f"产出{i}"} for i in range(1, 16)}
+    (wf / "node_skills.json").write_text(json.dumps({"nodes": nodes}, ensure_ascii=False), encoding="utf-8")
+    (wf / "state_bindings.json").write_text(json.dumps({"bindings": [
+        {"id": k, "project_id": k.split("-")[0], "family": "a"} for k in items]}), encoding="utf-8")
+    (wf / "state_checkpoint.json").write_text(json.dumps({"items": {
+        k: {"id": k, "family": "a", "current_node_id": v[0], "current_node": nodes[v[0]]["label"], "action": v[1],
+            "required_output": nodes[v[0]]["required_output"]} for k, v in items.items()}}, ensure_ascii=False),
+        encoding="utf-8")
+
+
+class PipelineBoard(TempState, unittest.TestCase):
+    def test_status_progress_and_today_changes(self):
+        self.init()
+        extra = self.base / "外部管线"
+        make_pipeline(extra, {"SK008-A": ("A13", "ROLLBACK_REWORK"), "SK005-A": ("A15", "FORWARD_REQUEST")})
+        abtool.cmd_ws_init(types.SimpleNamespace(root=None, designer=None, desktop_link=None, force=False,
+                                                 pipeline=[str(extra)]))
+        st = abtool.board_state()
+        pipes = {p["name"]: p for p in st["pipelines"]}
+        self.assertFalse(pipes["工作台/管线"]["ok"])  # 还没初始化
+        ext = [p for p in st["pipelines"] if p["ok"]][0]
+        by = {i["id"]: i for i in ext["items"]}
+        self.assertEqual((by["SK008-A"]["index"], by["SK008-A"]["total"], by["SK008-A"]["action_label"]), (13, 15, "返工"))
+        self.assertTrue(by["SK005-A"]["done"])
+        self.assertEqual(st["pipeline_today"], [])  # 第一次只记快照
+        make_pipeline(extra, {"SK008-A": ("A14", "FORWARD_REQUEST"), "SK005-A": ("A15", "CONTINUE")})
+        st = abtool.board_state()
+        self.assertEqual([(c["item"], c["from"], c["to"], c["kind"]) for c in st["pipeline_today"]],
+                         [("SK008-A", "13 节点13", "14 节点14", "推进")])
+        html = abtool.render_board(st)
+        self.assertIn("今日完成", html)
+        self.assertIn("13 节点13 → 14 节点14", html)
+        self.assertIn("管线状态", html)
+        self.assertIn("不是实时读取", html)
+        abtool.board_state()  # 没变化不重复记
+        self.assertEqual(len(abtool.board_state()["pipeline_today"]), 1)
+
+    def test_bad_pipeline_path_rejected(self):
+        self.init()
+        with self.assertRaisesRegex(abtool.ToolError, "不是买量管线工作区"):
+            abtool.cmd_ws_init(types.SimpleNamespace(root=None, designer=None, desktop_link=None, force=False,
+                                                     pipeline=[str(self.base)]))
+
+    def test_corrupt_checkpoint_does_not_break_board(self):
+        self.init()
+        make_pipeline(self.root / "管线", {"SK1-A": ("A02", "CONTINUE")})
+        (self.root / "管线" / "workflow" / "state_checkpoint.json").write_text("{坏", encoding="utf-8")
+        st = abtool.board_state()
+        self.assertFalse(st["pipelines"][0]["ok"])
+        self.assertIn("读不了", st["pipelines"][0]["reason"])
+        self.assertTrue(abtool.write_board()["ok"])
+
+
+
+@unittest.skipUnless(os.name == "nt", "只在 Windows 上检查真实 .lnk")
+class RealWindowsShortcut(TempState, unittest.TestCase):
+    def test_real_lnk(self):
+        target = self.base / "目标 文件夹"
+        target.mkdir()
+        link = self.desk / "今日待上传.lnk"
+        abtool.make_lnk(link, target)
+        self.assertTrue(link.is_file() and link.stat().st_size > 0)

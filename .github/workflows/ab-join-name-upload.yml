@@ -1,0 +1,47 @@
+name: ab-join-name-upload tests
+
+on:
+  push:
+    paths: ["ab-join-name-upload/**", ".github/workflows/ab-join-name-upload.yml"]
+  pull_request:
+    paths: ["ab-join-name-upload/**"]
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+        python: ["3.9", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install FFmpeg (Windows)
+        if: runner.os == 'Windows'
+        run: choco install ffmpeg -y --no-progress
+      - name: Install FFmpeg (macOS)
+        if: runner.os == 'macOS'
+        run: brew install ffmpeg
+      - name: Unit tests
+        working-directory: ab-join-name-upload/skill/ab-join-name-upload
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python -m unittest discover -s tests -v
+      - name: Installer smoke test (fresh machine)
+        shell: bash
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          export HOME="$RUNNER_TEMP/home" USERPROFILE="$RUNNER_TEMP/home" CODEX_HOME="$RUNNER_TEMP/home/.codex"
+          export AB_DESKTOP="$RUNNER_TEMP/home/Desktop" AB_DOWNLOADS="$RUNNER_TEMP/home/Downloads"
+          mkdir -p "$AB_DESKTOP" "$AB_DOWNLOADS"
+          python ab-join-name-upload/install.py --designer D || test $? -eq 2
+          test -f "$HOME/买量工作台/看板.html"
+          test -f "$HOME/买量工作台/AGENTS.md"
+          test -f "$CODEX_HOME/skills/ab-join-name-upload/scripts/abtool.py"
+          ls -la "$AB_DESKTOP"
+          python "$CODEX_HOME/skills/ab-join-name-upload/scripts/abtool.py" workspace status
