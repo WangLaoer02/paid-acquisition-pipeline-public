@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-VERSION = "0.6.1"
+VERSION = "0.6.2"
 ILLEGAL = re.compile(r'[\\/\x00-\x1f:*?"<>|]')
 FORMAL = re.compile(r'^(\d{6})([A-Za-z]+)(\d+)(?:-(.+))?$')
 HOME = Path(os.environ.get("AB_TOOL_HOME", Path.home() / ".ab-join-name-upload"))
@@ -683,8 +683,16 @@ def cmd_package(args):
     source_direction = pick("source_direction", use(args.source_direction, "source_direction"))
     ai = pick("ai", use(args.ai, "ai")) if "ai" in fields_cfg else (args.ai or None)
     # 需求人、第二设计师必须是后台下拉里真实存在的人（字段表有该项时校验）
-    if naming["demand_name"] and "demand" in fields_cfg and naming["demand_name"] not in fields_cfg["demand"]["options"]:
-        raise ToolError(f"需求人「{naming['demand_name']}」不在后台需求人下拉里，请负责人核对代号表")
+    # 团队规则：没有需求人时，后台“需求人”选本人（文件名里仍写“原创”）
+    if naming["demand_name"]:
+        demand_form, demand_from = naming["demand_name"], "需求人代号"
+    else:
+        own = naming.get("designer_name")
+        if not own:
+            raise ToolError(f"本人设计师码 {naming['designer']} 不在代号表里，无法确定需求人（没有需求人时填本人）")
+        demand_form, demand_from = own, "没有需求人，按团队规则填本人"
+    if "demand" in fields_cfg and demand_form not in fields_cfg["demand"]["options"]:
+        raise ToolError(f"需求人「{demand_form}」不在后台需求人下拉里，请负责人核对团队配置")
     second_value = None
     if naming["second_designer"] and "second_designer" in fields_cfg:
         second_value = fields_cfg["second_designer"]["options"].get(naming["second_designer"])
@@ -717,7 +725,7 @@ def cmd_package(args):
         ["一类", "、".join(source_type or []) or "待填"],
         ["二类", "、".join(source_direction or []) or "待填"],
         ["AI 方式", ai if ai and ai != "无" else "无（非 AI）"],
-        ["需求人", naming["demand_name"] or "原创（无需求人）"],
+        ["需求人", demand_form if naming["demand_name"] else f"{demand_form}（本人；没有需求人，名称里写“原创”）"],
         ["第二设计师", naming["second_designer"] or "原创（B 段是自己做的，留空）"],
         ["是否红包", dflt.get("is_redbag", "否")],
     ]
@@ -732,7 +740,7 @@ def cmd_package(args):
              "check": chk, "form": dict(form), "role_source": role_from, "pending_fields": pending,
              "backend_values": {"category_type": (fields_cfg.get("category", {}).get("options") or {}).get(category),
                                 "gid": (fields_cfg.get("game", {}).get("options") or {}).get(game),
-                                "region_type": second_value or ""},
+                                "region_type": second_value or "", "demand_name": demand_form},
              "upload_status": "未上传：由本人登录自己的后台账号上传，上传后用 record 回填素材ID"}
     for r in clash:  # 同序号、还没上传的旧清单作废，文件移走，避免误传
         retire(r, f"作废：序号改给 {naming['name']}")
@@ -749,6 +757,7 @@ def cmd_package(args):
              f"- 分成：{'有第二设计师，名称带 -37（编号设计师 3 份，第二设计师 7 份）' if naming['split_37'] else '无第二设计师，不带 -37'}",
              f"- B 段：{naming['b_source_name']}；第二设计师依据：{naming['second_designer_source']}",
              f"- 角色标签依据：{role_from or '未提供，需补'}",
+             f"- 需求人依据：{demand_from}",
              "", "| 后台表单 | 填写 |", "|---|---|"] + [f"| {k} | {v} |" for k, v in form]
     lines += ["", "## 上传步骤",
               "1. 本人完整看一遍成片（接点、片尾、字幕、标语、水印）。",

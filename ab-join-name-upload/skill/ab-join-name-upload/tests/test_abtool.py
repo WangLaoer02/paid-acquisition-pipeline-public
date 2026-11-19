@@ -466,11 +466,22 @@ class V05Features(unittest.TestCase):
         self.assertEqual(r["name"], "261118D5-AI海上找清静鸣人接带土抽卡攻略-原创-37")
         self.assertEqual((form["项目分类"], form["游戏"], form["一类"], form["二类"], form["AI 方式"]),
                          ("火影", "忍界大战", "小剧场", "AI", "SD2拼框"))
+        self.assertTrue(form["需求人"].startswith(json.loads((TEAM / "codes.json").read_text(encoding="utf-8"))["people"]["D"]))
+        self.assertIn("本人", form["需求人"])
         self.assertEqual(form["第二设计师"], "测试丙")
         self.assertEqual(form["角色标签"], "带土")
         self.assertEqual(r["pending_fields"], [])
         vals = json.loads(Path(r["sheet_json"]).read_text(encoding="utf-8"))["backend_values"]
-        self.assertEqual(vals, {"category_type": "117", "gid": "193", "region_type": "1256"})
+        own = json.loads((TEAM / "codes.json").read_text(encoding="utf-8"))["people"]["D"]
+        self.assertEqual(vals, {"category_type": "117", "gid": "193", "region_type": "1256", "demand_name": own})
+
+    def test_own_name_must_be_in_demand_dropdown_when_no_demand(self):
+        cfg = json.loads((TEAM / "fields.json").read_text(encoding="utf-8"))
+        cfg["demand"]["options"] = ["别人"]
+        f = self.tmp / "fields-no-self.json"
+        f.write_text(json.dumps(cfg, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaisesRegex(abtool.ToolError, "不在后台需求人下拉里"):
+            self.pkg(fields=str(f))
 
     def test_second_designer_must_exist_in_backend(self):
         self.item["second_designer"] = "不存在的人"
