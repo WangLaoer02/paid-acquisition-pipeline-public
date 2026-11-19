@@ -1159,7 +1159,9 @@ class RealWindowsShortcut(TempState, unittest.TestCase):
         r = subprocess.run(["powershell", "-NoProfile", "-Command",
                             "[Console]::OutputEncoding=[Text.Encoding]::UTF8;(New-Object -ComObject Shell.Application).NameSpace($env:D).ParseName($env:N).GetLink.Path"],
                            env={**os.environ, "D": str(self.desk), "N": link.name}, capture_output=True)
-        self.assertEqual(os.path.normcase(r.stdout.decode("utf-8", "replace").strip()), os.path.normcase(str(target)))
+        got = r.stdout.decode("utf-8", "replace").strip()
+        same = lambda x: os.path.normcase(str(Path(x).resolve()))  # 统一 8.3 短名（RUNNER~1）和长名
+        self.assertEqual(same(got), same(target))
 
     def test_generated_files_stable_across_reruns(self):
         self.init()
