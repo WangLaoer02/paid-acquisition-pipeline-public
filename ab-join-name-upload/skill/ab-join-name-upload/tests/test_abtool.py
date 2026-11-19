@@ -998,3 +998,26 @@ class BoardFlow(TempState, V05Features):
 
 
 import urllib.parse  # noqa: E402
+
+
+PKG = Path(__file__).resolve().parents[3]
+
+
+@unittest.skipIf((PKG / "team-config").is_dir(), "只在不带团队配置的公开版里检查")
+class InstallKeepsConfig(unittest.TestCase):
+    """回归：公开版 install.sh --upgrade 曾用示例配置覆盖本机已导入的团队配置。"""
+
+    def test_upgrade_never_overwrites_imported_config_with_examples(self):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, True)
+        conf = tmp / "state"
+        conf.mkdir()
+        real = {n: json.dumps({"real": n}) for n in ("codes", "fields", "library")}
+        for n, v in real.items():
+            (conf / f"{n}.json").write_text(v, encoding="utf-8")
+        env = {k: v for k, v in os.environ.items() if k not in ("AB_WORKSPACE",)}
+        env.update(AB_TOOL_HOME=str(conf), CODEX_HOME=str(tmp / "codex"), HOME=str(tmp))
+        for _ in range(2):  # 首次安装＋升级
+            subprocess.run(["bash", str(PKG / "install.sh"), "--upgrade"], env=env, capture_output=True)
+        for n, v in real.items():
+            self.assertEqual((conf / f"{n}.json").read_bytes(), v.encode("utf-8"), f"{n}.json 被改动")

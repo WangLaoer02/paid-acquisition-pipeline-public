@@ -37,6 +37,9 @@ for f in codes fields library; do
     cp "$SRC" "$CONF/$f.json"; echo "已放入团队配置：$CONF/$f.json"
   elif cmp -s "$SRC" "$CONF/$f.json"; then
     echo "团队配置已是最新：$f.json"
+  elif [ "$SRC" != "$HERE/team-config/$f.json" ]; then
+    # 公开版只有示例配置：本机已有的（导入过的团队配置）绝不用示例覆盖
+    echo "保留本机团队配置：$f.json（升级不会用示例配置覆盖）"
   elif [ "$f" = "library" ] && [ "$SRC" = "$HERE/team-config/library.json" ] && [ "${KEEP_LIBRARY:-}" = "1" ]; then
     echo "保留本机选B台地址：$CONF/$f.json"
   else
