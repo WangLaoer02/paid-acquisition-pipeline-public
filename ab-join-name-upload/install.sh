@@ -7,7 +7,8 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 NAME="ab-join-name-upload"
 SKILLS="${CODEX_HOME:-$HOME/.codex}/skills"
 DEST="$SKILLS/$NAME"
-CONF="${AB_TOOL_HOME:-$HOME/.ab-join-name-upload}"
+# 配置目录：有工作台时是 工作台/配置，否则是旧版 ~/.ab-join-name-upload
+CONF="$(python3 "$HERE/skill/$NAME/scripts/abtool.py" workspace config-dir)"
 
 mkdir -p "$SKILLS" "$CONF"
 if [ -e "$DEST" ]; then

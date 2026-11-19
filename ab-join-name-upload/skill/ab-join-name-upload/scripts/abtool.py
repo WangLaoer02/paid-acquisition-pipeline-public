@@ -19,10 +19,32 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-VERSION = "0.6.2"
+VERSION = "0.7.0"
 ILLEGAL = re.compile(r'[\\/\x00-\x1f:*?"<>|]')
 FORMAL = re.compile(r'^(\d{6})([A-Za-z]+)(\d+)(?:-(.+))?$')
-HOME = Path(os.environ.get("AB_TOOL_HOME", Path.home() / ".ab-join-name-upload"))
+# STATE：旧版配置目录，同时存放指向工作台的 workspace.json。HOME：当前生效的配置目录。
+STATE = Path(os.environ.get("AB_TOOL_HOME", Path.home() / ".ab-join-name-upload"))
+WS_FILE = "工作台.json"
+
+
+def find_workspace():
+    """工作台根目录：AB_WORKSPACE 优先，否则读 STATE/workspace.json；目录里必须有 工作台.json。"""
+    env = os.environ.get("AB_WORKSPACE")
+    if env:
+        root = Path(env).expanduser()
+    else:
+        ptr = STATE / "workspace.json"
+        if not ptr.is_file():
+            return None
+        try:
+            root = Path(json.loads(ptr.read_text(encoding="utf-8"))["root"]).expanduser()
+        except (ValueError, KeyError, TypeError):
+            return None
+    return root if (root / WS_FILE).is_file() else None
+
+
+WS = find_workspace()
+HOME = WS / "配置" if WS else STATE
 
 
 class ToolError(Exception):
@@ -74,7 +96,7 @@ LEDGER_COLS = ["时间", "素材名称", "日期", "设计师码", "序号", "�
 
 
 def ledger_path():
-    return HOME / "上传台账.csv"
+    return WS / "台账" / "上传台账.csv" if WS else HOME / "上传台账.csv"
 
 
 def ledger_rows():
@@ -119,12 +141,18 @@ def retire(row, reason):
         if r["素材名称"] == row["素材名称"] and not r.get("素材ID"):
             src = Path(r["上传文件"]) if r.get("上传文件") else None
             if src and src.parent.is_dir():
-                dest_dir = src.parent / "作废"
-                for f in src.parent.glob(glob_escape(r["素材名称"]) + "*"):
+                # 工作台里作废件放到当天目录的 作废/，旧版放在输出目录下的 作废/
+                dest_dir = src.parent.parent / "作废" if src.parent.name == DAY_DIRS[2] else src.parent / "作废"
+                for f in material_files(src.parent, r["素材名称"]):
                     dest_dir.mkdir(exist_ok=True)
                     f.replace(dest_dir / f.name)
             r["状态"] = reason
     ledger_write(rows)
+
+
+def material_files(folder, name):
+    """某条素材自己的文件（成片、上传清单、核查记录）；不会误带上名称更长的另一条素材。"""
+    return [f for f in folder.glob(glob_escape(name) + "*") if f.is_file() and SHEET_SUFFIX.sub("", f.name) == name]
 
 
 def glob_escape(s):
@@ -143,13 +171,27 @@ def cmd_record(args):
     if r.get("素材ID") and r["素材ID"] != str(args.record_id):
         raise ToolError(f"「{r['素材名称']}」已记过素材 ID {r['素材ID']}，与本次 {args.record_id} 不同，请核对后台")
     r.update({"素材ID": str(args.record_id), "状态": "已上传", "时间": dt.datetime.now().strftime("%Y-%m-%d %H:%M")})
-    ledger_write(rows)
     sheet = Path(r["上传文件"]).with_name(r["素材名称"] + ".上传清单.json")
     if sheet.is_file():
         d = json.loads(sheet.read_text(encoding="utf-8"))
         d["upload_status"] = f"已上传：素材 ID {args.record_id}（本人回填）"
         sheet.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
-    return {"ok": True, "name": r["素材名称"], "record_id": str(args.record_id), "ledger": str(ledger_path())}
+    moved_to = None
+    src = Path(r["上传文件"]) if r.get("上传文件") else None
+    if WS and src and src.parent.name == DAY_DIRS[2] and src.parent.is_dir():
+        # 工作台：已上传的成片和清单移到当天的 04_已上传
+        done_dir = src.parent.parent / DAY_DIRS[3]
+        done_dir.mkdir(exist_ok=True)
+        for f in material_files(src.parent, r["素材名称"]):
+            target = done_dir / f.name
+            if not target.exists():
+                f.replace(target)
+        moved_to = str(done_dir)
+        if (done_dir / src.name).is_file():
+            r["上传文件"] = str(done_dir / src.name)
+    ledger_write(rows)
+    return {"ok": True, "name": r["素材名称"], "record_id": str(args.record_id), "ledger": str(ledger_path()),
+            "moved_to": moved_to}
 
 
 # ---------------------------------------------------------------- 选 B 台
@@ -161,7 +203,7 @@ def load_library(path=None):
     if not re.match(r"^https?://", base):
         raise ToolError("library.json 的 base_url 必须是选B台地址，如 https://xxx/pick/")
     cfg["base_url"] = base if base.endswith("/") else base + "/"
-    cfg["cache_dir"] = str(Path(cfg.get("cache_dir") or HOME / "b-cache").expanduser())
+    cfg["cache_dir"] = str(Path(cfg.get("cache_dir") or (WS / "B段缓存" if WS else HOME / "b-cache")).expanduser())
     return cfg
 
 
@@ -782,8 +824,13 @@ def cmd_run(args):
     picked = lib_pick(items, rules=cfg.get("pick"), a_role=args.a_role)
     if not picked["picks"]:
         raise ToolError("选B台里没有可用的 B（可能都缺第二设计师登记）")
-    out_dir = Path(args.out_dir or (Path.home() / "Desktop" / "待上传")).expanduser()
-    work = HOME / "work"
+    if WS:
+        day = ensure_day(resolve_date(args.date)[0])
+        out_dir = Path(args.out_dir).expanduser() if args.out_dir else day / DAY_DIRS[2]
+        work = day / DAY_DIRS[1]
+    else:
+        out_dir = Path(args.out_dir or (Path.home() / "Desktop" / "待上传")).expanduser()
+        work = HOME / "work"
     results, serial = [], args.serial
     for p in picked["picks"]:
         it = p["item"]
@@ -825,7 +872,9 @@ def cmd_run(args):
                   "、".join(f"{u['title']}（付费有效 {u['pay_effective_count']}、消耗有效 {u['spend_effective_count']}）" for u in uncut)]
     out_dir.mkdir(parents=True, exist_ok=True)
     summary.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    link = desktop_link(out_dir) if WS and not args.out_dir else None
     return {"ok": all(r.get("ok") for r in results), "out_dir": str(out_dir), "summary": str(summary),
+            "workspace": str(WS) if WS else None, "desktop_link": link,
             "generated_at": generated, "notes": picked["notes"], "shortfall": picked["shortfall"],
             "a_length_note": a_length_note(a_info["duration"]), "versions": results,
             "uncut_suggestions": uncut,
@@ -893,7 +942,8 @@ def cmd_doctor(_args):
            "ffmpeg": shutil.which("ffmpeg"), "ffprobe": shutil.which("ffprobe"),
            "config_home": str(HOME),
            "codes_json": (HOME / "codes.json").is_file(), "fields_json": (HOME / "fields.json").is_file(),
-           "library_json": (HOME / "library.json").is_file(), "version": VERSION}
+           "library_json": (HOME / "library.json").is_file(), "version": VERSION,
+           "workspace": str(WS) if WS else None}
     res["ok"] = all([res["python_ok"], res["ffmpeg"], res["ffprobe"], res["codes_json"], res["fields_json"]])
     if res["library_json"]:
         try:
@@ -904,6 +954,379 @@ def cmd_doctor(_args):
     return res
 
 
+# ---------------------------------------------------------------- 工作台
+DAY_DIRS = ("01_A段", "02_接片", "03_待上传", "04_已上传")
+WS_DIRS = ("程序", "配置", "台账", "B段缓存", "每日", "日志")
+# 工作台根目录里允许预先存在的条目（Agent 会先把源码克隆到 程序/源码，再运行 init）
+WS_KNOWN = set(WS_DIRS) | {"管线", WS_FILE, "AGENTS.md", "开始使用.md", "AGENTS.新版.md", "开始使用.新版.md"}
+DEFAULT_ROOT = Path.home() / "买量工作台"
+
+
+def skill_abtool():
+    return Path(os.environ.get("CODEX_HOME", Path.home() / ".codex")) / "skills" / "ab-join-name-upload" / "scripts" / "abtool.py"
+
+
+def desktop_dir():
+    return Path(os.environ.get("AB_DESKTOP", Path.home() / "Desktop"))
+
+
+def ensure_day(date):
+    day = WS / "每日" / date
+    for d in DAY_DIRS:
+        (day / d).mkdir(parents=True, exist_ok=True)
+    return day
+
+
+def ws_meta():
+    p = WS / WS_FILE
+    return json.loads(p.read_text(encoding="utf-8")) if p.is_file() else {}
+
+
+def desktop_link(target):
+    """桌面「今日待上传」快捷方式：只建或更新符号链接，桌面上同名的真实文件夹绝不动。"""
+    if not WS or ws_meta().get("desktop_link") is False:
+        return None
+    link = desktop_dir() / "今日待上传"
+    if not link.parent.is_dir():
+        return {"ok": False, "reason": f"没有桌面目录：{link.parent}"}
+    if link.exists() and not link.is_symlink():
+        return {"ok": False, "reason": f"桌面上已有同名的真实文件或文件夹，没有改动：{link}"}
+    if link.is_symlink():
+        if Path(os.readlink(link)) == Path(target):
+            return {"ok": True, "path": str(link), "target": str(target)}
+        link.unlink()
+    link.symlink_to(target, target_is_directory=True)
+    return {"ok": True, "path": str(link), "target": str(target)}
+
+
+def render_agents(root, designer):
+    ab = skill_abtool()
+    who = f"设计师码 {designer}" if designer else "本人（设计师码首次使用时问一次，写进 工作台.json 的 designer）"
+    return f"""# 买量工作台 · 给 Agent 的规则
+
+<!-- 由 abtool workspace init 生成。没改过时，以后升级会自动更新；改过就保留你的版本，新版另存为 AGENTS.新版.md。 -->
+
+这是 {who} 的买量工作台，根目录 `{root}`。这台电脑上的买量工作都在这里进行，不要把产物写到别处。
+
+接B工具：`python3 {ab}`（下面简写 `abtool`），输出 JSON；`ok:false` 时把 `error` 原话告诉用户，不要猜着补。
+
+## 目录
+
+| 目录 | 放什么 | 怎么写 |
+|---|---|---|
+| `程序/源码/` | 公开仓库克隆 | 只 `git pull --ff-only`，不改、不提交 |
+| `程序/skills/`、`程序/tools/` | 买量管线隔离安装的 Skill 和工具 | 只由安装器写 |
+| `管线/` | 买量管线工作区（A 段制作节点） | 按 `管线/AGENTS.md` 和节点合同 |
+| `配置/` | 团队配置：代号表、字段表、选B台地址 | 只用 `abtool import-config`／`set-library` 写；不外传、不提交、不发到群里 |
+| `台账/上传台账.csv` | 每个序号出过什么、素材 ID | 只由 `abtool` 写，不要手改 |
+| `B段缓存/` | 选B台下载的 B 段（已校验 SHA256） | 可以整个删，下次会重下 |
+| `每日/YYMMDD/` | 当天的全部产物，见下表 | 由 `abtool run`／`record` 写 |
+| `日志/` | 需要留底的命令输出 | 可选 |
+
+每天的目录（日期是北京时间 YYMMDD，序号也按天重置）：
+
+| 子目录 | 节点 | 内容 |
+|---|---|---|
+| `01_A段/` | B01 | 用户把今天的 A 段 MP4 放这里 |
+| `02_接片/` | B02 | 接好的中间成片，`run` 重跑时复用 |
+| `03_待上传/` | B04 | 正式命名的成片＋每条 `上传清单.md`＋`本次待上传_*.md` 总表 |
+| `04_已上传/` | B04 | 用户回填素材 ID 后，`record` 自动移过来 |
+| `作废/` | — | 序号被改用后退下来的旧版本，不要上传 |
+
+桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式。
+
+## 每次开工
+
+1. `abtool workspace today`：建好今天的目录，更新桌面快捷方式。
+2. `abtool workspace status`：看有没有已出清单、还没回填素材 ID 的条目，有就先提醒用户。
+3. 按 B01 → B02 → B04 做，规则以 ab-join-name-upload Skill 的 SKILL.md 为准：
+   - **B01 选B**：问 A 段（默认找 `01_A段/` 里最新的 MP4）、A 段标题、主推角色、今天第一个可用序号（用户在后台搜「YYMMDD+设计师码」看最大序号＋1）、需求人（没有就是原创，后台需求人填本人）。
+   - **B02 接片**、**B04 命名出清单**：一条 `abtool run …` 做完，不加 `--out-dir`，产物自动进今天的目录。
+   - 用户说出素材 ID：`abtool record --name <素材名称> --record-id <ID>`。
+
+## 边界
+
+- 不登录后台、不读取或保存密码、Cookie、验证码，不替用户上传、提审或投放。上传由本人在自己的后台账号完成。
+- 不删除 `每日/`、`台账/`、`配置/` 里的任何东西；需要清理时只建议，由用户决定。
+- 团队配置只来自负责人发的「团队配置*.zip」（通常在「下载」文件夹），不要从别处拼凑名单或选B台地址。
+- 买量管线是源码版：不能说“生成、导出、上传都已经能用”。
+
+## 更新（用户说“更新交付包”时）
+
+1. `git -C 程序/源码 pull --ff-only`；失败就停下报告，不要强制。
+2. `bash 程序/源码/ab-join-name-upload/install.sh --upgrade`。
+3. 「下载」里有比当前更新的团队配置 zip 时：`abtool import-config --from <zip>`（旧配置会自动备份）。
+4. `abtool workspace init --root {root}`：补齐目录、更新本文件（改过的不覆盖）。
+5. `abtool doctor`，逐项报告结果。
+"""
+
+
+def render_start(root, designer):
+    return f"""# 买量工作台 · 开始使用
+
+<!-- 由 abtool workspace init 生成 -->
+
+这个文件夹是你的买量工作台：`{root}`
+
+**每天怎么用**
+
+1. 把做好的 A 段 MP4 放进 `每日/今天日期/01_A段/`（不放也行，直接告诉 Codex 路径）。
+2. 在后台搜「今天日期＋你的设计师码」{f"（如 {dt.datetime.now().strftime('%y%m%d')}{designer}）" if designer else ""}，看今天最大序号，＋1。
+3. 在这个文件夹里打开 Codex，说一句：
+   `用 ab-join-name-upload 帮我接B出清单：A 段标题「…」，主推角色…，今天从序号 N 开始，需求人原创。`
+4. 打开桌面上的 **今日待上传**：看一遍成片，照每条的 `上传清单.md` 在后台上传（先填名称和字段，最后选文件）。
+5. 把素材 ID 告诉 Codex，它会记进台账，并把这条移到 `04_已上传/`。
+
+**不要动的**：`台账/`、`配置/`、`程序/`。账号、密码、验证码只在你自己的浏览器里输入，不要发给 Codex。
+"""
+
+
+def write_generated(name, content, meta, report):
+    """生成文件：不存在就写；存在且没被改过就更新；被改过就保留，新版另存。"""
+    p = WS / name
+    new_sha = hashlib.sha256(content.encode("utf-8")).hexdigest()
+    gen = meta.setdefault("generated", {})
+    if not p.exists():
+        p.write_text(content, encoding="utf-8")
+        report.append({"file": name, "action": "created"})
+    else:
+        cur = sha256(p)
+        if cur == new_sha:
+            report.append({"file": name, "action": "unchanged"})
+        elif cur == gen.get(name):
+            p.write_text(content, encoding="utf-8")
+            report.append({"file": name, "action": "updated"})
+        else:
+            alt = WS / name.replace(".md", ".新版.md")
+            alt.write_text(content, encoding="utf-8")
+            report.append({"file": name, "action": "kept_user_edits", "new_version": str(alt)})
+            return
+    gen[name] = new_sha
+
+
+def legacy_leftovers():
+    found = []
+    for n in CONFIG_FILES + ("上传台账.csv",):
+        if (STATE / n).is_file():
+            found.append(str(STATE / n))
+    for d in (STATE / "b-cache", desktop_dir() / "待上传"):
+        if d.is_dir() and any(d.iterdir()):
+            found.append(str(d))
+    return found
+
+
+def cmd_ws_init(args):
+    global WS, HOME
+    root = Path(os.path.abspath(Path(args.root or WS or DEFAULT_ROOT).expanduser()))  # 不给位置时沿用已有工作台
+    ptr = STATE / "workspace.json"
+    if WS and Path(WS) != root and not args.force:
+        raise ToolError(f"这台电脑已有工作台：{WS}。要换位置请加 --force（旧工作台不会被删除或移动）")
+    if root.exists() and not root.is_dir():
+        raise ToolError(f"{root} 是文件，不能作为工作台")
+    if root.is_dir() and not (root / WS_FILE).is_file():
+        extra = [x.name for x in root.iterdir() if x.name not in WS_KNOWN and not x.name.startswith(".")]
+        if extra:
+            raise ToolError(f"{root} 里已有其他东西（{'、'.join(sorted(extra)[:5])}），不在这里建工作台；换一个空目录或新目录")
+    for d in WS_DIRS:
+        (root / d).mkdir(parents=True, exist_ok=True)
+    WS, HOME = root, root / "配置"
+    meta = ws_meta()
+    created = not meta
+    designer = (args.designer or meta.get("designer") or "").strip() or None
+    if designer and not re.fullmatch(r"[A-Za-z]+", designer):
+        raise ToolError("设计师码只能是字母，如 D、LW")
+    meta.update({
+        "kind": "买量工作台", "root": str(root), "abtool": VERSION,
+        "created": meta.get("created") or dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "designer": designer.upper() if designer else None,
+        "desktop_link": meta.get("desktop_link", True) if args.desktop_link is None else args.desktop_link,
+        "paths": {"源码": "程序/源码", "skills": "程序/skills", "tools": "程序/tools", "管线": "管线",
+                  "配置": "配置", "台账": "台账/上传台账.csv", "B段缓存": "B段缓存", "每日": "每日", "日志": "日志"},
+    })
+    files = []
+    write_generated("AGENTS.md", render_agents(root, meta["designer"]), meta, files)
+    write_generated("开始使用.md", render_start(root, meta["designer"]), meta, files)
+    tmp = root / (WS_FILE + ".partial")
+    tmp.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    tmp.replace(root / WS_FILE)
+    STATE.mkdir(parents=True, exist_ok=True)
+    ptr.write_text(json.dumps({"root": str(root)}, ensure_ascii=False) + "\n", encoding="utf-8")
+    today = ensure_day(resolve_date("today")[0])
+    leftovers = legacy_leftovers()
+    return {"ok": True, "workspace": str(root), "created": created, "designer": meta["designer"],
+            "files": files, "today": str(today), "desktop_link": desktop_link(today / DAY_DIRS[2]),
+            "config_dir": str(HOME), "config_files": {n: (HOME / n).is_file() for n in CONFIG_FILES},
+            "legacy_found": leftovers,
+            "next": (["有旧版数据：运行 workspace migrate 搬进工作台"] if leftovers else []) +
+                    ([] if all((HOME / n).is_file() for n in CONFIG_FILES) else ["还没有团队配置：import-config --from <团队配置 zip>"])}
+
+
+def need_ws():
+    if not WS:
+        raise ToolError("还没有工作台：先运行 workspace init（默认建在 ~/买量工作台）")
+
+
+def cmd_ws_today(_args):
+    need_ws()
+    day = ensure_day(resolve_date("today")[0])
+    return {"ok": True, "today": str(day), "dirs": {d: str(day / d) for d in DAY_DIRS},
+            "desktop_link": desktop_link(day / DAY_DIRS[2])}
+
+
+def cmd_ws_status(_args):
+    need_ws()
+    rows = ledger_rows()
+    pending = [r["素材名称"] for r in rows if r.get("状态") == "已出清单" and not r.get("素材ID")]
+    day = WS / "每日" / resolve_date("today")[0]
+    count = lambda d: len([f for f in d.glob("*.mp4")]) if d.is_dir() else 0
+    return {"ok": True, "workspace": str(WS), "version": VERSION, "designer": ws_meta().get("designer"),
+            "config_files": {n: (HOME / n).is_file() for n in CONFIG_FILES},
+            "ledger": str(ledger_path()), "ledger_rows": len(rows),
+            "pending_upload": pending,
+            "today": {"dir": str(day), **{d: count(day / d) for d in DAY_DIRS[1:]}},
+            "pipeline_workspace": (WS / "管线").is_dir(), "source_clone": (WS / "程序" / "源码" / ".git").exists(),
+            "legacy_found": legacy_leftovers()}
+
+
+def same_file(a, b):
+    return a.stat().st_size == b.stat().st_size and sha256(a) == sha256(b)
+
+
+def safe_move(src, dest, report, dry):
+    """搬文件：同盘直接改名；跨盘先复制、核对 SHA256 一致后才删原件。目标已存在且不同就跳过。"""
+    if dest.exists():
+        if same_file(src, dest):
+            if not dry:
+                src.unlink()
+            report.append({"from": str(src), "to": str(dest), "action": "duplicate_removed"})
+        else:
+            report.append({"from": str(src), "to": str(dest), "action": "conflict_skipped"})
+            return False
+        return True
+    report.append({"from": str(src), "to": str(dest), "action": "moved"})
+    if dry:
+        return True
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if src.stat().st_dev == dest.parent.stat().st_dev:
+        src.replace(dest)
+    else:
+        tmp = dest.with_name(dest.name + ".partial")
+        shutil.copy2(src, tmp)
+        if not same_file(src, tmp):
+            tmp.unlink()
+            raise ToolError(f"复制后 SHA256 不一致，已停止，原件未动：{src}")
+        tmp.replace(dest)
+        src.unlink()
+    return True
+
+
+SHEET_SUFFIX = re.compile(r"(\.上传清单\.(?:md|json)|\.check\.json|\.mp4)$")
+
+
+def cmd_ws_migrate(args):
+    """把旧版数据（~/.ab-join-name-upload 和 桌面/待上传）搬进工作台。默认执行；--dry-run 只列出动作。"""
+    need_ws()
+    dry, ts = args.dry_run, dt.datetime.now().strftime("%Y%m%d%H%M%S")
+    report = {"config": [], "ledger": {}, "files": [], "cache": [], "left_alone": []}
+    if Path(STATE) == Path(HOME):
+        raise ToolError("配置目录和旧版目录相同，无需迁移")
+    # 1. 配置
+    for n in CONFIG_FILES:
+        src, dest = STATE / n, HOME / n
+        if not src.is_file():
+            continue
+        if not dest.exists():
+            act = "copied"
+            if not dry:
+                shutil.copy2(src, dest)
+        elif dest.read_bytes() == src.read_bytes():
+            act = "same"
+        else:
+            act = "workspace_kept_old_saved"
+            if not dry:
+                bk = HOME / f"迁移前旧配置-{ts}"
+                bk.mkdir(exist_ok=True)
+                shutil.copy2(src, bk / n)
+        if not dry:
+            src.replace(STATE / f"{n}.migrated-{ts}")
+        report["config"].append({"file": n, "action": act})
+    # 2. 台账：先读，文件搬完再写（上传文件路径要改成新位置）
+    old_ledger = STATE / "上传台账.csv"
+    old_rows = []
+    if old_ledger.is_file():
+        import csv
+        with old_ledger.open(encoding="utf-8-sig", newline="") as f:
+            old_rows = list(csv.DictReader(f))
+    ids = {r["素材名称"]: r.get("素材ID") for r in old_rows + ledger_rows() if r.get("素材ID")}
+    # 3. 桌面/待上传
+    moved = {}
+    src_root = desktop_dir() / "待上传"
+    if src_root.is_dir():
+        for f in sorted(src_root.rglob("*")):
+            if not f.is_file() or f.name == ".DS_Store":
+                continue
+            stem = SHEET_SUFFIX.sub("", f.name)
+            m = FORMAL.match(stem)
+            if m:
+                date = m.group(1)
+            elif f.name.startswith("本次待上传_"):
+                date = dt.datetime.fromtimestamp(f.stat().st_mtime).strftime("%y%m%d")
+            else:
+                date = None
+            if date is None:
+                dest = WS / "每日" / "未归类" / f.relative_to(src_root)
+            elif "作废" in f.relative_to(src_root).parts[:-1]:
+                dest = WS / "每日" / date / "作废" / f.name
+            else:
+                dest = WS / "每日" / date / (DAY_DIRS[3] if ids.get(stem) else DAY_DIRS[2]) / f.name
+            if safe_move(f, dest, report["files"], dry):
+                moved[str(f)] = str(dest)
+        if not dry:
+            for d in sorted((x for x in src_root.rglob("*") if x.is_dir()), reverse=True) + [src_root]:
+                ds = d / ".DS_Store"
+                if ds.is_file() and len(list(d.iterdir())) == 1:
+                    ds.unlink()
+                try:
+                    d.rmdir()
+                except OSError:
+                    pass
+    # 4. 台账合并：工作台已有的行优先，旧行补上素材 ID；上传文件改成新路径
+    if old_rows:
+        rows = ledger_rows()
+        by = {r["素材名称"]: r for r in rows}
+        added = filled = 0
+        for r in old_rows:
+            if r.get("上传文件") in moved:
+                r["上传文件"] = moved[r["上传文件"]]
+            cur = by.get(r["素材名称"])
+            if cur is None:
+                rows.append(r); by[r["素材名称"]] = r; added += 1
+            elif r.get("素材ID") and not cur.get("素材ID"):
+                cur.update({"素材ID": r["素材ID"], "状态": r.get("状态") or "已上传"}); filled += 1
+        if not dry:
+            ledger_write(rows)
+            old_ledger.replace(STATE / f"上传台账.csv.migrated-{ts}")
+        report["ledger"] = {"rows_added": added, "material_ids_filled": filled}
+    if not dry:  # 工作台台账里指向已搬走文件的路径也更新
+        rows = ledger_rows()
+        if any(r.get("上传文件") in moved for r in rows):
+            for r in rows:
+                r["上传文件"] = moved.get(r.get("上传文件"), r.get("上传文件"))
+            ledger_write(rows)
+    # 5. B 段缓存
+    cache = STATE / "b-cache"
+    if cache.is_dir():
+        for f in sorted(cache.rglob("*")):
+            if f.is_file() and f.name != ".DS_Store":
+                safe_move(f, WS / "B段缓存" / f.relative_to(cache), report["cache"], dry)
+    if (STATE / "work").is_dir():
+        report["left_alone"].append({"path": str(STATE / "work"), "why": "旧版接片中间文件，可以删除；工具不自动删"})
+    conflicts = [x for x in report["files"] + report["cache"] if x["action"] == "conflict_skipped"]
+    return {"ok": not conflicts, "dry_run": dry, "workspace": str(WS), **report,
+            "conflicts": conflicts, "legacy_remaining": legacy_leftovers() if not dry else None}
+
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(prog="abtool", description="接B·命名·上传准备（本地，不上传）")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -911,7 +1334,7 @@ def main(argv=None):
     s = sub.add_parser("probe", help="读取媒体规格"); s.add_argument("file")
     s = sub.add_parser("lib-list", help="列出选B台里的 B 段（可按关键词或角色筛）")
     s.add_argument("--q", help="标题／库ID／来源编号关键词"); s.add_argument("--role", help="主推角色")
-    s.add_argument("--library", help="选B台配置，默认 ~/.ab-join-name-upload/library.json")
+    s.add_argument("--library", help="选B台配置，默认 工作台/配置/library.json")
     s = sub.add_parser("lib-pick", help="按公司规则自动挑 B：2 条有效素材（先保证付费）＋1 条新素材")
     s.add_argument("--a", help="A 段文件，用来核对 A 段时长（10–25 秒）")
     s.add_argument("--a-role", help="A 段主推角色：优先选同角色的 B，没有优秀素材才选不同角色")
@@ -939,17 +1362,17 @@ def main(argv=None):
         s.add_argument("--a-title", required=True)
         s.add_argument("--b-name", help="B 段在后台的完整正式名称（第二设计师按开头设计师码）")
         s.add_argument("--b-id", help="选B台库 ID 或唯一标题（第二设计师按库里登记）")
-        s.add_argument("--library", help="选B台配置，默认 ~/.ab-join-name-upload/library.json")
+        s.add_argument("--library", help="选B台配置，默认 工作台/配置/library.json")
         s.add_argument("--b-title", help="不填则取 B 段名称的标题段")
         s.add_argument("--demand", default="原创", help="需求人代号；没有就是 原创")
         s.add_argument("--intern", help="实习生代号；没有不填")
         s.add_argument("--role-token", help="名称里必须出现的主推角色词，如 鼬")
-        s.add_argument("--codes", help="代号表路径，默认 ~/.ab-join-name-upload/codes.json")
+        s.add_argument("--codes", help="代号表路径，默认 工作台/配置/codes.json")
 
     s = sub.add_parser("name", help="按公司规则生成正式名称"); naming_args(s)
     s = sub.add_parser("package", help="核查成片、按正式名复制、生成上传清单"); naming_args(s)
     s.add_argument("--file", required=True); s.add_argument("--out-dir", required=True)
-    s.add_argument("--fields", help="上传字段表，默认 ~/.ab-join-name-upload/fields.json")
+    s.add_argument("--fields", help="上传字段表，默认 工作台/配置/fields.json")
     s.add_argument("--category", help="不填用团队默认"); s.add_argument("--game", help="不填用团队默认")
     s.add_argument("--source-type", nargs="*"); s.add_argument("--source-direction", nargs="*")
     s.add_argument("--role", nargs="*", help="不填默认取 B 段主推角色")
@@ -963,7 +1386,7 @@ def main(argv=None):
     s.add_argument("--serial", required=True, type=int, help="第 1 个版本的序号：后台当天本人最大序号＋1")
     s.add_argument("--date", default="today"); s.add_argument("--demand", default="原创")
     s.add_argument("--intern"); s.add_argument("--ai", help="不填用团队默认")
-    s.add_argument("--out-dir", help="默认 桌面/待上传")
+    s.add_argument("--out-dir", help="默认 工作台/每日/今天/03_待上传（没有工作台时为 桌面/待上传）")
     s.add_argument("--overlay"); s.add_argument("--watermark")
     s.add_argument("--codes"); s.add_argument("--fields"); s.add_argument("--library")
 
@@ -975,6 +1398,19 @@ def main(argv=None):
     s.add_argument("--from", dest="source", required=True)
     s = sub.add_parser("set-library", help="选B台地址变了时更新")
     s.add_argument("--url", required=True)
+    s = sub.add_parser("workspace", help="工作台：init 建立／补齐，today 今天目录，status 状态，migrate 搬入旧数据")
+    wsub = s.add_subparsers(dest="ws_cmd", required=True)
+    w = wsub.add_parser("init", help="建立或补齐工作台（默认 ~/买量工作台），可重复运行")
+    w.add_argument("--root", help="工作台位置，默认 ~/买量工作台")
+    w.add_argument("--designer", help="本人设计师码，如 D")
+    w.add_argument("--no-desktop-link", dest="desktop_link", action="store_false", default=None,
+                   help="不在桌面放「今日待上传」快捷方式")
+    w.add_argument("--force", action="store_true", help="这台电脑已有别处的工作台时，改指向新位置（旧的不删）")
+    wsub.add_parser("today", help="建好今天的目录并更新桌面快捷方式")
+    wsub.add_parser("status", help="工作台状态：配置、台账、今天的产物、待回填素材ID")
+    w = wsub.add_parser("migrate", help="把旧版 ~/.ab-join-name-upload 和 桌面/待上传 搬进工作台")
+    w.add_argument("--dry-run", action="store_true", help="只列出要做的动作，不搬")
+    wsub.add_parser("config-dir", help="打印当前生效的配置目录（给 install.sh 用）")
     a = p.parse_args(argv)
     try:
         if a.cmd == "doctor":
@@ -990,6 +1426,12 @@ def main(argv=None):
             r = cmd_import_config(a); out(r, 0 if r["ok"] else 1)
         if a.cmd == "set-library":
             out(cmd_set_library(a))
+        if a.cmd == "workspace":
+            if a.ws_cmd == "config-dir":
+                print(HOME); return
+            r = {"init": cmd_ws_init, "today": cmd_ws_today, "status": cmd_ws_status,
+                 "migrate": cmd_ws_migrate}[a.ws_cmd](a)
+            out(r, 0 if r["ok"] else 1)
         if a.cmd == "probe":
             out(probe(a.file))
         if a.cmd == "join":

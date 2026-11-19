@@ -629,3 +629,279 @@ class PlaceholderLibrary(unittest.TestCase):
         self.assertIn("还没设置选B台地址", r["library"]["error"])
         for n in ("codes.json", "fields.json", "library.json"):
             (abtool.HOME / n).unlink(missing_ok=True)
+
+
+class TempState:
+    """每个工作台测试用独立的旧版目录、桌面和工作台，结束后恢复模块状态。"""
+
+    def setUp(self):
+        super().setUp()
+        self.base = Path(tempfile.mkdtemp(prefix="abtool-ws-"))
+        self.addCleanup(shutil.rmtree, self.base, True)
+        saved = (abtool.STATE, abtool.WS, abtool.HOME)
+        self.addCleanup(self._restore, saved)
+        self.desk = self.base / "Desktop"
+        self.desk.mkdir()
+        env = unittest.mock.patch.dict(os.environ, {"AB_DESKTOP": str(self.desk), "CODEX_HOME": str(self.base / "codex")})
+        env.start()
+        self.addCleanup(env.stop)
+        abtool.STATE = self.base / "state"
+        abtool.WS, abtool.HOME = None, abtool.STATE
+        self.root = self.base / "买量工作台"
+
+    @staticmethod
+    def _restore(saved):
+        abtool.STATE, abtool.WS, abtool.HOME = saved
+
+    def init(self, **kw):
+        a = dict(root=str(self.root), designer="d", desktop_link=None, force=False)
+        a.update(kw)
+        return abtool.cmd_ws_init(types.SimpleNamespace(**a))
+
+
+import unittest.mock  # noqa: E402
+
+
+class WorkspaceInit(TempState, unittest.TestCase):
+    def test_init_builds_layout_pointer_and_link(self):
+        r = self.init()
+        self.assertTrue(r["ok"] and r["created"])
+        for d in abtool.WS_DIRS:
+            self.assertTrue((self.root / d).is_dir(), d)
+        today = abtool.resolve_date("today")[0]
+        for d in abtool.DAY_DIRS:
+            self.assertTrue((self.root / "每日" / today / d).is_dir())
+        self.assertEqual(json.loads((abtool.STATE / "workspace.json").read_text(encoding="utf-8"))["root"], str(self.root))
+        meta = json.loads((self.root / "工作台.json").read_text(encoding="utf-8"))
+        self.assertEqual(meta["designer"], "D")
+        self.assertIn("03_待上传", (self.root / "AGENTS.md").read_text(encoding="utf-8"))
+        link = self.desk / "今日待上传"
+        self.assertTrue(link.is_symlink())
+        self.assertEqual(Path(os.readlink(link)), self.root / "每日" / today / "03_待上传")
+        self.assertEqual(abtool.HOME, self.root / "配置")
+        self.assertEqual(abtool.ledger_path(), self.root / "台账" / "上传台账.csv")
+
+    def test_rerun_is_idempotent_and_keeps_user_edits(self):
+        self.init()
+        r = self.init(designer=None)
+        self.assertEqual({f["action"] for f in r["files"]}, {"unchanged"})
+        self.assertEqual(r["designer"], "D")
+        (self.root / "AGENTS.md").write_text("# 我改过\n", encoding="utf-8")
+        r = self.init(designer="LW")  # 设计师码变了，生成内容也变
+        acts = {f["file"]: f["action"] for f in r["files"]}
+        self.assertEqual(acts["AGENTS.md"], "kept_user_edits")
+        self.assertEqual(acts["开始使用.md"], "updated")
+        self.assertEqual((self.root / "AGENTS.md").read_text(encoding="utf-8"), "# 我改过\n")
+        self.assertIn("LW", (self.root / "AGENTS.新版.md").read_text(encoding="utf-8"))
+
+    def test_allows_preexisting_source_clone_but_not_foreign_dir(self):
+        (self.root / "程序" / "源码").mkdir(parents=True)
+        self.assertTrue(self.init()["ok"])
+        other = self.base / "别的"
+        other.mkdir()
+        (other / "我的文件.txt").write_text("x", encoding="utf-8")
+        with self.assertRaisesRegex(abtool.ToolError, "已有工作台"):
+            self.init(root=str(other))
+        with self.assertRaisesRegex(abtool.ToolError, "其他东西"):
+            self.init(root=str(other), force=True)
+
+    def test_real_desktop_folder_never_replaced(self):
+        (self.desk / "今日待上传").mkdir()
+        r = self.init()
+        self.assertFalse(r["desktop_link"]["ok"])
+        self.assertTrue((self.desk / "今日待上传").is_dir() and not (self.desk / "今日待上传").is_symlink())
+
+    def test_no_desktop_link_option(self):
+        r = self.init(desktop_link=False)
+        self.assertIsNone(r["desktop_link"])
+        self.assertFalse((self.desk / "今日待上传").exists())
+
+    def test_rerun_without_root_reuses_existing_workspace(self):
+        self.init()
+        r = self.init(root=None, designer=None)
+        self.assertEqual(r["workspace"], str(self.root))
+        self.assertFalse(r["created"])
+
+    def test_bad_designer_rejected(self):
+        with self.assertRaisesRegex(abtool.ToolError, "字母"):
+            self.init(designer="D-1")
+
+    def test_find_workspace_via_pointer(self):
+        self.init()
+        self.assertEqual(abtool.find_workspace(), self.root)
+        (self.root / "工作台.json").unlink()
+        self.assertIsNone(abtool.find_workspace())
+
+    def test_status_and_today_need_workspace(self):
+        with self.assertRaisesRegex(abtool.ToolError, "workspace init"):
+            abtool.cmd_ws_status(None)
+        self.init()
+        st = abtool.cmd_ws_status(None)
+        self.assertEqual(st["pending_upload"], [])
+        self.assertFalse(st["config_files"]["codes.json"])
+        self.assertTrue(abtool.cmd_ws_today(None)["ok"])
+
+
+@unittest.skipUnless(shutil.which("ffmpeg"), "需要 FFmpeg")
+class WorkspaceFlow(TempState, V05Features):
+    """在工作台里出清单、作废、回填：产物落在 每日/日期/ 下对应的子目录。"""
+
+    def setUp(self):
+        super().setUp()
+        self.init()
+        self.day = self.root / "每日" / "261118"
+        abtool.ensure_day("261118")
+        self.out = self.day / "03_待上传"
+
+    def test_record_moves_to_uploaded_without_touching_longer_names(self):
+        r = self.pkg(demand="原创")
+        # 名称更长的另一条（同前缀）不能被一起移走
+        longer = self.out / (r["name"] + "-HP.mp4")
+        longer.write_bytes(b"x")
+        res = abtool.cmd_record(types.SimpleNamespace(name=r["name"], record_id="127598"))
+        done = self.day / "04_已上传"
+        self.assertEqual(res["moved_to"], str(done))
+        self.assertTrue((done / (r["name"] + ".mp4")).is_file())
+        self.assertTrue((done / (r["name"] + ".上传清单.md")).is_file())
+        self.assertFalse(Path(r["upload_file"]).exists())
+        self.assertTrue(longer.is_file())
+        row = abtool.ledger_rows()[0]
+        self.assertEqual(row["上传文件"], str(done / (r["name"] + ".mp4")))
+        self.assertIn("127598", json.loads((done / (r["name"] + ".上传清单.json")).read_text(encoding="utf-8"))["upload_status"])
+
+    def test_retired_version_goes_to_day_void_dir(self):
+        old = self.pkg()
+        self.item = dict(self.item, title="另一条B")
+        self.pkg()
+        self.assertTrue((self.day / "作废" / Path(old["upload_file"]).name).is_file())
+
+    def test_reused_serial_retires_unuploaded_old_version(self):  # 父类断言的是旧版目录结构
+        old = self.pkg()
+        self.item = dict(self.item, title="另一条B")
+        self.pkg()
+        self.assertFalse(Path(old["upload_file"]).exists())
+
+    def test_record_material_id(self):  # 父类读的是旧位置；工作台里清单已移到 04_已上传
+        r = self.pkg()
+        abtool.cmd_record(types.SimpleNamespace(name=r["name"] + ".mp4", record_id="124887"))
+        moved = self.day / "04_已上传" / Path(r["sheet_json"]).name
+        self.assertIn("124887", json.loads(moved.read_text(encoding="utf-8"))["upload_status"])
+        with self.assertRaisesRegex(abtool.ToolError, "已记过素材 ID"):
+            abtool.cmd_record(types.SimpleNamespace(name=r["name"], record_id="999"))
+
+    def test_run_defaults_into_today_dirs(self):
+        items = [dict(self.item, lib_id=f"NB-{i}", title=t, pay_effective_count=p, spend_effective_count=1,
+                      footage_count=u) for i, (t, p, u) in enumerate(
+                          [("甲B", 5, 100), ("乙B", 4, 90), ("丙B", 0, 3)])]
+        by_id = {it["lib_id"]: it for it in items}
+        for k, v in {"load_library": lambda p=None: {"base_url": "http://x/"},
+                     "lib_items": lambda cfg: (items, "test"),
+                     "lib_fetch": lambda cfg, it: (self.b, "cache"),
+                     "resolve_lib_b": lambda args: ({}, by_id[args.b_id], "test")}.items():
+            orig = getattr(abtool, k)
+            setattr(abtool, k, v)
+            self.addCleanup(setattr, abtool, k, orig)
+        r = abtool.cmd_run(types.SimpleNamespace(
+            a=str(self.a), a_role="带土", a_title="AI海上找清静鸣人", designer="D", serial=1, date="261118",
+            demand="原创", intern=None, ai=None, out_dir=None, overlay=None, watermark=None,
+            codes=str(TEAM / "codes.json"), fields=str(TEAM / "fields.json"), library=None))
+        self.assertTrue(r["ok"], r)
+        self.assertEqual(r["out_dir"], str(self.out))
+        self.assertEqual(len(list(self.out.glob("*.mp4"))), 3)
+        self.assertEqual(len(list((self.day / "02_接片").glob("*.mp4"))), 3)
+        self.assertTrue(r["desktop_link"]["ok"])
+        self.assertEqual(abtool.cmd_ws_status(None)["pending_upload"].__len__(), 3)
+
+
+class WorkspaceMigrate(TempState, unittest.TestCase):
+    def legacy(self):
+        st = abtool.STATE
+        st.mkdir(parents=True)
+        for n in abtool.CONFIG_FILES:
+            (st / n).write_text(json.dumps({"n": n}), encoding="utf-8")
+        old = self.desk / "待上传"
+        (old / "作废").mkdir(parents=True)
+        files = {
+            "up": old / "261118D6-甲接乙-原创-37.mp4",
+            "up_md": old / "261118D6-甲接乙-原创-37.上传清单.md",
+            "todo": old / "261119D1-丙接丁-原创.mp4",
+            "void": old / "作废" / "261118D5-戊接己-原创.mp4",
+            "sum": old / "本次待上传_1118_2010.md",
+            "odd": old / "随手.txt",
+        }
+        for f in files.values():
+            f.write_bytes(f.name.encode())
+        os.utime(files["sum"], (1795000000, 1795000000))
+        rows = [{"素材名称": "261118D6-甲接乙-原创-37", "日期": "261118", "设计师码": "D", "序号": "6",
+                 "上传文件": str(files["up"]), "状态": "已上传", "素材ID": "127598"},
+                {"素材名称": "261119D1-丙接丁-原创", "日期": "261119", "设计师码": "D", "序号": "1",
+                 "上传文件": str(files["todo"]), "状态": "已出清单", "素材ID": ""}]
+        import csv
+        with (st / "上传台账.csv").open("w", encoding="utf-8-sig", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=abtool.LEDGER_COLS)
+            w.writeheader()
+            for r in rows:
+                w.writerow({k: r.get(k, "") for k in abtool.LEDGER_COLS})
+        (st / "b-cache").mkdir()
+        (st / "b-cache" / "NB-1.mp4").write_bytes(b"b")
+        return files
+
+    def migrate(self, dry=False):
+        return abtool.cmd_ws_migrate(types.SimpleNamespace(dry_run=dry))
+
+    def test_dry_run_moves_nothing(self):
+        files = self.legacy()
+        self.init()
+        r = self.migrate(dry=True)
+        self.assertTrue(r["dry_run"])
+        self.assertTrue(all(f.exists() for f in files.values()))
+        self.assertFalse((self.root / "配置" / "codes.json").exists())
+
+    def test_migrate_puts_everything_in_place(self):
+        files = self.legacy()
+        init = self.init()
+        self.assertTrue(init["legacy_found"])
+        r = self.migrate()
+        self.assertTrue(r["ok"], r)
+        W = self.root / "每日"
+        self.assertTrue((W / "261118" / "04_已上传" / files["up"].name).is_file())
+        self.assertTrue((W / "261118" / "04_已上传" / files["up_md"].name).is_file())
+        self.assertTrue((W / "261119" / "03_待上传" / files["todo"].name).is_file())
+        self.assertTrue((W / "261118" / "作废" / files["void"].name).is_file())
+        self.assertTrue((W / "未归类" / "随手.txt").is_file())
+        self.assertEqual(len(list(W.glob("*/03_待上传/本次待上传_*.md"))), 1)
+        self.assertFalse((self.desk / "待上传").exists())
+        for n in abtool.CONFIG_FILES:
+            self.assertTrue((self.root / "配置" / n).is_file())
+            self.assertFalse((abtool.STATE / n).exists())
+        self.assertTrue((self.root / "B段缓存" / "NB-1.mp4").is_file())
+        rows = {r["素材名称"]: r for r in abtool.ledger_rows()}
+        self.assertEqual(rows["261118D6-甲接乙-原创-37"]["素材ID"], "127598")
+        self.assertEqual(rows["261119D1-丙接丁-原创"]["上传文件"], str(W / "261119" / "03_待上传" / files["todo"].name))
+        self.assertFalse((abtool.STATE / "上传台账.csv").exists())
+        self.assertEqual(r["legacy_remaining"], [])
+        # 再跑一次什么也不做
+        r2 = self.migrate()
+        self.assertEqual((r2["files"], r2["config"]), ([], []))
+
+    def test_conflict_is_skipped_and_reported(self):
+        files = self.legacy()
+        self.init()
+        clash = self.root / "每日" / "261119" / "03_待上传" / files["todo"].name
+        clash.parent.mkdir(parents=True, exist_ok=True)
+        clash.write_bytes(b"different")
+        r = self.migrate()
+        self.assertFalse(r["ok"])
+        self.assertEqual([c["from"] for c in r["conflicts"]], [str(files["todo"])])
+        self.assertTrue(files["todo"].is_file())
+        self.assertEqual(clash.read_bytes(), b"different")
+
+    def test_existing_workspace_config_wins(self):
+        self.legacy()
+        self.init()
+        (self.root / "配置" / "codes.json").write_text('{"new": 1}', encoding="utf-8")
+        r = self.migrate()
+        acts = {c["file"]: c["action"] for c in r["config"]}
+        self.assertEqual(acts["codes.json"], "workspace_kept_old_saved")
+        self.assertEqual((self.root / "配置" / "codes.json").read_text(encoding="utf-8"), '{"new": 1}')
+        self.assertTrue(list((self.root / "配置").glob("迁移前旧配置-*/codes.json")))

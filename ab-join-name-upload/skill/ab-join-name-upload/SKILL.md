@@ -17,6 +17,14 @@ description: "把本人做好的 A 段自动接上选B台里合适的 B 段，�
 
 项目分类、游戏、一类、二类、AI 方式用团队默认（火影／忍界大战／小剧场／AI／SD2拼框），角色标签默认取 B 段角色——**不要问**，除非用户主动说不一样（非 AI 素材用 `--ai 无`）。
 
+## 工作台（先看这里）
+
+这台电脑的买量工作都在「买量工作台」里（默认 `~/买量工作台`，位置记在 `工作台.json`）。工作台根目录的 `AGENTS.md` 写了目录约定，开工前读它。
+
+- 还没有工作台：`python3 scripts/abtool.py workspace init --designer <设计师码>`。可重复运行，只补齐缺的，不覆盖用户改过的 `AGENTS.md`。
+- 有旧版数据（`init` 输出 `legacy_found` 非空）：`workspace migrate` 把 `~/.ab-join-name-upload` 和 `桌面/待上传` 搬进工作台（先 `--dry-run` 给用户看也可以）。有 `conflicts` 就停下报告，不要手动覆盖。
+- 每次开工：`workspace today`（建今天的目录、更新桌面「今日待上传」快捷方式），`workspace status` 看有没有出了清单还没回填素材 ID 的。
+
 第一次使用：如果用户给了负责人发的团队配置（zip 或文件夹），先运行 `python3 scripts/abtool.py import-config --from <路径>`；然后跑 `python3 scripts/abtool.py doctor`，不是 `ok:true` 就按输出处理（多半是缺 FFmpeg 或选B台地址变了）。
 
 ## 一条命令做完（默认）
@@ -26,7 +34,9 @@ python3 scripts/abtool.py run --a <A.mp4> --a-role <A段角色> --a-title "<A段
   --designer <设计师码> --serial <今天第一个可用序号> [--demand <需求人代号>] [--intern <实习生代号>]
 ```
 
-它会：按公司规则从选B台挑 3 条 B → 下载并校验 → 接片 → 技术核查 → 按连续序号命名 → 在 `桌面/待上传/` 放好 3 个成片和各自的上传清单，外加一份 `本次待上传_*.md` 总表。
+它会：按公司规则从选B台挑 3 条 B → 下载并校验 → 接片 → 技术核查 → 按连续序号命名 → 在工作台 `每日/<YYMMDD>/03_待上传/`（桌面「今日待上传」）放好 3 个成片和各自的上传清单，外加一份 `本次待上传_*.md` 总表。中间成片在 `02_接片/`。不要加 `--out-dir`，除非用户明确要放别处。没有工作台时才落到 `桌面/待上传/`。
+
+A 段没给路径时，先看今天的 `01_A段/` 里有没有 MP4，只有一个就用它并告诉用户，多个就问。
 
 做完后告诉用户：
 - 3 条各接了哪段 B、为什么选它（`versions[].reason`，以及 `notes` 里“同角色不够、放宽到其他角色”的说明）；
@@ -56,7 +66,7 @@ python3 scripts/abtool.py run --a <A.mp4> --a-role <A段角色> --a-title "<A段
 python3 scripts/abtool.py record --name "<素材名称>" --record-id <素材ID>
 ```
 
-`ledger` 可以查看本机台账。
+工作台里 `record` 会把这条的成片和清单移到当天的 `04_已上传/`。`ledger` 可以查看本机台账。
 
 ## 命名规则（不要改写）
 
@@ -71,5 +81,6 @@ python3 scripts/abtool.py record --name "<素材名称>" --record-id <素材ID>
 
 - 不登录后台、不读取或保存任何密码、Cookie、验证码；不替用户上传、提审或投放。
 - 不覆盖已有文件；同名不同内容、序号已在本机用过都会停下来。
+- 不删除工作台 `每日/`、`台账/`、`配置/` 里的东西；台账只由 abtool 写。
 - 代号表、字段表里没有的人或选项不要猜，让用户找负责人补表。
 - 选B台连不上：把原话告诉用户（多半是地址变了），负责人给出新地址后运行 `set-library --url <新地址>`。不要换别的来源找 B 段。
