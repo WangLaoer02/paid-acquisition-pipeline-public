@@ -996,13 +996,55 @@ def shortcut_mode():
     return m if m in ("symlink", "lnk") else ("lnk" if os.name == "nt" else "symlink")
 
 
+LNK_PS = r"""
+$ErrorActionPreference = 'Stop'
+Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
+[ComImport, Guid("00021401-0000-0000-C000-000000000046")] class AbShellLink {}
+[ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("000214F9-0000-0000-C000-000000000046")]
+interface IAbShellLinkW {
+  void GetPath([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder f, int c, IntPtr d, int fl);
+  void GetIDList(out IntPtr p); void SetIDList(IntPtr p);
+  void GetDescription([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder n, int c);
+  void SetDescription([MarshalAs(UnmanagedType.LPWStr)] string n);
+  void GetWorkingDirectory([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder d, int c);
+  void SetWorkingDirectory([MarshalAs(UnmanagedType.LPWStr)] string d);
+  void GetArguments([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder a, int c);
+  void SetArguments([MarshalAs(UnmanagedType.LPWStr)] string a);
+  void GetHotkey(out short k); void SetHotkey(short k);
+  void GetShowCmd(out int s); void SetShowCmd(int s);
+  void GetIconLocation([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder p, int c, out int i);
+  void SetIconLocation([MarshalAs(UnmanagedType.LPWStr)] string p, int i);
+  void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string p, int r);
+  void Resolve(IntPtr h, int f);
+  void SetPath([MarshalAs(UnmanagedType.LPWStr)] string f);
+}
+public static class AbLnk {
+  public static void Make(string link, string target) {
+    var l = (IAbShellLinkW)new AbShellLink();
+    l.SetPath(target);
+    ((System.Runtime.InteropServices.ComTypes.IPersistFile)l).Save(link, true);
+  }
+}
+'@
+[AbLnk]::Make($env:AB_LNK, $env:AB_TARGET)
+"""
+
+
 def make_lnk(link, target):
-    """Windows 快捷方式（.lnk）：路径经环境变量传给 PowerShell，避免引号和中文编码问题。"""
+    """Windows 快捷方式（.lnk）：走 Unicode 的 IShellLinkW（WScript.Shell 在非中文系统上处理不了中文路径）。
+    脚本用 -EncodedCommand 传入、路径经环境变量传入：不受引号、编码和脚本执行策略影响。"""
+    import base64
     env = {**os.environ, "AB_LNK": str(link), "AB_TARGET": str(target)}
-    ps = "$s=(New-Object -ComObject WScript.Shell).CreateShortcut($env:AB_LNK);$s.TargetPath=$env:AB_TARGET;$s.Save()"
-    r = subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps], env=env, capture_output=True)
+    enc = base64.b64encode(LNK_PS.encode("utf-16-le")).decode("ascii")
+    flags = 0x08000000 if os.name == "nt" else 0  # CREATE_NO_WINDOW：不闪黑窗口
+    r = subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc],
+                       env=env, capture_output=True, creationflags=flags)
     if r.returncode != 0 or not Path(link).is_file():
-        raise OSError(r.stderr.decode("utf-8", "replace").strip() or "PowerShell 没有建出快捷方式")
+        err = r.stderr.decode("utf-8", "replace").strip().splitlines()
+        raise OSError((err[0] if err else "") or "PowerShell 没有建出快捷方式")
 
 
 def ws_save_meta(meta):
@@ -1289,19 +1331,20 @@ def write_generated(name, content, meta, report):
     p = WS / name
     new_sha = hashlib.sha256(content.encode("utf-8")).hexdigest()
     gen = meta.setdefault("generated", {})
+    data = content.encode("utf-8")  # 按字节写：Windows 文本模式会把换行改成 CRLF，哈希就对不上了
     if not p.exists():
-        p.write_text(content, encoding="utf-8")
+        p.write_bytes(data)
         report.append({"file": name, "action": "created"})
     else:
         cur = sha256(p)
         if cur == new_sha:
             report.append({"file": name, "action": "unchanged"})
         elif cur == gen.get(name):
-            p.write_text(content, encoding="utf-8")
+            p.write_bytes(data)
             report.append({"file": name, "action": "updated"})
         else:
             alt = WS / name.replace(".md", ".新版.md")
-            alt.write_text(content, encoding="utf-8")
+            alt.write_bytes(data)
             report.append({"file": name, "action": "kept_user_edits", "new_version": str(alt)})
             return
     gen[name] = new_sha
@@ -1552,7 +1595,7 @@ def _esc(v):
 def _rel(path):
     """看板里的链接用相对工作台根目录的路径，双击 看板.html 就能打开。"""
     try:
-        return urllib.parse.quote(str(Path(path).relative_to(WS)))
+        return urllib.parse.quote(Path(path).relative_to(WS).as_posix())  # Windows 也用 /，链接才能点开
     except ValueError:
         return "file://" + urllib.parse.quote(str(path))
 

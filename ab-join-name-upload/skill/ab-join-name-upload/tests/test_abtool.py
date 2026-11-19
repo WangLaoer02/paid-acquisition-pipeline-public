@@ -1144,9 +1144,25 @@ class PipelineBoard(TempState, unittest.TestCase):
 
 @unittest.skipUnless(os.name == "nt", "只在 Windows 上检查真实 .lnk")
 class RealWindowsShortcut(TempState, unittest.TestCase):
+    def setUp(self):
+        super().setUp()
+        self.desk = self.base / "桌面 测试"
+        self.desk.mkdir()
+
     def test_real_lnk(self):
         target = self.base / "目标 文件夹"
         target.mkdir()
         link = self.desk / "今日待上传.lnk"
         abtool.make_lnk(link, target)
         self.assertTrue(link.is_file() and link.stat().st_size > 0)
+        # 读回快捷方式的目标，确认中文路径原样保存
+        r = subprocess.run(["powershell", "-NoProfile", "-Command",
+                            "[Console]::OutputEncoding=[Text.Encoding]::UTF8;(New-Object -ComObject Shell.Application).NameSpace($env:D).ParseName($env:N).GetLink.Path"],
+                           env={**os.environ, "D": str(self.desk), "N": link.name}, capture_output=True)
+        self.assertEqual(os.path.normcase(r.stdout.decode("utf-8", "replace").strip()), os.path.normcase(str(target)))
+
+    def test_generated_files_stable_across_reruns(self):
+        self.init()
+        r = self.init(designer=None)
+        self.assertEqual({f["action"] for f in r["files"]}, {"unchanged"})
+        self.assertFalse((self.root / "AGENTS.新版.md").exists())
