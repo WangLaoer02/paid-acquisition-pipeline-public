@@ -1,0 +1,80 @@
+{
+  "_说明": "测试用的虚构字段表（结构与真实团队配置一致，人名均为虚构）",
+  "version": "fixture",
+  "defaults": {
+    "category": "火影",
+    "game": "忍界大战",
+    "source_type": [
+      "小剧场"
+    ],
+    "source_direction": [
+      "AI"
+    ],
+    "ai": "SD2拼框",
+    "origin_type": "1",
+    "is_redbag": "否"
+  },
+  "category": {
+    "label": "项目分类",
+    "options": {
+      "火影": "117"
+    }
+  },
+  "game": {
+    "label": "游戏",
+    "options": {
+      "忍界大战": "193"
+    }
+  },
+  "ai": {
+    "label": "AI 方式",
+    "options": [
+      "无",
+      "minimaxH3",
+      "SD非拼框",
+      "SD2拼框"
+    ]
+  },
+  "source_type": {
+    "label": "一类",
+    "options": [
+      "剪辑",
+      "小剧场",
+      "口播"
+    ]
+  },
+  "source_direction": {
+    "label": "二类（一类=小剧场时）",
+    "options": [
+      "小剧场",
+      "AE",
+      "UE",
+      "AI"
+    ]
+  },
+  "role": {
+    "label": "角色标签",
+    "options": [
+      "宇智波鼬",
+      "带土",
+      "佐助",
+      "卡卡西",
+      "凯"
+    ]
+  },
+  "second_designer": {
+    "label": "第二设计师",
+    "options": {
+      "测试丙": "1256",
+      "测试丁": "1241",
+      "测试戊": "1149"
+    }
+  },
+  "demand": {
+    "label": "需求人",
+    "options": [
+      "测试乙",
+      "测试己"
+    ]
+  }
+}

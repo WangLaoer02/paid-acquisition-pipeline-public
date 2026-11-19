@@ -1,0 +1,35 @@
+{
+  "_说明": "示例结构。真实可选项由负责人以团队配置发放（import-config 导入）。",
+  "version": "example-unverified",
+  "category": {
+    "label": "项目分类",
+    "options": {
+      "火影": "117"
+    }
+  },
+  "source_type": {
+    "label": "一类",
+    "options": [
+      "剪辑",
+      "小剧场",
+      "口播"
+    ]
+  },
+  "source_direction": {
+    "label": "二类",
+    "options": [
+      "竞品",
+      "AI",
+      "攻略"
+    ]
+  },
+  "role": {
+    "label": "角色标签",
+    "options": [
+      "宇智波鼬",
+      "佐助",
+      "带土",
+      "卡卡西"
+    ]
+  }
+}
