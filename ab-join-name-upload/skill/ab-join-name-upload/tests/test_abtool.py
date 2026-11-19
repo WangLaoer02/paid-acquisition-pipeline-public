@@ -599,3 +599,22 @@ class ImportConfig(unittest.TestCase):
         (self.src / "fields.json").write_text("{坏", encoding="utf-8")
         with self.assertRaisesRegex(abtool.ToolError, "不是有效 JSON"):
             abtool.cmd_import_config(types.SimpleNamespace(source=str(self.src)))
+
+
+class PlaceholderLibrary(unittest.TestCase):
+    def test_placeholder_address_gives_clear_error(self):
+        p = abtool.HOME / "lib-placeholder.json"
+        p.write_text(json.dumps({"base_url": "https://选B台地址/pick/"}, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaisesRegex(abtool.ToolError, "还没设置选B台地址"):
+            abtool.load_library(p)
+
+    def test_doctor_never_crashes_on_library(self):
+        for n in ("codes.json", "fields.json"):
+            (abtool.HOME / n).write_text("{}", encoding="utf-8")
+        (abtool.HOME / "library.json").write_text(json.dumps({"base_url": "https://选B台地址/pick/"},
+                                                             ensure_ascii=False), encoding="utf-8")
+        r = abtool.cmd_doctor(None)
+        self.assertFalse(r["library"]["reachable"])
+        self.assertIn("还没设置选B台地址", r["library"]["error"])
+        for n in ("codes.json", "fields.json", "library.json"):
+            (abtool.HOME / n).unlink(missing_ok=True)

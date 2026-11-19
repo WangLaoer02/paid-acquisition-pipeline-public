@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-VERSION = "0.6.0"
+VERSION = "0.6.1"
 ILLEGAL = re.compile(r'[\\/\x00-\x1f:*?"<>|]')
 FORMAL = re.compile(r'^(\d{6})([A-Za-z]+)(\d+)(?:-(.+))?$')
 HOME = Path(os.environ.get("AB_TOOL_HOME", Path.home() / ".ab-join-name-upload"))
@@ -156,6 +156,8 @@ def cmd_record(args):
 def load_library(path=None):
     cfg = load_json(path or HOME / "library.json", "选B台配置 library.json")
     base = cfg.get("base_url") or ""
+    if "选B台地址" in base or not base.isascii():
+        raise ToolError("还没设置选B台地址：请导入负责人发的团队配置（import-config），或用 set-library 设置")
     if not re.match(r"^https?://", base):
         raise ToolError("library.json 的 base_url 必须是选B台地址，如 https://xxx/pick/")
     cfg["base_url"] = base if base.endswith("/") else base + "/"
@@ -201,6 +203,8 @@ def http_get(url, dest=None, timeout=120, attempts=3):
             last = e
             if i + 1 < attempts:
                 time.sleep(1.5 * (i + 1))
+        except (UnicodeError, ValueError) as e:
+            raise ToolError(f"选B台地址无效：{url}（{type(e).__name__}）") from None
     raise ToolError(f"连不上选B台或传输中断（已重试 {attempts} 次；地址可能已变或服务不稳）：{url}：{type(last).__name__}") from None
 
 
@@ -886,8 +890,8 @@ def cmd_doctor(_args):
         try:
             items, generated = lib_items(load_library())
             res["library"] = {"reachable": True, "items": len(items), "generated_at": generated}
-        except ToolError as e:
-            res["library"] = {"reachable": False, "error": str(e)}
+        except Exception as e:  # doctor 只报告，绝不因选B台检查崩溃
+            res["library"] = {"reachable": False, "error": str(e) if isinstance(e, ToolError) else type(e).__name__}
     return res
 
 
