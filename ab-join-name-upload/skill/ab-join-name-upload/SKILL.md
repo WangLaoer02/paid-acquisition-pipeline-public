@@ -24,6 +24,7 @@ description: "把本人做好的 A 段自动接上选B台里合适的 B 段，�
 - 还没有工作台：`python3 scripts/abtool.py workspace init --designer <设计师码>`。可重复运行，只补齐缺的，不覆盖用户改过的 `AGENTS.md`。
 - 有旧版数据（`init` 输出 `legacy_found` 非空）：`workspace migrate` 把 `~/.ab-join-name-upload` 和 `桌面/待上传` 搬进工作台（先 `--dry-run` 给用户看也可以）。有 `conflicts` 就停下报告，不要手动覆盖。
 - 每次开工：`workspace today`（建今天的目录、更新桌面「今日待上传」快捷方式），`workspace status` 看有没有出了清单还没回填素材 ID 的。
+- 看板：`workspace board` 刷新工作台根目录的 `看板.html`（桌面「买量看板.html」），显示今天进行到哪一步、每条素材状态、还没回填素材 ID 的条目；`run`、`record`、`today` 后自动刷新。用户问“进行到哪了”“刷新看板”时运行它，把输出的 `next` 原话告诉用户。
 
 第一次使用：如果用户给了负责人发的团队配置（zip 或文件夹），先运行 `python3 scripts/abtool.py import-config --from <路径>`；然后跑 `python3 scripts/abtool.py doctor`，不是 `ok:true` 就按输出处理（多半是缺 FFmpeg 或选B台地址变了）。
 

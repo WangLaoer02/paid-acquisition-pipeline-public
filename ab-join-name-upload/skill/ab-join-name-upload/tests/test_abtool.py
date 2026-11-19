@@ -905,3 +905,96 @@ class WorkspaceMigrate(TempState, unittest.TestCase):
         self.assertEqual(acts["codes.json"], "workspace_kept_old_saved")
         self.assertEqual((self.root / "配置" / "codes.json").read_text(encoding="utf-8"), '{"new": 1}')
         self.assertTrue(list((self.root / "配置").glob("迁移前旧配置-*/codes.json")))
+
+
+class Board(TempState, unittest.TestCase):
+    def row(self, name, date, status="已出清单", sid=""):
+        return {"素材名称": name, "日期": date, "设计师码": "D", "序号": "1", "状态": status, "素材ID": sid, "上传文件": ""}
+
+    def test_steps_follow_today_progress(self):
+        self.init()
+        today = abtool.resolve_date("today")[0]
+        day = self.root / "每日" / today
+        self.assertEqual(abtool.board_state()["step"], 0)
+        (day / "01_A段" / "A.mp4").write_bytes(b"a")
+        self.assertEqual(abtool.board_state()["step"], 0)
+        self.assertIn("01_A段 里有 1 个", abtool.board_state()["next"])
+        (day / "02_接片" / "j.mp4").write_bytes(b"j")
+        self.assertEqual(abtool.board_state()["step"], 1)
+        abtool.ledger_write([self.row(f"{today}D1-甲接乙-原创", today)])
+        st = abtool.board_state()
+        self.assertEqual((st["step"], len(st["todo"])), (2, 1))
+        abtool.ledger_write([self.row(f"{today}D1-甲接乙-原创", today, "已上传", "127598")])
+        self.assertEqual(abtool.board_state()["step"], 4)
+
+    def test_older_pending_and_void_and_escape(self):
+        self.init()
+        today = abtool.resolve_date("today")[0]
+        abtool.ledger_write([self.row("261101D3-<b>坏</b>接乙-原创", "261101"),
+                             self.row(f"{today}D2-丙接丁-原创", today, "作废：序号改给 X")])
+        st = abtool.board_state()
+        self.assertEqual(len(st["older_todo"]), 1)
+        self.assertEqual(len(st["void"]), 1)
+        html = abtool.render_board(st)
+        self.assertNotIn("<b>坏</b>", html)
+        self.assertIn("&lt;b&gt;坏&lt;/b&gt;", html)
+        self.assertIn("还没回填素材 ID", html)
+
+    def test_board_file_and_desktop_link(self):
+        r = self.init()
+        self.assertTrue(r["board"]["ok"], r["board"])
+        self.assertTrue((self.root / "看板.html").is_file())
+        link = self.desk / "买量看板.html"
+        self.assertTrue(link.is_symlink())
+        self.assertEqual(Path(os.readlink(link)), self.root / "看板.html")
+        res = abtool.cmd_ws_board(None)
+        self.assertTrue(res["ok"])
+        self.assertIn("next", res)
+
+    def test_board_never_breaks_commands(self):
+        self.init()
+        orig = abtool.board_state
+        abtool.board_state = lambda today=None: 1 / 0
+        self.addCleanup(setattr, abtool, "board_state", orig)
+        r = abtool.write_board()
+        self.assertFalse(r["ok"])
+        self.assertIn("ZeroDivisionError", r["error"])
+
+    def test_no_board_without_workspace(self):
+        self.assertIsNone(abtool.write_board())
+
+
+@unittest.skipUnless(shutil.which("ffmpeg"), "需要 FFmpeg")
+class BoardFlow(TempState, V05Features):
+    def setUp(self):
+        super().setUp()
+        self.init()
+        self.day = self.root / "每日" / "261118"
+        abtool.ensure_day("261118")
+        self.out = self.day / "03_待上传"
+
+    def test_record_refreshes_board_with_links(self):
+        r = self.pkg()
+        st = abtool.board_state("261118")
+        self.assertEqual(len(st["todo"]), 1)
+        html = abtool.render_board(st)
+        self.assertIn("上传清单", html)
+        self.assertIn(urllib.parse.quote("每日/261118/03_待上传/"), html)
+        res = abtool.cmd_record(types.SimpleNamespace(name=r["name"], record_id="127598"))
+        self.assertTrue(res["board"]["ok"])
+        st = abtool.board_state("261118")
+        self.assertEqual((len(st["todo"]), len(st["done"])), (0, 1))
+        self.assertIn("素材 ID 127598", abtool.render_board(st))
+
+    # 父类里断言旧目录结构的测试在工作台里不适用
+    def test_reused_serial_retires_unuploaded_old_version(self):
+        pass
+
+    def test_record_material_id(self):
+        pass
+
+    def test_run_three_versions_consecutive_serials(self):
+        pass
+
+
+import urllib.parse  # noqa: E402

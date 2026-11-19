@@ -46,7 +46,7 @@ python3 ~/.codex/skills/ab-join-name-upload/scripts/abtool.py import-config --fr
 └── 日志/
 ```
 
-桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式。命令：`workspace init`（建立／补齐，可重复运行，不覆盖改过的 `AGENTS.md`）、`workspace today`、`workspace status`、`workspace migrate`（把旧版 `~/.ab-join-name-upload` 和 `桌面/待上传` 搬进来；内容核对一致才移走原件，同名不同内容的不搬）。
+桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式；「买量看板.html」打开工作台的 `看板.html`，一眼看到今天进行到哪一步、每条素材的状态和还没回填素材 ID 的条目（`workspace board` 刷新，`run`／`record` 后自动刷新）。命令：`workspace init`（建立／补齐，可重复运行，不覆盖改过的 `AGENTS.md`）、`workspace today`、`workspace status`、`workspace migrate`（把旧版 `~/.ab-join-name-upload` 和 `桌面/待上传` 搬进来；内容核对一致才移走原件，同名不同内容的不搬）。
 
 ## 使用
 
@@ -58,7 +58,7 @@ python3 ~/.codex/skills/ab-join-name-upload/scripts/abtool.py import-config --fr
 | `record` | 上传后回填素材 ID 到本机台账 |
 | `import-config` / `set-library` | 导入团队配置 / 更新选B台地址 |
 | `doctor` / `ledger` | 环境检查 / 查看本机台账 |
-| `workspace init/today/status/migrate` | 建立工作台 / 今天的目录 / 状态 / 搬入旧版数据 |
+| `workspace init/today/status/migrate/board` | 建立工作台 / 今天的目录 / 状态 / 搬入旧版数据 / 刷新看板 |
 
 ## 测试
 

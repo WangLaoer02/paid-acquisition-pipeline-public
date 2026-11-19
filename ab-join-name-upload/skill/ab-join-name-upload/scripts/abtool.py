@@ -19,7 +19,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-VERSION = "0.7.0"
+VERSION = "0.7.1"
 ILLEGAL = re.compile(r'[\\/\x00-\x1f:*?"<>|]')
 FORMAL = re.compile(r'^(\d{6})([A-Za-z]+)(\d+)(?:-(.+))?$')
 # STATE：旧版配置目录，同时存放指向工作台的 workspace.json。HOME：当前生效的配置目录。
@@ -191,7 +191,7 @@ def cmd_record(args):
             r["上传文件"] = str(done_dir / src.name)
     ledger_write(rows)
     return {"ok": True, "name": r["素材名称"], "record_id": str(args.record_id), "ledger": str(ledger_path()),
-            "moved_to": moved_to}
+            "moved_to": moved_to, "board": write_board()}
 
 
 # ---------------------------------------------------------------- 选 B 台
@@ -873,8 +873,9 @@ def cmd_run(args):
     out_dir.mkdir(parents=True, exist_ok=True)
     summary.write_text("\n".join(lines) + "\n", encoding="utf-8")
     link = desktop_link(out_dir) if WS and not args.out_dir else None
+    board = write_board()
     return {"ok": all(r.get("ok") for r in results), "out_dir": str(out_dir), "summary": str(summary),
-            "workspace": str(WS) if WS else None, "desktop_link": link,
+            "workspace": str(WS) if WS else None, "desktop_link": link, "board": board,
             "generated_at": generated, "notes": picked["notes"], "shortfall": picked["shortfall"],
             "a_length_note": a_length_note(a_info["duration"]), "versions": results,
             "uncut_suggestions": uncut,
@@ -958,7 +959,7 @@ def cmd_doctor(_args):
 DAY_DIRS = ("01_A段", "02_接片", "03_待上传", "04_已上传")
 WS_DIRS = ("程序", "配置", "台账", "B段缓存", "每日", "日志")
 # 工作台根目录里允许预先存在的条目（Agent 会先把源码克隆到 程序/源码，再运行 init）
-WS_KNOWN = set(WS_DIRS) | {"管线", WS_FILE, "AGENTS.md", "开始使用.md", "AGENTS.新版.md", "开始使用.新版.md"}
+WS_KNOWN = set(WS_DIRS) | {"管线", WS_FILE, "AGENTS.md", "开始使用.md", "AGENTS.新版.md", "开始使用.新版.md", "看板.html"}
 DEFAULT_ROOT = Path.home() / "买量工作台"
 
 
@@ -982,11 +983,11 @@ def ws_meta():
     return json.loads(p.read_text(encoding="utf-8")) if p.is_file() else {}
 
 
-def desktop_link(target):
-    """桌面「今日待上传」快捷方式：只建或更新符号链接，桌面上同名的真实文件夹绝不动。"""
+def desktop_link(target, name="今日待上传"):
+    """桌面快捷方式（今日待上传、买量看板）：只建或更新符号链接，桌面上同名的真实文件或文件夹绝不动。"""
     if not WS or ws_meta().get("desktop_link") is False:
         return None
-    link = desktop_dir() / "今日待上传"
+    link = desktop_dir() / name
     if not link.parent.is_dir():
         return {"ok": False, "reason": f"没有桌面目录：{link.parent}"}
     if link.exists() and not link.is_symlink():
@@ -995,7 +996,7 @@ def desktop_link(target):
         if Path(os.readlink(link)) == Path(target):
             return {"ok": True, "path": str(link), "target": str(target)}
         link.unlink()
-    link.symlink_to(target, target_is_directory=True)
+    link.symlink_to(target, target_is_directory=Path(target).is_dir())
     return {"ok": True, "path": str(link), "target": str(target)}
 
 
@@ -1033,7 +1034,7 @@ def render_agents(root, designer):
 | `04_已上传/` | B04 | 用户回填素材 ID 后，`record` 自动移过来 |
 | `作废/` | — | 序号被改用后退下来的旧版本，不要上传 |
 
-桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式。
+桌面上的「今日待上传」是指向当天 `03_待上传/` 的快捷方式；「买量看板.html」指向根目录的 `看板.html`：今天进行到哪一步、每条素材的状态、还没回填素材 ID 的条目。`run`、`record`、`workspace today` 后会自动刷新；用户说“刷新看板”或“现在进行到哪了”时运行 `abtool workspace board`，并把输出里的 `next` 告诉用户。
 
 ## 每次开工
 
@@ -1076,6 +1077,8 @@ def render_start(root, designer):
    `用 ab-join-name-upload 帮我接B出清单：A 段标题「…」，主推角色…，今天从序号 N 开始，需求人原创。`
 4. 打开桌面上的 **今日待上传**：看一遍成片，照每条的 `上传清单.md` 在后台上传（先填名称和字段，最后选文件）。
 5. 把素材 ID 告诉 Codex，它会记进台账，并把这条移到 `04_已上传/`。
+
+**想知道进行到哪了**：双击桌面上的 **买量看板.html**（就是工作台里的 `看板.html`）。它显示今天在哪一步、下一步做什么、每条素材是待上传还是已上传、还有哪些没回填素材 ID。
 
 **不要动的**：`台账/`、`配置/`、`程序/`。账号、密码、验证码只在你自己的浏览器里输入，不要发给 Codex。
 """
@@ -1156,7 +1159,7 @@ def cmd_ws_init(args):
     return {"ok": True, "workspace": str(root), "created": created, "designer": meta["designer"],
             "files": files, "today": str(today), "desktop_link": desktop_link(today / DAY_DIRS[2]),
             "config_dir": str(HOME), "config_files": {n: (HOME / n).is_file() for n in CONFIG_FILES},
-            "legacy_found": leftovers,
+            "legacy_found": leftovers, "board": write_board(),
             "next": (["有旧版数据：运行 workspace migrate 搬进工作台"] if leftovers else []) +
                     ([] if all((HOME / n).is_file() for n in CONFIG_FILES) else ["还没有团队配置：import-config --from <团队配置 zip>"])}
 
@@ -1170,7 +1173,7 @@ def cmd_ws_today(_args):
     need_ws()
     day = ensure_day(resolve_date("today")[0])
     return {"ok": True, "today": str(day), "dirs": {d: str(day / d) for d in DAY_DIRS},
-            "desktop_link": desktop_link(day / DAY_DIRS[2])}
+            "desktop_link": desktop_link(day / DAY_DIRS[2]), "board": write_board()}
 
 
 def cmd_ws_status(_args):
@@ -1322,8 +1325,199 @@ def cmd_ws_migrate(args):
     if (STATE / "work").is_dir():
         report["left_alone"].append({"path": str(STATE / "work"), "why": "旧版接片中间文件，可以删除；工具不自动删"})
     conflicts = [x for x in report["files"] + report["cache"] if x["action"] == "conflict_skipped"]
-    return {"ok": not conflicts, "dry_run": dry, "workspace": str(WS), **report,
+    board = write_board() if not dry else None
+    return {"ok": not conflicts, "dry_run": dry, "workspace": str(WS), **report, "board": board,
             "conflicts": conflicts, "legacy_remaining": legacy_leftovers() if not dry else None}
+
+
+
+# ---------------------------------------------------------------- 看板
+def _esc(v):
+    import html
+    return html.escape("" if v is None else str(v))
+
+
+def _rel(path):
+    """看板里的链接用相对工作台根目录的路径，双击 看板.html 就能打开。"""
+    try:
+        return urllib.parse.quote(str(Path(path).relative_to(WS)))
+    except ValueError:
+        return "file://" + urllib.parse.quote(str(path))
+
+
+def _sheet_info(row):
+    f = Path(row.get("上传文件") or "")
+    js = f.with_name(row["素材名称"] + ".上传清单.json") if row.get("上传文件") else None
+    info = {"b": "", "role": "", "md": None}
+    if js and js.is_file():
+        try:
+            d = json.loads(js.read_text(encoding="utf-8"))
+            info["b"] = d.get("naming", {}).get("b_source_name") or ""
+            info["role"] = d.get("form", {}).get("角色标签") or ""
+        except ValueError:
+            pass
+        md = js.with_name(row["素材名称"] + ".上传清单.md")
+        info["md"] = md if md.is_file() else None
+    return info
+
+
+def board_state(today=None):
+    """看板数据：今天进行到哪一步、每条素材的状态、各天汇总、待回填。只读本机文件，不联网。"""
+    today = today or resolve_date("today")[0]
+    rows = ledger_rows()
+    day = WS / "每日" / today
+    a_files = sorted(p.name for p in (day / DAY_DIRS[0]).glob("*.mp4")) if (day / DAY_DIRS[0]).is_dir() else []
+    joined = len(list((day / DAY_DIRS[1]).glob("*.mp4"))) if (day / DAY_DIRS[1]).is_dir() else 0
+    mine = [r for r in rows if r.get("日期") == today]
+    def kind(r):
+        if (r.get("状态") or "").startswith("作废"):
+            return "void"
+        return "done" if r.get("素材ID") else "todo"
+    todo = [r for r in mine if kind(r) == "todo"]
+    done = [r for r in mine if kind(r) == "done"]
+    void = [r for r in mine if kind(r) == "void"]
+    # step＝当前卡片序号：0 B01 选B，1 B02 接片，2 看片上传／回填，4＝今天全部完成
+    if todo:
+        step, nxt = 2, f"看片并上传 {len(todo)} 条，上传后把素材 ID 告诉 Codex"
+    elif done:
+        step, nxt = 4, f"今天已上传 {len(done)} 条。还有新的 A 段就放进 01_A段，再找 Codex 接B"
+    elif joined:
+        step, nxt = 1, "接片已开始，等 Codex 出上传清单"
+    elif a_files:
+        step, nxt = 0, f"01_A段 里有 {len(a_files)} 个 A 段：对 Codex 说 A 段标题、主推角色和今天第一个序号"
+    else:
+        step, nxt = 0, "把今天的 A 段放进 01_A段，或直接告诉 Codex A 段在哪"
+    older = [r for r in rows if kind(r) == "todo" and r.get("日期") != today]
+    days = {}
+    for r in rows:
+        d = days.setdefault(r.get("日期") or "?", {"todo": 0, "done": 0, "void": 0})
+        d[kind(r)] += 1
+    projects = []
+    pdir = WS / "管线" / "projects"
+    if pdir.is_dir():
+        for p in sorted((x for x in pdir.iterdir() if x.is_dir()), key=lambda x: x.stat().st_mtime, reverse=True):
+            projects.append({"name": p.name, "updated": dt.datetime.fromtimestamp(p.stat().st_mtime).strftime("%m-%d %H:%M")})
+    lib = {}
+    try:
+        lib = json.loads((HOME / "library.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        pass
+    base = lib.get("base_url") or ""
+    return {"today": today, "step": step, "next": nxt, "a_files": a_files, "joined": joined,
+            "todo": todo, "done": done, "void": void, "older_todo": older,
+            "days": sorted(days.items(), reverse=True)[:7], "projects": projects,
+            "health": {"配置": all((HOME / n).is_file() for n in CONFIG_FILES),
+                       "选B台地址": bool(base) and base.isascii() and "选B台地址" not in base,
+                       "FFmpeg": bool(shutil.which("ffmpeg") and shutil.which("ffprobe"))},
+            "designer": ws_meta().get("designer"), "version": VERSION}
+
+
+BOARD_CSS = """
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1f2329;--mute:#646a73;--line:#e3e5e8;--acc:#3370ff;--ok:#2ea121;--warn:#de7802;--bad:#d83931}
+@media (prefers-color-scheme:dark){:root{--bg:#17181a;--card:#222326;--ink:#e8e9eb;--mute:#9a9ea6;--line:#34363a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 -apple-system,"PingFang SC",sans-serif}
+main{max-width:1080px;margin:0 auto;padding:24px 20px 48px}
+header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+h1{font-size:20px;margin:0}h2{font-size:15px;margin:28px 0 10px}.mute{color:var(--mute);font-size:12px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.step b{display:block;font-size:13px}.step span{font-size:12px;color:var(--mute)}
+.step.done{border-color:var(--ok)}.step.done b::before{content:"✓ ";color:var(--ok)}
+.step.now{border-color:var(--acc);box-shadow:0 0 0 2px color-mix(in srgb,var(--acc) 25%,transparent)}.step.now b{color:var(--acc)}
+.next{margin-top:12px;background:var(--card);border-left:4px solid var(--acc);border-radius:8px;padding:12px 14px;font-size:15px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.cols,.steps{grid-template-columns:1fr}}
+.col{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;min-height:80px}
+.col h3{margin:0 0 8px;font-size:13px;display:flex;justify-content:space-between}
+.item{border-top:1px solid var(--line);padding:8px 0;font-size:13px;word-break:break-all}
+.item:first-of-type{border-top:0}.item a{color:var(--acc);text-decoration:none}.item .meta{color:var(--mute);font-size:12px}
+.pill{display:inline-block;border-radius:99px;padding:0 8px;font-size:12px;background:var(--line)}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px}
+th,td{text-align:left;padding:8px 12px;border-top:1px solid var(--line)}th{color:var(--mute);font-weight:500;border-top:0}
+.alert{background:color-mix(in srgb,var(--warn) 12%,var(--card));border:1px solid var(--warn);border-radius:10px;padding:10px 14px}
+"""
+
+
+def render_board(st):
+    e = _esc
+    names = [("B01 选B", "放 A 段，说标题、角色和序号"), ("B02 接片", "Codex 选 B、接片、出清单"),
+             ("B04 看片上传", "本人看片，在后台上传，回填素材 ID"), ("今天完成", "出过的清单都已回填")]
+    steps = "".join(
+        f'<div class="step {"done" if i < st["step"] else "now" if i == st["step"] else ""}"><b>{e(n)}</b><span>{e(d)}</span></div>'
+        for i, (n, d) in enumerate(names))
+
+    def item(r, show_id=False):
+        info = _sheet_info(r)
+        f = r.get("上传文件")
+        title = f'<a href="{_rel(f)}">{e(r["素材名称"])}</a>' if f and Path(f).is_file() else e(r["素材名称"])
+        meta = []
+        if info["b"]:
+            meta.append("B：" + e(info["b"]))
+        meta.append("第二设计师：" + e(r.get("第二设计师") or "原创"))
+        if info["role"]:
+            meta.append("角色：" + e(info["role"]))
+        links = f' · <a href="{_rel(info["md"])}">上传清单</a>' if info["md"] else ""
+        sid = f' <span class="pill ok">素材 ID {e(r["素材ID"])}</span>' if show_id and r.get("素材ID") else ""
+        return f'<div class="item">{title}{sid}<div class="meta">{" · ".join(meta)}{links}</div></div>'
+
+    def col(title, rows, cls, show_id=False, empty="—"):
+        body = "".join(item(r, show_id) for r in rows) or f'<div class="mute">{empty}</div>'
+        return f'<div class="col"><h3><span class="{cls}">{e(title)}</span><span class="pill">{len(rows)}</span></h3>{body}</div>'
+
+    day = WS / "每日" / st["today"]
+    a_list = "、".join(f'<a href="{_rel(day / DAY_DIRS[0] / n)}">{e(n)}</a>' for n in st["a_files"]) or "还没有"
+    older = ""
+    if st["older_todo"]:
+        older = ('<h2 class="warn">之前出了清单、还没回填素材 ID</h2><div class="alert">' +
+                 "".join(item(r) for r in st["older_todo"][:20]) +
+                 '<div class="mute">已经上传了就把素材 ID 告诉 Codex；不打算上传的可以不管。</div></div>')
+    days = "".join(f'<tr><td>{e(d)}</td><td>{c["todo"]}</td><td class="ok">{c["done"]}</td><td class="mute">{c["void"]}</td>'
+                   f'<td><a href="{_rel(WS / "每日" / d)}">打开</a></td></tr>' for d, c in st["days"]) \
+        or '<tr><td colspan="5" class="mute">还没有记录</td></tr>'
+    projects = "".join(f'<tr><td>{e(p["name"])}</td><td class="mute">{e(p["updated"])}</td></tr>' for p in st["projects"]) \
+        or '<tr><td colspan="2" class="mute">管线/projects 里还没有项目（A 段制作按买量管线节点进行）</td></tr>'
+    health = " · ".join(f'{e(k)} <b class="{"ok" if v else "bad"}">{"正常" if v else "缺"}</b>' for k, v in st["health"].items())
+    now = dt.datetime.now().strftime("%Y-%m-%d %H:%M")
+    who = f"设计师 {e(st['designer'])} · " if st["designer"] else ""
+    return f"""<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>买量看板 · {e(st['today'])}</title>
+<style>{BOARD_CSS}</style></head><body><main>
+<header><h1>买量看板 · {e(st['today'])}</h1><span class="mute">{who}更新于 {now} · 对 Codex 说“刷新看板”可立即更新</span></header>
+<h2>今天进行到哪</h2><div class="steps">{steps}</div>
+<div class="next"><b>下一步：</b>{e(st['next'])}</div>
+<p class="mute">今天的 A 段：{a_list} · 已接好 {st['joined']} 条 · <a href="{_rel(day / DAY_DIRS[2])}">打开今日待上传</a></p>
+<h2>今天的素材</h2><div class="cols">
+{col("待上传（已出清单）", st["todo"], "warn", empty="还没有")}{col("已上传", st["done"], "ok", True, empty="还没有")}{col("作废（不要上传）", st["void"], "mute", empty="没有")}
+</div>{older}
+<h2>最近 7 天</h2><table><tr><th>日期</th><th>待上传</th><th>已上传</th><th>作废</th><th></th></tr>{days}</table>
+<h2>买量管线项目</h2><table><tr><th>项目</th><th>最近改动</th></tr>{projects}</table>
+<h2>环境</h2><p>{health} · 接B技能 {e(st['version'])}</p>
+</main></body></html>
+"""
+
+
+def write_board():
+    """生成 工作台/看板.html。只在有工作台时生成；任何错误都不影响主命令。"""
+    if not WS:
+        return None
+    try:
+        p = WS / "看板.html"
+        tmp = p.with_name(p.name + ".partial")
+        tmp.write_text(render_board(board_state()), encoding="utf-8")
+        tmp.replace(p)
+        link = desktop_link(p, "买量看板.html")
+        return {"ok": True, "path": str(p), "desktop_link": link}
+    except Exception as e:  # 看板只是展示，绝不让接片、回填失败
+        return {"ok": False, "error": f"{type(e).__name__}: {e}"}
+
+
+def cmd_ws_board(_args):
+    need_ws()
+    r = write_board()
+    st = board_state()
+    return {**r, "today": st["today"], "next": st["next"], "todo": len(st["todo"]), "done": len(st["done"]),
+            "older_todo": len(st["older_todo"])}
 
 
 
@@ -1411,6 +1605,7 @@ def main(argv=None):
     w = wsub.add_parser("migrate", help="把旧版 ~/.ab-join-name-upload 和 桌面/待上传 搬进工作台")
     w.add_argument("--dry-run", action="store_true", help="只列出要做的动作，不搬")
     wsub.add_parser("config-dir", help="打印当前生效的配置目录（给 install.sh 用）")
+    wsub.add_parser("board", help="刷新 工作台/看板.html：今天进行到哪、每条素材状态、待回填")
     a = p.parse_args(argv)
     try:
         if a.cmd == "doctor":
@@ -1430,7 +1625,7 @@ def main(argv=None):
             if a.ws_cmd == "config-dir":
                 print(HOME); return
             r = {"init": cmd_ws_init, "today": cmd_ws_today, "status": cmd_ws_status,
-                 "migrate": cmd_ws_migrate}[a.ws_cmd](a)
+                 "migrate": cmd_ws_migrate, "board": cmd_ws_board}[a.ws_cmd](a)
             out(r, 0 if r["ok"] else 1)
         if a.cmd == "probe":
             out(probe(a.file))
